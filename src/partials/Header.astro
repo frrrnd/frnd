@@ -1,0 +1,43 @@
+---
+import MainNavigation from '../partials/MainNavigation.astro';
+import ColorMode from '../components/ColorMode.astro';
+---
+
+<MainNavigation />
+<ColorMode />
+<header class="header">
+    <div class="wrap">
+        <a href="/">
+            <img src="/avatar.png" alt="Fernando Soares">
+        </a>
+        <h1>Fernando Soares</h1>
+    </div>
+</header>
+<style>
+    .header {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 8rem 0 2rem 0;
+    }
+
+    .header a {
+        padding: 0 1rem;
+        transition: .4s;
+    }
+
+    .header a:active {
+        opacity: .5;
+        transition: .4s;
+    }
+
+    .header h1 {
+        font-size: 1.2rem;
+        color: var(--text-secondary-color);
+        width: 100%;
+        font-weight: 500;
+        line-height: 1.6;
+        padding: 0 1rem;
+    }
+</style>

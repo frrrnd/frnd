@@ -1,0 +1,12 @@
+---
+import { getCollection } from "astro:content";
+const iconsItems = await getCollection('icons');
+---
+
+<ul>
+    {iconsItems.map(icon => (
+        <li>
+            <a href={icon.slug}>{icon.data.tile}</a>
+        </li>
+    ))}
+</ul>

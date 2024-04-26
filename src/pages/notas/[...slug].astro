@@ -1,0 +1,74 @@
+---
+import { type CollectionEntry, getCollection } from "astro:content";
+import Nota from '../../layouts/Nota.astro';
+import FormattedDate from '../../partials/formattedDate.astro';
+
+export async function getStaticPaths() {
+    const notasItems = await getCollection('notas');
+
+    return notasItems.map((entry) => ({
+        params: { slug: entry.slug },
+        props: entry,
+    }));
+}
+
+type Props = CollectionEntry<"notas">;
+
+const  entry = Astro.props;
+const { Content } = await entry.render();
+---
+
+<Nota {...entry.data}>
+    <main class="nota wrap">
+        <article class="note-self">
+            <header class="article-header">
+                <h1>{ entry.data.title }</h1>
+                <FormattedDate date={entry.data.publishDate} />
+            </header>
+            <Content />
+        </article>
+    </main>
+</Nota>
+<style is:global>
+    .note-self {
+        padding: 0 1rem;
+    }
+
+    .article-header {
+        margin: 0 0 4rem 0;
+    }
+
+    .article-header h1 {
+        margin-bottom: 0;
+    }
+
+    .article-header time {
+        opacity: .5;
+    }
+
+    .note-self h2 {
+        margin: 2rem 0;
+    }
+
+    .note-self ul {
+        margin-bottom: 4rem;
+    }
+
+    .note-self li {
+        margin-bottom: 1rem;
+        line-height: 1.6;
+    }
+
+    pre {
+        padding: 1rem;
+        border-radius: 5px;
+        font-size: .8rem;
+    }
+
+    blockquote {
+        border-left: 4px solid var(--text-primary-color);
+        margin: 3rem 0;
+        background-color: #e2e5e9;
+        padding: 1rem;
+    }
+</style>

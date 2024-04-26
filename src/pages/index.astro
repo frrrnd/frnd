@@ -1,0 +1,118 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+import FormattedDate from '../partials/formattedDate.astro';
+
+const notasItems = await getCollection('notas');
+notasItems.sort((a,b) => Date.parse(b.data.publishDate) - Date.parse(a.data.publishDate));
+---
+<Layout>
+	<main class="wrap index-grid">
+		<section class="home-section">
+			<p><strong>Interface Designer</strong>. Front-end as a hobby. Passionate about UI and everything related to human-machine interaction. <a href="/sobre">Read more.</a></p>
+			<p>To check out some of my work, see my <a href="/portfolio">portfolio</a> or my <a target="_blank" href="https://layers.to/fer">experiments.</a></p>
+		</section>
+
+		<section class="home-section">
+			<h2>Now</h2>
+			<p>Working as a freelance UX/UI designer for startups and agencies, and pursuing parallel projects like <a target="_blank" href="https://viewport-ui.design">Viewport.</a> Enhancing skills through practice and testing new experiences.</p>
+		</section>
+
+		<section class="home-section">
+			<h2>Contact</h2>
+			<p>Find me by <a href="mailto:dotfernando@gmail.com">e-mail</a> or sending a message through <a target="_blank" href="https://x.com/frrrnd">x.com.</a> </p>
+		</section>
+
+		<!-- <section class="home-section notas-section">
+			<h2>Notas</h2>
+
+			{notasItems.map((notas) => (
+				<article>
+					<a href={`/notas/${notas.slug}`} title={notas.data.title}>
+						<h3>{notas.data.title}</h3>
+						<FormattedDate date={notas.data.publishDate} />
+					</a>
+				</article>
+			))}
+
+		</section> -->
+	</main>
+</Layout>
+<style>
+	.home-section:not(:last-child) {
+		margin-bottom: 72px;
+	}
+
+	.home-section:last-child {
+		margin-bottom: 16px;
+	}
+
+	.home-section h2 {
+		font-size: var(--text-primary-size);
+		font-weight: 500;
+		color: var(--text-secondary-color);
+		padding: 0 1rem;
+	}
+
+	.home-section p {
+		padding: 0 1rem;
+	}
+
+	.home-section a:not(:has(h3)) {
+		color: var(--link-primary-color);
+		text-decoration: underline;
+		transition: .4s;
+	}
+
+	.home-section a h3 {
+		font-size: var(--text-primary-size);
+		font-weight: 400;
+	}
+
+	.notas-section a {
+		width: 100%;
+		color: var(--text-primary-color);
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		align-items: center;
+		transition: .4s;
+	}
+
+	.notas-section a:hover {
+		color: var(--link-primary-color);
+		transition: .4s;
+	}
+
+	.notas-section article {
+		transition: .4s;
+		padding: 0 1rem;
+		border-radius: 5px;
+	}
+
+	.notas-section article:hover {
+		background-color: #f7f7f7;
+		transition: .4s;
+	}
+
+	.home-section {
+		animation: .4s fadeInTop forwards;
+		opacity: 0;
+	}
+
+	.home-section:nth-child(1) {
+		animation-delay: .4s;
+	}
+
+	.home-section:nth-child(2) {
+		animation-delay: .8s;
+	}
+
+	.home-section:nth-child(3) {
+		animation-delay: 1s;
+	}
+
+	.home-section:nth-child(4) {
+		animation-delay: 1.2s;
+	}
+</style>

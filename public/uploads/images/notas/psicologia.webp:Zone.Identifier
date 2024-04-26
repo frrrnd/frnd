@@ -1,0 +1,4 @@
+[ZoneTransfer]
+ZoneId=3
+ReferrerUrl=https://cloudconvert.com/
+HostUrl=https://eu-central.storage.cloudconvert.com/tasks/eca306d2-8b77-4041-a20a-bf151708775a/psicologia.webp?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=cloudconvert-production%2F20231125%2Ffra%2Fs3%2Faws4_request&X-Amz-Date=20231125T013953Z&X-Amz-Expires=86400&X-Amz-Signature=c765b2b37345672049b74ebb42748ccc6f1dec750dde46beea32feb7dfdc291e&X-Amz-SignedHeaders=host&response-content-disposition=attachment%3B%20filename%3D%22psicologia.webp%22&response-content-type=image%2Fwebp&x-id=GetObject

@@ -1,0 +1,82 @@
+---
+import FullPage from "./FullPage.astro";
+import { Image } from "astro:assets";
+
+const { 
+    class: className, 
+    title, 
+    image,
+    cover
+} = Astro.props;
+
+---
+<section class:list={['full-section', className]}>
+    <div class="wrap">
+        <slot />
+    </div>
+</section>
+
+{/* define:vars={{ cover: `url("${cover}")` }}  */}
+
+<style is:global>
+
+    .scroller-sections {
+        scroll-snap-type: y proximity;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .scroller-sections section {
+        scroll-snap-align: start;
+        min-height: 100vh;
+        padding: 6vh 0;
+    }
+
+    .scroller-sections .wrap {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        /* height: 100%; */
+    }
+
+    .section-intro {
+        height: 100vh;
+        background-color: #f9f9f9;
+    }
+
+    .section-intro img,
+    .section-img img  {
+        max-width: 80%;
+        height: auto;
+        margin: 0 auto;
+        display: block;
+    }
+
+    @media screen and (max-width: 767px) {
+        .section-img img {
+            max-width: 100%;
+        }
+    }
+
+    .full-section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    /* .align-end img {
+        max-width: 40vw;
+    }
+
+    .section-img img {
+        max-width: 50vw;
+    }
+
+    @media screen and (max-width: 780px) {
+        .align-end img,
+        .section-img img  {
+            max-width: 100vw;
+        }
+    } */
+</style>

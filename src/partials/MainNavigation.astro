@@ -1,0 +1,100 @@
+---
+const pathname = new URL(Astro.request.url).pathname;
+const currentPath = pathname.slice(1); // remove the first "/"
+---
+<nav class="dock-navigation">
+    <ul>
+        <li><a class={currentPath === "" ? "active" : ""} href="/">Home</a></li>
+        <li><a class={currentPath === "sobre" ? "active" : ""} href="/sobre">About</a></li>
+        <li><a class={currentPath === "portfolio" ? "active" : ""} href="/portfolio">Portfolio</a></li>
+        <!-- <li><a class={currentPath === "notas" ? "active" : ""} href="/notas">Notes</a></li> -->
+        <li><a class={currentPath === "contato" ? "active" : ""} href="/contato">Contact</a></li>
+    </ul>
+    <div class="nav-anchor"></div>
+</nav>
+
+<style>
+    .dock-navigation {
+        width: 100%;
+        max-width: max-content;
+        position: fixed;
+        left: 0;
+        right: 0;
+        top: 0;
+        z-index: 10;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 20px 0 0 0;
+        margin-top: 0;
+
+        transform: translateY(-75px);
+        transition: .4s;
+    }
+
+    .dock-navigation:hover {
+       transform: translateY(0);
+       transition: .4s;
+    }
+
+    .dock-navigation:hover .nav-anchor {
+        opacity: 0;
+        transition: .4s;
+    }
+
+    .dock-navigation ul {
+        list-style-type: none;
+        max-width: max-content;
+        width: 100%;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        border-radius: 50px;
+        padding: 8px 4px;
+        position: relative;
+        background-color: var(--text-primary-color);
+        backdrop-filter: blur(5px);
+        -webkit-backdrop-filter: blur(5px);
+    }
+
+    .dock-navigation li {
+        display: inline-block;
+        max-width: 100%;
+        padding: 8px 12px;
+        border-radius: 50px;
+        margin: 0 4px;
+        font-size: .9rem;
+        transition: .3s;
+    }
+
+    .dock-navigation li:hover {
+        background-color: rgba(255,255,255,.2);
+        transition: .3s;
+    }
+
+    .dock-navigation li:last-child {
+        background-color: var(--general-background-color);
+    }
+
+    .dock-navigation li:last-child a {
+        color: var(--text-primary-color);
+        font-weight: 600;
+    }
+
+    .dock-navigation a {
+        text-decoration: none;
+        color: var(--general-background-color);
+    }
+
+    .nav-anchor {
+        width: 30px;
+        height: 4px;
+        background-color: var(--text-primary-color);
+        border-radius: 50px;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 25px;
+        opacity: .6;
+        transition: .4s;
+    }
+</style>

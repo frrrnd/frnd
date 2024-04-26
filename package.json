@@ -1,0 +1,25 @@
+{
+  "name": "frnd-site",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro check && astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/check": "^0.5.10",
+    "@astrojs/mdx": "^2.2.4",
+    "@astrojs/react": "^3.3.0",
+    "@types/react": "^18.2.78",
+    "@types/react-dom": "^18.2.25",
+    "astro": "^4.5.16",
+    "astro-seo": "^0.8.3",
+    "framer-motion": "^11.0.28",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "typescript": "^5.4.4"
+  }
+}

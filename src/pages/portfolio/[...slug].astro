@@ -1,0 +1,36 @@
+---
+import { type CollectionEntry, getCollection } from "astro:content";
+import Portfolio from '../../layouts/Portfolio.astro';
+
+export async function getStaticPaths() {
+    const portfolioItems = await getCollection('portfolio');
+
+    return portfolioItems.map((entry) => ({
+        params: { slug: entry.slug },
+        props: entry,
+    }));
+}
+
+type Props = CollectionEntry<"portfolio">;
+
+const entry = Astro.props;
+const { Content } = await entry.render();
+---
+
+<Portfolio {...entry.data}>
+    <Content />
+</Portfolio>
+<style is:global>
+    .full-section h1 {
+        font-size: 3rem;
+        margin-bottom: 0;
+    }
+
+    .full-section .wrap {
+        max-width: 1330px;
+    }
+
+    .section-bg {
+        background-color: #f9f9f9;
+    }
+</style>

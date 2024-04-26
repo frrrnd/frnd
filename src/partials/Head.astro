@@ -1,0 +1,54 @@
+---
+import { ViewTransitions } from 'astro:transitions';
+import { SEO, type SEOProps } from "astro-seo";
+import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
+import "../styles/global.css";
+
+export interface Props extends SEOProps {}
+
+const { props } = Astro;
+
+const title = props.title || SITE_TITLE;
+const description = props.description || SITE_DESCRIPTION;
+---
+<head>
+    <meta charset="UTF-8" />
+    <SEO
+        title={title}
+        description={description}
+        {...props}
+        extend={{
+            link: [{ rel: "favicon", href: "/favicon.svg" }],
+            meta: [
+            { name: "viewport", content: "width=device-width, initial-scale=1" },
+            ],
+            ...props.extend,
+        }}
+        openGraph={{
+            basic: {
+            title,
+            type: "website",
+            image: "https://devinschulz.com/social-media.png",
+            },
+            image: {
+            width: 1600,
+            height: 1000,
+            },
+            optional: {
+            description,
+            siteName: SITE_TITLE,
+            },
+            ...props.openGraph,
+        }}
+        twitter={{
+            card: "summary_large_image",
+            title,
+            description,
+            image: "https://devinschulz.com/social-media.png",
+        }}
+        />
+        <link rel="preconnect" href="https://rsms.me/">
+        <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+        <meta name="theme-color" content="#101010">
+    <ViewTransitions />
+</head>

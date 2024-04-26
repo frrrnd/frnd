@@ -1,0 +1,19 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Card from '../../components/Card.astro';
+import Grid from '../../components/Grid.astro';
+import { getCollection } from 'astro:content';
+
+const portfolioItems = await getCollection('portfolio');
+---
+<Layout>
+	<main class="wrap index-grid">
+		<Grid isContainer>
+			{portfolioItems.map((portfolio) => (
+			<Grid sm="12" md="12">
+				<Card href={`/portfolio/${portfolio.slug}`} title={portfolio.data.title} image={portfolio.data.image}/>
+			</Grid>
+			))}
+		</Grid>
+	</main>
+</Layout>

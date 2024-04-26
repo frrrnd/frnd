@@ -1,0 +1,47 @@
+---
+
+---
+<footer class="footer">
+    <div class="wrap">
+        <div class="row">
+            <small>Less is more.</small>
+            <small>© 2024</small>
+        </div>
+    </div>
+    <div class="blur-foot"></div>
+</footer>
+<style>
+    .footer {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 1rem 1rem 4rem 1rem;
+        color: var(--text-primary-color);
+        opacity: 0;
+        animation: .4s fadeInTop forwards;
+        animation-delay: 1.4s;
+    }
+
+    .footer .wrap {
+        padding: 2rem;
+    }
+
+    .footer .row {
+        border-top: 1px solid var(--divisor);
+        padding-top: 1rem;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .blur-foot {
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        height: 80px;
+        background: linear-gradient(0deg, var(--general-background) 0%, transparent 100%);
+    }
+</style>
