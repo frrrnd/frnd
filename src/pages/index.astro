@@ -2,6 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import { getCollection } from 'astro:content';
 import FormattedDate from '../partials/formattedDate.astro';
+import { CurrentlyPlaying } from "astro-spotify";
 
 const notasItems = await getCollection('notas');
 notasItems.sort((a,b) => Date.parse(b.data.publishDate) - Date.parse(a.data.publishDate));
@@ -9,7 +10,8 @@ notasItems.sort((a,b) => Date.parse(b.data.publishDate) - Date.parse(a.data.publ
 <Layout>
 	<main class="wrap index-grid">
 		<section class="home-section">
-			<p><strong>Interface Designer</strong>. Front-end as a hobby. Passionate about UI and everything related to human-machine interaction. <a href="/sobre">Read more.</a></p>
+			<p><strong>Interface Designer</strong>. Front-end as a hobby. Bass player for fun.</p> 
+			<p>Passionate about UI and everything related to human-machine interaction. <a href="/sobre">Read more.</a></p>
 			<p>To check out some of my work, see my <a href="/portfolio">portfolio</a> or my <a target="_blank" href="https://layers.to/fer">experiments.</a></p>
 		</section>
 
@@ -21,6 +23,14 @@ notasItems.sort((a,b) => Date.parse(b.data.publishDate) - Date.parse(a.data.publ
 		<section class="home-section">
 			<h2>Contact</h2>
 			<p>Find me by <a href="mailto:dotfernando@gmail.com">e-mail</a> or sending a message through <a target="_blank" href="https://x.com/frrrnd">x.com.</a> </p>
+
+			<div class="spotify-player">
+				<CurrentlyPlaying 
+					clientID={import.meta.env.SPOTIFY_CLIENT_ID} 
+					clientSecret={import.meta.env.SPOTIFY_CLIENT_SECRET} 
+					refreshToken={import.meta.env.SPOTIFY_REFRESH_TOKEN}
+				/>
+			</div>
 		</section>
 
 		<!-- <section class="home-section notas-section">
@@ -44,7 +54,7 @@ notasItems.sort((a,b) => Date.parse(b.data.publishDate) - Date.parse(a.data.publ
 	}
 
 	.home-section:last-child {
-		margin-bottom: 16px;
+		margin-bottom: 0px;
 	}
 
 	.home-section h2 {
@@ -115,4 +125,5 @@ notasItems.sort((a,b) => Date.parse(b.data.publishDate) - Date.parse(a.data.publ
 	.home-section:nth-child(4) {
 		animation-delay: 1.2s;
 	}
+
 </style>

@@ -2,22 +2,16 @@
 import { type CollectionEntry, getCollection } from "astro:content";
 import Portfolio from '../../layouts/Portfolio.astro';
 
-export async function getStaticPaths() {
-    const portfolioItems = await getCollection('portfolio');
+const posts = await getCollection('portfolio');
+type Props = CollectionEntry<'portfolio'>;
 
-    return portfolioItems.map((entry) => ({
-        params: { slug: entry.slug },
-        props: entry,
-    }));
-}
-
-type Props = CollectionEntry<"portfolio">;
-
-const entry = Astro.props;
-const { Content } = await entry.render();
+const { slug } = Astro.params;
+const post = posts.find((page) => page.slug === slug);
+if (!post) return Astro.redirect("/404");
+const { Content } = await post.render();
 ---
 
-<Portfolio {...entry.data}>
+<Portfolio {...post.data}>
     <Content />
 </Portfolio>
 <style is:global>

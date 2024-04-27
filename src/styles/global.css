@@ -163,3 +163,22 @@ h1, h2, h3, h4, h5, h6 {
         transform: translateY(0);
     }
 }
+
+.spotify-player {
+    padding: 1rem;
+    font-size: 0.8rem;
+
+    & a {
+        color: var(--link-primary-color);
+    }
+
+    img {
+        width: 35px!important;
+        min-width: 35px!important;
+        height: auto;
+    }
+
+    svg {
+        width: 35px!important;
+    }
+}

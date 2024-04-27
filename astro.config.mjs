@@ -1,8 +1,9 @@
 import { defineConfig } from 'astro/config';
 import mdx from "@astrojs/mdx";
 import syntaxTheme from './syntax-theme.json';
-
 import react from "@astrojs/react";
+
+import netlify from "@astrojs/netlify";
 
 // https://astro.build/config
 export default defineConfig({
@@ -12,11 +13,13 @@ export default defineConfig({
   },
   markdown: {
     shikiConfig: {
-      theme: syntaxTheme,
-    },
+      theme: syntaxTheme
+    }
   },
   server: {
     port: 1234,
     host: true
-  }
+  },
+  output: "server",
+  adapter: netlify()
 });
