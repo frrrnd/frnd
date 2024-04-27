@@ -1,5 +1,5 @@
 ---
-const { isContainer, sm, md, lg, title, children } = Astro.props;
+const { isContainer, sm, md, lg } = Astro.props;
 const containerClass = isContainer ? "grid-container" : "";
 const smClass = sm ? `col-${sm}` : "";
 const mdClass = md ? `col-md-${md}` : "";
@@ -12,11 +12,11 @@ const classList = [containerClass, smClass, mdClass, lgClass].join(" ").trim();
 </div>
 
 <style>
-    .grid-container {
-        display: grid;
-        grid-template-columns: repeat(12, 1fr);
-        gap: 16px;
-    }
+  .grid-container {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 16px;
+  }
 
   .col-1 {
     grid-column: span 1;
