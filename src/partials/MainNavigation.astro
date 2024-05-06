@@ -5,10 +5,9 @@ const currentPath = pathname.slice(1); // remove the first "/"
 <nav class="dock-navigation">
     <ul>
         <li><a class={currentPath === "" ? "active" : ""} href="/">Home</a></li>
-        <li><a class={currentPath === "sobre" ? "active" : ""} href="/sobre">About</a></li>
         <li><a class={currentPath === "portfolio" ? "active" : ""} href="/portfolio">Portfolio</a></li>
         <!-- <li><a class={currentPath === "notas" ? "active" : ""} href="/notas">Notes</a></li> -->
-        <li><a class={currentPath === "contato" ? "active" : ""} href="/contato">Contact</a></li>
+        <li><a target="_blank" href="https://hi.new/fer">Contact</a></li>
     </ul>
     <div class="nav-anchor"></div>
 </nav>
@@ -53,8 +52,6 @@ const currentPath = pathname.slice(1); // remove the first "/"
         padding: 8px 4px;
         position: relative;
         background-color: var(--text-primary-color);
-        backdrop-filter: blur(5px);
-        -webkit-backdrop-filter: blur(5px);
     }
 
     .dock-navigation li {
@@ -68,7 +65,7 @@ const currentPath = pathname.slice(1); // remove the first "/"
     }
 
     .dock-navigation li:hover {
-        background-color: rgba(255,255,255,.2);
+        background-color: rgba(255,255,255,.1);
         transition: .3s;
     }
 

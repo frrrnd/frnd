@@ -20,6 +20,6 @@ export default defineConfig({
     port: 1234,
     host: true
   },
-  output: "server",
-  adapter: netlify()
+  // output: "server",
+  // adapter: netlify()
 });

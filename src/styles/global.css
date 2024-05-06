@@ -2,14 +2,16 @@
     /* Dark colors */
     --dark-background-color: #101010;
     --dark-text-color: #bdbdbd;
-    --dark-text-secondary-color: #a0a0a0;
+    --dark-text-secondary-color: #eeeeee;
+    --dark-title-color: #666666;
     --dark-link-color: #ffffff;
-    --dark-divisor: #161616;
+    --dark-divisor: #1e1e1e;
 
     /* Light colors */
     --light-background-color: #ffffff;
-    --light-text-color: #55606e;
-    --light-text-secondary-color: #55606e;
+    --light-text-color: #444444;
+    --light-text-secondary-color: #111111;
+    --light-title-color: #ababab;
     --light-link-color: #171e27;
     --light-divisor: #E6E6E6;
 }
@@ -19,6 +21,7 @@
         --general-background-color: var(--light-background-color);
         --text-primary-color: var(--light-text-color);
         --text-secondary-color: var(--light-text-secondary-color);
+        --title-color: var(--light-title-color);
         --link-primary-color: var(--light-link-color);
         --divisor: var(--light-divisor);
     }
@@ -27,6 +30,7 @@
         --general-background-color: var(--dark-background-color);
         --text-primary-color: var(--dark-text-color);
         --text-secondary-color: var(--dark-text-secondary-color);
+        --title-color: var(--dark-title-color); 
         --link-primary-color: var(--dark-link-color);
         --divisor: var(--dark-divisor);
     }
@@ -37,6 +41,7 @@
         --general-background-color: var(--dark-background-color);
         --text-primary-color: var(--dark-text-color);
         --text-secondary-color: var(--dark-text-secondary-color);
+        --title-color: var(--dark-title-color);
         --link-primary-color: var(--dark-link-color);
         --divisor: var(--dark-divisor);
     }
@@ -45,13 +50,14 @@
         --general-background-color: var(--light-background-color);
         --text-primary-color: var(--light-text-color);
         --text-secondary-color: var(--light-text-secondary-color);
+        --title-color: var(--light-title-color);
         --link-primary-color: var(--light-link-color);
         --divisor: var(--light-divisor);
     }
 }
 
 :root {
-    --wrap-width: 600px;
+    --wrap-width: 500px;
     --text-primary-size: 0.938rem;
     font-family: 'Inter', system-ui, sans-serif;
     font-feature-settings: 'dlig' 1;
@@ -90,10 +96,6 @@ body {
     font-size: var(--text-primary-size);
 }
 
-body, html {
-    scroll-snap-type: y proximity;
-}
-
 code {
     font-family: 'Consolas', monospace;
 }
@@ -123,6 +125,7 @@ p {
     font-size: var(--text-primary-size);
     line-height: 1.6;
     color: var(--text-primary-color);
+    margin: 0;
 }
 
 small {
@@ -165,7 +168,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .spotify-player {
-    padding: 1rem;
+    padding: 2rem 1rem 1rem 1rem;
     font-size: 0.8rem;
 
     & a {

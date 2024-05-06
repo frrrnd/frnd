@@ -1,66 +1,49 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import { getCollection } from 'astro:content';
-import FormattedDate from '../partials/formattedDate.astro';
-import { CurrentlyPlaying } from "astro-spotify";
-
-const notasItems = await getCollection('notas');
-notasItems.sort((a,b) => Date.parse(b.data.publishDate) - Date.parse(a.data.publishDate));
 ---
+
 <Layout>
 	<main class="wrap index-grid">
 		<section class="home-section">
-			<p><strong>Interface Designer</strong>. Front-end as a hobby. Bass player for fun.</p> 
-			<p>Passionate about UI and everything related to human-machine interaction. <a href="/sobre">Read more.</a></p>
-			<p>To check out some of my work, see my <a href="/portfolio">portfolio</a> or my <a target="_blank" href="https://layers.to/fer">experiments.</a></p>
+			<h2>About</h2>
+			<p>Brazilian designer passionate about UI and everything related to human-machine interaction. Front end as a hobby. Bass player for fun.</p><br>
+			<p>To check out some of my work, see my <a href="/portfolio">portfolio</a>, my <a href="/icons">app icons</a> journey or my <a target="_blank" href="https://layers.to/fer">experiments.</a></p>
 		</section>
 
 		<section class="home-section">
 			<h2>Now</h2>
-			<p>Working as a freelance UX/UI designer for startups and agencies, and pursuing parallel projects like <a target="_blank" href="https://viewport-ui.design">Viewport.</a> Enhancing skills through practice and testing new experiences.</p>
+			<p>Working as a freelance UX/UI designer for startups and agencies, and pursuing parallel projects like <a target="_blank" href="https://viewport-ui.design">Viewport UI.</a> Enhancing skills through practice and testing new experiences.</p>
 		</section>
 
 		<section class="home-section">
-			<h2>Contact</h2>
-			<p>Find me by <a href="mailto:dotfernando@gmail.com">e-mail</a> or sending a message through <a target="_blank" href="https://x.com/frrrnd">x.com.</a> </p>
-
-			<div class="spotify-player">
-				<CurrentlyPlaying 
-					clientID={import.meta.env.SPOTIFY_CLIENT_ID} 
-					clientSecret={import.meta.env.SPOTIFY_CLIENT_SECRET} 
-					refreshToken={import.meta.env.SPOTIFY_REFRESH_TOKEN}
-				/>
-			</div>
+			<h2>Notes</h2>
+			<p><a href="/notes">Talking to myself</a>, but not just in my head.</p>
 		</section>
 
-		<!-- <section class="home-section notas-section">
-			<h2>Notas</h2>
-
-			{notasItems.map((notas) => (
-				<article>
-					<a href={`/notas/${notas.slug}`} title={notas.data.title}>
-						<h3>{notas.data.title}</h3>
-						<FormattedDate date={notas.data.publishDate} />
-					</a>
-				</article>
-			))}
-
-		</section> -->
+		<section class="home-section">
+			<h2>Get in touch</h2>
+			<ul>
+				<li><a target="_blank" href="https://x.com/frrrnd">x.com</a></li>
+				<li><a target="_blank" href="https://layers.to/fer">Layers</a></li>
+				<li><a target="_blank" href="https://posts.cv/fer">Posts.cv</a></li>
+				<li><a target="_blank" href="https://hi.new/fer">Email</a></li>
+			</ul>
+		</section>
 	</main>
 </Layout>
 <style>
 	.home-section:not(:last-child) {
-		margin-bottom: 72px;
+		margin-bottom: 3rem;
 	}
 
 	.home-section:last-child {
-		margin-bottom: 0px;
+		padding-bottom: 4rem;
 	}
 
 	.home-section h2 {
 		font-size: var(--text-primary-size);
-		font-weight: 500;
-		color: var(--text-secondary-color);
+		font-weight: 400;
+		color: var(--title-color);
 		padding: 0 1rem;
 	}
 
@@ -111,19 +94,49 @@ notasItems.sort((a,b) => Date.parse(b.data.publishDate) - Date.parse(a.data.publ
 	}
 
 	.home-section:nth-child(1) {
-		animation-delay: .4s;
+		animation-delay: .2s;
 	}
 
 	.home-section:nth-child(2) {
-		animation-delay: .8s;
+		animation-delay: .4s;
 	}
 
 	.home-section:nth-child(3) {
-		animation-delay: 1s;
+		animation-delay: .6s;
 	}
 
 	.home-section:nth-child(4) {
-		animation-delay: 1.2s;
+		animation-delay: .8s;
+	}
+
+	.home-section ul {
+		padding: 0 1rem;
+		list-style-type: none;
+		width: 100%;
+		display: flex;
+		flex-direction: row;
+	}
+
+	.home-section li {
+		margin-bottom: 1rem;
+		font-size: var(--text-primary-size);
+		margin-right: 16px;
+
+		& a {
+			text-decoration: none;
+			transition: .4s;
+			display: block;
+			width: max-content;
+			text-decoration: underline;
+
+			&:after {
+				content: "\2192";
+				display: inline-block;
+				margin-left: 5px;
+				opacity: 0;
+				transition: .4s;
+			}
+		}
 	}
 
 </style>

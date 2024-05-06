@@ -1,16 +1,14 @@
 ---
-import MainNavigation from '../partials/MainNavigation.astro';
 import ColorMode from '../components/ColorMode.astro';
 ---
 
-<MainNavigation />
 <ColorMode />
 <header class="header">
     <div class="wrap">
         <a href="/">
-            <img src="/avatar.png" alt="Fernando Soares">
+            <h1>Fernando Soares</h1>
+            <p>Interface & Icon Designer.</p><br>
         </a>
-        <h1>Fernando Soares</h1>
     </div>
 </header>
 <style>
@@ -19,12 +17,14 @@ import ColorMode from '../components/ColorMode.astro';
         display: flex;
         align-items: center;
         justify-content: center;
-        padding: 8rem 0 2rem 0;
+        padding: 6rem 0 0 0;
     }
 
     .header a {
-        padding: 0 1rem;
         transition: .4s;
+        width: max-content;
+        display: block;
+        margin-bottom: 1rem;
     }
 
     .header a:active {
@@ -33,11 +33,20 @@ import ColorMode from '../components/ColorMode.astro';
     }
 
     .header h1 {
-        font-size: 1.2rem;
+        /* font-size: 1.2rem; */
+        font-size: var(--text-primary-size);
         color: var(--text-secondary-color);
         width: 100%;
-        font-weight: 500;
+        font-weight: 600;
         line-height: 1.6;
+        padding: 0 1rem;
+        /* background: linear-gradient(to right, #673fff, #00ffad);
+        -webkit-text-fill-color: transparent;
+        -webkit-background-clip: text; */
+        margin-bottom: 0;
+    }
+
+    .header p {
         padding: 0 1rem;
     }
 </style>

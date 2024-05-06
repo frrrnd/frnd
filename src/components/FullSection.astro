@@ -2,13 +2,13 @@
 import FullPage from "./FullPage.astro";
 import { Image } from "astro:assets";
 
-const { 
+const {
     class: className
 } = Astro.props;
 
 ---
 <section class:list={['full-section', className]}>
-    <div class="wrap">
+    <div class="wide-wrap">
         <slot />
     </div>
 </section>
@@ -17,44 +17,19 @@ const {
 
 <style is:global>
 
+    .wide-wrap {
+        max-width: 100dvw;
+        width: 100%;
+        margin: 0 auto;
+    }
+
     .scroller-sections {
-        scroll-snap-type: y proximity;
-        -webkit-overflow-scrolling: touch;
+        -webkit-overflow-scrolling: touch; 
     }
 
     .scroller-sections section {
-        scroll-snap-align: start;
-        min-height: 100vh;
-        padding: 6vh 0;
-    }
 
-    .scroller-sections .wrap {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        /* height: 100%; */
     }
-
-    .section-intro {
-        height: 100vh;
-        background-color: #f9f9f9;
-    }
-
-    .section-intro img,
-    .section-img img  {
-        max-width: 80%;
-        height: auto;
-        margin: 0 auto;
-        display: block;
-    }
-
-    @media screen and (max-width: 767px) {
-        .section-img img {
-            max-width: 100%;
-        }
-    }
-
     .full-section {
         display: flex;
         flex-direction: column;
@@ -62,18 +37,13 @@ const {
         justify-content: center;
     }
 
-    /* .align-end img {
-        max-width: 40vw;
+    .full-section img {
+        margin: 0 auto;
+        display: block;
+        width: 100%;
+        height: auto;
+        object-position: center center;
+        object-fit: cover;
+        image-rendering: auto;
     }
-
-    .section-img img {
-        max-width: 50vw;
-    }
-
-    @media screen and (max-width: 780px) {
-        .align-end img,
-        .section-img img  {
-            max-width: 100vw;
-        }
-    } */
 </style>

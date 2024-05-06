@@ -42,27 +42,27 @@
         let themeIcon = document.querySelector('.theme-icon svg');
 
         if (localStorage.getItem("theme") == 'dark') {
-        root.classList.add("dark-theme");
-        metaColor.setAttribute("content", "#101010");
-        themeIcon.style.transform = "translateY(-32px)";
+            root.classList.add("dark-theme");
+            metaColor.setAttribute("content", "#101010");
+            themeIcon.style.transform = "translateY(-32px)";
         } else {
-        root.classList.add("light-theme");
-        metaColor.setAttribute("content", "#f3f3f3");
-        themeIcon.style.transform = "translateY(0)";
+            root.classList.add("light-theme");
+            metaColor.setAttribute("content", "#FFFFFF");
+            themeIcon.style.transform = "translateY(0)";
         }
 
         switcher.addEventListener("click", function () {
         if (root.classList.contains('dark-theme')) {
             root.classList.remove("dark-theme");
             root.classList.add("light-theme");
-            metaColor.setAttribute("content", "#E8E9EC");
+            metaColor.setAttribute("content", "#FFFFFF");
             localStorage.setItem("theme", "light");
             themeIcon.style.transform = "translateY(0)";
         } else {
             root.classList.remove("light-theme");
             root.classList.add("dark-theme");
             localStorage.setItem("theme", "dark");
-            metaColor.setAttribute("content", "#161821");
+            metaColor.setAttribute("content", "#101010");
             themeIcon.style.transform = "translateY(-32px)";
         }
         });

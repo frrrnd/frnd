@@ -1,6 +1,6 @@
 import { z, defineCollection } from 'astro:content';
 
-const notasCollection = defineCollection({
+const notesCollection = defineCollection({
     type: 'content',
     schema: ({ image }) => z.object({
         title: z.string(),
@@ -8,9 +8,7 @@ const notasCollection = defineCollection({
         description: z.string().optional(),
         tags: z.array(z.string()).optional(),
         publishDate: z.string().or(z.date()).transform((val) => new Date(val)),
-        image: image().refine((img) => img.width >= 700, {
-            message: "Imagem errada",
-        }),
+        image: z.string().optional(),
         cover: z.string().optional(),
     })
 });
@@ -64,5 +62,5 @@ export const collections = {
     'portfolio': portfolioCollection,
     'feed': feedCollection,
     'icons': iconsCollection,
-    'notas': notasCollection
+    'notes': notesCollection
 }

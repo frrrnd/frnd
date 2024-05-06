@@ -1,7 +1,14 @@
 ---
+import Layout from '../layouts/Layout.astro';
 import { getCollection } from "astro:content";
 const iconsItems = await getCollection('icons');
 ---
+
+<Layout>
+    <main class="wrap">
+        <h1>Icons</h1>
+    </main>
+</Layout>
 
 <ul>
     {iconsItems.map(icon => (

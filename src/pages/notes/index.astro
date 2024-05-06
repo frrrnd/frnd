@@ -1,0 +1,53 @@
+---
+import Note from '../../layouts/Note.astro';
+import { getCollection } from 'astro:content';
+import FormattedDate from '../../partials/formattedDate.astro';
+
+const notes = await getCollection('notes');
+notes.sort((a,b) => Date.parse(b.data.publishDate) - Date.parse(a.data.publishDate));
+---
+<Note>
+	<main class="wrap">
+        <section class="notas-section">
+        {notes.map((note) => (
+            <article>
+                <a href={`/notes/${note.slug}`} title={note.data.title}>
+                    <h3>{note.data.title}</h3>
+                    <FormattedDate date={note.data.publishDate} />
+                </a>
+            </article>
+        ))}
+        </section>
+	</main>
+</Note>
+<style>
+    .notas-section a {
+		width: 100%;
+		color: var(--text-primary-color);
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		align-items: center;
+		transition: .4s;
+	}
+
+	.notas-section article {
+		transition: .4s;
+		padding: 0 1rem;
+		border-radius: 5px;
+	}
+
+	.notas-section article:hover {
+		background-color: var(--divisor);
+		transition: .4s;
+	}
+
+	.notas-section time {
+		font-size: .8rem;
+	}
+
+    .notas-section a h3 {
+		font-size: var(--text-primary-size);
+		font-weight: 400;
+	}
+</style>

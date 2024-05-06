@@ -1,19 +1,37 @@
 ---
-import Layout from '../../layouts/Layout.astro';
-import Card from '../../components/Card.astro';
+import FullPage from '../../layouts/FullPage.astro';
 import Grid from '../../components/Grid.astro';
+import Section from '../../components/FullSection.astro';
+import ColorMode from '../../components/ColorMode.astro';
+import BackToHome from '../../components/BackToHome.astro';
 import { getCollection } from 'astro:content';
 
 const portfolioItems = await getCollection('portfolio');
 ---
-<Layout>
-	<main class="wrap index-grid">
-		<Grid isContainer>
-			{portfolioItems.map((portfolio) => (
-			<Grid sm="12" md="12">
-				<Card href={`/portfolio/${portfolio.slug}`} title={portfolio.data.title} image={portfolio.data.image}/>
+<FullPage>
+	<BackToHome />
+	<ColorMode />
+	<main class="scroller-sections">
+
+		<Section>
+			<Grid isContainer>
+				<Grid sm="12" lg="12">
+					<figure>
+						<img src="/uploads/images/portfolio/test.png" alt="teste">
+					</figure>
+				</Grid>
 			</Grid>
-			))}
-		</Grid>
+		</Section>
+
+		<Section>
+			<Grid isContainer>
+				<Grid sm="12" lg="12">
+					<figure>
+						<img src="/uploads/images/portfolio/test-2.png" alt="teste">
+					</figure>
+				</Grid>
+			</Grid>
+		</Section>
+
 	</main>
-</Layout>
+</FullPage>
