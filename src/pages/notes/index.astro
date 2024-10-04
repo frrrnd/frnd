@@ -1,53 +1,59 @@
 ---
 import Note from '../../layouts/Note.astro';
+import MainNavigation from '../../partials/MainNavigation.astro';
 import { getCollection } from 'astro:content';
 import FormattedDate from '../../partials/formattedDate.astro';
 
 const notes = await getCollection('notes');
+
 notes.sort((a,b) => Date.parse(b.data.publishDate) - Date.parse(a.data.publishDate));
+
+const renderedNotes = await Promise.all(
+	notes.map(async (note) => {
+		const { Content } = await note.render();
+		return { ...note, Content };
+	})
+);
+
 ---
-<Note>
-	<main class="wrap">
+<Note title="Notes">
+	<MainNavigation />
+	<main class="wrap notas-main">
         <section class="notas-section">
-        {notes.map((note) => (
-            <article>
-                <a href={`/notes/${note.slug}`} title={note.data.title}>
-                    <h3>{note.data.title}</h3>
-                    <FormattedDate date={note.data.publishDate} />
-                </a>
+        {renderedNotes.map((note) => (
+			
+            <article class="content-article">
+				{/* <header class="article-header">
+                    <h1>{note.data.title}</h1>
+                </header> */}
+				<div class="note-content">
+					<note.Content />
+				</div>
+
+				<a href={`/notes/${note.slug}`} title={`Permalink to ${note.data.title}`} class="article-permalink">
+					<footer class="article-footer">
+						<FormattedDate date={note.data.publishDate} />
+						{/* {note.data.updateDate && (
+							<div>Updated on <FormattedDate date={note.data.updateDate} /></div>
+						)} */}
+					</footer>
+				</a>
             </article>
         ))}
         </section>
 	</main>
 </Note>
 <style>
-    .notas-section a {
-		width: 100%;
-		color: var(--text-primary-color);
-		display: flex;
-		flex-direction: row;
-		justify-content: space-between;
-		align-items: center;
-		transition: .4s;
+	.content-article {
+		margin-bottom: 3rem;
+		padding-bottom: 3rem;
 	}
 
-	.notas-section article {
-		transition: .4s;
-		padding: 0 1rem;
-		border-radius: 5px;
+	.content-article:not(:last-child) {
+		border-bottom: 1px solid var(--icon-bg);
 	}
 
-	.notas-section article:hover {
-		background-color: var(--divisor);
-		transition: .4s;
-	}
-
-	.notas-section time {
-		font-size: .8rem;
-	}
-
-    .notas-section a h3 {
-		font-size: var(--text-primary-size);
-		font-weight: 400;
+	.article-permalink {
+		text-decoration: none;
 	}
 </style>

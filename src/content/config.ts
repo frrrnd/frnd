@@ -8,12 +8,12 @@ const notesCollection = defineCollection({
         description: z.string().optional(),
         tags: z.array(z.string()).optional(),
         publishDate: z.string().or(z.date()).transform((val) => new Date(val)),
-        image: z.string().optional(),
+        updateDate: z.string().or(z.date()).transform((val) => new Date(val)).optional(),
         cover: z.string().optional(),
     })
 });
 
-const portfolioCollection = defineCollection({
+const worksCollection = defineCollection({
     type: 'content',
     schema: ({ image }) => z.object({
         title: z.string(),
@@ -21,12 +21,10 @@ const portfolioCollection = defineCollection({
         description: z.string(),
         tags: z.array(z.string()),
         publishDate: z.string().or(z.date()).transform((val) => new Date(val)),
-        image: image().refine((img) => img.width >= 1080, {
-            message: "Imagem errada",
-        }),
         cover: image().refine((img) => img.width >= 200, {
             message: "Imagem errada",
         }),
+        order: z.number(),
     })
 });
 
@@ -34,13 +32,12 @@ const feedCollection = defineCollection({
     type: 'content',
     schema: ({ image }) => z.object({
         title: z.string(),
-        isDraft: z.boolean(),
-        description: z.string(),
-        tags: z.array(z.string()),
+        isDraft: z.boolean().optional(),
+        description: z.string().optional(),
+        tags: z.array(z.string()).optional(),
         publishDate: z.string().or(z.date()).transform((val) => new Date(val)),
-        image: image().refine((img) => img.width >= 1080, {
-            message: "Imagem errada",
-        })
+        updateDate: z.string().or(z.date()).transform((val) => new Date(val)).optional(),
+        cover: z.string().optional(),
     })
 });
 
@@ -52,14 +49,11 @@ const iconsCollection = defineCollection({
         description: z.string(),
         tags: z.array(z.string()),
         publishDate: z.string().or(z.date()).transform((val) => new Date(val)),
-        image: image().refine((img) => img.width >= 1080, {
-            message: "Imagem errada",
-        })
     })
 });
 
 export const collections = {
-    'portfolio': portfolioCollection,
+    'works': worksCollection,
     'feed': feedCollection,
     'icons': iconsCollection,
     'notes': notesCollection

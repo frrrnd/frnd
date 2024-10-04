@@ -1,0 +1,39 @@
+.portfolio-card {
+    width: auto;
+    margin-bottom: 2rem;
+
+    figure {
+        overflow: hidden;
+        border-radius: 10px;
+        display: inline-grid;
+
+        img {
+            width: 100%;
+            background-color: var(--icon-bg);
+        }
+    }
+}
+
+@media screen and (max-width: 475px) {
+    .portfolio-card {
+        margin-bottom: 2rem;
+    }
+}
+
+.portfolio-card__footer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2rem;
+
+    h3 {
+        font-size: 1rem;
+        font-weight: normal;
+    }
+
+    p {
+        font-size: .8rem;
+        color: var(--title-color);
+    }
+}

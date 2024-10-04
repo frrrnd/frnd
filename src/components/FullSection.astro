@@ -1,49 +1,79 @@
 ---
 import FullPage from "./FullPage.astro";
-import { Image } from "astro:assets";
-
-const {
-    class: className
-} = Astro.props;
-
 ---
-<section class:list={['full-section', className]}>
-    <div class="wide-wrap">
-        <slot />
-    </div>
+<section class="full-section">
+    <slot />
 </section>
 
-{/* define:vars={{ cover: `url("${cover}")` }}  */}
-
 <style is:global>
-
-    .wide-wrap {
-        max-width: 100dvw;
+    .full-wrap {
+        max-width: 80dvw;
         width: 100%;
         margin: 0 auto;
     }
 
-    .scroller-sections {
-        -webkit-overflow-scrolling: touch; 
+    .wrap-wide img {
+        margin: 2rem auto;
+        display: block;
+        max-width: 100%;
+        height: auto;
+        background-color: var(--icon-bg);
+        border-radius: 4px;
+        border: 1px solid rgba(255,255,255,.001);
     }
 
-    .scroller-sections section {
-
-    }
-    .full-section {
+    .section-intro {
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
+        width: 100%;
+        min-height: 100vh;
+
+        & h1, h2, p {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: row;
+        }
+
+        & h1 {
+            font-family: "Instrument Serif", serif;
+            font-size: 7rem;
+            margin: 0;
+        }
+
+        & h2 {
+            font-weight: normal;
+            margin: 0;
+        }
     }
 
-    .full-section img {
-        margin: 0 auto;
-        display: block;
-        width: 100%;
+    @media (max-width: 475px) {
+        .full-wrap {
+            max-width: 90dvw;
+        }
+
+        .full .mono {
+            margin-bottom: 2rem;
+            display: block;
+        }
+
+        .full-section img {
+            max-width: 100dvw;
+        }
+
+        .mono {
+            margin-bottom: 2rem;
+            display: block;
+        }
+    }
+
+    video {
+        max-width: 100%;
         height: auto;
-        object-position: center center;
-        object-fit: cover;
-        image-rendering: auto;
+        margin: 2rem auto;
+        display: block;
+        border-radius: 4px;
     }
 </style>

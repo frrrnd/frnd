@@ -1,0 +1,41 @@
+---
+import CopyClipboard from './CopyClipboard/CopyClipboard.jsx';
+---
+<nav class="social-nav">
+    <ul>
+        <li><a title="x.com/frrrnd" target="_blank" href="https://x.com/frrrnd">x.com</a></li>
+        <li><a title="layers.to/fer" target="_blank" href="https://layers.to/fer">layers.to</a></li>
+        <li><a title="read.cv/fer" target="_blank" href="https://read.cv/fer">read.cv</a></li>
+        <li> <CopyClipboard client:load /></li>
+    </ul>
+</nav>
+<style>
+    ul {
+        display: flex;
+        margin: 0;
+        padding: 0 1rem;
+        list-style: none;
+        position: relative;
+        transition: color 0.2s;
+        gap: 1rem;
+        align-items: center;
+    }
+
+    li {
+        font-weight: 400;
+    }
+
+    li a {
+        display: inline-block;
+        width: 100%;
+        height: 100%;
+        text-decoration: underline;
+        text-underline-offset: 3px;
+        transition: .4s;
+
+        &:hover {
+            opacity: .6;
+            transition: .4s;
+        }
+    }
+</style>

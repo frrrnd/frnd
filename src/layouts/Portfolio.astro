@@ -1,11 +1,45 @@
 ---
 import FullPage from "./FullPage.astro";
+import ColorMode from "../components/utils/ColorMode.astro";
+import MainNavigation from "../partials/MainNavigation.astro";
 
 ---
 <FullPage>
-  <section class="scroller-sections">
+  <ColorMode />
+  <main class="portfolio-content">
     <slot />
-  </section>
+  </main>
+  <MainNavigation />
 </FullPage>
-
 {/* Aqui renderiza o conteúdo do post em si, tipo um single */}
+<style is:global>
+  .portfolio-content {
+    padding-bottom: 6rem;
+    padding-top: 7.5rem;
+
+    h1 {
+      font-size: 2.8em;
+      color: var(--text-secondary-color);
+      width: 100%;
+      font-weight: 500;
+      line-height: 1.2;
+      margin-bottom: 2rem;
+      font-family: "Instrument Serif", serif;
+      display: block;
+    }
+
+    a {
+      color: var(--link-color);
+      text-decoration: underline;
+    }
+
+    p {
+      color: var(--text-color);
+      margin-bottom: 1rem;
+    }
+
+    .mono a {
+      font-size: .8rem;
+    }
+  }
+</style>

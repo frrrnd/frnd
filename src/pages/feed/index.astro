@@ -1,0 +1,62 @@
+---
+import Note from '../../layouts/Note.astro';
+import MainNavigation from '../../partials/MainNavigation.astro';
+import { getCollection } from 'astro:content';
+import FormattedDate from '../../partials/formattedDate.astro';
+
+const feed = await getCollection('feed');
+
+feed.sort((a,b) => Date.parse(b.data.publishDate) - Date.parse(a.data.publishDate));
+
+const renderedFeed = await Promise.all(
+	feed.map(async (post) => {
+		const { Content } = await post.render();
+		return { ...post, Content };
+	})
+);
+
+---
+<Note title="Posts">
+	<MainNavigation />
+	<main class="wrap notas-main">
+        <section class="notas-section">
+        {renderedFeed.map((post) => (
+			
+            <article class="content-article">
+				{/* <header class="article-header">
+                    <h1>{post.data.title}</h1>
+                </header> */}
+				<div class="note-content">
+					<a href={`/feed/${post.slug}`} title={`Read ${post.data.title}`}>
+						<post.Content />
+					</a>
+				</div>
+
+				<a href={`/feed/${post.slug}`} title={`Read ${post.data.title}`} class="article-permalink">
+					<footer class="article-footer">
+						<FormattedDate date={post.data.publishDate} />
+						{/* {post.data.updateDate && (
+							<div>Updated on <FormattedDate date={post.data.updateDate} /></div>
+						)} */}
+					</footer>
+				</a>
+            </article>
+        ))}
+        </section>
+	</main>
+</Note>
+<style>
+	.content-article {
+		margin-bottom: 5rem;
+	}
+
+	.article-permalink {
+		text-decoration: none;
+	}
+
+	.note-content {
+		> a {
+			text-decoration: none;
+		}
+	}
+</style>

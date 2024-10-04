@@ -1,0 +1,89 @@
+---
+---
+<button class="switcher" role="button">
+    <i class="theme-icon" title="Theme">
+        <svg width="32" height="64" viewBox="0 0 32 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g clip-path="url(#clip0_350_1028)">
+            <path d="M20.9021 17.0419C16.0405 17.0419 12.9311 13.9955 12.9311 9.12481C12.9311 8.11832 13.1737 6.68048 13.4972 5.9346C13.5781 5.72791 13.5961 5.6021 13.5961 5.51223C13.5961 5.26959 13.4164 5 13.0659 5C12.967 5 12.7514 5.02696 12.5537 5.09885C9.22865 6.42885 7 10.0055 7 13.7708C7 19.0549 11.026 22.8292 16.2921 22.8292C20.1653 22.8292 23.5172 20.4837 24.6315 17.5541C24.7124 17.3475 24.7304 17.1318 24.7304 17.0509C24.7304 16.7184 24.4518 16.4938 24.2002 16.4938C24.0833 16.4938 23.9845 16.5207 23.8138 16.5747C23.1218 16.7993 22.0075 17.0419 20.9021 17.0419Z" fill="#1C1C1C"/>
+            </g>
+            <g clip-path="url(#clip1_350_1028)">
+            <path d="M15.8701 40.8636C16.3808 40.8636 16.8019 40.4515 16.8019 39.9318C16.8019 39.4121 16.3808 39 15.8701 39C15.3504 39 14.9383 39.4121 14.9383 39.9318C14.9383 40.4515 15.3504 40.8636 15.8701 40.8636ZM21.4878 43.1842C21.9985 43.1842 22.4106 42.772 22.4106 42.2524C22.4106 41.7327 21.9985 41.3206 21.4878 41.3206C20.9681 41.3206 20.556 41.7327 20.556 42.2524C20.556 42.772 20.9681 43.1842 21.4878 43.1842ZM23.8084 48.8019C24.319 48.8019 24.7312 48.3897 24.7312 47.8701C24.7312 47.3504 24.319 46.9383 23.8084 46.9383C23.2887 46.9383 22.8765 47.3504 22.8765 47.8701C22.8765 48.3897 23.2887 48.8019 23.8084 48.8019ZM21.4878 54.4196C21.9985 54.4196 22.4106 54.0074 22.4106 53.4878C22.4106 52.9681 21.9985 52.556 21.4878 52.556C20.9681 52.556 20.556 52.9681 20.556 53.4878C20.556 54.0074 20.9681 54.4196 21.4878 54.4196ZM15.8701 56.7401C16.3808 56.7401 16.8019 56.328 16.8019 55.8084C16.8019 55.2887 16.3808 54.8765 15.8701 54.8765C15.3504 54.8765 14.9383 55.2887 14.9383 55.8084C14.9383 56.328 15.3504 56.7401 15.8701 56.7401ZM10.2524 54.4196C10.772 54.4196 11.1842 54.0074 11.1842 53.4878C11.1842 52.9681 10.772 52.556 10.2524 52.556C9.7327 52.556 9.32056 52.9681 9.32056 53.4878C9.32056 54.0074 9.7327 54.4196 10.2524 54.4196ZM7.93181 48.8019C8.45147 48.8019 8.86361 48.3897 8.86361 47.8701C8.86361 47.3504 8.45147 46.9383 7.93181 46.9383C7.41214 46.9383 7 47.3504 7 47.8701C7 48.3897 7.41214 48.8019 7.93181 48.8019ZM10.2524 43.1842C10.772 43.1842 11.1842 42.772 11.1842 42.2524C11.1842 41.7327 10.772 41.3206 10.2524 41.3206C9.7327 41.3206 9.32056 41.7327 9.32056 42.2524C9.32056 42.772 9.7327 43.1842 10.2524 43.1842Z" fill="#F2EFEE"/>
+            <path d="M15.8701 52.4306C18.3609 52.4306 20.4305 50.3609 20.4305 47.8701C20.4305 45.3703 18.3609 43.3007 15.8701 43.3007C13.3703 43.3007 11.3006 45.3703 11.3006 47.8701C11.3006 50.3609 13.3703 52.4306 15.8701 52.4306Z" fill="#F2EFEE"/>
+            </g>
+            <defs>
+            <clipPath id="clip0_350_1028">
+            <rect width="18" height="17.8382" fill="white" transform="translate(7 5)"/>
+            </clipPath>
+            <clipPath id="clip1_350_1028">
+            <rect width="18" height="17.7491" fill="white" transform="translate(7 39)"/>
+            </clipPath>
+            </defs>
+            </svg>
+            
+            
+    </i>
+</button>
+
+<style>
+    .switcher {
+        -webkit-appearance: none;
+        appearance: none;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        position: absolute;
+        left: 10px;
+        top: 20px;
+
+        & i {
+            width: 32px;
+            height: 32px;
+            display: block;
+            overflow: hidden;
+        }
+
+        & svg {
+            transition: .4s;
+        }
+    }
+</style>
+
+<script>
+    const applyTheme = () => {
+        let darkTheme = window.matchMedia("(prefers-color-scheme: dark)").matches;
+        let switcher = document.querySelector(".switcher");
+        let root = document.getElementsByTagName('html')[0];
+        let metaColor = document.querySelector('meta[name="theme-color"]');
+        let themeIcon = document.querySelector('.theme-icon svg');
+
+        if (localStorage.getItem("theme") == 'dark') {
+            root.classList.add("dark-theme");
+            metaColor.setAttribute("content", "#101010");
+            themeIcon.style.transform = "translateY(-32px)";
+        } else {
+            root.classList.add("light-theme");
+            metaColor.setAttribute("content", "#EEEEEE");
+            themeIcon.style.transform = "translateY(0)";
+        }
+
+        switcher.addEventListener("click", function () {
+        if (root.classList.contains('dark-theme')) {
+            root.classList.remove("dark-theme");
+            root.classList.add("light-theme");
+            metaColor.setAttribute("content", "#EEEEEE");
+            localStorage.setItem("theme", "light");
+            themeIcon.style.transform = "translateY(0)";
+        } else {
+            root.classList.remove("light-theme");
+            root.classList.add("dark-theme");
+            localStorage.setItem("theme", "dark");
+            metaColor.setAttribute("content", "#101010");
+            themeIcon.style.transform = "translateY(-32px)";
+        }
+        });
+    }
+
+    applyTheme();
+
+    document.addEventListener("astro:after-swap", applyTheme);
+</script>

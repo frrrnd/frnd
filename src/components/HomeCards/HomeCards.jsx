@@ -1,0 +1,55 @@
+import React from 'react';
+import { motion } from 'framer-motion';
+import './HomeCards.css';
+
+const HomeCards = () => {
+    const image = {
+        variantA: {
+            scale: 1.1
+            },
+        
+        variantB: {
+            scale: 1.2
+        }
+    };
+
+    return(
+        <div className="home-cards__wrapper">
+            <ul>
+                <li>
+                    <a href="http://localhost:1234/works/cloudbox" title="Cloudbox">
+                        <figure>
+                            <motion.img src="/uploads/images/home-ui.webp" alt="Dashboard UI" variants={image} initial="variantA" whileHover="variantB" />
+                        </figure>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="https://layers.to/layers/clu9q6ocx0008ji0da6zr97wh" target="_blank" title="View on Layers">
+                        <figure>
+                            <motion.img src="/uploads/images/home-ios-player.webp" alt="iOS Dock Player" variants={image} initial="variantA" whileHover="variantB" />
+                        </figure>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="/works/trackr" title="View">
+                        <figure>
+                            <motion.img src="/uploads/images/home-watch.webp" alt="WatchOS App" variants={image} initial="variantA" whileHover="variantB" />
+                        </figure>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="https://layers.to/layers/clvkyjnc0003sl40dv0d6m1yt" target="_blank" title="View on Layers">
+                        <figure>
+                            <motion.img src="/uploads/images/home-os-dock.webp" alt="Arc Icon Mac OS" variants={image} initial="variantA" whileHover="variantB" />
+                        </figure>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    );
+};
+
+export default HomeCards;

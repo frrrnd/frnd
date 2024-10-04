@@ -1,52 +1,66 @@
 ---
-import ColorMode from '../components/ColorMode.astro';
+import ColorMode from '../components/utils/ColorMode.astro';
+
+const currentPath = Astro.url.pathname;
+
+let title = "";
+let subtitle = "";
+
+if (currentPath === "/") {
+    title = "Hey — I'm Fernando,";
+    subtitle = "user interface designer.";
+} else if (currentPath.startsWith("/works")) {
+    title = "Recent Works";
+    subtitle = "";
+} else if (currentPath.startsWith("/icons")) {
+    title = "App Icons";
+    subtitle = "";
+} else if (currentPath.startsWith("/feed")) {
+    title = "Feed";
+    subtitle = "";
+} else if (currentPath.startsWith("/notes")) {
+    title = "Notes";
+    subtitle = "";
+} else {
+    title = "Hey — I'm Fernando,";
+    subtitle = "user interface designer.";
+}
 ---
 
 <ColorMode />
-<header class="header">
-    <div class="wrap">
-        <a href="/">
-            <h1>Fernando Soares</h1>
-            <p>Interface & Icon Designer.</p><br>
-        </a>
-    </div>
+
+<header class="header wrap">
+    <h1>{title}</h1>
+    <h2>{subtitle}</h2>
 </header>
+
 <style>
     .header {
         width: 100%;
         display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 6rem 0 0 0;
-    }
-
-    .header a {
-        transition: .4s;
-        width: max-content;
-        display: block;
-        margin-bottom: 1rem;
-    }
-
-    .header a:active {
-        opacity: .5;
-        transition: .4s;
+        flex-direction: column;
+        padding: 8rem 0 3rem 0;
     }
 
     .header h1 {
-        /* font-size: 1.2rem; */
-        font-size: var(--text-primary-size);
+        font-size: 2.8em;
         color: var(--text-secondary-color);
         width: 100%;
-        font-weight: 600;
-        line-height: 1.6;
+        font-weight: 500;
+        line-height: 1.2;
         padding: 0 1rem;
-        /* background: linear-gradient(to right, #673fff, #00ffad);
-        -webkit-text-fill-color: transparent;
-        -webkit-background-clip: text; */
         margin-bottom: 0;
+        font-family: "Instrument Serif", serif;
+        display: block;
     }
 
-    .header p {
+    .header h2 {
         padding: 0 1rem;
+        font-weight: normal;
+        margin: 0;
+        color: var(--text-secondary-color);
+        font-family: "Instrument Serif", serif;
+        font-size: 2.4rem;
+        display: block;
     }
 </style>

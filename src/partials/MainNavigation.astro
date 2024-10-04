@@ -1,16 +1,30 @@
 ---
 const pathname = new URL(Astro.request.url).pathname;
 const currentPath = pathname.slice(1); // remove the first "/"
+
+const isActive = (path) => {
+    if (path === "" && currentPath === "") {
+        return true; // Ativa "Home" somente quando a URL atual é a raiz
+    } else if (path !== "" && currentPath.startsWith(path)) {
+        return true; // Ativa outras rotas se o currentPath começa com path
+    }
+    return false;
+};
 ---
-<nav class="dock-navigation">
-    <ul>
-        <li><a class={currentPath === "" ? "active" : ""} href="/">Home</a></li>
-        <li><a class={currentPath === "portfolio" ? "active" : ""} href="/portfolio">Portfolio</a></li>
-        <!-- <li><a class={currentPath === "notas" ? "active" : ""} href="/notas">Notes</a></li> -->
-        <li><a target="_blank" href="https://hi.new/fer">Contact</a></li>
-    </ul>
-    <div class="nav-anchor"></div>
-</nav>
+<a class="btn-mobile-contact" href="#">Contact</a>
+
+<div class="dock-navigation">
+    <nav>
+        <ul>
+            <li><a class={isActive("") ? "active" : ""} href="/">Home</a></li>
+            <li><a class={isActive("about") ? "active" : ""} href="/about">About</a></li>
+            <li><a class={isActive("works") ? "active" : ""} href="/works">Works</a></li>
+            <!-- <li><a class={isActive("icons") ? "active" : ""} href="/icons">Icons</a></li> -->
+            <li><a class={isActive("notes") ? "active" : ""} href="/notes">Notes</a></li>
+            <li><a href="mailto:dotfernando@gmail.com">Contact</a></li>
+        </ul>
+    </nav>
+</div>
 
 <style>
     .dock-navigation {
@@ -19,28 +33,21 @@ const currentPath = pathname.slice(1); // remove the first "/"
         position: fixed;
         left: 0;
         right: 0;
-        top: 0;
+        bottom: 0;
         z-index: 10;
         margin-left: auto;
         margin-right: auto;
-        padding: 20px 0 0 0;
         margin-top: 0;
-
-        transform: translateY(-75px);
+        transform: translateY(-25px);
         transition: .4s;
+        background-color: var(--menu-bg);
+        backdrop-filter: blur(35px) saturate(1.5);
+        border-radius: 15px;
+        padding: 8px;
+        overflow: hidden;
     }
 
-    .dock-navigation:hover {
-       transform: translateY(0);
-       transition: .4s;
-    }
-
-    .dock-navigation:hover .nav-anchor {
-        opacity: 0;
-        transition: .4s;
-    }
-
-    .dock-navigation ul {
+    ul {
         list-style-type: none;
         max-width: max-content;
         width: 100%;
@@ -48,50 +55,129 @@ const currentPath = pathname.slice(1); // remove the first "/"
         display: flex;
         flex-direction: row;
         justify-content: space-between;
-        border-radius: 50px;
-        padding: 8px 4px;
         position: relative;
-        background-color: var(--text-primary-color);
+        transition: color 0.2s;
+        padding-left: 0;
     }
 
-    .dock-navigation li {
+    li {
         display: inline-block;
-        max-width: 100%;
-        padding: 8px 12px;
-        border-radius: 50px;
-        margin: 0 4px;
+        border-radius: 10px;
         font-size: .9rem;
         transition: .3s;
+
+        &:hover {
+            background-color: var(--menu-hover-bg);
+        }
     }
 
-    .dock-navigation li:hover {
-        background-color: rgba(255,255,255,.1);
-        transition: .3s;
-    }
-
-    .dock-navigation li:last-child {
-        background-color: var(--general-background-color);
-    }
-
-    .dock-navigation li:last-child a {
-        color: var(--text-primary-color);
-        font-weight: 600;
-    }
-
-    .dock-navigation a {
-        text-decoration: none;
-        color: var(--general-background-color);
-    }
-
-    .nav-anchor {
-        width: 30px;
-        height: 4px;
-        background-color: var(--text-primary-color);
-        border-radius: 50px;
-        margin-left: auto;
-        margin-right: auto;
-        margin-top: 25px;
-        opacity: .6;
+    li a {
+        padding: 8px 12px;
+        width: 100%;
+        height: 100%;
+        display: inline-block;
+        color: var(--menu-link);
         transition: .4s;
     }
+
+    @media (hover: hover) {
+        .dock-navigation li a:hover {
+            transition: .4s;
+            color: var(--menu-active-link);
+        }
+    }
+
+    .active {
+        color: var(--menu-active-link)!important;
+        position: relative;
+        font-weight: 600;
+
+        &:after {
+            content: "";
+            width: 3px;
+            height: 3px;
+            background-color: var(--menu-active-link);
+            display: block;
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0px;
+            margin: 0 auto;
+            border-radius: 100%;
+        }
+    }
+
+    @media screen and (max-width: 475px) {
+        .last-item {
+            display: none;
+        }
+
+        .btn-mobile-contact {
+            display: none;
+        }
+    }
+
+    @media screen and (min-width: 476px) {
+        .btn-mobile-contact {
+            display: none;
+        }
+    }
+
+    .btn-mobile-contact {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        color: inherit;
+    }
+
+    .dock-navigation.show {
+        transform: translateY(-25px);
+    }
+
+    .dock-navigation.hide {
+        transform: translateY(55px);
+    }
 </style>
+
+<script>
+    let lastScrollTop = 0;
+    let menu = null;
+  
+    function handleScroll() {
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+  
+      if (scrollTop > lastScrollTop) {
+        menu.classList.add('hide');
+        menu.classList.remove('show');
+      } else {
+        
+        menu.classList.add('show');
+        menu.classList.remove('hide');
+      }
+  
+      lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; 
+    }
+  
+    function checkMobile() {
+      if (window.innerWidth <= 475) { 
+        window.addEventListener('scroll', handleScroll, { passive: true });
+      } else {
+        window.removeEventListener('scroll', handleScroll);
+      }
+    }
+  
+    function initMenuScript() {
+      menu = document.querySelector('.dock-navigation');
+      if (!menu) return;
+  
+      lastScrollTop = 0;
+      checkMobile();
+      window.addEventListener('resize', checkMobile);
+    }
+  
+    initMenuScript();
+  
+    document.addEventListener('astro:after-swap', () => {
+      initMenuScript();
+    });
+  </script>  

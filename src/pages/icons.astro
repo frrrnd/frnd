@@ -1,12 +1,105 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import MainNavigation from '../partials/MainNavigation.astro';
 import { getCollection } from "astro:content";
+import Grid from "../components/utils/Grid.astro";
 const iconsItems = await getCollection('icons');
 ---
 
-<Layout>
-    <main class="wrap">
-        <h1>Icons</h1>
+<Layout title="Icons">
+    <main class="wrap-wide icons-list">
+        <Grid isContainer>
+            <Grid lg="6" sm="12">
+                <figure>
+                    <img src="/uploads/images/icons/icon-lens.png">
+                </figure>
+            </Grid>
+            <Grid lg="6" sm="12">
+                <figure>
+                    <img src="/uploads/images/icons/icon-photos.png">
+                </figure>
+            </Grid>
+        </Grid>
+
+        <Grid isContainer>
+            <Grid lg="6" sm="12">
+                <figure>
+                    <img src="/uploads/images/icons/icon-arc-light.png">
+                </figure>
+            </Grid>
+            <Grid lg="6" sm="12">
+                <figure>
+                    <img src="/uploads/images/icons/icon-arc-dark.png">
+                </figure>
+            </Grid>
+        </Grid>
+
+        <Grid isContainer>
+            <Grid lg="6" sm="12">
+                <figure>
+                    <img src="/uploads/images/icons/icon-layers.png">
+                </figure>
+            </Grid>
+            <Grid lg="6" sm="12">
+                <figure>
+                    <img src="/uploads/images/icons/icon-figma.png">
+                </figure>
+            </Grid>
+        </Grid>
+
+        <Grid isContainer>
+            <Grid lg="6" sm="12">
+                <figure>
+                    <img src="/uploads/images/icons/icon-livepix-light.png">
+                </figure>
+            </Grid>
+            <Grid lg="6" sm="12">
+                <figure>
+                    <img src="/uploads/images/icons/icon-livepix-dark.png">
+                </figure>
+            </Grid>
+        </Grid>
+
+        <Grid isContainer>
+            <Grid lg="6" sm="12">
+                <figure>
+                    <img src="/uploads/images/icons/icon-sound.png">
+                </figure>
+            </Grid>
+            <Grid lg="6" sm="12">
+                <figure>
+                    <img src="/uploads/images/icons/icon-notes.png">
+                </figure>
+            </Grid>
+        </Grid>
+
+        <Grid isContainer>
+            <Grid lg="6" sm="12">
+                <figure>
+                    <img src="/uploads/images/icons/icon-terminal.png">
+                </figure>
+            </Grid>
+            <Grid lg="6" sm="12">
+                <figure>
+                    <img src="/uploads/images/icons/icon-iphone.png">
+                </figure>
+            </Grid>
+        </Grid>
+
+        <Grid isContainer>
+            <Grid lg="6" sm="12">
+                <figure>
+                    <img src="/uploads/images/icons/icon-holo.png">
+                </figure>
+            </Grid>
+
+            <Grid lg="6" sm="12">
+                <figure>
+                    <img src="/uploads/images/icons/icon-camera.png">
+                </figure>
+            </Grid>
+        </Grid>
+        <MainNavigation />
     </main>
 </Layout>
 
@@ -17,3 +110,19 @@ const iconsItems = await getCollection('icons');
         </li>
     ))}
 </ul>
+
+<style>
+    .wrap-wide {
+
+        & figure {
+            background-color: var(--icon-bg);
+            padding: 3rem;
+            margin-bottom: 1rem;
+            border-radius: 10px;
+        }
+    }
+
+    .icons-list {
+        padding-bottom: 5rem;
+    }
+</style>

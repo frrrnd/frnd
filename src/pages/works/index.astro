@@ -1,0 +1,30 @@
+---
+import Layout from '../../layouts/Layout.astro'
+import Grid from '../../components/utils/Grid.astro'
+import MainNavigation from '../../partials/MainNavigation.astro';
+import { getCollection } from 'astro:content';
+import PortfolioCard from '../../components/PortfolioCard/PortfolioCard.jsx';
+
+const portfolio = await getCollection('works');
+portfolio.sort((a,b) => Date.parse(a.data.order) - Date.parse(b.data.order));
+---
+<Layout title="Portfolio">
+    <div class="wrap">
+        <!-- <h2>Recent Works</h2> -->
+        <div class="portfolio-list">
+            <Grid isContainer>
+                {portfolio.map((item, index) => (
+                    <Grid lg="12" md="12" sm="12">
+                        <PortfolioCard client:load key={index} src={item.data.cover.src} title={item.data.title} slug={item.slug} />
+                    </Grid>
+                ))}
+            </Grid>
+        </div>
+    </div>
+    <MainNavigation />
+</Layout>
+<style>
+    .portfolio-list {
+        padding-bottom: 10em;
+    }
+</style>
