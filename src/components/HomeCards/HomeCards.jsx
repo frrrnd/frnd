@@ -17,7 +17,7 @@ const HomeCards = () => {
         <div className="home-cards__wrapper">
             <ul>
                 <li>
-                    <a href="http://localhost:1234/works/cloudbox" title="Cloudbox">
+                    <a href="/works/cloudbox" title="Cloudbox">
                         <figure>
                             <motion.img src="/uploads/images/home-ui.webp" alt="Dashboard UI" variants={image} initial="variantA" whileHover="variantB" />
                         </figure>
