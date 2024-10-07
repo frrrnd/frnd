@@ -25,7 +25,7 @@ const HomeCards = () => {
                 </li>
 
                 <li>
-                    <a href="/works/feed" title="View">
+                    <a href="/works/labs" title="View">
                         <figure>
                             <motion.img src="/uploads/images/home-ios-player.webp" alt="iOS Dock Player" variants={image} initial="variantA" whileHover="variantB" />
                         </figure>
@@ -41,7 +41,7 @@ const HomeCards = () => {
                 </li>
 
                 <li>
-                    <a href="/works/feed" title="View">
+                    <a href="/works/labs" title="View">
                         <figure>
                             <motion.img src="/uploads/images/home-os-dock.webp" alt="Arc Icon Mac OS" variants={image} initial="variantA" whileHover="variantB" />
                         </figure>
