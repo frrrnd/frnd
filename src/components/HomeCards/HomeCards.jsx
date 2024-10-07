@@ -25,7 +25,7 @@ const HomeCards = () => {
                 </li>
 
                 <li>
-                    <a href="https://layers.to/layers/clu9q6ocx0008ji0da6zr97wh" target="_blank" title="View on Layers">
+                    <a href="/works/feed" title="View">
                         <figure>
                             <motion.img src="/uploads/images/home-ios-player.webp" alt="iOS Dock Player" variants={image} initial="variantA" whileHover="variantB" />
                         </figure>
@@ -41,7 +41,7 @@ const HomeCards = () => {
                 </li>
 
                 <li>
-                    <a href="https://layers.to/layers/clvkyjnc0003sl40dv0d6m1yt" target="_blank" title="View on Layers">
+                    <a href="/works/feed" title="View">
                         <figure>
                             <motion.img src="/uploads/images/home-os-dock.webp" alt="Arc Icon Mac OS" variants={image} initial="variantA" whileHover="variantB" />
                         </figure>
