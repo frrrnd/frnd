@@ -73,6 +73,8 @@ const byYear = Object.keys(groupedData).sort((a,b) => b - a);
     width: 100%;
     max-width: 1040px;
     margin: 0 auto;
+    display: flex;
+    flex-direction: column;
 
     h3 {
         margin-bottom: 2rem;
@@ -83,15 +85,16 @@ const byYear = Object.keys(groupedData).sort((a,b) => b - a);
 .books__list {
     padding-bottom: 4rem;
     width: 100%;
-    display: flex;
-    flex-wrap: wrap;
     margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    padding: 0 1rem;
 }
 
 .book {
-    max-width: 240px;
+    /* max-width: 240px; */
     width: 100%;
-    margin: 0 10px 40px;
     display: flex;
     flex-direction: column;
     position: relative;
@@ -176,6 +179,18 @@ const byYear = Object.keys(groupedData).sort((a,b) => b - a);
 
     i path {
         fill: var(--title-color);
+    }
+}
+
+@media (max-width: 1040px) {
+    .books__list {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 780px) {
+    .books__list {
+        grid-template-columns: repeat(2, 1fr);
     }
 }
 </style>

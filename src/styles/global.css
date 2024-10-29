@@ -319,6 +319,10 @@ h1, h2, h3, h4, h5, h6 {
         font-size: var(--text-primary-color);
         font-weight: 400;
     }
+
+    ul {
+        padding-left: 1rem;
+    }
 }
 
 .content-article {
