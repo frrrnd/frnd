@@ -1,0 +1,181 @@
+---
+import Layout from '../layouts/Layout.astro'
+import MainNavigation from '../partials/MainNavigation.astro';
+import books from '../data/books.json';
+
+const booksId = books.map((book, index) => ({
+    id: index + 1,
+    ...book
+}));
+
+const groupedData = booksId.reduce((acc, item) => {
+  if (!acc[item.yearRead]) {
+    acc[item.yearRead] = [];
+  }
+  acc[item.yearRead].push(item);
+  return acc;
+}, {});
+
+const byYear = Object.keys(groupedData).sort((a,b) => b - a);
+---
+<Layout title="Readings">
+    <MainNavigation />
+    
+    <div class="content-article">
+        <section class="content-section wrap">
+        <p>Readings from the last few years. I also have a <a href="https://goodreads.com/frnd" target="_blank">goodreads profile</a>.</p>
+        </section>
+
+    {byYear.map(year => (
+        <section key={year} class="books__year">
+            <h3>{year}</h3>
+            <ul class="books__list">
+                {groupedData[year].map(item => (
+                    <li class="book" key={item.id}>
+                        <figure>
+                            <img src={item.coverUrl} />
+                        </figure>
+                        <h2>{item.title}</h2>
+                        <p>{item.author}</p>
+
+                        {item.status === "reading" ? (
+                            <span class="book__status book__status--reading">
+                                <i>
+                                    <svg width="8" height="11" viewBox="0 0 8 11" fill="none">
+                                        <path d="M0.672607 0.98291H7.39672V10.9829L4.03466 7.82644L0.672607 10.9829V0.98291Z" fill="black"/>
+                                    </svg>
+                                </i>
+                                Reading
+                            </span>
+                        ): (
+                            <span class="book__status book__status--finished">
+                                <i>
+                                    <svg width="11" height="8" viewBox="0 0 11 8" fill="none">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M1.85935 2.80465L0.681152 3.98285L4.21576 7.51746L10.1068 1.62644L8.92857 0.448242L4.21576 5.16105L1.85935 2.80465Z" fill="black"/>
+                                    </svg>
+
+                                </i>
+                                Finished
+                            </span>
+                        )}
+                    </li>
+                ))}
+            </ul>
+
+        </section>
+    ))}
+    </div>
+</Layout>
+
+<style>
+
+.books__year {
+    width: 100%;
+    max-width: 1040px;
+    margin: 0 auto;
+
+    h3 {
+        margin-bottom: 2rem;
+        padding: 0 1rem;
+    }
+}
+
+.books__list {
+    padding-bottom: 4rem;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 auto;
+}
+
+.book {
+    max-width: 240px;
+    width: 100%;
+    margin: 0 10px 40px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+
+    img {
+        position: relative;
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    figure {
+        margin-bottom: 0;
+        cursor: pointer;
+        transform-origin: left center;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        overflow: hidden;
+        display: block;
+        position: relative;
+        border-radius: 10px;
+
+        &:hover {
+            transform: perspective(800px) rotateY(-25deg);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+    }
+
+    figure::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+        pointer-events: none;
+    }
+
+    figure::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+        pointer-events: none;
+        background: linear-gradient(270deg, rgba(255, 255, 255, 0.12) 0%, rgba(230, 230, 230, 0.18) 6%, rgba(218, 218, 218, 0.04) 8%, rgba(143, 143, 143, 0) 80%, rgba(131, 131, 131, 0.11) 92.5%, rgba(0, 0, 0, 0.2) 93.5%, rgba(115, 115, 115, 0) 95%, rgba(255, 255, 255, 0.02) 99%, rgba(0, 0, 0, 0.2) 99.04%, rgba(0, 0, 0, 0.2) 100%);
+    }
+
+    h2 {
+        margin-bottom: 0;
+    }
+
+    p {
+        padding: 0;
+        margin-bottom: 0;
+        color: var(--menu-bg);
+    }
+}
+
+.book__status {
+    text-transform: capitalize;
+    display: inline-block;
+
+    i {
+        display: inline-block;
+    }
+}
+
+.book__status--reading {
+    color: #ff8400;
+
+    i path {
+        fill: #ff8400;
+    }
+}
+
+.book__status--finished {
+    color: var(--title-color);
+
+    i path {
+        fill: var(--title-color);
+    }
+}
+</style>

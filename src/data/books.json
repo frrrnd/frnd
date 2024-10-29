@@ -1,0 +1,177 @@
+[
+    {
+      "title": "As Cavernas de Aço",
+      "author": "Isaac Asimov",
+      "coverUrl": "/uploads/images/books/cavernas-de-aco.png",
+      "status": "reading",
+      "yearRead": 2024
+    },
+    {
+      "title": "Make Something Wonderful",
+      "author": "Leslie Berlin",
+      "coverUrl": "/uploads/images/books/make-something-wonderful.png",
+      "status": "reading",
+      "yearRead": 2024
+    },
+    {
+        "title": "White Nights",
+        "author": "Fyodor Dostoevsky",
+        "coverUrl": "/uploads/images/books/white-nights.png",
+        "status": "finished",
+        "yearRead": 2024
+      },
+    {
+        "title": "Legião",
+        "author": "Willian Peter Blatty",
+        "coverUrl": "/uploads/images/books/legiao.png",
+        "status": "finished",
+        "yearRead": 2024
+      },
+      {
+        "title": "User Friendly",
+        "author": "Cliff Kuang with Robert Fabricant",
+        "coverUrl": "/uploads/images/books/user-friendly.png",
+        "status": "finished",
+        "yearRead": 2024
+      },
+      {
+        "title": "The Creative Act: A way of Being",
+        "author": "Rick Rubin",
+        "coverUrl": "/uploads/images/books/the-creative-act.png",
+        "status": "finished",
+        "yearRead": 2024
+      },
+      {
+        "title": "A noiva da Caveira e outras histórias antigas",
+        "author": "Various",
+        "coverUrl": "/uploads/images/books/a-noiva-da-caveira.png",
+        "status": "finished",
+        "yearRead": 2024
+      },
+      {
+        "title": "Matrix Comics",
+        "author": "Various",
+        "coverUrl": "/uploads/images/books/matrix-comics.png",
+        "status": "finished",
+        "yearRead": 2024
+      },
+      {
+        "title": "Tokyo Ghost (Complete edition)",
+        "author": "Rick Remender",
+        "coverUrl": "/uploads/images/books/tokyo-ghost.png",
+        "status": "finished",
+        "yearRead": 2024
+      },
+      {
+        "title": "A Semente do Diabo",
+        "author": "Dean R. Koontz",
+        "coverUrl": "/uploads/images/books/a-semente-do-diabo.png",
+        "status": "finished",
+        "yearRead": 2023
+      },
+      {
+        "title": "Kafka On The Shore",
+        "author": "Haruki Murakami",
+        "coverUrl": "/uploads/images/books/kafka-on-the-shore.png",
+        "status": "finished",
+        "yearRead": 2023
+      },
+      {
+        "title": "2BR02B",
+        "author": "Kurt Vonnegut",
+        "coverUrl": "/uploads/images/books/2BRO2B.png",
+        "status": "finished",
+        "yearRead": 2023
+      },
+      {
+        "title": "Neuromancer",
+        "author": "William Gibson",
+        "coverUrl": "/uploads/images/books/neuromancer.png",
+        "status": "finished",
+        "yearRead": 2023
+      },
+      {
+        "title": "I Have No Mouth & I Must Scream",
+        "author": "Harlan Ellison",
+        "coverUrl": "/uploads/images/books/i-have-no-mouth.png",
+        "status": "finished",
+        "yearRead": 2023
+      },
+      {
+        "title": "Cyberpunk",
+        "author": "Bruce Bethke",
+        "coverUrl": "/uploads/images/books/cyberpunk.png",
+        "status": "finished",
+        "yearRead": 2023
+      },
+      {
+        "title": "My Inventions",
+        "author": "Nikola Tesla",
+        "coverUrl": "/uploads/images/books/my-inventions.png",
+        "status": "finished",
+        "yearRead": 2022
+      },
+      {
+        "title": "Blame! (1-6)",
+        "author": "Tsutomu Nihei",
+        "coverUrl": "/uploads/images/books/blame.png",
+        "status": "finished",
+        "yearRead": 2022
+      },
+      {
+        "title": "Cyberpunk 2077 - Trauma Team (4)",
+        "author": "Tsutomu Nihei",
+        "coverUrl": "/uploads/images/books/cyberpunk-4.png",
+        "status": "finished",
+        "yearRead": 2022
+      },
+      {
+        "title": "Cyberpunk 2077 - Trauma Team (3)",
+        "author": "Tsutomu Nihei",
+        "coverUrl": "/uploads/images/books/cyberpunk-3.png",
+        "status": "finished",
+        "yearRead": 2022
+      },
+      {
+        "title": "Cyberpunk 2077 - Trauma Team (2)",
+        "author": "Tsutomu Nihei",
+        "coverUrl": "/uploads/images/books/cyberpunk-2.png",
+        "status": "finished",
+        "yearRead": 2022
+      },
+      {
+        "title": "Cyberpunk 2077 - Trauma Team (1)",
+        "author": "Tsutomu Nihei",
+        "coverUrl": "/uploads/images/books/cyberpunk-1.png",
+        "status": "finished",
+        "yearRead": 2022
+      },
+      {
+        "title": "Do Androids Dream Of Electric Sheep",
+        "author": "Philip K. Dick",
+        "coverUrl": "/uploads/images/books/androids.png",
+        "status": "finished",
+        "yearRead": 2022
+      },
+      {
+        "title": "Foundation",
+        "author": "Isaac Asimov",
+        "coverUrl": "/uploads/images/books/foundation.png",
+        "status": "finished",
+        "yearRead": 2022
+      },
+      {
+        "title": "Breves Respostas Para Grandes Questões",
+        "author": "Stephen Hawking",
+        "coverUrl": "/uploads/images/books/breves-respostas.png",
+        "status": "finished",
+        "yearRead": 2022
+      },
+      {
+        "title": "Confissões do Crematório",
+        "author": "Caitlin Doughty",
+        "coverUrl": "/uploads/images/books/confissoes-do-crematorio.png",
+        "status": "finished",
+        "yearRead": 2022
+      }
+  ]

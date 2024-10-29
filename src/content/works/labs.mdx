@@ -10,6 +10,7 @@ order: 0
 ---
 import Section from '../../components/FullSection.astro';
 import Grid from '../../components/utils/Grid.astro';
+import Image from '../../components/ImageZoom.jsx';
 
 <section class="wrap">
     # {frontmatter.title}
@@ -20,8 +21,11 @@ import Grid from '../../components/utils/Grid.astro';
 <section class="wrap-wide">
     <Grid isContainer>
         <Grid sm="12" md="12">
-            <img src="/uploads/images/portfolio/labs/ios-camera-icon.webp" alt="iOS Camera Icon" loading="lazy" />
-            <img src="/uploads/images/portfolio/labs/unconventional-ui.webp" alt="Unconventional UI" loading="lazy" />
+            {/* <Image client:load src="/uploads/images/portfolio/labs/ios-camera-icon.webp" alt="iOS Camera Icon" /> */}
+            <img src="/uploads/images/portfolio/labs/ios-camera-icon.webp" alt="iOS Camera Icon" />
+
+            <img src="/uploads/images/portfolio/labs/unconventional-ui.webp" alt="Unconventional UI" />
+
             <img src="/uploads/images/portfolio/labs/arc-icons.webp" alt="Arc Icons" loading="lazy" />
             <img src="/uploads/images/portfolio/labs/ios-widgets.webp" alt="iOS Widgets" loading="lazy" />
             <img src="/uploads/images/portfolio/labs/remote-icon.webp" alt="Remote Icon" loading="lazy" />
