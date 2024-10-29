@@ -11,7 +11,6 @@ const isActive = (path) => {
     return false;
 };
 ---
-<a class="btn-mobile-contact" href="#">Contact</a>
 
 <div class="dock-navigation">
     <nav>
@@ -20,9 +19,16 @@ const isActive = (path) => {
             <li><a class={isActive("about") ? "active" : ""} href="/about">About</a></li>
             <li><a class={isActive("works") ? "active" : ""} href="/works">Works</a></li>
             <!-- <li><a class={isActive("icons") ? "active" : ""} href="/icons">Icons</a></li> -->
-            <li><a class={isActive("notes") ? "active" : ""} href="/notes">Notes</a></li>
-            <li><a class={isActive("readings") ? "active" : ""} href="/readings">Readings</a></li>
             <li><a href="mailto:dotfernando@gmail.com">Contact</a></li>
+            <li class="dropdown">
+                <input type="checkbox" />
+                <a href="#!">•••</a>
+                <ul class="drop-options">
+                    <li><a href="/notes">Notes</a></li>
+                    <li><a href="/readings">Readings</a></li>
+                    <li><a href="#">Albums</a></li>
+                </ul>
+            </li>
         </ul>
     </nav>
 </div>
@@ -41,12 +47,22 @@ const isActive = (path) => {
         margin-top: 0;
         transform: translateY(-25px);
         transition: .4s;
+        border-radius: 15px;
+        padding: 8px;
+    }
+
+    .dock-navigation:after {
+        content: "";
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
         background-color: var(--menu-bg);
         backdrop-filter: blur(35px) saturate(1.5);
         -webkit-backdrop-filter: blur(35px) saturate(1.5);
+        z-index: -1;
         border-radius: 15px;
-        padding: 8px;
-        overflow: hidden;
     }
 
     ul {
@@ -125,19 +141,56 @@ const isActive = (path) => {
         }
     }
 
-    .btn-mobile-contact {
-        position: absolute;
-        top: 20px;
-        right: 20px;
-        color: inherit;
-    }
-
     .dock-navigation.show {
         transform: translateY(-25px);
     }
 
     .dock-navigation.hide {
         transform: translateY(55px);
+    }
+
+    /* Dropdown options */
+    .dropdown {
+        position: relative;
+    }
+
+    .dropdown > .drop-options {
+        overflow: hidden;
+        position: fixed;
+        bottom: 110%;
+        right: 0;
+        display: flex;
+        flex-direction: column;
+        border-radius: 15px;
+        padding: 8px;
+        opacity: 0;
+    }
+
+    .drop-options:before {
+        content: "";
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-color: var(--menu-bg);
+        backdrop-filter: blur(35px) saturate(1.5);
+        -webkit-backdrop-filter: blur(35px) saturate(1.5);
+        z-index: -1;
+    }
+
+    .dropdown > input[type="checkbox"] {
+        opacity: 0;
+        display: block;
+        position: absolute;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        cursor: pointer;
+    }
+
+    .dropdown > input[type="checkbox"]:checked ~ .drop-options {
+        opacity: 1;
     }
 </style>
 

@@ -8,7 +8,7 @@ import tailwind from "@astrojs/tailwind";
 
 // https://astro.build/config
 export default defineConfig({
-  integrations: [mdx(), react(), tailwind()],
+  integrations: [mdx(), react()],
   devToolbar: {
     enabled: false
   },
