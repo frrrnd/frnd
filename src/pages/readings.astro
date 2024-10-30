@@ -33,7 +33,7 @@ const byYear = Object.keys(groupedData).sort((a,b) => b - a);
                 {groupedData[year].map(item => (
                     <li class="book" key={item.id}>
                         <figure>
-                            <img src={item.coverUrl} />
+                            <img src={item.coverUrl} alt={item.title} loading="lazy" />
                         </figure>
                         <h2>{item.title}</h2>
                         <p>{item.author}</p>

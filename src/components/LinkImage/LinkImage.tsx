@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import type { FC } from 'react';
 
@@ -11,6 +11,13 @@ interface LinkWithPreviewProps {
 const LinkWithPreview: FC<LinkWithPreviewProps> = ({ href, text, images }) => {
   const [isHovered, setIsHovered] = useState(false);
   const [mousePosition, setMousePosition] = useState<{ x: number; y: number } | null>(null);
+
+  useEffect(() => {
+    images.forEach((image) => {
+      const img = new Image();
+      img.src = image;
+    });
+  }, [images]);
 
   const OFFSET = 60;
 
