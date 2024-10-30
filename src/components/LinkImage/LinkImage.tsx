@@ -84,7 +84,7 @@ const LinkWithPreview: FC<LinkWithPreviewProps> = ({ href, text, images }) => {
                   {...getAnimationConfig(reverseIndex)}
                 >
                   <div 
-                    className="w-48 h-32 rounded-lg shadow-lg overflow-hidden bg-white"
+                    className="w-48 h-32 rounded-lg shadow-lg overflow-hidden bg-transparent"
                     style={{
                       transform: `translateY(${-reverseIndex * OFFSET}px) translateX(${-reverseIndex * 15}px)`,
                       zIndex: reverseIndex
