@@ -2,7 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import MainNavigation from '../partials/MainNavigation.astro';
 import SocialNav from '../components/SocialNav.astro';
-import HomeCards from '../components/HomeCards/HomeCards.jsx';
+import LinkWithPreview from '../components/LinkImage/LinkImage.tsx';
 import { getCollection } from 'astro:content';
 
 const notes = await getCollection('notes');
@@ -14,20 +14,18 @@ notes.sort((a,b) => Date.parse(b.data.publishedDate) - Date.parse(a.data.publish
 	
 	<main>
 		<section class="content-section wrap">
-			<p>Brazilian designer with 13 years of experience. Passionate about UI and everything related to interfaces. Front end as a hobby. Icon designer enthusiast. <a href="/about">Read more.</a></p>
+			<p>Brazilian designer with 13 years of experience. Passionate about UI and everything related to interfaces. Front end as a hobby. Icon designer enthusiast.</p>
+			<br>
+			<p>To check out some of my work, see my <LinkWithPreview client:load href="/works" text="recent works" images={["/uploads/images/portfolio/labs/arc-icons.webp"]} /> and my <LinkWithPreview client:load href="/works/labs" text="experiments" images={["/uploads/images/portfolio/labs/arc-icons.webp"]} />.</p>
 		</section>
 
-		<section class="content-section wrap">
+		<!-- <section class="content-section wrap">
 			<SocialNav />
 		</section>
 
 		<section class="content-section home-works">
 			<HomeCards client:load />
-		</section>
-
-		<section class="content-section wrap">
-			<p>To check out some of my work, see my <a href="/portfolio">portfolio</a> and my <a target="_blank" href="https://layers.to/fer">experiments.</a></p>
-		</section>
+		</section> -->
 
 		<section class="content-section wrap">
 			<h2>Now</h2>
@@ -139,5 +137,9 @@ notes.sort((a,b) => Date.parse(b.data.publishedDate) - Date.parse(a.data.publish
 			width: 100%;
 			border-radius: 10px;
 		}
+	}
+
+	.inline-linkpreview {
+		display: inline;
 	}
 </style>
