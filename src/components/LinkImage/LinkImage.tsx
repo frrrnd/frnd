@@ -10,8 +10,8 @@ interface LinkWithPreviewProps {
 
 const LinkWithPreview: FC<LinkWithPreviewProps> = ({ href, text, images }) => {
   const [isHovered, setIsHovered] = useState(false);
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  
+  const [mousePosition, setMousePosition] = useState<{ x: number; y: number } | null>(null);
+
   const OFFSET = 60;
 
   const handleMouseMove = (e: React.MouseEvent) => {
@@ -26,20 +26,20 @@ const LinkWithPreview: FC<LinkWithPreviewProps> = ({ href, text, images }) => {
     initial: { 
       opacity: 0, 
       scale: 0.8,
-      x: mousePosition.x - (index * 15),
-      y: mousePosition.y + (index * OFFSET)
+      x: (mousePosition?.x || 0) - (index * 15),
+      y: (mousePosition?.y || 0) + (index * OFFSET)
     },
     animate: { 
       opacity: 1, 
       scale: 1,
-      x: mousePosition.x - (index * 15),
-      y: mousePosition.y + (index * OFFSET)
+      x: (mousePosition?.x || 0) - (index * 15),
+      y: (mousePosition?.y || 0) + (index * OFFSET)
     },
     exit: { 
       opacity: 0, 
       scale: 0.8,
-      x: mousePosition.x - (index * 15),
-      y: mousePosition.y + (index * OFFSET)
+      x: (mousePosition?.x || 0) - (index * 15),
+      y: (mousePosition?.y || 0) + (index * OFFSET)
     },
     transition: {
       duration: 0.2,
@@ -49,52 +49,54 @@ const LinkWithPreview: FC<LinkWithPreviewProps> = ({ href, text, images }) => {
   });
 
   return (
-    <>
-      <span className="relative inline-block">
-        <a
-          href={href}
-          onMouseEnter={() => setIsHovered(true)}
-          onMouseLeave={() => setIsHovered(false)}
-          onMouseMove={handleMouseMove}
-        >
-          {text}
-        </a>
-        
-        <AnimatePresence>
-          {isHovered && (
-            <div className="absolute z-50" style={{ 
-              perspective: '1000px',
-              transformStyle: 'preserve-3d'
-            }}>
-              {images.slice().reverse().map((imageUrl, index) => {
-                const reverseIndex = images.length - 1 - index;
-                return (
-                  <motion.div
-                    key={imageUrl}
-                    className="absolute pointer-events-none"
-                    {...getAnimationConfig(reverseIndex)}
+    <span className="relative inline-block">
+      <a
+        href={href}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => {
+          setIsHovered(false);
+          setMousePosition(null);
+        }}
+        onMouseMove={handleMouseMove}
+      >
+        {text}
+      </a>
+      
+      <AnimatePresence>
+        {isHovered && mousePosition && (
+          <div className="absolute z-100" style={{ 
+            // perspective: '1000px',
+            // transformStyle: 'preserve-3d'
+          }}>
+            {images.slice().reverse().map((imageUrl, index) => {
+              const reverseIndex = images.length - 1 - index;
+              return (
+                <motion.div
+                  key={imageUrl}
+                  className="absolute pointer-events-none"
+                  {...getAnimationConfig(reverseIndex)}
+                >
+                  <div 
+                    className="w-48 h-32 rounded-lg shadow-lg overflow-hidden bg-white"
+                    style={{
+                      transform: `translateY(${-reverseIndex * OFFSET}px) translateX(${-reverseIndex * 15}px)`,
+                      zIndex: reverseIndex
+                    }}
                   >
-                    <div 
-                      className="w-48 h-32 rounded-lg shadow-lg overflow-hidden bg-white"
-                      style={{
-                        transform: `translateY(${-reverseIndex * OFFSET}px) translateX(${-reverseIndex * 15}px)`,
-                        zIndex: reverseIndex
-                      }}
-                    >
-                      <img
-                        src={imageUrl}
-                        alt={`Preview ${reverseIndex + 1}`}
-                        className="w-full h-full object-cover"
-                      />
-                    </div>
-                  </motion.div>
-                );
-              })}
-            </div>
-          )}
-        </AnimatePresence>
-      </span>
-    </>
+                    <img
+                      src={imageUrl}
+                      alt={`Preview ${reverseIndex + 1}`}
+                      className="w-full h-full object-cover z-10"
+                      style={{ imageRendering: 'high-quality' }}
+                    />
+                  </div>
+                </motion.div>
+              );
+            })}
+          </div>
+        )}
+      </AnimatePresence>
+    </span>
   );
 };
 
