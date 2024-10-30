@@ -115,7 +115,7 @@ function ImageZoom(props) {
       <img 
         src={src} 
         alt={alt} 
-        className="max-w-full h-auto cursor-pointer"
+        className="max-w-full h-auto cursor-zoom-in"
       />
     );
   }
@@ -133,7 +133,7 @@ function ImageZoom(props) {
         <motion.img
           src={src}
           alt={alt}
-          className="max-w-full h-auto cursor-pointer"
+          className="max-w-full h-auto cursor-zoom-in"
         />
       </motion.div>
 

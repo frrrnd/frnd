@@ -19,14 +19,6 @@ notes.sort((a,b) => Date.parse(b.data.publishedDate) - Date.parse(a.data.publish
 			<p>To check out some of my work, see my <LinkWithPreview client:load href="/works" text="recent works" images={["/uploads/images/preview/preview-works.webp"]} /> and my <LinkWithPreview client:load href="/works/labs" text="experiments" images={["/uploads/images/preview/preview-labs.webp"]} />.</p>
 		</section>
 
-		<!-- <section class="content-section wrap">
-			<SocialNav />
-		</section>
-
-		<section class="content-section home-works">
-			<HomeCards client:load />
-		</section> -->
-
 		<section class="content-section wrap">
 			<h2>Now</h2>
 			<p>Working as a freelancer with ux/ui, icons and design systems for startups and agencies, and running parallel projects like <a target="_blank" href="https://viewport-ui.design">Viewport UI.</a></p>
@@ -67,70 +59,6 @@ notes.sort((a,b) => Date.parse(b.data.publishedDate) - Date.parse(a.data.publish
 		background-color: #f7f7f7;
 		transition: .4s;
 	}
-
-	.home-works {
-		transition: .4s;
-
-		ul {
-			list-style: none;
-			padding-left: 0;
-			display: flex;
-			justify-content: center;
-			width: 100%;
-			margin: 0 auto;
-
-			li {
-				max-width: 240px;
-				width: 100%;
-				transition: .4s;
-				margin: 0 10px;
-			}
-		}
-		
-		img {
-			
-		}
-
-		figure {
-			transition: .4s;
-			display: flex;
-			border-radius: 10px;
-			overflow: hidden;
-
-			&:hover {
-				transition: .4s;
-			}
-		}
-	}
-
-	.experience-list {
-		span {
-			font-family: "Instrument Serif", serif;
-			font-style: italic;
-		}
-        .row {
-            display: flex;
-            flex-direction: row;
-            justify-content: space-between;
-            margin: 0;
-            border-bottom: 1px dashed var(--divisor);
-            padding-bottom: 1rem;
-        }
-
-        .col {
-            display: flex;
-            flex-direction: column;
-
-            & p {
-                margin-bottom: 0;
-                text-align: right;
-            }
-        }
-
-        .xp-year {
-            font-size: .7rem;
-        }
-    }
 
 	.img-section {
 		img {
