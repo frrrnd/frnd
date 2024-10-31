@@ -27,14 +27,49 @@ const ImageZoom = ({ src, alt }) => {
     }
   }, []);
 
+  // Função para fechar a imagem
+  const closeImage = () => {
+    if (isZoomed) {
+      setIsZoomed(false);
+      setIsAnimating(true);
+      x.set(0);
+      y.set(0);
+      scale.set(1);
+
+      setTimeout(() => {
+        setIsAnimating(false);
+      }, 300);
+    }
+  };
+
+  // Event listener para a tecla Esc
+  useEffect(() => {
+    const handleEscapeKey = (event) => {
+      if (event.key === 'Escape') {
+        closeImage();
+      }
+    };
+
+    if (isZoomed) {
+      window.addEventListener('keydown', handleEscapeKey);
+    }
+
+    // Cleanup do event listener
+    return () => {
+      window.removeEventListener('keydown', handleEscapeKey);
+    };
+  }, [isZoomed]); // Dependência no isZoomed para re-adicionar o listener quando necessário
+
   const handleImageClick = (e) => {
     e.preventDefault();
     e.stopPropagation();
 
-    setIsZoomed((prev) => !prev);
-    setIsAnimating(true);
+    if (isZoomed) {
+      closeImage();
+    } else {
+      setIsZoomed(true);
+      setIsAnimating(true);
 
-    if (!isZoomed) {
       const rect = imageRef.current.getBoundingClientRect();
       const maxScaleWidth = window.innerWidth / rect.width;
       const maxScaleHeight = window.innerHeight / rect.height;
@@ -46,14 +81,6 @@ const ImageZoom = ({ src, alt }) => {
       x.set(centerX);
       y.set(centerY);
       scale.set(maxScale);
-    } else {
-      x.set(0);
-      y.set(0);
-      scale.set(1);
-
-      setTimeout(() => {
-        setIsAnimating(false);
-      }, 300); // Tempo da animação de fechamento em ms
     }
   };
 
@@ -63,7 +90,6 @@ const ImageZoom = ({ src, alt }) => {
 
   return (
     <>
-      {/* Overlay */}
       <AnimatePresence>
         {(isZoomed || isAnimating) && (
           <motion.div
@@ -86,6 +112,7 @@ const ImageZoom = ({ src, alt }) => {
           x: xSpring,
           y: ySpring,
           scale: scaleSpring,
+          outline: "none",
         }}
       >
         <motion.img
