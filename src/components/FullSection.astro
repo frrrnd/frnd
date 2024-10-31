@@ -12,14 +12,19 @@ import FullPage from "./FullPage.astro";
         margin: 0 auto;
     }
 
-    .wrap-wide img {
+    .wrap-labs {
+        max-width: var(--wrap-width);
+        margin: 0 auto;
+    }
+
+    .wrap-wide img,
+    .wrap-labs img  {
         margin: 2rem auto;
         display: block;
         max-width: 100%;
         height: auto;
         background-color: var(--icon-bg);
-        border-radius: 4px;
-        border: 1px solid rgba(255,255,255,.001);
+        border-radius: 6px;
     }
 
     .section-intro {

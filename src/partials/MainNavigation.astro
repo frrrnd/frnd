@@ -166,19 +166,17 @@ const isActive = (path) => {
         border-radius: 15px;
         padding: 8px;
         opacity: 0;
-    }
-
-    .drop-options:before {
-        content: "";
-        width: 100%;
-        height: 100%;
-        position: absolute;
-        top: 0;
-        left: 0;
+        transition: .3s;
         background-color: var(--menu-bg);
         backdrop-filter: blur(35px) saturate(1.5);
         -webkit-backdrop-filter: blur(35px) saturate(1.5);
-        z-index: -1;
+        transform: translateY(10px);
+    }
+
+    .dropdown > input[type="checkbox"]:checked ~ .drop-options {
+        opacity: 1;
+        transition: .3s;
+        transform: translateY(0);
     }
 
     .dropdown > input[type="checkbox"] {
@@ -189,10 +187,6 @@ const isActive = (path) => {
         width: 100%;
         height: 100%;
         cursor: pointer;
-    }
-
-    .dropdown > input[type="checkbox"]:checked ~ .drop-options {
-        opacity: 1;
     }
 </style>
 
