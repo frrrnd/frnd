@@ -42,7 +42,7 @@ const ImageZoom = ({ src, alt }) => {
     }
   };
 
-  // Event listener para a tecla Esc
+  // Event listeners para Esc e scroll
   useEffect(() => {
     const handleEscapeKey = (event) => {
       if (event.key === 'Escape') {
@@ -50,15 +50,23 @@ const ImageZoom = ({ src, alt }) => {
       }
     };
 
+    const handleScroll = () => {
+      if (isZoomed) {
+        closeImage();
+      }
+    };
+
     if (isZoomed) {
       window.addEventListener('keydown', handleEscapeKey);
+      window.addEventListener('scroll', handleScroll, true); // true para capturar evento na fase de captura
     }
 
-    // Cleanup do event listener
+    // Cleanup dos event listeners
     return () => {
       window.removeEventListener('keydown', handleEscapeKey);
+      window.removeEventListener('scroll', handleScroll, true);
     };
-  }, [isZoomed]); // Dependência no isZoomed para re-adicionar o listener quando necessário
+  }, [isZoomed]);
 
   const handleImageClick = (e) => {
     e.preventDefault();
