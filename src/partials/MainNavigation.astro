@@ -25,8 +25,8 @@ const isActive = (path) => {
                 <a href="#!">•••</a>
                 <ul class="drop-options">
                     <!-- <li><a href="/labs">Labs</a></li> -->
-                    <li><a href="/notes">Notes</a></li>
-                    <li><a href="/readings">Readings</a></li>
+                    <li><a class={isActive("notes") ? "active" : ""} href="/notes">Notes</a></li>
+                    <li><a class={isActive("readings") ? "active" : ""} href="/readings">Readings</a></li>
                 </ul>
             </li>
         </ul>
@@ -123,6 +123,12 @@ const isActive = (path) => {
             margin: 0 auto;
             border-radius: 100%;
         }
+    }
+
+    .drop-options .active:after {
+        left: 0;
+        right: auto;
+        bottom: 17px;
     }
 
     @media screen and (max-width: 475px) {
