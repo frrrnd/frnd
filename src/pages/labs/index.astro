@@ -1,0 +1,53 @@
+---
+import Layout from '../../layouts/Layout.astro'
+import Grid from '../../components/utils/Grid.astro'
+import MainNavigation from '../../partials/MainNavigation.astro';
+import { getCollection, getEntry } from 'astro:content';
+import FormattedDate from '../../partials/formattedDate.astro';
+
+const labs = await getCollection('labs');
+
+labs.sort((a,b) => Date.parse(b.data.publishDate) - Date.parse(a.data.publishDate));
+
+const renderedLabs = await Promise.all(
+	labs.map(async (post) => {
+		const { Content } = await post.render();
+		return { ...post, Content };
+	})
+);
+---
+<Layout title="Labs">
+    <MainNavigation />
+    <main class="wrap notas-main">
+        <section class="notas-section">
+        {renderedLabs.map((post) => (
+			
+            <article class="content-article">
+				<h2><a href={`/notes/${post.slug}`} title={`Permalink to ${post.data.title}`} class="article-permalink">{post.data.title}</a></h2>
+				
+                <div class="note-content">
+					<post.Content />
+				</div>
+            </article>
+        ))}
+        </section>
+	</main>
+</Layout>
+<style>
+    .content-article {
+		margin-bottom: 3rem;
+		padding-bottom: 3rem;
+	}
+
+	.content-article:not(:last-child) {
+		border-bottom: 1px solid var(--icon-bg);
+	}
+
+	.article-permalink {
+		text-decoration: none;
+	}
+
+    .content-article h2 {
+        padding-left: 1rem;
+    }
+</style>

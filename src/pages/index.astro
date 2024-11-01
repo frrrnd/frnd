@@ -3,6 +3,7 @@ import Layout from '../layouts/Layout.astro';
 import MainNavigation from '../partials/MainNavigation.astro';
 import SocialNav from '../components/SocialNav.astro';
 import LinkWithPreview from '../components/LinkImage/LinkImage.tsx';
+// import HomeCards from '../components/HomeCards/HomeCards.jsx';
 import { getCollection } from 'astro:content';
 
 const notes = await getCollection('notes');
@@ -18,6 +19,10 @@ notes.sort((a,b) => Date.parse(b.data.publishedDate) - Date.parse(a.data.publish
 			<br>
 			<p>To check out some of my work, see my <LinkWithPreview client:load href="/works" text="recent works" images={["/uploads/images/preview/preview-works.webp"]} /> and my <LinkWithPreview client:load href="/works/labs" text="experiments" images={["/uploads/images/preview/preview-labs.webp"]} />.</p>
 		</section>
+
+		<!-- <section class="content-section home-works">
+			<HomeCards client:load />
+		</section> -->
 
 		<section class="content-section wrap">
 			<h2>Now</h2>
@@ -64,6 +69,41 @@ notes.sort((a,b) => Date.parse(b.data.publishedDate) - Date.parse(a.data.publish
 		img {
 			width: 100%;
 			border-radius: 10px;
+		}
+	}
+
+	.home-works {
+		transition: .4s;
+
+		ul {
+			list-style: none;
+			padding-left: 0;
+			display: flex;
+			justify-content: center;
+			width: 100%;
+			margin: 0 auto;
+
+			li {
+				max-width: 240px;
+				width: 100%;
+				transition: .4s;
+				margin: 0 10px;
+			}
+		}
+
+		img {
+
+		}
+
+		figure {
+			transition: .4s;
+			display: flex;
+			border-radius: 10px;
+			overflow: hidden;
+
+			&:hover {
+				transition: .4s;
+			}
 		}
 	}
 </style>

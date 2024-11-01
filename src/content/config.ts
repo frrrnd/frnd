@@ -28,20 +28,7 @@ const worksCollection = defineCollection({
     })
 });
 
-const feedCollection = defineCollection({
-    type: 'content',
-    schema: ({ image }) => z.object({
-        title: z.string(),
-        isDraft: z.boolean().optional(),
-        description: z.string().optional(),
-        tags: z.array(z.string()).optional(),
-        publishDate: z.string().or(z.date()).transform((val) => new Date(val)),
-        updateDate: z.string().or(z.date()).transform((val) => new Date(val)).optional(),
-        cover: z.string().optional(),
-    })
-});
-
-const iconsCollection = defineCollection({
+const labsCollection = defineCollection({
     type: 'content',
     schema: ({ image }) => z.object({
         title: z.string(),
@@ -49,12 +36,15 @@ const iconsCollection = defineCollection({
         description: z.string(),
         tags: z.array(z.string()),
         publishDate: z.string().or(z.date()).transform((val) => new Date(val)),
+        cover: image().refine((img) => img.width >= 200, {
+            message: "Imagem errada",
+        }),
+        order: z.number(),
     })
 });
 
 export const collections = {
     'works': worksCollection,
-    'feed': feedCollection,
-    'icons': iconsCollection,
+    'labs': labsCollection,
     'notes': notesCollection
 }
