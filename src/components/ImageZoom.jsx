@@ -110,7 +110,7 @@ const ImageZoom = ({ src, alt }) => {
         )}
       </AnimatePresence>
 
-      <motion.div
+      <motion.figure
         ref={imageRef}
         className={`relative inline-block ${isZoomed || isAnimating ? 'z-50' : 'z-0'}`}
         role="button"
@@ -126,9 +126,9 @@ const ImageZoom = ({ src, alt }) => {
         <motion.img
           src={src}
           alt={alt}
-          className={`max-w-full h-auto ${isZoomed ? 'cursor-zoom-out' : 'cursor-zoom-in'}`}
+          className={`max-w-full my-4 border-media h-auto ${isZoomed ? 'cursor-zoom-out' : 'cursor-zoom-in'}`}
         />
-      </motion.div>
+      </motion.figure>
     </>
   );
 };

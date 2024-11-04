@@ -1,0 +1,57 @@
+.btn-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    height: 100%;
+    padding: 8rem 0;
+    background-color: white;
+    border-radius: 10px;
+  }
+
+  .glossy-btn {
+    border-radius: 124px;
+    background: radial-gradient(185.08% 100% at 50% 0%, #dedeff 0%, #e9e9ff 21.35%, #d7d9f8 69.27%, #eff7ff 100%);
+    box-shadow: 0px 12.991px 25.983px 0px #dce9fd;
+    color: #4042a1!important;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    font-size: 2rem;
+    padding: 20px 40px;
+    text-decoration: none;
+    display: inline-block;
+    background-size: 100% 100%;
+    position: relative;
+    transition: 0.4s;
+    cursor: pointer;
+    overflow: hidden;
+    text-decoration: none!important;
+  }
+
+  .glossy-btn:hover {
+    background-size: 100% 120%;
+    transform: translateY(-4px);
+    box-shadow: 0px 12.991px 25.983px 0px #c7d9f5;
+    transition: 0.4s;
+  }
+
+  .glossy-btn:active {
+    transform: scale(0.9);
+  }
+
+  .glossy-btn:after {
+    content: "";
+    position: absolute;
+    top: calc(var(--y, 0) * 1px - 50px);
+    left: calc(var(--x, 0) * 1px - 50px);
+    width: 100px;
+    height: 100px;
+    background: radial-gradient(#fff, rgba(57,132,255,0) 80%);
+    opacity: 0;
+    transition: opacity 0.4s;
+  }
+
+  .glossy-btn:hover:after {
+    opacity: 0.4;
+  }

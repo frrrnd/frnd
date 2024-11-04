@@ -1,141 +1,65 @@
 ---
 import Layout from '../layouts/Layout.astro'
 import MainNavigation from '../partials/MainNavigation.astro';
+import ImageZoom from '../components/ImageZoom.jsx';
 ---
 <Layout title="About">
-    <MainNavigation />
-    
-    <div class="wrap content-article">
-        <figure>
-            <img src="/frnd-avatar.jpg" alt="Yo!">
-        </figure>
+    <main class="wrap">
+        <section class="content-section">
+            <article class="content-article">
+                <ImageZoom client:load src="/frnd-avatar.jpg" alt="Yo!" />
+                
+                <h2>About</h2>
+                <p>My name is Fernando Soares, a self-taught designer with 13 years of experience.</p>
+                
+                <p>Driven by curiosity, it all started when I was 12 years old. I learned the basics of HTML by writing tags in Notepad, saving them as .htm files, and viewing them in the browser. In the same way, I learned to design for the web using Fireworks, slicing layouts to turn them into web pages. </p> 
+                    
+                <p>In almost all my jobs, I worked on both design and coding, but now my focus is on design. I have also built websites, blogs, e-commerce sites, etc., using WordPress.</p>
 
-        <div class="content-section">
-            <p>My name is Fernando Soares, a self-taught designer with 13 years of experience.</p>
+                <p>I believe that my knowledge of Front-End development helps me design real-world interfaces and solve problems with a holistic view of the product.</p>
+
+                <p><a href="/public/uploads/cv-fernando-soares.pdf" download>Download my CV.</a></p>
             
-            <p>Driven by curiosity, it all started when I was 12 years old. I learned the basics of HTML by writing tags in Notepad, saving them as .htm files, and viewing them in the browser. In the same way, I learned to design for the web using Fireworks, slicing layouts to turn them into web pages. In almost all my jobs, I worked on both design and coding, but now my focus is on design. I have also built websites, blogs, e-commerce sites, etc., using WordPress.</p>
-
-            <p>I believe that my knowledge of Front-End development helps me design real-world interfaces and solve problems with a holistic view of the product.</p>
-
-            <p><a href="/public/uploads/cv-fernando-soares.pdf" download>Download my CV.</a></p>
-        </div>
-
-        <section class="content-section">
-            <h2>What I Do</h2>
-            <p>I design interfaces from concept to finish.</p>
-            <ul>
-                <li>Research;</li>
-                <li>Information Architeture;</li>
-                <li>Wireframes & Prototypes;</li>
-                <li>Usability Tests;</li>
-                <li>Visual Design and Interaction;</li>
-                <li>Documentation;</li>
-                <li>Design System/Style guide;</li>
-                <li>HTML, CSS and JS.</li>
-            </ul>
+            </article>
         </section>
 
-        <section class="content-section">
-            <h2>What I Use</h2>
-            <p>I use <a href="https://figma.com/@fers" target="_blank">Figma</a> as my main tool for almost everything.</p>
-            <p>As a proccess I worked with SCRUM, design thinking, design sprint and double diamond.</p>
-            <p>Webflow and Wordpress as low-code tools.</p>
-        </section>
+            <section class="content-section">
+                <article class="content-article">
+                    <h2>What I Do</h2>
+                    <p>I design interfaces from concept to finish.</p>
+                    <ul>
+                        <li>Research;</li>
+                        <li>Information Architeture;</li>
+                        <li>Wireframes & Prototypes;</li>
+                        <li>Usability Tests;</li>
+                        <li>Visual Design and Interaction;</li>
+                        <li>Documentation;</li>
+                        <li>Design System/Style guide;</li>
+                        <li>HTML, CSS and JS.</li>
+                    </ul>
+                </article>
+            </section>
 
-        <section class="content-section">
-            <h2>About this website</h2>
-            <p>This website is built with <a href="https://astro.build/" target="_blank">Astro</a>, <a href="https://mdxjs.com/" target="_blank">MDX</a> and deployed with Github Actions.</p>
+            <section class="content-section">
+                <article class="content-article">
+                    <h2>What I Use</h2>
+                    <p>I use <a href="https://figma.com/@fers" target="_blank">Figma</a> as my main tool for almost everything.</p>
+                    <p>As a proccess I worked with SCRUM, design thinking, design sprint and double diamond.</p>
+                    <p>Webflow and Wordpress as low-code tools.</p>
+                </article>
+            </section>
 
-            <p>Some animations with <a href="https://react.dev/" target="_blank">React</a> and <a href="https://www.framer.com/motion/" target="_blank">Framer Motion</a>.</p>
+            <section class="content-section">
+                <article class="content-article">
+                    <h2>About this website</h2>
+                    <p>This website is built with <a href="https://astro.build/" target="_blank">Astro</a>, <a href="https://mdxjs.com/" target="_blank">MDX</a> and deployed with Github Actions.</p>
 
-            <p><a href="https://rsms.me/inter/" target="_blank">Inter</a> with <em>Discretionary Ligatures</em> is the body font and <a href="https://fonts.google.com/specimen/Instrument+Serif?query=instru" target="_blank">Instrument Serif</a> for headings.</p>
-        </section>
-    </div>
+                    <p>Some animations with <a href="https://react.dev/" target="_blank">React</a> and <a href="https://www.framer.com/motion/" target="_blank">Framer Motion</a>.</p>
+
+                    <p><a href="https://rsms.me/inter/" target="_blank">Inter</a> with <em>Discretionary Ligatures</em> is the body font and <a href="https://fonts.google.com/specimen/Instrument+Serif?query=instru" target="_blank">Instrument Serif</a> for headings.</p>
+                </article>
+            </section>
+    </main>
+    
+    <MainNavigation />
 </Layout>
-<style>
-    figure {
-        border-radius: 10px;
-        display: flex;
-        margin-bottom: 4rem;
-        overflow: hidden;
-    }
-
-    img {
-        width: 100%;
-    }
-
-    .experience-list {
-        padding: 0 1rem;
-    }
-
-    .row {
-        width: 100%;
-        display: flex;
-        flex-direction: row;
-        align-items: start;
-        justify-content: space-between;
-        margin-bottom: 2rem;
-        
-        em {
-            font-style: italic;
-            font-family: "Instrument Serif", serif;
-        }
-
-        h3 {
-            width: 100%;
-            margin: 0;
-            font-weight: 500;
-        }
-    }
-
-    .col {
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        align-items: end;
-
-        p {
-            margin-bottom: 0!important;
-        }
-    }
-
-    .tools-list__icons {
-        list-style-type: none;
-        width: 100%;
-        padding: 0 1rem;
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        gap: 4rem;
-
-        figure {
-            margin-bottom: 0;
-        }
-
-        li {
-            display: flex;
-        }
-    }
-
-    @media screen and (max-width: 475px) {
-        .tools-list__icons {
-            gap: 2rem;
-        }
-
-        .row {
-            flex-direction: column;
-        }
-
-        .col {
-            align-items: start;
-
-            p {
-                padding: 0!important;
-            }
-        }
-
-        figure {
-            border-radius: 0;
-        }
-    }
-</style>

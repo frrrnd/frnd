@@ -11,66 +11,40 @@ notes.sort((a,b) => Date.parse(b.data.publishedDate) - Date.parse(a.data.publish
 ---
 
 <Layout>
-	<MainNavigation />
-	
-	<main>
-		<section class="content-section wrap">
-			<p>Brazilian designer with 13 years of experience. Passionate about UI and everything related to interfaces. Front end as a hobby. Icon designer enthusiast.</p>
-			<br>
-			<p>To check out some of my work, see my <LinkWithPreview client:load href="/works" text="recent works" images={["/uploads/images/preview/preview-works.webp"]} /> and my <LinkWithPreview client:load href="/works/labs" text="experiments" images={["/uploads/images/preview/preview-labs.webp"]} />.</p>
+	<main class="wrap">
+		<section class="content-section">
+			<article class="content-article">
+				<p>Brazilian designer with 13 years of experience. Passionate about UI and everything related to interfaces. Front end as a hobby. Icon designer enthusiast.</p>
+
+				<p>To check out some of my work, see my <LinkWithPreview client:load href="/works" text="recent works" images={["/uploads/images/preview/preview-works.webp"]} /> and my <LinkWithPreview client:load href="/works/labs" text="experiments" images={["/uploads/images/preview/preview-labs.webp"]} />.</p>
+			</article>
 		</section>
 
 		<!-- <section class="content-section home-works">
 			<HomeCards client:load />
 		</section> -->
 
-		<section class="content-section wrap">
-			<h2>Now</h2>
-			<p>Working as a freelancer with ux/ui, icons and design systems for startups and agencies, and running parallel projects like <a target="_blank" href="https://viewport-ui.design">Viewport UI.</a></p>
-			<br>
-			<p>Enhancing skills through practice and exploring experiences.</p>
+		<section class="content-section">
+			<article class="content-article">
+				<h2>Now</h2>
+				<p>Working as a freelancer with ux/ui, icons and design systems for startups and agencies, and running parallel projects like <a target="_blank" href="https://viewport-ui.design">Viewport UI.</a></p>
+
+				<p>Enhancing skills through practice and exploring experiences.</p>
+			</article>
 		</section>
 
-		<section class="content-section wrap">
-			<h2>Get in touch</h2>
-			<SocialNav />
+		<section class="content-section">
+			<article class="content-article">
+				<h2>Get in touch</h2>
+				<SocialNav />
+			</article>
 		</section>
 	</main>
+
+	<MainNavigation />
 </Layout>
 
 <style>
-	.notes a {
-		width: 100%;
-		color: var(--text-primary-color);
-		display: flex;
-		flex-direction: row;
-		justify-content: space-between;
-		align-items: center;
-		transition: .4s;
-	}
-
-	.notes a:hover {
-		color: var(--link-primary-color);
-		transition: .4s;
-	}
-
-	.notes article {
-		transition: .4s;
-		padding: 0 1rem;
-		border-radius: 5px;
-	}
-
-	.notes article:hover {
-		background-color: #f7f7f7;
-		transition: .4s;
-	}
-
-	.img-section {
-		img {
-			width: 100%;
-			border-radius: 10px;
-		}
-	}
 
 	.home-works {
 		transition: .4s;

@@ -19,52 +19,54 @@ const groupedData = booksId.reduce((acc, item) => {
 const byYear = Object.keys(groupedData).sort((a,b) => b - a);
 ---
 <Layout title="Readings">
+    <main>
+        <div class="content-article">
+            <section class="content-section wrap">
+            <p>Readings from the last few years. I also have a <a href="https://goodreads.com/frnd" target="_blank">goodreads profile</a>.</p>
+            </section>
+
+        {byYear.map(year => (
+            <section key={year} class="books__year">
+                <h3>{year}</h3>
+                <ul class="books__list">
+                    {groupedData[year].map(item => (
+                        <li class="book" key={item.id}>
+                            <figure>
+                                <img src={item.coverUrl} alt={item.title} loading="lazy" />
+                            </figure>
+                            <h2>{item.title}</h2>
+                            <p>{item.author}</p>
+
+                            {item.status === "reading" ? (
+                                <span class="book__status book__status--reading">
+                                    <i>
+                                        <svg width="8" height="11" viewBox="0 0 8 11" fill="none">
+                                            <path d="M0.672607 0.98291H7.39672V10.9829L4.03466 7.82644L0.672607 10.9829V0.98291Z" fill="black"/>
+                                        </svg>
+                                    </i>
+                                    Reading
+                                </span>
+                            ): (
+                                <span class="book__status book__status--finished">
+                                    <i>
+                                        <svg width="11" height="8" viewBox="0 0 11 8" fill="none">
+                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M1.85935 2.80465L0.681152 3.98285L4.21576 7.51746L10.1068 1.62644L8.92857 0.448242L4.21576 5.16105L1.85935 2.80465Z" fill="black"/>
+                                        </svg>
+
+                                    </i>
+                                    Finished
+                                </span>
+                            )}
+                        </li>
+                    ))}
+                </ul>
+
+            </section>
+        ))}
+        </div>
+    </main>
+
     <MainNavigation />
-    
-    <div class="content-article">
-        <section class="content-section wrap">
-        <p>Readings from the last few years. I also have a <a href="https://goodreads.com/frnd" target="_blank">goodreads profile</a>.</p>
-        </section>
-
-    {byYear.map(year => (
-        <section key={year} class="books__year">
-            <h3>{year}</h3>
-            <ul class="books__list">
-                {groupedData[year].map(item => (
-                    <li class="book" key={item.id}>
-                        <figure>
-                            <img src={item.coverUrl} alt={item.title} loading="lazy" />
-                        </figure>
-                        <h2>{item.title}</h2>
-                        <p>{item.author}</p>
-
-                        {item.status === "reading" ? (
-                            <span class="book__status book__status--reading">
-                                <i>
-                                    <svg width="8" height="11" viewBox="0 0 8 11" fill="none">
-                                        <path d="M0.672607 0.98291H7.39672V10.9829L4.03466 7.82644L0.672607 10.9829V0.98291Z" fill="black"/>
-                                    </svg>
-                                </i>
-                                Reading
-                            </span>
-                        ): (
-                            <span class="book__status book__status--finished">
-                                <i>
-                                    <svg width="11" height="8" viewBox="0 0 11 8" fill="none">
-                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M1.85935 2.80465L0.681152 3.98285L4.21576 7.51746L10.1068 1.62644L8.92857 0.448242L4.21576 5.16105L1.85935 2.80465Z" fill="black"/>
-                                    </svg>
-
-                                </i>
-                                Finished
-                            </span>
-                        )}
-                    </li>
-                ))}
-            </ul>
-
-        </section>
-    ))}
-    </div>
 </Layout>
 
 <style>
@@ -77,7 +79,7 @@ const byYear = Object.keys(groupedData).sort((a,b) => b - a);
     flex-direction: column;
 
     h3 {
-        margin-bottom: 2rem;
+        margin-bottom: 1rem;
         padding-left: 3rem;
     }
 }
@@ -88,7 +90,7 @@ const byYear = Object.keys(groupedData).sort((a,b) => b - a);
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 16px;
-    padding: 0 1rem 6rem;
+    padding: 0 1rem;
 }
 
 .book {
@@ -97,7 +99,7 @@ const byYear = Object.keys(groupedData).sort((a,b) => b - a);
     display: flex;
     flex-direction: column;
     position: relative;
-    padding: 2rem;
+    padding: 1rem 2rem 2rem 2rem;
 
     img {
         position: relative;
@@ -148,6 +150,7 @@ const byYear = Object.keys(groupedData).sort((a,b) => b - a);
 
     h2 {
         margin-bottom: 0;
+        padding: 0;
     }
 
     p {

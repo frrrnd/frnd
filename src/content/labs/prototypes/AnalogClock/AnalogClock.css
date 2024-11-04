@@ -1,0 +1,60 @@
+.clock-container {
+    padding: 4rem 0;
+}
+
+.clock {
+    --start: 0deg;
+    --end: 0deg;
+    --hour-pointer-degrees: 0deg;
+    --minute-pointer-degrees: 0deg;
+    --second-pointer-degrees: 0deg;
+    --gradient: from 0deg at 50% 50%, #00181f 0deg, #0085ff 180deg, #8cf8ff 360deg;
+    position: relative;
+    min-width: 320px;
+    width: 15vw;
+    height: 15vw;
+    min-height: 320px;
+    border-radius: 50%;
+    margin: 0 auto;
+    overflow: hidden;
+    transition: 0.4s;
+  }
+  
+  .pointer {
+    position: absolute;
+    transform-origin: center center;
+    transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+    transition: 0.4s;
+    background: conic-gradient(var(--gradient));
+    border-radius: 100%;
+  }
+  
+  .second-pointer {
+    transform: rotate(var(--second-pointer-degrees));
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    top: 0;
+    left: 0;
+    z-index: 1;
+  }
+  
+  .hour-pointer {
+    width: 30%;
+    height: 30%;
+    margin: 0;
+    top: 35%;
+    left: 35%;
+    z-index: 5;
+    transform: rotate(var(--hour-pointer-degrees));
+  }
+  
+  .minute-pointer {
+    transform: rotate(var(--minute-pointer-degrees));
+    width: 90%;
+    height: 90%;
+    margin: 0;
+    top: 5%;
+    left: 5%;
+    z-index: 2;
+  }

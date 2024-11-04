@@ -8,9 +8,8 @@ import PortfolioCard from '../../components/PortfolioCard/PortfolioCard.jsx';
 const portfolio = await getCollection('works');
 portfolio.sort((a,b) => Date.parse(a.data.order) - Date.parse(b.data.order));
 ---
-<Layout title="Portfolio">
+<Layout title="Recent Works">
     <div class="wrap">
-        <!-- <h2>Recent Works</h2> -->
         <div class="portfolio-list">
             <Grid isContainer>
                 {portfolio.map((item, index) => (
@@ -23,8 +22,3 @@ portfolio.sort((a,b) => Date.parse(a.data.order) - Date.parse(b.data.order));
     </div>
     <MainNavigation />
 </Layout>
-<style>
-    .portfolio-list {
-        padding-bottom: 10em;
-    }
-</style>

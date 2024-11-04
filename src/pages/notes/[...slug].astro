@@ -1,5 +1,5 @@
 ---
-import Note from '../../layouts/Note.astro';
+import Layout from '../../layouts/Layout.astro';
 import MainNavigation from '../../partials/MainNavigation.astro';
 import { getCollection } from 'astro:content';
 import FormattedDate from '../../partials/formattedDate.astro';
@@ -17,14 +17,12 @@ const note = Astro.props;
 const { Content } = await note.render();
 ---
 
-<Note>
-    <MainNavigation />
-    
-    <main class="wrap notas-main">
+<Layout>
+    <main class="wrap">
         <article class="content-article">
-            <!-- <header class="article-header">
-                <h1>{note.data.title}</h1>
-            </header> -->
+            <header class="article-header">
+                <h2>{note.data.title}</h2>
+            </header>
             
             <div class="note-content">
                 <Content />
@@ -38,10 +36,6 @@ const { Content } = await note.render();
             </footer>
         </article>
     </main>
-</Note>
 
-<style>
-    .content-article {
-        padding-bottom: 6rem;
-    }
-</style>
+    <MainNavigation />
+</Layout>

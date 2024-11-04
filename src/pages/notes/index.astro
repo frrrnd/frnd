@@ -1,5 +1,5 @@
 ---
-import Note from '../../layouts/Note.astro';
+import Layout from '../../layouts/Layout.astro';
 import MainNavigation from '../../partials/MainNavigation.astro';
 import { getCollection } from 'astro:content';
 import FormattedDate from '../../partials/formattedDate.astro';
@@ -16,44 +16,31 @@ const renderedNotes = await Promise.all(
 );
 
 ---
-<Note title="Notes">
-	<MainNavigation />
-	<main class="wrap notas-main">
-        <section class="notas-section">
-        {renderedNotes.map((note) => (
-			
-            <article class="content-article">
-				{/* <header class="article-header">
-                    <h1>{note.data.title}</h1>
-                </header> */}
-				<div class="note-content">
-					<note.Content />
-				</div>
+<Layout title="Notes">
+	<main class="wrap">
+		<section class="content-section">
+		{renderedNotes.map((note) => (
+			<article class="content-article">
+				<header class="article-header">
+					{/* <a href={`/notes/${note.slug}`} title={`Permalink to ${note.data.title}`}>
+						<h2>{note.data.title}</h2>
+					</a> */}
+				</header>
 
-				<a href={`/notes/${note.slug}`} title={`Permalink to ${note.data.title}`} class="article-permalink">
-					<footer class="article-footer">
-						<FormattedDate date={note.data.publishDate} />
-						{/* {note.data.updateDate && (
-							<div>Updated on <FormattedDate date={note.data.updateDate} /></div>
-						)} */}
-					</footer>
-				</a>
-            </article>
-        ))}
-        </section>
+				<note.Content />
+
+				<footer class="article-footer">
+					<a href={`/notes/${note.slug}`} title={`Permalink to ${note.data.title}`} class="article-permalink">
+					<FormattedDate date={note.data.publishDate} />
+					{/* {note.data.updateDate && (
+						<div>Updated on <FormattedDate date={note.data.updateDate} /></div>
+					)} */}
+					</a>
+				</footer>
+			</article>
+		))}
+		</section>
 	</main>
-</Note>
-<style>
-	.content-article {
-		margin-bottom: 3rem;
-		padding-bottom: 3rem;
-	}
+</Layout>
 
-	.content-article:not(:last-child) {
-		border-bottom: 1px solid var(--icon-bg);
-	}
-
-	.article-permalink {
-		text-decoration: none;
-	}
-</style>
+<MainNavigation />

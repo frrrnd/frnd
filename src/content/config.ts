@@ -35,11 +35,7 @@ const labsCollection = defineCollection({
         isDraft: z.boolean(),
         description: z.string(),
         tags: z.array(z.string()),
-        publishDate: z.string().or(z.date()).transform((val) => new Date(val)),
-        cover: image().refine((img) => img.width >= 200, {
-            message: "Imagem errada",
-        }),
-        order: z.number(),
+        publishDate: z.string().or(z.date()).transform((val) => new Date(val))
     })
 });
 

@@ -158,17 +158,7 @@ body {
     min-height: 100%;
     font-size: var(--text-primary-size);
     overflow-x: hidden;
-
-    /* &:after {
-        content: "";
-        width: 100%;
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        height: 120px;
-        background-image: linear-gradient(to top, var(--general-background-color), transparent);
-        pointer-events: none;
-    } */
+    padding-bottom: 6rem;
 }
 
 code {
@@ -179,7 +169,6 @@ code {
     max-width: calc(var(--wrap-width) + 40px);
     width: 100%;
     margin: 0 auto;
-    padding: 0 1rem;
 }
 
 .wrap-wide {
@@ -272,18 +261,6 @@ h1, h2, h3, h4, h5, h6 {
     color: var(--text-secondary-color);
 }
 
-.content-article {
-    padding: 0;
-
-    p {
-        margin-bottom: 1.5rem;
-    }
-
-    a {
-        text-decoration: underline;
-    }
-}
-
 .content-section {
     width: 100%;
     margin: 0 auto;
@@ -298,14 +275,6 @@ h1, h2, h3, h4, h5, h6 {
         font-weight: 400;
         color: var(--title-color);
         padding: 0 1rem;
-    }
-
-    &:not(:last-child) {
-        margin-bottom: 3rem;
-    }
-
-    &:last-child {
-        padding-bottom: 8rem;
     }
 
     a:not(:has(h3)) {
@@ -327,6 +296,12 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .content-article {
+    padding-bottom: 1rem;
+
+    &:not(:last-child) {
+        border-bottom: 1px solid var(--icon-bg);
+    }
+
     & time {
         opacity: .4;
     }
@@ -340,15 +315,15 @@ h1, h2, h3, h4, h5, h6 {
         line-height: 1.6;
     }
 
-    & p, & figure, & video {
-        margin-bottom: 1.5rem;
+    & p, & video {
+        margin-bottom: 1rem;
     }
 
     & img, & video {
         border-radius: 10px;
     }
 
-    & p {
+    & p, & h2 {
         padding: 0 1rem
     }
 
@@ -375,11 +350,14 @@ h1, h2, h3, h4, h5, h6 {
     }
 
     .article-header {
-        margin: 0 0 2rem 0;
-        padding: 0 1rem;
+        margin: 2rem 0 1rem 0;
 
         & h1 {
             margin: 0;
+        }
+
+        a {
+            text-decoration: none;
         }
     }
 
@@ -391,11 +369,11 @@ h1, h2, h3, h4, h5, h6 {
             display: block;
             margin: .5rem 0;
         }
-    }
-}
 
-.notas-main {
-    padding: 0 0 5rem 0;
+        a {
+            text-decoration: none;
+        }
+    }
 }
 
 @media screen and (max-width: 475px) {
@@ -415,5 +393,15 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .dark-theme .dock-navigation {
+    border: 1px solid rgba(0,0,0,.06);
+}
+
+.component-canvas {
+    border: 1px solid rgba(0,0,0,.06);
+    border-radius: 10px;
+    margin-bottom: 1rem;
+}
+
+.border-media {
     border: 1px solid rgba(0,0,0,.06);
 }
