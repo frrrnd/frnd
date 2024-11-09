@@ -177,12 +177,14 @@ const isActive = (path) => {
         backdrop-filter: blur(35px) saturate(1.5);
         -webkit-backdrop-filter: blur(35px) saturate(1.5);
         transform: translateY(10px);
+        visibility: hidden;
     }
 
     .dropdown > input[type="checkbox"]:checked ~ .drop-options {
         opacity: 1;
         transition: .3s;
         transform: translateY(0);
+        visibility: visible;
     }
 
     .dropdown > input[type="checkbox"] {
