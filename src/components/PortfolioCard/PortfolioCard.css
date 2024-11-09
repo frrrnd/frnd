@@ -22,6 +22,10 @@
     .portfolio-card {
         margin-bottom: 2rem;
     }
+
+    img, figure {
+        border-radius: 0!important;
+    }
 }
 
 .portfolio-card__footer {

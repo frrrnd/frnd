@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, useMotionValue, useSpring, AnimatePresence } from 'framer-motion';
+import './ImageZoom.css';
 
 const ImageZoom = ({ src, alt }) => {
   const [mounted, setMounted] = useState(false);
