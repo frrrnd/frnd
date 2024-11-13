@@ -7,7 +7,7 @@ let title = "";
 let subtitle = "";
 
 if (currentPath === "/") {
-    title = "Hey — I'm Fernando,";
+    title = "Fernando Soares";
     subtitle = "user interface designer.";
 } else if (currentPath.startsWith("/works")) {
     title = "Recent Works";
@@ -28,7 +28,7 @@ if (currentPath === "/") {
     title = "Labs";
     subtitle = "";
 } else {
-    title = "Hey — I'm Fernando,";
+    title = "Fernando Soares,";
     subtitle = "user interface designer.";
 }
 ---
@@ -50,7 +50,7 @@ if (currentPath === "/") {
 
     .header h1 {
         /* font-size: 2.6rem; */
-        font-size: 1rem;
+        font-size: var(--text-primary-size);
         color: var(--text-secondary-color);
         width: 100%;
         font-weight: 600;
@@ -68,7 +68,7 @@ if (currentPath === "/") {
         color: var(--text-secondary-color);
         font-family: var(--font-sans);
         /* font-size: 2.2rem; */
-        font-size: 1rem;
+        font-size: var(--text-primary-size);
         display: block;
     }
 </style>
