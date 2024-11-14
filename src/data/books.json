@@ -1,5 +1,12 @@
 [
     {
+      "title": "The Patient",
+      "author": "Jasper DeWitt",
+      "coverUrl": "/uploads/images/books/the-patient.webp",
+      "status": "reading",
+      "yearRead": 2024
+    },
+    {
       "title": "As Cavernas de Aço",
       "author": "Isaac Asimov",
       "coverUrl": "/uploads/images/books/cavernas-de-aco.webp",
