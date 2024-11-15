@@ -1,17 +1,19 @@
 ---
 import ColorMode from '../components/utils/ColorMode.astro';
 import MainNavigation from './MainNavigation.astro';
+import Avatar from '../components/Avatar/Avatar.jsx';
 ---
 
 <ColorMode />
 
 <header class="header" id="header">
     <div class="header--inner">
-        <a href="/" title="">
+        <!-- <a href="/" title="">
             <figure>
                 <img src="/frnd-avatar.jpg" alt="Yo!">
             </figure>
-        </a>
+        </a> -->
+        <Avatar status="available" src="/frnd-avatar.jpg" client:load />
         <h1>Fernando Soares</h1>
         <h2>user interface designer.</h2>
 
@@ -27,10 +29,10 @@ import MainNavigation from './MainNavigation.astro';
         padding: 0 0 3rem 0;
         position: relative;
 
-        img {
+        /* img {
             max-width: 62px;
             border-radius: 100%;
-        }
+        } */
 
         figure {
             margin-bottom: 1rem;
