@@ -15,14 +15,14 @@ const renderedLabs = await Promise.all(
 );
 ---
 <Layout title="Labs">
-    <main class="wrap">
+    <main class="main wrap">
 		<section class="content-section">
 		{renderedLabs.map((post) => (
 			<article class="content-article">
 				<header class="article-header">
-					{/* <a href={`/labs/${post.slug}`} title={`Permalink to ${post.data.title}`}>
+					<a href={`/labs/${post.slug}`} title={`Permalink to ${post.data.title}`}>
 						<h2>{post.data.title}</h2>
-					</a> */}
+					</a>
 				</header>
 				
 				<post.Content />
@@ -31,5 +31,3 @@ const renderedLabs = await Promise.all(
 		</section>
 	</main>
 </Layout>
-
-<MainNavigation />

@@ -1,51 +1,58 @@
 ---
 import ColorMode from '../components/utils/ColorMode.astro';
-
-const currentPath = Astro.url.pathname;
-
-let title = "";
-let subtitle = "";
-
-if (currentPath === "/") {
-    title = "Fernando Soares";
-    subtitle = "user interface designer.";
-} else if (currentPath.startsWith("/works")) {
-    title = "Recent Works";
-    subtitle = "";
-} else if (currentPath.startsWith("/icons")) {
-    title = "App Icons";
-    subtitle = "";
-} else if (currentPath.startsWith("/feed")) {
-    title = "Feed";
-    subtitle = "";
-} else if (currentPath.startsWith("/notes")) {
-    title = "Notes";
-    subtitle = "";
-} else if (currentPath.startsWith("/readings")) {
-    title = "Recent readings";
-    subtitle = "";
-} else if (currentPath.startsWith("/labs")) {
-    title = "Labs";
-    subtitle = "";
-} else {
-    title = "Fernando Soares,";
-    subtitle = "user interface designer.";
-}
+import MainNavigation from './MainNavigation.astro';
 ---
 
 <ColorMode />
 
-<header class="header wrap">
-    <h1>{title}</h1>
-    <h2>{subtitle}</h2>
+<header class="header" id="header">
+    <div class="header--inner">
+        <a href="/" title="">
+            <figure>
+                <img src="/frnd-avatar.jpg" alt="Yo!">
+            </figure>
+        </a>
+        <h1>Fernando Soares</h1>
+        <h2>user interface designer.</h2>
+
+        <MainNavigation />
+    </div>
 </header>
 
 <style>
     .header {
-        width: 100%;
+        max-width: 262px;
         display: flex;
         flex-direction: column;
-        padding: 8rem 0 3rem 0;
+        padding: 0 0 3rem 0;
+        position: relative;
+
+        img {
+            max-width: 62px;
+            border-radius: 100%;
+        }
+
+        figure {
+            margin-bottom: 1rem;
+            max-width: max-content;
+            position: relative;
+
+            &:after {
+                content: "";
+                width: 12px;
+                height: 12px;
+                background-color: #52DB21;
+                border-radius: 100%;
+                position: absolute;
+                top: 6px;
+                right: 0px;
+                border: 2px solid var(--general-background-color);
+            }
+        }
+    }
+
+    .header--inner {
+        position: fixed;
     }
 
     .header h1 {
@@ -55,14 +62,12 @@ if (currentPath === "/") {
         width: 100%;
         font-weight: 600;
         line-height: 1.2;
-        padding: 0 1rem;
         margin-bottom: 0;
         font-family: var(--font-sans);
         display: block;
     }
 
     .header h2 {
-        padding: 0 1rem;
         font-weight: normal;
         margin: 0;
         color: var(--text-secondary-color);
@@ -70,5 +75,17 @@ if (currentPath === "/") {
         /* font-size: 2.2rem; */
         font-size: var(--text-primary-size);
         display: block;
+    }
+
+    @media (max-width: 780px) {
+        .header {
+            padding-bottom: 25px;
+            max-width: 100%;
+            border-bottom: 1px solid var(--icon-bg);
+        }
+
+        .header--inner {
+            position: initial;
+        }
     }
 </style>

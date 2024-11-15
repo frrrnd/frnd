@@ -1,6 +1,6 @@
 ---
 import { getCollection } from "astro:content";
-import Portfolio from '../../layouts/Portfolio.astro';
+import Layout from '../../layouts/Layout.astro';
 
 export async function getStaticPaths() {
     const portfolio = await getCollection('works');
@@ -15,6 +15,16 @@ const item = Astro.props;
 const { Content } = await item.render();
 ---
 
-<Portfolio>
-    <Content />
-</Portfolio>
+<Layout>
+    <main class="main">
+        <article class="content-article">
+            <header class="article-header">
+                <h2>{item.data.title}</h2>
+            </header>
+
+            <div class="note-content">
+                <Content />
+            </div>
+        </article>
+    </main>
+</Layout>

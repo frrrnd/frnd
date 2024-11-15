@@ -17,14 +17,14 @@ const renderedNotes = await Promise.all(
 
 ---
 <Layout title="Notes">
-	<main class="wrap">
+	<main class="main wrap">
 		<section class="content-section">
 		{renderedNotes.map((note) => (
 			<article class="content-article">
 				<header class="article-header">
-					{/* <a href={`/notes/${note.slug}`} title={`Permalink to ${note.data.title}`}>
+					<a href={`/notes/${note.slug}`} title={`Permalink to ${note.data.title}`}>
 						<h2>{note.data.title}</h2>
-					</a> */}
+					</a>
 				</header>
 
 				<note.Content />
@@ -42,5 +42,3 @@ const renderedNotes = await Promise.all(
 		</section>
 	</main>
 </Layout>
-
-<MainNavigation />

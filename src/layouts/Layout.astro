@@ -1,13 +1,17 @@
 ---
 import Header from '../partials/Header.astro';
 import Head from '../partials/Head.astro';
+import ToTop from '../components/utils/toTop.astro';
 ---
 
 <!doctype html>
 <html lang="en">
 	<Head />
 	<body>
-		<Header />
-		<slot />
+		<ToTop />
+		<div class="content">
+			<Header />
+			<slot />
+		</div>
 	</body>
 </html>

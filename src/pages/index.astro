@@ -1,84 +1,100 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import MainNavigation from '../partials/MainNavigation.astro';
 import SocialNav from '../components/SocialNav.astro';
 import LinkWithPreview from '../components/LinkImage/LinkImage.tsx';
-// import HomeCards from '../components/HomeCards/HomeCards.jsx';
 import { getCollection } from 'astro:content';
 
-const notes = await getCollection('notes');
-notes.sort((a,b) => Date.parse(b.data.publishedDate) - Date.parse(a.data.publishedDate));
+const works = await getCollection('works');
+works.sort((a,b) => Date.parse(b.data.publishedDate) - Date.parse(a.data.publishedDate));
 ---
 
 <Layout>
-	<main class="wrap">
+	<main class="main wrap">
 		<section class="content-section">
 			<article class="content-article">
-				<h2>About</h2>
 				<p>Brazilian designer with 13 years of experience. Passionate about UI and everything related to interfaces. Front end as a hobby. Icon designer enthusiast. Driven by curiosity.</p>
 
-				<p>To check out some of my work, see my <LinkWithPreview client:load href="/works" text="recent works" images={["/uploads/images/preview/preview-works.webp"]} /> and my <LinkWithPreview client:load href="/labs" text="experiments" images={["/uploads/images/preview/preview-labs.webp"]} />.</p>
-			</article>
-		</section>
-
-		<!-- <section class="content-section home-works">
-			<HomeCards client:load />
-		</section> -->
-
-		<section class="content-section">
-			<article class="content-article">
-				<h2>Now</h2>
-				<p>Working as a freelancer with ux/ui, icons and design systems for startups and agencies, and running parallel projects like <a target="_blank" href="https://viewport-ui.design">Viewport UI.</a></p>
-
-				<p>Enhancing skills through practice and exploring experiences.</p>
+				<!-- <p>To check out some of my work, see my <LinkWithPreview client:load href="/works" text="recent works" images={["/uploads/images/preview/preview-works.webp"]} /> and my <LinkWithPreview client:load href="/labs" text="experiments" images={["/uploads/images/preview/preview-labs.webp"]} />.</p> -->
 			</article>
 		</section>
 
 		<section class="content-section">
 			<article class="content-article">
-				<h2>Get in touch</h2>
 				<SocialNav />
 			</article>
 		</section>
-	</main>
 
-	<MainNavigation />
+		<section class="content-section">
+			<article class="content-article">
+				<h2>Recent works</h2>
+				{works.map((item, index) => (
+					<article class="portfolio-card" key={index}>
+						<a href={`/works/${item.slug}`} title={`View ${item.data.title}`}>
+							<figure>
+								<img src={item.data.cover.src} alt={item.data.title} loading="lazy">
+							</figure>
+
+							<div class="portfolio-card__footer">
+								<h3>{item.data.title}</h3>
+								<p>View project</p>
+							</div>
+						</a>
+					</article>
+                ))}
+			</article>
+		</section>
+
+	</main>
 </Layout>
 
 <style>
+	.portfolio-card {
+		width: auto;
+		margin-bottom: 2rem;
 
-	.home-works {
-		transition: .4s;
-
-		ul {
-			list-style: none;
-			padding-left: 0;
-			display: flex;
-			justify-content: center;
-			width: 100%;
-			margin: 0 auto;
-
-			li {
-				max-width: 240px;
-				width: 100%;
-				transition: .4s;
-				margin: 0 10px;
-			}
-		}
-
-		img {
-
+		a {
+			cursor: crosshair;
+			text-decoration: none;
 		}
 
 		figure {
-			transition: .4s;
-			display: flex;
-			border-radius: 10px;
 			overflow: hidden;
+			border-radius: 5px;
+			display: inline-grid;
 
-			&:hover {
-				transition: .4s;
+			img {
+				width: 100%;
+				background-color: var(--icon-bg);
 			}
+		}
+	}
+
+	@media screen and (max-width: 475px) {
+		.portfolio-card {
+			margin-bottom: 2rem;
+		}
+
+		img, figure {
+			border-radius: 0!important;
+		}
+	}
+
+	.portfolio-card__footer {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		justify-content: space-between;
+		padding: 1rem 0;
+
+		h3 {
+			font-size: 1rem;
+			font-weight: normal;
+		}
+
+		p {
+			font-size: .8rem;
+			color: var(--title-color);
+			margin-bottom: 0;
 		}
 	}
 </style>

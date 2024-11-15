@@ -9,7 +9,7 @@ const portfolio = await getCollection('works');
 portfolio.sort((a,b) => Date.parse(a.data.order) - Date.parse(b.data.order));
 ---
 <Layout title="Recent Works">
-    <div class="wrap">
+    <div class="main wrap">
         <div class="portfolio-list">
             <Grid isContainer>
                 {portfolio.map((item, index) => (
@@ -20,5 +20,4 @@ portfolio.sort((a,b) => Date.parse(a.data.order) - Date.parse(b.data.order));
             </Grid>
         </div>
     </div>
-    <MainNavigation />
 </Layout>

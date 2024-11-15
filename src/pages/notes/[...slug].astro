@@ -1,6 +1,5 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import MainNavigation from '../../partials/MainNavigation.astro';
 import { getCollection } from 'astro:content';
 import FormattedDate from '../../partials/formattedDate.astro';
 
@@ -18,7 +17,7 @@ const { Content } = await note.render();
 ---
 
 <Layout>
-    <main class="wrap">
+    <main class="main wrap">
         <article class="content-article">
             <header class="article-header">
                 <h2>{note.data.title}</h2>
@@ -36,6 +35,4 @@ const { Content } = await note.render();
             </footer>
         </article>
     </main>
-
-    <MainNavigation />
 </Layout>

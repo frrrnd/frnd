@@ -4,7 +4,7 @@ import MainNavigation from '../partials/MainNavigation.astro';
 import ImageZoom from '../components/ImageZoom/ImageZoom.jsx';
 ---
 <Layout title="About">
-    <main class="wrap">
+    <main class="main wrap">
         <section class="content-section">
             <article class="content-article">
                 <ImageZoom client:load src="/frnd-avatar.jpg" alt="Yo!" />
@@ -60,6 +60,4 @@ import ImageZoom from '../components/ImageZoom/ImageZoom.jsx';
                 </article>
             </section>
     </main>
-    
-    <MainNavigation />
 </Layout>
