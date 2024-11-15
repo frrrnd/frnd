@@ -431,3 +431,32 @@ h1, h2, h3, h4, h5, h6 {
 .border-media {
     border: 1px solid rgba(0,0,0,.06);
 }
+
+.work-data {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 2rem 0;
+
+    ul {
+        list-style-type: none;
+        padding-left: 0;
+        display: flex;
+        flex-direction: column;
+    }
+
+    li {
+        font-size: .8rem;
+        text-transform: uppercase;
+        margin-bottom: .5rem;
+    }
+
+    li:first-child {
+        color: var(--title-color);
+    }
+
+    li:last-child {
+        font-weight: bold;
+    }
+}

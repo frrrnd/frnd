@@ -5,7 +5,7 @@ import LinkWithPreview from '../components/LinkImage/LinkImage.tsx';
 import { getCollection } from 'astro:content';
 
 const works = await getCollection('works');
-works.sort((a,b) => Date.parse(b.data.publishedDate) - Date.parse(a.data.publishedDate));
+works.sort((a,b) => Date.parse(a.data.order) - Date.parse(b.data.order));
 ---
 
 <Layout>
