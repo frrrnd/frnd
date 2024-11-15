@@ -58,11 +58,11 @@
 
         if (localStorage.getItem("theme") == 'dark') {
             root.classList.add("dark-theme");
-            metaColor.setAttribute("content", "#101010");
+            metaColor.setAttribute("content", "#000000");
             themeIcon.style.transform = "translateY(-32px)";
         } else {
             root.classList.add("light-theme");
-            metaColor.setAttribute("content", "#FFFFFF");
+            metaColor.setAttribute("content", "#EEEEEE");
             themeIcon.style.transform = "translateY(0)";
         }
 
@@ -70,14 +70,14 @@
         if (root.classList.contains('dark-theme')) {
             root.classList.remove("dark-theme");
             root.classList.add("light-theme");
-            metaColor.setAttribute("content", "#FFFFFF");
+            metaColor.setAttribute("content", "#EEEEEE");
             localStorage.setItem("theme", "light");
             themeIcon.style.transform = "translateY(0)";
         } else {
             root.classList.remove("light-theme");
             root.classList.add("dark-theme");
             localStorage.setItem("theme", "dark");
-            metaColor.setAttribute("content", "#101010");
+            metaColor.setAttribute("content", "#000000");
             themeIcon.style.transform = "translateY(-32px)";
         }
         });

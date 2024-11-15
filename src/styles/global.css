@@ -407,15 +407,6 @@ h1, h2, h3, h4, h5, h6 {
     }
 }
 
-@media screen and (max-width: 475px) {
-    .content-article {
-        & img, & video {
-            border-radius: 0;
-            border: none;
-        }
-    }
-}
-
 .component-canvas {
     border: 1px solid rgba(0,0,0,.06);
     border-radius: 10px;
