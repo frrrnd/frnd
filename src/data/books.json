@@ -1,5 +1,12 @@
 [
     {
+      "title": "The Crystal Crypt",
+      "author": "Philip K. Dick",
+      "coverUrl": "/uploads/images/books/crystal-crypt.webp",
+      "status": "finished",
+      "yearRead": 2024
+    },
+    {
       "title": "The Patient",
       "author": "Jasper DeWitt",
       "coverUrl": "/uploads/images/books/the-patient.webp",
