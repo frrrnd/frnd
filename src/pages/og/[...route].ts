@@ -5,7 +5,7 @@ export const { getStaticPaths, GET } = OGImageRoute({
   
   // Usando getStaticPaths explicitamente para ter mais controle
   getStaticPaths: async () => {
-    const pages = await import.meta.glob('/src/content/**/*.md', { eager: true });
+    const pages = await import.meta.glob('/src/content/**/*.mdx', { eager: true });
     
     return Object.entries(pages).map(([path, page]: [string, any]) => {
       // Extrai o slug do caminho do arquivo
