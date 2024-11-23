@@ -1,51 +1,43 @@
 import { OGImageRoute } from 'astro-og-canvas';
+import { getCollection } from 'astro:content';
 
 export const { getStaticPaths, GET } = OGImageRoute({
   param: 'route',
   
   getStaticPaths: async () => {
-    // Pegando todos os arquivos MDX de todas as subpastas
-    const pages = await import.meta.glob('/src/content/**/*.mdx', { eager: true });
-    console.log('Arquivos encontrados:', Object.keys(pages));
+    try {
+      // Pegando todas as coleções
+      const [labs, notes, works] = await Promise.all([
+        getCollection('labs'),
+        getCollection('notes'),
+        getCollection('works')
+      ]);
 
-    if (!pages || Object.keys(pages).length === 0) {
-      console.error('Nenhum arquivo MDX encontrado');
-      return [];
-    }
-
-    return Object.entries(pages).map(([path, page]: [string, any]) => {
-      // Extraindo o caminho relativo mantendo a estrutura de pastas
-      const relativePath = path
-        .replace('/src/content/', '')
-        .replace('.mdx', '');
-
-      console.log('Processando:', {
-        path,
-        relativePath,
-        frontmatter: page.frontmatter
+      console.log('Encontrados:', {
+        labs: labs.length,
+        notes: notes.length,
+        works: works.length
       });
 
-      // Verificando se temos os dados necessários
-      if (!page.frontmatter) {
-        console.warn(`Frontmatter não encontrado para: ${path}`);
-        return null;
-      }
+      // Combinando todas as coleções
+      const allContent = [...labs, ...notes, ...works];
 
-      return {
+      return allContent.map((entry) => ({
         params: { 
-          route: relativePath // Isso manterá a estrutura labs/file, notes/file, etc
+          route: `${entry.collection}/${entry.slug}`
         },
         props: {
-          title: page.frontmatter.title || 'Título Padrão',
-          description: page.frontmatter.description || 'Descrição Padrão',
-          // Opcional: passar a categoria baseada na pasta
-          category: relativePath.split('/')[0]
+          title: entry.data.title || 'Título Padrão',
+          description: entry.data.description || 'Descrição Padrão'
         }
-      };
-    }).filter(Boolean);
+      }));
+    } catch (error) {
+      console.error('Erro:', error);
+      return [];
+    }
   },
 
-  generate: ({ props, params }) => ({
+  generate: ({ props }) => ({
     title: props.title,
     description: props.description,
     options: {
