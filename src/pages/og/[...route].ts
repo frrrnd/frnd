@@ -3,32 +3,51 @@ import { OGImageRoute } from 'astro-og-canvas';
 export const { getStaticPaths, GET } = OGImageRoute({
   param: 'route',
   
-  // Usando getStaticPaths explicitamente para ter mais controle
   getStaticPaths: async () => {
+    // Pegando todos os arquivos MDX de todas as subpastas
     const pages = await import.meta.glob('/src/content/**/*.mdx', { eager: true });
-    
+    console.log('Arquivos encontrados:', Object.keys(pages));
+
+    if (!pages || Object.keys(pages).length === 0) {
+      console.error('Nenhum arquivo MDX encontrado');
+      return [];
+    }
+
     return Object.entries(pages).map(([path, page]: [string, any]) => {
-      // Extrai o slug do caminho do arquivo
-      const slug = path
+      // Extraindo o caminho relativo mantendo a estrutura de pastas
+      const relativePath = path
         .replace('/src/content/', '')
-        .replace('.md', '')
-        .replace(/^\/|\/$/g, '');
-        
+        .replace('.mdx', '');
+
+      console.log('Processando:', {
+        path,
+        relativePath,
+        frontmatter: page.frontmatter
+      });
+
+      // Verificando se temos os dados necessários
+      if (!page.frontmatter) {
+        console.warn(`Frontmatter não encontrado para: ${path}`);
+        return null;
+      }
+
       return {
-        params: { route: slug },
+        params: { 
+          route: relativePath // Isso manterá a estrutura labs/file, notes/file, etc
+        },
         props: {
-          title: page.frontmatter.title,
-          description: page.frontmatter.description
+          title: page.frontmatter.title || 'Título Padrão',
+          description: page.frontmatter.description || 'Descrição Padrão',
+          // Opcional: passar a categoria baseada na pasta
+          category: relativePath.split('/')[0]
         }
       };
-    });
+    }).filter(Boolean);
   },
 
-  // Configuração da imagem
-  generate: ({ props }) => ({
+  generate: ({ props, params }) => ({
     title: props.title,
     description: props.description,
-    
     options: {
       bgColor: '#FFFFFF',
       fontTitle: 'Inter Bold',
