@@ -1,0 +1,153 @@
+@media (prefers-color-scheme: light) {
+    html {
+        --general-background-color: var(--light-background-color);
+        --text-primary-color: var(--light-text-color);
+        --text-secondary-color: var(--light-text-secondary-color);
+        --title-color: var(--light-title-color);
+        --link-primary-color: var(--light-link-color);
+        --divisor: var(--light-divisor);
+        --icon-bg: var(--light-icon-bg);
+        --nav-hover: var(--light-nav-hover);
+        --menu-bg: var(--dark-menu-bg);
+        --menu-link: var(--light-menu-link);
+        --menu-active-link: var(--light-menu-active-link);
+        --menu-hover-bg: var(--light-menu-hover-bg);
+    }
+
+    html.dark-theme {
+        --general-background-color: var(--dark-background-color);
+        --text-primary-color: var(--dark-text-color);
+        --text-secondary-color: var(--dark-text-secondary-color);
+        --title-color: var(--dark-title-color); 
+        --link-primary-color: var(--dark-link-color);
+        --divisor: var(--dark-divisor);
+        --icon-bg: var(--dark-icon-bg);
+        --nav-hover: var(--dark-nav-hover);
+        --menu-bg: var(--light-menu-bg);
+        --menu-link: var(--dark-menu-link);
+        --menu-active-link: var(--dark-menu-active-link);
+        --menu-hover-bg: var(--dark-menu-hover-bg);
+    }
+}
+
+@media (prefers-color-scheme: dark) {
+    html {
+        --general-background-color: var(--dark-background-color);
+        --text-primary-color: var(--dark-text-color);
+        --text-secondary-color: var(--dark-text-secondary-color);
+        --title-color: var(--dark-title-color);
+        --link-primary-color: var(--dark-link-color);
+        --divisor: var(--dark-divisor);
+        --icon-bg: var(--dark-icon-bg);
+        --nav-hover: var(--dark-nav-hover);
+        --menu-bg: var(--light-menu-bg);
+        --menu-link: var(--dark-menu-link);
+        --menu-active-link: var(--dark-menu-active-link);
+        --menu-hover-bg: var(--dark-menu-hover-bg);
+    }
+
+    html.light-theme {
+        --general-background-color: var(--light-background-color);
+        --text-primary-color: var(--light-text-color);
+        --text-secondary-color: var(--light-text-secondary-color);
+        --title-color: var(--light-title-color);
+        --link-primary-color: var(--light-link-color);
+        --divisor: var(--light-divisor);
+        --icon-bg: var(--light-icon-bg);
+        --nav-hover: var(--light-nav-hover);
+        --menu-bg: var(--dark-menu-bg);
+        --menu-link: var(--light-menu-link);
+        --menu-active-link: var(--light-menu-active-link);
+        --menu-hover-bg: var(--light-menu-hover-bg);
+    }
+}
+
+@supports (font-variation-settings: normal) {
+    :root {
+        font-family: "Geist", sans-serif;
+    }
+}
+
+::selection {
+    background-color: var(--text-primary-color);
+    color:  var(--general-background-color);
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+    animation-duration: 0.5s;
+}
+
+::view-transition-old(root) {
+    animation-name: blur-out;
+}
+
+::view-transition-new(root) {
+    animation-name: blur-in;
+}
+
+@keyframes blur-out {
+    from { filter: blur(0px); }
+    to { filter: blur(5px); }
+}
+
+@keyframes blur-in {
+    from { filter: blur(5px); }
+    to { filter: blur(0px); }
+}
+
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+html {
+    box-sizing: border-box;
+    position: relative;
+    background: var(--general-background-color);
+    height: 100%;
+    scroll-behavior: "smooth";
+}
+
+body {
+    margin: 0;
+    text-rendering: optimizelegibility;
+    -webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+    scroll-behavior: smooth;
+    color: var(--text-primary-color);
+    width: 100%;
+    min-height: 100%;
+    font-size: var(--text-primary-size);
+    overflow-x: hidden;
+    position: relative;
+    padding-bottom: 4rem;
+}
+
+.wrap {
+    max-width: calc(var(--wrap-width) + 40px);
+    width: 100%;
+    margin: 0 auto;
+}
+
+.wrap-wide {
+    max-width: 1280px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+@media screen and (max-width: 475px) {
+    .wrap {
+        padding: 0 1rem;
+    }
+    .wrap-wide {
+        padding: 0 1rem;
+
+        img, video {
+            margin: 1rem auto!important;
+        }
+    }
+}
+
+.content {
+    padding-top: 8rem;
+}

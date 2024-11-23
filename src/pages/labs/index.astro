@@ -1,7 +1,7 @@
 ---
-import Layout from '../../layouts/Layout.astro'
-import MainNavigation from '../../partials/MainNavigation.astro';
 import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro'
+import { SiteConfig } from "../../utils/SiteConfig";
 
 const labs = await getCollection('labs');
 
@@ -14,7 +14,7 @@ const renderedLabs = await Promise.all(
 	})
 );
 ---
-<Layout title="Labs">
+<Layout props={{ title: `Labs, ${SiteConfig.title}`, description: SiteConfig.description, image: SiteConfig.image }}>
     <main class="main wrap">
 		<section class="content-section">
 		{renderedLabs.map((post) => (

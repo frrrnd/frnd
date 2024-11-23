@@ -1,14 +1,14 @@
 ---
 import Layout from '../../layouts/Layout.astro'
 import Grid from '../../components/utils/Grid.astro'
-import MainNavigation from '../../partials/MainNavigation.astro';
 import { getCollection } from 'astro:content';
 import PortfolioCard from '../../components/PortfolioCard/PortfolioCard.jsx';
+import { SiteConfig } from "../../utils/SiteConfig";
 
 const portfolio = await getCollection('works');
 portfolio.sort((a,b) => Date.parse(a.data.order) - Date.parse(b.data.order));
 ---
-<Layout title="Recent Works">
+<Layout props={{ title: `Recent Works, ${SiteConfig.title}`"Recent Works", description: SiteConfig.description, image: SiteConfig.image }}>
     <div class="main wrap">
         <div class="portfolio-list">
             <Grid isContainer>

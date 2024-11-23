@@ -20,7 +20,14 @@ export default defineConfig({
   server: {
     port: 1234,
     host: true
-  }
+  },
+  vite: {
+    server: {
+      watch: {
+        usePolling: true,
+      }
+    }
+  },
   // output: "server",
   // adapter: netlify()
 });

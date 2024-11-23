@@ -13,10 +13,8 @@ const CopyClipboard = () => {
             setCopySuccess('Failed to copy!');
         }
         
-        // Adiciona a classe 'clicked' ao elemento
         setIsClicked(true);
 
-        // Remove a classe após 2 segundos
         setTimeout(() => {
             setIsClicked(false);
         }, 1000);

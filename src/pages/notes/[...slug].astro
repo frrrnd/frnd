@@ -2,6 +2,7 @@
 import Layout from '../../layouts/Layout.astro';
 import { getCollection } from 'astro:content';
 import FormattedDate from '../../partials/formattedDate.astro';
+import { SiteConfig } from '../../utils/SiteConfig';
 
 export async function getStaticPaths() {
     const notes = await getCollection('notes');
@@ -14,9 +15,11 @@ export async function getStaticPaths() {
 
 const note = Astro.props;
 const { Content } = await note.render();
+
+const image = `/og/${note.slug}.png`;
 ---
 
-<Layout>
+<Layout props={{ title: `${note.data.title}, ${SiteConfig.title}`, description: SiteConfig.description, image: image }}>
     <main class="main wrap">
         <article class="content-article">
             <header class="article-header">

@@ -1,7 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro'
-import MainNavigation from '../partials/MainNavigation.astro';
 import books from '../data/books.json';
+import { SiteConfig } from "../utils/SiteConfig";
 
 const booksId = books.map((book, index) => ({
     id: index + 1,
@@ -18,7 +18,7 @@ const groupedData = booksId.reduce((acc, item) => {
 
 const byYear = Object.keys(groupedData).sort((a,b) => b - a);
 ---
-<Layout title="Readings">
+<Layout props={{ title: `Recent Readings - ${SiteConfig.title}`, description: SiteConfig.description, image: SiteConfig.image }}>
     <main class="main">
         <div class="content-article">
             <section class="wrap">
@@ -71,7 +71,7 @@ const byYear = Object.keys(groupedData).sort((a,b) => b - a);
 
 .books__year {
     width: 100%;
-    max-width: 1040px;
+    max-width: 860px;
     margin: 2rem auto 0;
     display: flex;
     flex-direction: column;
@@ -86,7 +86,7 @@ const byYear = Object.keys(groupedData).sort((a,b) => b - a);
     margin: 0 auto;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 16px;
+    gap: 2rem;
 }
 
 .book {
@@ -193,6 +193,8 @@ const byYear = Object.keys(groupedData).sort((a,b) => b - a);
 @media (max-width: 780px) {
     .books__list {
         grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+        padding: 0 2rem;
     }
 
     .book {

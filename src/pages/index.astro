@@ -3,18 +3,21 @@ import Layout from '../layouts/Layout.astro';
 import SocialNav from '../components/SocialNav.astro';
 import LinkWithPreview from '../components/LinkImage/LinkImage.tsx';
 import { getCollection } from 'astro:content';
+import { SiteConfig } from '../utils/SiteConfig';
+import PortfolioCard from '../components/PortfolioCard/PortfolioCard';
 
 const works = await getCollection('works');
 works.sort((a,b) => Date.parse(a.data.order) - Date.parse(b.data.order));
 ---
 
-<Layout>
-	<main class="main wrap">
+<Layout props={{ title: SiteConfig.title, description: SiteConfig.description, image: SiteConfig.image }}>
+	<main class="main wrap" data-fade="0.4">
 		<section class="content-section">
-			<article class="content-article">
-				<p>Brazilian designer with 13 years of experience. Passionate about UI and everything related to interfaces. Front end as a hobby. Icon designer enthusiast. Driven by curiosity.</p>
+			<article class="content-article intro" >
+				<p>Interface Designer with 13 years of experience. Passionate about UI and everything related to interfaces. Front end as a hobby. Icon designer enthusiast. Driven by curiosity.</p>
 
-				<!-- <p>To check out some of my work, see my <LinkWithPreview client:load href="/works" text="recent works" images={["/uploads/images/preview/preview-works.webp"]} /> and my <LinkWithPreview client:load href="/labs" text="experiments" images={["/uploads/images/preview/preview-labs.webp"]} />.</p> -->
+				<p>To check out some of my work, see my <LinkWithPreview client:load href="#recent-works" text="recent works" images={["/uploads/images/preview/preview-works.webp"]} /> and my <LinkWithPreview client:load href="/labs" text="experiments" images={["/uploads/images/preview/preview-labs.webp"]} />.</p>
+				
 			</article>
 		</section>
 
@@ -24,77 +27,14 @@ works.sort((a,b) => Date.parse(a.data.order) - Date.parse(b.data.order));
 			</article>
 		</section>
 
-		<section class="content-section">
-			<article class="content-article">
+		<section class="content-section" id="recent-works">
+			<article class="content-article works-home">
 				<h2>Recent works</h2>
 				{works.map((item, index) => (
-					<article class="portfolio-card" key={index}>
-						<a href={`/works/${item.slug}`} title={`View ${item.data.title}`}>
-							<figure>
-								<img src={item.data.cover.src} alt={item.data.title} loading="lazy">
-							</figure>
-
-							<div class="portfolio-card__footer">
-								<h3>{item.data.title}</h3>
-								<p>View project</p>
-							</div>
-						</a>
-					</article>
+					<PortfolioCard client:load key={index} src={item.data.cover.src} title={item.data.title} slug={item.slug} description={item.data.description} />
                 ))}
 			</article>
 		</section>
 
 	</main>
 </Layout>
-
-<style>
-	.portfolio-card {
-		width: auto;
-		margin-bottom: 2rem;
-
-		a {
-			cursor: crosshair;
-			text-decoration: none;
-		}
-
-		figure {
-			overflow: hidden;
-			border-radius: 5px;
-			display: inline-grid;
-
-			img {
-				width: 100%;
-				background-color: var(--icon-bg);
-			}
-		}
-	}
-
-	@media screen and (max-width: 475px) {
-		.portfolio-card {
-			margin-bottom: 2rem;
-		}
-
-		img, figure {
-			border-radius: 0!important;
-		}
-	}
-
-	.portfolio-card__footer {
-		display: flex;
-		flex-direction: row;
-		align-items: center;
-		justify-content: space-between;
-		padding: 1rem 0;
-
-		h3 {
-			font-size: 1rem;
-			font-weight: normal;
-		}
-
-		p {
-			font-size: .8rem;
-			color: var(--title-color);
-			margin-bottom: 0;
-		}
-	}
-</style>

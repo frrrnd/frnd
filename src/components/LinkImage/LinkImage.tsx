@@ -71,7 +71,7 @@ const LinkWithPreview: FC<LinkWithPreviewProps> = ({ href, text, images }) => {
       
       <AnimatePresence>
         {isHovered && mousePosition && (
-          <div className="absolute z-100" style={{ 
+          <div className="absolute z-50" style={{ 
             // perspective: '1000px',
             // transformStyle: 'preserve-3d'
           }}>
@@ -93,7 +93,7 @@ const LinkWithPreview: FC<LinkWithPreviewProps> = ({ href, text, images }) => {
                     <img
                       src={imageUrl}
                       alt={`Preview ${reverseIndex + 1}`}
-                      className="w-full h-full object-cover z-10"
+                      className="w-full h-full object-cover"
                       style={{ imageRendering: 'high-quality' }}
                     />
                   </div>

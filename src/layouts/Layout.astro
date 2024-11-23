@@ -1,17 +1,41 @@
 ---
 import Header from '../partials/Header.astro';
-import Head from '../partials/Head.astro';
+import Head, { type Headprops } from '../partials/Head.astro';
 import ToTop from '../components/utils/toTop.astro';
+import ColorMode from '../components/utils/ColorMode.astro';
+import MainNavigation from '../partials/MainNavigation.astro';
+import { ViewTransitions } from 'astro:transitions';
+
+
+const {
+  props: { title, description, image },
+} = Astro.props as HeadProps;
 ---
 
 <!doctype html>
 <html lang="en">
-	<Head />
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="theme-color" content="#101010">
+		<link rel="icon" href="favicon.png">
+		<link rel="preconnect" href="https://rsms.me/">
+		<link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+		
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap" rel="stylesheet">
+		
+		<Head props={{ title, description, image }} />
+		<ViewTransitions />
+	</head>
 	<body>
+		<ColorMode />
 		<ToTop />
 		<div class="content">
 			<Header />
 			<slot />
 		</div>
+		<MainNavigation />
 	</body>
 </html>

@@ -1,9 +1,8 @@
 ---
 import Layout from '../layouts/Layout.astro'
-import MainNavigation from '../partials/MainNavigation.astro';
-import ImageZoom from '../components/ImageZoom/ImageZoom.jsx';
+import { SiteConfig } from "../../utils/SiteConfig";
 ---
-<Layout title="Now">
+<Layout props={{ title: `Now, ${SiteConfig.title}`, description: SiteConfig.description, image: SiteConfig.image }}>
     <main class="main wrap">
         <section class="content-section">
             <article class="content-article">

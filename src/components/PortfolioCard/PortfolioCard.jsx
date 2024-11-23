@@ -2,14 +2,14 @@ import React from 'react';
 import { motion, useTransform } from 'framer-motion';
 import './PortfolioCard.css';
 
-const PortfolioCard = ({src, title, slug}) => {
+const PortfolioCard = ({src, title, slug, description}) => {
     const image = {
         variantA: {
             opacity: 1
             },
 
         variantB: {
-            opacity: 0.7
+            opacity: .8
         }
     };
 
@@ -22,7 +22,7 @@ const PortfolioCard = ({src, title, slug}) => {
 
                 <div className="portfolio-card__footer">
                     <h3>{title}</h3>
-                    <p>View project</p>
+                    <p>{description}</p>
                 </div>
             </a>
         </article>

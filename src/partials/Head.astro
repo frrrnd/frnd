@@ -1,59 +1,39 @@
 ---
-import { ViewTransitions } from 'astro:transitions';
-import { SEO, type SEOProps } from "astro-seo";
-import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
+import { SEO } from "astro-seo";
+import { SiteConfig } from "../utils/SiteConfig";
+import { type HeadProps } from "../utils/types";
 import "../styles/global.css";
 
-export interface Props extends SEOProps {}
-
-const { props } = Astro;
-
-const title = props.title || SITE_TITLE;
-const description = props.description || SITE_DESCRIPTION;
+const {
+  props: { title, description, image },
+} = Astro.props as Props;
 
 ---
-<head>
-    <meta charset="UTF-8" />
-    <SEO
-        title={title}
-        description={description}
-        {...props}
-        extend={{
-            meta: [
-            { name: "viewport", content: "width=device-width, initial-scale=1" },
-            ],
-            ...props.extend,
-        }}
-        openGraph={{
-            basic: {
-            title,
-            type: "website",
-            image: "/social-image.png",
-            },
-            image: {
-            width: 1600,
-            height: 1000,
-            },
-            optional: {
-            description,
-            siteName: SITE_TITLE,
-            },
-            ...props.openGraph,
-        }}
-        twitter={{
-            card: "summary_large_image",
-            title,
-            description,
-            image: "/social-image.png",
-        }}
-        />
-    
-    <link rel="icon" href="favicon.png">
-    <link rel="preconnect" href="https://rsms.me/">
-    <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
-    <!-- <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet"> -->
-    <meta name="theme-color" content="#101010">
-    <ViewTransitions />
-</head>
+<SEO
+    title={title || SiteConfig.title}
+    description={description || SiteConfig.description}
+    openGraph={{
+        basic: {
+        title: title || SiteConfig.title,
+        type: description || SiteConfig.description,
+        image: SiteConfig.site + (image || SiteConfig.image || ""),
+        },
+    }}
+    twitter={{
+        creator: SiteConfig.twitter,
+    }}
+    extend={{
+        link: [{ rel: "icon", href: "/favicon.png" }],
+        meta: [
+        {
+            name: "twitter:image",
+            content: SiteConfig.site + (image || SiteConfig.image || ""),
+        },
+        { name: "twitter:title", content: title || SiteConfig.title },
+        {
+            name: "twitter:description",
+            content: description || SiteConfig.description,
+        },
+        ],
+    }}
+/>

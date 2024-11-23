@@ -1,12 +1,13 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import MainNavigation from '../partials/MainNavigation.astro';
 import { getCollection } from "astro:content";
 import Grid from "../components/utils/Grid.astro";
+import { SiteConfig } from "../../utils/SiteConfig";
+
 const iconsItems = await getCollection('icons');
 ---
 
-<Layout title="Icons">
+<Layout props={{ title: `Icons, ${SiteConfig.title}`, description: SiteConfig.description, image: SiteConfig.image }}>
     <main class="wrap-wide icons-list">
         <Grid isContainer>
             <Grid lg="6" sm="12">

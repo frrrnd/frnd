@@ -1,5 +1,19 @@
 [
     {
+      "title": "O Fim da Infância",
+      "author": "Arthur C. Clarke",
+      "coverUrl": "/uploads/images/books/fim-da-infancia.webp",
+      "status": "reading",
+      "yearRead": 2024
+    },
+    {
+      "title": "The Skull",
+      "author": "Philip K. Dick",
+      "coverUrl": "/uploads/images/books/the-skull.webp",
+      "status": "finished",
+      "yearRead": 2024
+    },
+    {
       "title": "The Crystal Crypt",
       "author": "Philip K. Dick",
       "coverUrl": "/uploads/images/books/crystal-crypt.webp",

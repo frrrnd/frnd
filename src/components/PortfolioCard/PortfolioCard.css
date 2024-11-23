@@ -1,14 +1,15 @@
 .portfolio-card {
     width: auto;
-    margin-bottom: 2rem;
+    margin-bottom: 4rem;
 
     a {
         cursor: crosshair;
+        text-decoration: none;
     }
 
     figure {
         overflow: hidden;
-        border-radius: 10px;
+        border-radius: 5px;
         display: inline-grid;
 
         img {
@@ -18,30 +19,26 @@
     }
 }
 
-@media screen and (max-width: 475px) {
-    .portfolio-card {
-        margin-bottom: 2rem;
-    }
-
-    img, figure {
-        border-radius: 0!important;
-    }
-}
-
 .portfolio-card__footer {
     display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    padding: 1rem 2rem;
+    flex-direction: column;
+    padding: 1rem 0;
 
     h3 {
         font-size: 1rem;
-        font-weight: normal;
+        font-weight: 600!important;
+        margin-bottom: 1rem;
     }
 
     p {
-        font-size: .8rem;
-        color: var(--title-color);
+        color: var(--primary-text-color);
+        margin: 0;
+        padding: 0;
+    }
+}
+
+@media screen and (max-width: 475px) {
+    .portfolio-card {
+        margin-bottom: 2rem;
     }
 }

@@ -23,7 +23,7 @@ figure {
       flex-direction: row;
       padding: 20px;
       background-color: #161616;
-      border-radius: 10px;
+      border-radius: 5px;
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: 20px;

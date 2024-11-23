@@ -16,7 +16,7 @@
     }
 </style>
 <script>
-    function initializeScrollToTop() {
+    const toTop = () => {
         const scrollToTopBtn = document.querySelector("#to-top");
         
         if (!scrollToTopBtn) {
@@ -34,7 +34,7 @@
             });
         }
 
-        function toggleButtonVisibility() {
+        const ButtonVisibility = () => {
             const scrollTotal = document.documentElement.scrollHeight - window.innerHeight;
             const scrollPosition = window.scrollY;
             
@@ -50,15 +50,26 @@
         }
 
         scrollToTopBtn.removeEventListener("click", scrollToTop);
-        window.removeEventListener("scroll", toggleButtonVisibility);
+        window.removeEventListener("scroll", ButtonVisibility);
         
         scrollToTopBtn.addEventListener("click", scrollToTop);
-        window.addEventListener("scroll", toggleButtonVisibility);
+        window.addEventListener("scroll", ButtonVisibility);
 
-        toggleButtonVisibility();
+        ButtonVisibility();
     }
 
-    document.addEventListener('DOMContentLoaded', initializeScrollToTop);
+    const fadeIn = () => {
+        document.querySelectorAll('[data-fade]').forEach((element) => {
+            const delay = element.getAttribute('data-fade');
+            element.style.animationDelay = `${delay}s`;
+        });
+    }
 
-    document.addEventListener('astro:after-swap', initializeScrollToTop);
+    const setupListeners = (eventNames, callback) => {
+        eventNames.forEach((event) => document.addEventListener(event, callback));
+    }
+
+    // Fire
+    setupListeners(['DOMContentLoaded', 'astro:after-swap'], fadeIn);
+    setupListeners(['DOMContentLoaded', 'astro:after-swap'], toTop);
 </script>

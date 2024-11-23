@@ -1,93 +1,60 @@
 ---
-import ColorMode from '../components/utils/ColorMode.astro';
-import MainNavigation from './MainNavigation.astro';
-import Avatar from '../components/Avatar/Avatar.jsx';
+import LinkWithPreview from '../components/LinkImage/LinkImage.tsx';
+
+const currentPath = Astro.url.pathname;
+
+let title = "";
+if (currentPath.startsWith("/works")) {
+    title = "Recent Works";
+} else if (currentPath.startsWith("/about")) {
+    title = "About";
+} else if (currentPath.startsWith("/feed")) {
+    title = "Feed";
+} else if (currentPath.startsWith("/notes")) {
+    title = "Notes";
+} else if (currentPath.startsWith("/readings")) {
+    title = "Recent readings";
+} else if (currentPath.startsWith("/labs")) {
+    title = "Labs";
+} else {
+    title = "Hey — I'm Fernando.";
+}
+
 ---
 
-<ColorMode />
-
 <header class="header" id="header">
-    <div class="header--inner">
-        <!-- <a href="/" title="">
-            <figure>
-                <img src="/frnd-avatar.jpg" alt="Yo!">
-            </figure>
-        </a> -->
-        <Avatar status="available" src="/frnd-avatar.jpg" client:load />
-        <h1>Fernando Soares</h1>
-        <h2>user interface designer.</h2>
-
-        <MainNavigation />
+    <div class="wrap">
+        <h1>
+            {currentPath === "/" ? (
+                <LinkWithPreview 
+                    client:load 
+                    href="/" 
+                    text="Hey — I'm Fernando." 
+                    images={['/uploads/images/preview/avatar-frnd.webp']} 
+                />
+            ) : (
+                title
+            )}
+        </h1>
     </div>
 </header>
 
 <style>
     .header {
-        max-width: 262px;
         display: flex;
         flex-direction: column;
-        padding: 0 0 3rem 0;
         position: relative;
-
-        /* img {
-            max-width: 62px;
-            border-radius: 100%;
-        } */
-
-        figure {
-            margin-bottom: 1rem;
-            max-width: max-content;
-            position: relative;
-
-            &:after {
-                content: "";
-                width: 12px;
-                height: 12px;
-                background-color: #52DB21;
-                border-radius: 100%;
-                position: absolute;
-                top: 6px;
-                right: 0px;
-                border: 2px solid var(--general-background-color);
-            }
-        }
-    }
-
-    .header--inner {
-        position: fixed;
+        margin: 0 auto 4rem;
     }
 
     .header h1 {
-        /* font-size: 2.6rem; */
         font-size: var(--text-primary-size);
         color: var(--text-secondary-color);
         width: 100%;
-        font-weight: 600;
+        font-weight: 500;
         line-height: 1.2;
         margin-bottom: 0;
         font-family: var(--font-sans);
         display: block;
-    }
-
-    .header h2 {
-        font-weight: normal;
-        margin: 0;
-        color: var(--text-secondary-color);
-        font-family: var(--font-sans);
-        /* font-size: 2.2rem; */
-        font-size: var(--text-primary-size);
-        display: block;
-    }
-
-    @media (max-width: 780px) {
-        .header {
-            padding-bottom: 25px;
-            max-width: 100%;
-            border-bottom: 1px solid var(--icon-bg);
-        }
-
-        .header--inner {
-            position: initial;
-        }
     }
 </style>

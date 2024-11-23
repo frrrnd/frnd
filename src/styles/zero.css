@@ -1,0 +1,37 @@
+code {
+    font-family: var(--font-mono);
+}
+
+figure {
+    margin: 0;
+    padding: 0;
+}
+
+img, iframe, video {
+    max-width: 100%;
+    width: 100%;
+    height: auto;
+}
+
+a {
+    text-decoration: none;
+}
+
+small {
+    font-size: 0.8rem;
+}
+
+time {
+    font-feature-settings: 'tnum' 1;
+    font-size: .8rem;
+}
+
+strong {
+    font-weight: 600;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-size: var(--text-primary-size);
+    font-weight: 500;
+    color: var(--text-secondary-color);
+}

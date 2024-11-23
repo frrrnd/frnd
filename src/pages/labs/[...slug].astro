@@ -1,7 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import MainNavigation from '../../partials/MainNavigation.astro';
 import { getCollection } from 'astro:content';
+import { SiteConfig } from '../../utils/SiteConfig';
 
 export async function getStaticPaths() {
     const labs = await getCollection('labs');
@@ -16,7 +16,7 @@ const item = Astro.props;
 const { Content } = await item.render();
 ---
 
-<Layout>
+<Layout props={{ title: `${item.data.title}, ${SiteConfig.title}`, description: SiteConfig.description, image: SiteConfig.image }}>
     <main class="main wrap">
         <article class="content-article">
             <header class="article-header">

@@ -18,6 +18,7 @@
     "@types/react": "^18.2.78",
     "@types/react-dom": "^18.2.25",
     "astro": "^4.16.10",
+    "astro-og-canvas": "^0.5.4",
     "astro-seo": "^0.8.3",
     "astro-spotify": "^0.1.6",
     "framer-motion": "^11.2.13",
