@@ -30,4 +30,8 @@ export default defineConfig({
   },
   // output: "server",
   // adapter: netlify()
+  output: 'static',
+  build: {
+    format: 'directory'
+  }
 });
