@@ -29,7 +29,7 @@ export default defineConfig({
     }
   },
   // output: "server",
-  // adapter: netlify()
+  adapter: netlify(),
   output: 'hybrid',
   build: {
     format: 'directory'
