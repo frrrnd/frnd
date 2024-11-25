@@ -8,7 +8,7 @@ import { SiteConfig } from "../../utils/SiteConfig";
 const portfolio = await getCollection('works');
 portfolio.sort((a,b) => Date.parse(a.data.order) - Date.parse(b.data.order));
 ---
-<Layout props={{ title: `Recent Works, ${SiteConfig.title}`, description: SiteConfig.description, image: SiteConfig.image }}>
+<Layout props={{ title: `Recent Works — ${SiteConfig.title}`, description: SiteConfig.description, image: SiteConfig.image }}>
     <div class="main wrap">
         <div class="portfolio-list">
             <Grid isContainer>

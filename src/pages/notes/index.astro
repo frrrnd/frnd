@@ -16,7 +16,7 @@ const renderedNotes = await Promise.all(
 );
 
 ---
-<Layout props={{ title: `Notes, ${SiteConfig.title}`, description: SiteConfig.description, image: SiteConfig.image }}>
+<Layout props={{ title: `Notes — ${SiteConfig.title}`, description: SiteConfig.description, image: SiteConfig.image }}>
 	<main class="main wrap">
 		<section class="content-section">
 		{renderedNotes.map((note) => (

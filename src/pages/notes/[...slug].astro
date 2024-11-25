@@ -19,7 +19,7 @@ const { Content } = await note.render();
 const image = `/og/${note.slug}.png`;
 ---
 
-<Layout props={{ title: `${note.data.title}, ${SiteConfig.title}`, description: SiteConfig.description, image: image }}>
+<Layout props={{ title: `${note.data.title} — ${SiteConfig.title}`, description: SiteConfig.description, image: image }}>
     <main class="main wrap">
         <article class="content-article">
             <header class="article-header">
