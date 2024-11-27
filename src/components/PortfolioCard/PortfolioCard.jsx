@@ -13,14 +13,13 @@ const PortfolioCard = ({ src, title, slug, description }) => {
       const rect = cardRef.current.getBoundingClientRect();
       const windowHeight = window.innerHeight;
 
-      // Calcula o progresso baseado na posição do componente na tela
-      const progress = Math.min(
-        Math.max(
-          0, 
-          1 - (rect.top / 2) / windowHeight
-        ), 
-        1
-      );
+      // Progresso começa quando o topo do card entra na tela (abaixo de 100%)
+      // e termina quando o topo do card atinge o centro da tela (50%)
+      const start = windowHeight; // Base da viewport
+      const end = windowHeight / 2; // Metade da viewport
+
+      // Calcula o progresso com base no topo do card
+      const progress = Math.min(Math.max((start - rect.top) / (start - end), 0), 1);
 
       scrollProgress.set(progress);
     };
@@ -33,9 +32,9 @@ const PortfolioCard = ({ src, title, slug, description }) => {
     };
   }, [scrollProgress]);
 
-  // Transforma o progresso em escala: de 0.8 até 1
+  // Mapeia o progresso para a escala de 0.8 a 1
   const scale = useSpring(
-    useTransform(scrollProgress, [0, 1], [0.8, 1]),
+    useTransform(scrollProgress, [0, 1], [0.9, 1]),
     { stiffness: 1000, damping: 40 }
   );
 
