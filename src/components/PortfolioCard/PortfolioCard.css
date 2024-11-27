@@ -1,6 +1,7 @@
 .portfolio-card {
     width: auto;
     margin-bottom: 4rem;
+    transform-origin: center;
 
     a {
         cursor: crosshair;

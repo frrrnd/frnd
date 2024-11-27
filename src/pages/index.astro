@@ -38,8 +38,8 @@ works.sort((a,b) => Date.parse(a.data.order) - Date.parse(b.data.order));
 
 	</main>
 </Layout>
-<script>
 
+<script>
 	const anchorSmooth = () => {
 		const links = document.querySelectorAll('a[href^="#"]');
 
@@ -61,5 +61,4 @@ works.sort((a,b) => Date.parse(a.data.order) - Date.parse(b.data.order));
 	}
 
 	document.addEventListener("astro:after-swap", anchorSmooth);
-
 </script>

@@ -1,32 +1,66 @@
-import React from 'react';
-import { motion, useTransform } from 'framer-motion';
+import React, { useRef, useEffect } from 'react';
+import { motion, useMotionValue, useTransform, useSpring } from 'framer-motion';
 import './PortfolioCard.css';
 
-const PortfolioCard = ({src, title, slug, description}) => {
-    const image = {
-        variantA: {
-            opacity: 1
-            },
+const PortfolioCard = ({ src, title, slug, description }) => {
+  const cardRef = useRef(null);
+  const scrollProgress = useMotionValue(0);
 
-        variantB: {
-            opacity: .8
-        }
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!cardRef.current) return;
+
+      const rect = cardRef.current.getBoundingClientRect();
+      const windowHeight = window.innerHeight;
+
+      // Calcula o progresso baseado na posição do componente na tela
+      const progress = Math.min(
+        Math.max(
+          0, 
+          1 - (rect.top / 2) / windowHeight
+        ), 
+        1
+      );
+
+      scrollProgress.set(progress);
     };
 
-    return(
-        <article className="portfolio-card">
-            <a href={`/works/${slug}`} title={`View ${title}`}>
-                <figure>
-                    <motion.img src={src} alt={title} variants={image} initial="variantA" whileHover="variantB" loading="lazy" />
-                </figure>
+    window.addEventListener('scroll', handleScroll);
+    handleScroll(); // Chama ao carregar a página
 
-                <div className="portfolio-card__footer">
-                    <h3>{title}</h3>
-                    <p>{description}</p>
-                </div>
-            </a>
-        </article>
-    );
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [scrollProgress]);
+
+  // Transforma o progresso em escala: de 0.8 até 1
+  const scale = useSpring(
+    useTransform(scrollProgress, [0, 1], [0.8, 1]),
+    { stiffness: 1000, damping: 40 }
+  );
+
+  return (
+    <motion.article
+      ref={cardRef}
+      className="portfolio-card"
+      style={{ scale }}
+    >
+      <a href={`/works/${slug}`} title={`View ${title}`}>
+        <figure>
+          <motion.img
+            src={src}
+            alt={title}
+            loading="lazy"
+          />
+        </figure>
+
+        <div className="portfolio-card__footer">
+          <h3>{title}</h3>
+          <p>{description}</p>
+        </div>
+      </a>
+    </motion.article>
+  );
 };
 
 export default PortfolioCard;
