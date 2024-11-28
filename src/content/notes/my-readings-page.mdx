@@ -1,0 +1,21 @@
+---
+title: "My readings page"
+publishDate: "2024-11-28 18:09"
+draft: false
+tags: ['readings', 'astro']
+image: ""
+---
+
+I found an easy and fast way to update my [readings page](/readings) whitouth make a new collection and write the mdx files. Basically, Astro consumes a JSON file and loop through items separated by year.
+
+```json
+[{
+    "title": "Guerra do Velho",
+    "author": "John Scalzi",
+    "coverUrl": "/uploads/images/books/guerra-do-velho.webp",
+    "status": "reading",
+    "year": 2024
+}]
+```
+
+The effect and animation on the cover are done with just CSS. It's a gradient over the image. I created this effect in Figma and <a href="https://www.weliton.me/" target="_blank">Welinton</a> implemented it with <a href="https://codepen.io/welitonderesende/pen/dyBJjze" target="_blank">these nice animations.</a>
