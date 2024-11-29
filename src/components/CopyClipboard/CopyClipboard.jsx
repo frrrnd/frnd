@@ -14,8 +14,11 @@ const CopyClipboard = () => {
         }
         
         setIsClicked(true);
+        const htmlElement = document.documentElement;
+        htmlElement.classList.add('clipboard-active');
 
         setTimeout(() => {
+            htmlElement.classList.remove('clipboard-active');
             setIsClicked(false);
         }, 1000);
     };
@@ -24,7 +27,9 @@ const CopyClipboard = () => {
         <a 
             className={`clipboard ${isClicked ? 'clicked' : ''}`} 
             href="#!" 
-            onClick={() => copyToClipBoard('dotfernando@gmail.com')}
+            onClick={(e) => { 
+                e.preventDefault();
+                copyToClipBoard('dotfernando@gmail.com')}}
         >
             {copySuccess ? 'email copied!' : 'copy email'}
         </a>
