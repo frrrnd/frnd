@@ -2,7 +2,231 @@
 
 ---
 <footer class="footer">
-    <div class="footer-inner">
-        <p>© 2024</p>
+    <div class="footer-inner wrap">
+        <p>It's currently <time class="time">06:09 AM</time> in 
+            <svg viewBox="-18 3 90 19" width="90" height="19" >
+                <defs>
+                    <linearGradient id="gradientWave" x1="0" x2="0" y1="0" y2="1">
+                        <stop offset="5%" stop-color="var(--text-primary-color)"></stop>
+                        <stop offset="95%" stop-color="var(--text-primary-color)"></stop>
+                    </linearGradient>
+                    <pattern id="wave" x="0" y="3" width="120" height="20" patternUnits="userSpaceOnUse">
+                        <path id="wavePath" d="M-40 9 Q-30 7 -20 9 T0 9 T20 9 T40 9 T60 9 T80 9 T100 9 T120 9 V20 H-40z" mask="url(#mask)" fill="var(--text-primary-color)">
+                            <animateTransform attributeName="transform" begin="0s" dur="1.5s" type="translate" from="0,0" to="40,0" repeatCount="indefinite"></animateTransform>
+                        </path>
+                    </pattern>
+                </defs>
+                <!-- texto de baixo, a onda -->
+                <text text-anchor="middle" font-size="0.938rem" x="27px" y="16px" fill="url(#wave)" fill-opacity="1.0">Florianópolis</text>
+                <!-- texto de cima -->
+                <text text-anchor="middle" font-size="0.938rem" x="27px" y="16px" fill="url(#gradientWave)" fill-opacity="0.4">Florianópolis</text>
+            </svg>
+            — Brazil <span class="weatherstatus">and the weather is currently ????</span> with a temperature of <span class="temp"> --.-</span>.</p>
+        <ul class="list-badges">
+            <li>
+                <a href="https://astro.build/" target="_blank">
+                    <img src="/uploads/images/badges/astro.png" alt="Astro">
+                </a>
+            </li>
+
+            <li>
+                <a href="https://github.com/" target="_blank">
+                    <img src="/uploads/images/badges/github.png" alt="Github">
+                </a>
+            </li>
+
+            <li>
+                <a href="https://mdxjs.com/" target="_blank">
+                    <img src="/uploads/images/badges/mdx.png" alt="MDX">
+                </a>
+            </li>
+        </ul>
     </div>
 </footer>
+<style>
+    .footer {
+        padding-bottom: 4rem;
+
+        .wrap {
+            border-top: 1px solid var(--divisor);
+            padding-top: 1rem;
+        }
+
+        p {
+            margin-bottom: 1.2rem;
+            color: var(--title-color);
+        }
+
+        time, .emoji {
+            display: inline-block;
+            font-size: var(--text-primary-size);
+        }
+
+        svg {
+            display: inline-block;
+        }
+    }
+
+    .list-badges {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        gap: 12px;
+        /* justify-content: center; */
+
+        img {
+            filter: grayscale(1);
+            transition: .4s;
+            opacity: .4;
+
+            &:hover {
+                filter: grayscale(0);
+                transition: .4s;
+                opacity: 1;
+            }
+        }
+    }
+</style>
+
+<script>
+    const $ = (e) => document.querySelector(e);
+    const $$ = (e) => document.querySelectorAll(e);
+
+    const update = {
+    oldtime: function () {
+        // const getEmoji = function () {
+        //     const clocks =
+        //         "🕛,🕧,🕐,🕜,🕑,🕝,🕒,🕞,🕓,🕟,🕔,🕠,🕕,🕡,🕖,🕢,🕗,🕣,🕘,🕤,🕙,🕥,🕚,🕦".split(
+        //         ","
+        //         );
+
+        //     const floripaTime = new Date().toLocaleTimeString("en-US", {
+        //         timeZone: "America/Sao_Paulo",
+        //         hour: "2-digit",
+        //         minute: "2-digit",
+        //     });
+
+        //     let i = (parseInt(floripaTime.split(":")[0], 10) % 12) * 2;
+        //     if (parseInt(floripaTime.split(":")[1], 10) >= 30) {
+        //         i += 1;
+        //     }
+
+        //     return clocks[i];
+        // };
+
+        $(".time").innerHTML = `${new Date().toLocaleTimeString(
+        "en-US",
+        {
+            timeZone: "America/Sao_Paulo",
+            hour: "2-digit",
+            minute: "2-digit",
+            hour12: true,
+        }
+        )}`;
+    },
+
+    time: function () {
+        // const getClock = function () {
+        //     const time = new Date(
+        //         new Date().toLocaleString("en-US", { timeZone: "America/Sao_Paulo" })
+        //     );
+
+        //     return `<svg width="20" height="20" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-bottom:-4px;margin-right:-2px" aria-label="Clock emoji" title="Clock emoji" aria-hidden role="none"><circle cx="16" cy="16" r="14" fill="url(#a)"/><path d="M16 4c6.627 0 12 5.373 12 12s-5.373 12-12 12S4 22.627 4 16 9.373 4 16 4m0 2C10.477 6 6 10.477 6 16s4.477 10 10 10 10-4.477 10-10S21.523 6 16 6" fill="url(#b)"/><rect x="15.25" y="10" width="1.5" height="7" rx=".75" fill="url(#c)" transform="rotate(${
+        //         ((time.getHours() % 12) + time.getMinutes() / 60) * 30
+        //     }, 16, 16)"/><rect x="15.5" y="8" width="1" height="9" rx=".5" fill="url(#d)" transform="rotate(${
+        //         time.getMinutes() * 6
+        //     }, 16, 16)"/><rect x="15.75" y="8" width=".5" height="10" rx=".25" fill="url(#e)" transform="rotate(${
+        //         time.getSeconds() * 6
+        //     }, 16, 16)"/><circle cx="16" cy="16" r="1" fill="url(#f)"/><defs><linearGradient id="b" x1="24.511" y1="4.214" x2="4.284" y2="28.735" gradientUnits="userSpaceOnUse"><stop stop-color="#6D6B70"/><stop offset="1" stop-color="#706C74"/></linearGradient><linearGradient id="c" x1="16" y1="10" x2="16" y2="17" gradientUnits="userSpaceOnUse"><stop stop-color="#F83F4C"/><stop offset="1" stop-color="#F74093"/></linearGradient><linearGradient id="d" x1="16" y1="8" x2="16" y2="17" gradientUnits="userSpaceOnUse"><stop stop-color="#32183D"/><stop offset="1" stop-color="#2C3A65"/></linearGradient><linearGradient id="e" x1="16" y1="8" x2="16" y2="18" gradientUnits="userSpaceOnUse"><stop stop-color="#32183D"/><stop offset="1" stop-color="#2C3A65"/></linearGradient><radialGradient id="a" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="rotate(-46.212 33.732 1.13)scale(25.2966)"><stop offset=".598" stop-color="#DDDADF"/><stop offset="1" stop-color="#BDBABF"/></radialGradient><radialGradient id="f" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="rotate(134.039 4.963 11.249)scale(1.5)"><stop stop-color="#C9C6CC"/><stop offset="1" stop-color="#928E95"/></radialGradient></defs></svg>`;
+        //     };
+
+        $(".time").innerHTML = `${new Date().toLocaleTimeString(
+        "en-US",
+        {
+            timeZone: "America/Sao_Paulo",
+            hour: "2-digit",
+            minute: "2-digit",
+            hour12: true,
+        }
+        )}`;
+    },
+
+    weather: async function () {
+        try {
+            const response = await fetch(
+                "https://api.open-meteo.com/v1/forecast?latitude=-27.6667&longitude=-48.5505&current_weather=true"
+            );
+
+            if (!response.ok) {
+                throw new Error("Network response was not ok");
+            }
+
+            const data = await response.json();
+
+            // Verifique se current_weather existe antes de acessá-lo
+            if (!data.current_weather) {
+                throw new Error("Current weather data is missing");
+            }
+
+            const { temperature, weathercode } = data.current_weather;
+
+            const terms = {
+                0: "and the sky is clear <span class='emoji'>☀️</span>",
+                1: "and the weather is currently mainly clear <span class='emoji'>🌤️</span>",
+                2: "and the weather is currently partly cloudy <span class='emoji'>⛅</span>",
+                3: "and the weather is currently overcast <span class='emoji'>☁️</span>",
+                45: "and the weather is currently foggy <span class='emoji'>🌫️</span>",
+                48: "and the weather is currently foggy <span class='emoji'>🌫️</span>",
+                51: "and it is currently drizzling <span class='emoji'>🌦️</span>",
+                53: "and it is currently drizzling <span class='emoji'>🌦️</span>",
+                55: "and it is currently drizzling <span class='emoji'>🌦️</span>",
+                56: "and it is currently lightly freezing drizzling <span class='emoji'>🌧️</span>",
+                57: "and it is currently heavily freezing drizzling <span class='emoji'>🌧️</span>",
+                61: "and it is currently raining lightly <span class='emoji'>🌧️</span>",
+                63: "and it is currently raining moderately <span class='emoji'>🌧️</span>",
+                65: "and it is currently raining heavily <span class='emoji'>🌧️</span>",
+                66: "and it is currently lightly freezing raining <span class='emoji'>🌧️</span>",
+                67: "and it is currently heavily freezing raining <span class='emoji'>🌧️</span>",
+                71: "and it is currently snowing <span class='emoji'>❄️</span>",
+                73: "and it is currently snowing <span class='emoji'>❄️</span>",
+                75: "and it is currently snowing <span class='emoji'>❄️</span>",
+                77: "and it is currently falling graupel <span class='emoji'>❄️</span>",
+                80: "and it is currently lightly showering rain <span class='emoji'>🌨️</span>",
+                81: "and it is currently moderately showering rain <span class='emoji'>🌨️</span>",
+                82: "and it is currently showering rain <span class='emoji'>🌨️</span>",
+                85: "and it is currently lightly showering snow <span class='emoji'>🌨️</span>",
+                86: "and it is currently showering snow <span class='emoji'>🌨️</span>",
+                95: "and it is currently thunderstorming <span class='emoji'>⛈️</span>",
+                96: "and it is currently thunderstorming <span class='emoji'>⛈️</span>",
+                99: "and it is currently thunderstorming <span class='emoji'>⛈️</span>",
+            };
+
+            const roundedTemperature = Math.round(temperature);
+
+            $(".weatherstatus").innerHTML = terms[weathercode] || "Weather data not available.";
+            $(".temp").innerText = `${roundedTemperature} °C`;
+        } catch (error) {
+            console.error("Failed to fetch weather data", error);
+            $(".weatherstatus").innerHTML = "Failed to fetch weather data.";
+            $(".temp").innerText = "--";
+        }
+    },
+
+    };
+
+    const main = async function () {
+        update.time();
+        update.weather();
+
+        setInterval(update.time, 60000); // Atualiza o relógio a cada 60 segundos.
+        setInterval(update.weather, 5 * 60 * 1000); // Atualiza o clima a cada 5 minutos.
+
+        //   $(".copyright").innerText = `© ${new Date().getFullYear()}`;
+    };
+
+    main();
+
+    document.addEventListener("astro:after-swap", main);
+
+
+</script>

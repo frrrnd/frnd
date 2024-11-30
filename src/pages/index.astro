@@ -5,6 +5,7 @@ import LinkWithPreview from '../components/LinkImage/LinkImage.tsx';
 import { getCollection } from 'astro:content';
 import { SiteConfig } from '../utils/SiteConfig';
 import PortfolioCard from '../components/PortfolioCard/PortfolioCard';
+import Footer from '../partials/Footer.astro';
 
 const works = await getCollection('works');
 works.sort((a,b) => Date.parse(a.data.order) - Date.parse(b.data.order));
@@ -37,6 +38,8 @@ works.sort((a,b) => Date.parse(a.data.order) - Date.parse(b.data.order));
 		</section>
 
 	</main>
+
+	<Footer />
 </Layout>
 
 <script>
