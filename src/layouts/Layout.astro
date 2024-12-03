@@ -1,7 +1,7 @@
 ---
 import Header from '../partials/Header.astro';
 import Head, { type Headprops } from '../partials/Head.astro';
-import ColorMode from '../components/utils/ColorMode.astro';
+// import ColorMode from '../components/utils/ColorMode.astro';
 import FloatNavigation from '../partials/FloatNavigation.astro';
 import { ViewTransitions } from 'astro:transitions';
 
@@ -11,11 +11,11 @@ const {
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="en" class="light-theme">
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<meta name="theme-color" content="#101010">
+		<meta name="theme-color" content="#eeeeee">
 		<link rel="icon" href="favicon.png">
 		<link rel="preconnect" href="https://rsms.me/">
 		<link rel="stylesheet" href="https://rsms.me/inter/inter.css">
@@ -28,7 +28,7 @@ const {
 		<ViewTransitions />
 	</head>
 	<body>
-		<ColorMode />
+		<!-- <ColorMode /> -->
 		<FloatNavigation />
 		<div class="content">
 			<Header />
