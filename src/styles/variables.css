@@ -46,7 +46,8 @@
     /* --wrap-width: 680px; */
     --wrap-width: 500px;
     --wrap-wide: 960px;
-    --text-primary-size: 0.938rem;
+    /* --text-primary-size: 0.938rem; */
+    --text-primary-size: 1rem;
     --mobile-breakpoint: 475px;
     font-feature-settings: 'dlig' 1;
 }
