@@ -12,6 +12,11 @@
         --menu-link: var(--light-menu-link);
         --menu-active-link: var(--light-menu-active-link);
         --menu-hover-bg: var(--light-menu-hover-bg);
+        --nav-icon: var(--light-nav-icon);
+        --nav-icon-active: var(--light-nav-icon-active);
+        --nav-icon-hover: var(--light-nav-icon-hover);
+        --nav-icon-bg: var(--light-nav-icon-bg);
+        --nav-background: var(--light-nav-background);
     }
 
     html.dark-theme {
@@ -27,6 +32,11 @@
         --menu-link: var(--dark-menu-link);
         --menu-active-link: var(--dark-menu-active-link);
         --menu-hover-bg: var(--dark-menu-hover-bg);
+        --nav-icon: var(--dark-nav-icon);
+        --nav-icon-active: var(--dark-nav-icon-active);
+        --nav-icon-hover: var(--dark-nav-icon-hover);
+        --nav-icon-bg: var(--dark-nav-icon-bg);
+        --nav-background: var(--dark-nav-background);
     }
 }
 
@@ -44,6 +54,11 @@
         --menu-link: var(--dark-menu-link);
         --menu-active-link: var(--dark-menu-active-link);
         --menu-hover-bg: var(--dark-menu-hover-bg);
+        --nav-icon: var(--dark-nav-icon);
+        --nav-icon-active: var(--dark-nav-icon-active);
+        --nav-icon-hover: var(--dark-nav-icon-hover);
+        --nav-icon-bg: var(--dark-nav-icon-bg);
+        --nav-background: var(--dark-nav-background);
     }
 
     html.light-theme {
@@ -59,6 +74,11 @@
         --menu-link: var(--light-menu-link);
         --menu-active-link: var(--light-menu-active-link);
         --menu-hover-bg: var(--light-menu-hover-bg);
+        --nav-icon: var(--light-nav-icon);
+        --nav-icon-active: var(--light-nav-icon-active);
+        --nav-icon-hover: var(--light-nav-icon-hover);
+        --nav-icon-bg: var(--light-nav-icon-bg);
+        --nav-background: var(--light-nav-background);
     }
 }
 
@@ -150,4 +170,10 @@ body {
 
 .content {
     padding-top: 8rem;
+}
+
+@media screen and (max-width: 475px) {
+    .content {
+        padding-top: 4rem;
+    }
 }

@@ -1,11 +1,9 @@
 ---
 import Header from '../partials/Header.astro';
 import Head, { type Headprops } from '../partials/Head.astro';
-import ToTop from '../components/utils/toTop.astro';
 import ColorMode from '../components/utils/ColorMode.astro';
-import MainNavigation from '../partials/MainNavigation.astro';
+import FloatNavigation from '../partials/FloatNavigation.astro';
 import { ViewTransitions } from 'astro:transitions';
-
 
 const {
   props: { title, description, image },
@@ -31,11 +29,10 @@ const {
 	</head>
 	<body>
 		<ColorMode />
-		<ToTop />
+		<FloatNavigation />
 		<div class="content">
 			<Header />
 			<slot />
 		</div>
-		<MainNavigation />
 	</body>
 </html>

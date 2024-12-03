@@ -12,6 +12,11 @@
     --dark-menu-link: rgba(0,0,0,.65);
     --dark-menu-active-link: rgba(0,0,0,1);
     --dark-menu-hover-bg: rgba(1,1,1,.05);
+    --dark-nav-icon: #333333;
+    --dark-nav-icon-active: #ffffff;
+    --dark-nav-icon-hover: #666666;
+    --dark-nav-icon-bg: #292929;
+    --dark-nav-background: #141414;
 
     /* Light colors */
     --light-background-color: #eeeeee;
@@ -26,6 +31,11 @@
     --light-menu-link: rgba(255,255,255,.5);
     --light-menu-active-link: rgba(255,255,255,1);
     --light-menu-hover-bg: rgba(255,255,255,.05);
+    --light-nav-icon: #C3C3C3;
+    --light-nav-icon-active: #000000;
+    --light-nav-icon-hover: #777676;
+    --light-nav-icon-bg: #FFFFFF;
+    --light-nav-background: rgba(255,255,255,.4);
 
     /* fonts */
     --font-serif: 'Instrument Serif', serif;
