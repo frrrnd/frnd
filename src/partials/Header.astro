@@ -1,41 +1,14 @@
 ---
 import LinkWithPreview from '../components/LinkImage/LinkImage.tsx';
-
-const currentPath = Astro.url.pathname;
-
-let title = "";
-if (currentPath.startsWith("/works")) {
-    title = "Recent Works";
-} else if (currentPath.startsWith("/about")) {
-    title = "About";
-} else if (currentPath.startsWith("/feed")) {
-    title = "Feed";
-} else if (currentPath.startsWith("/notes")) {
-    title = "Notes";
-} else if (currentPath.startsWith("/readings")) {
-    title = "Recent readings";
-} else if (currentPath.startsWith("/labs")) {
-    title = "Labs";
-} else {
-    title = "Hey — I'm Fernando.";
-}
-
 ---
 
 <header class="header" id="header">
     <div class="wrap">
-        <h1>
-            {currentPath === "/" ? (
-                <LinkWithPreview 
-                    client:load 
-                    href="/" 
-                    text="Hey — I'm Fernando." 
-                    images={['/uploads/images/preview/avatar-frnd.webp']} 
-                />
-            ) : (
-                title
-            )}
-        </h1>
+        <a href="/">
+            <figure class="skate">
+                <img src="/skate.svg" />
+            </figure>
+        </a>
     </div>
 </header>
 
@@ -44,17 +17,27 @@ if (currentPath.startsWith("/works")) {
         display: flex;
         flex-direction: column;
         position: relative;
-        margin: 0 auto 4rem;
+        margin: 0 auto 1rem;
+
+        a {
+            display: block;
+            width: max-content;
+        }
     }
 
     .header h1 {
-        font-size: var(--text-primary-size);
+        font-size: 1.5rem;
         color: var(--text-secondary-color);
         width: 100%;
         font-weight: 500;
         line-height: 1.2;
         margin-bottom: 0;
-        font-family: var(--font-sans);
         display: block;
+    }
+
+    .skate {
+        max-width: 70px;
+        width: 100%;
+        margin-bottom: 2rem;
     }
 </style>

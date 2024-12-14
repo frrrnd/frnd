@@ -1,0 +1,19 @@
+---
+import Layout from '../layouts/Layout.astro'
+import ImageZoom from '../components/ImageZoom/ImageZoom.jsx';
+import { SiteConfig } from "../utils/SiteConfig";
+---
+<Layout props={{ title: `Colophon — ${SiteConfig.title}`, description: SiteConfig.description, image: SiteConfig.image }}>
+    <main class="main wrap">
+        <h1>Colophon</h1>
+        <section class="content-section">
+            <article class="content-article">
+
+                <p>This website is built with <a href="https://astro.build/" target="_blank">Astro</a>, <a href="https://mdxjs.com/" target="_blank">MDX</a> and deployed with <a target="_blank"  href="https://netlify.app">Netlify</a>. Some animations with <a href="https://react.dev/" target="_blank">React</a> and <a href="https://www.framer.com/motion/" target="_blank">Framer Motion</a>. <a href="https://rsms.me/inter/" target="_blank">Inter</a> is the main typeface. </p>
+
+                <ImageZoom client:load src="/nicki.jpg" alt="Nicki" />
+            </article>
+        </section>
+
+    </main>
+</Layout>

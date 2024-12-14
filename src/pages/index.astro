@@ -1,11 +1,11 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import SocialNav from '../components/SocialNav.astro';
+import Footer from '../partials/Footer.astro';
 // import LinkWithPreview from '../components/LinkImage/LinkImage.tsx';
 import { getCollection } from 'astro:content';
 import { SiteConfig } from '../utils/SiteConfig';
 import PortfolioCard from '../components/PortfolioCard/PortfolioCard';
-import Footer from '../partials/Footer.astro';
 
 const works = await getCollection('works');
 works.sort((a,b) => Date.parse(a.data.order) - Date.parse(b.data.order));
@@ -15,9 +15,11 @@ works.sort((a,b) => Date.parse(a.data.order) - Date.parse(b.data.order));
 	<main class="main wrap" data-fade="0.4">
 		<section class="content-section">
 			<article class="content-article intro" >
-				<p>Interface Designer with 13 years of experience. Passionate about UI and everything related to interfaces. Past works include Massey Fergusson, Valtra, Petrobras, Raízen and more.</p>
+				<p><strong>Fernando Soares</strong><br> Software Designer passionate about interfaces.</p>
 
-				<p>Working as a freelancer with ux/ui, icons, design systems and webflow development for startups and agencies. Running parallel projects like <a target="_blank" href="https://viewport-ui.design">Viewport UI.</a></p>
+				
+
+				<!-- <p>Working as a freelancer with ux/ui, icons, design systems and webflow development for startups and agencies. Running parallel projects like <a target="_blank" href="https://viewport-ui.design">Viewport UI.</a></p> -->
 
 				<!-- <p>To check out some of my work, see my <LinkWithPreview client:load href="#recent-works" text="recent works" images={["/uploads/images/preview/preview-works.webp"]} /> and my <LinkWithPreview client:load href="/labs" text="experiments" images={["/uploads/images/preview/preview-labs.webp"]} />.</p> -->
 				
@@ -26,23 +28,44 @@ works.sort((a,b) => Date.parse(a.data.order) - Date.parse(b.data.order));
 
 		<section class="content-section">
 			<article class="content-article">
-				<SocialNav />
+				<p>Based in Florianópolis, Brazil. Currently working as a freelancer ux/ui designer and with webflow development. I enjoy think with code, sipping coffee, listen to fuzzy music and longboarding. CSS lover. Icon designer enthusiast. Driven by curiosity.</p>
 			</article>
 		</section>
 
-		<section class="content-section" id="recent-works">
+		<section class="content-section">
+			<article class="content-article">
+				<h2>Explore</h2>
+				<ul>
+					<li><a href="/about">About</a></li>
+					<li><a href="/works">Recent Works</a></li>
+					<li><a href="/labs">Labs</a></li>
+					<li><a href="/colophon">Colophon</a></li>
+					<li><a href="/notes">Notes</a></li>
+					<li><a href="/readings">Readings</a></li>
+				</ul>
+			</article>
+		</section>
+
+		<!-- <section class="content-section" id="recent-works">
 			<article class="content-article works-home">
 				<h2>Recent works</h2>
 				{works.map((item, index) => (
 					<PortfolioCard client:load key={index} src={item.data.cover.src} title={item.data.title} slug={item.slug} description={item.data.description} />
                 ))}
 			</article>
+		</section> -->
+
+		<section class="content-section">
+			<article class="content-article">
+				<SocialNav />
+			</article>
 		</section>
 
-	</main>
+		<Footer />
 
-	<Footer />
+	</main>
 </Layout>
+
 
 <script>
 	const anchorSmooth = () => {

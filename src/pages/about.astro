@@ -5,6 +5,7 @@ import { SiteConfig } from "../utils/SiteConfig";
 ---
 <Layout props={{ title: `About — ${SiteConfig.title}`, description: SiteConfig.description, image: SiteConfig.image }}>
     <main class="main wrap">
+        <h1>About</h1>
         <section class="content-section">
             <article class="content-article">
                 <ImageZoom client:load src="/frnd-avatar.jpg" alt="Yo!" />
@@ -50,19 +51,6 @@ import { SiteConfig } from "../utils/SiteConfig";
                 <p>I use <a href="https://figma.com/@fers" target="_blank">Figma</a> as my main tool for almost everything.</p>
                 <p>As a proccess I worked with SCRUM, design thinking, design sprint and double diamond.</p>
                 <p>Webflow as low-code tool.</p>
-            </article>
-        </section>
-
-        <section class="content-section">
-            <article class="content-article">
-                <h2>About this website</h2>
-                <p>This website is built with <a href="https://astro.build/" target="_blank">Astro</a>, <a href="https://mdxjs.com/" target="_blank">MDX</a> and deployed with <a target="_blank"  href="https://netlify.app">Netlify</a>.</p>
-
-                <p>Some animations with <a href="https://react.dev/" target="_blank">React</a> and <a href="https://www.framer.com/motion/" target="_blank">Framer Motion</a>.</p>
-
-                <p><a href="https://vercel.com/font" target="_blank">Geist</a> is the main typeface. </p>
-
-                <ImageZoom client:load src="/nicki.jpg" alt="Nicki" />
             </article>
         </section>
     </main>

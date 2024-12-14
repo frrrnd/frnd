@@ -31,7 +31,7 @@ const CopyClipboard = () => {
                 e.preventDefault();
                 copyToClipBoard('dotfernando@gmail.com')}}
         >
-            {copySuccess ? 'email copied!' : 'copy email'}
+            {copySuccess ? 'Email Copied!' : 'Copy email'}
         </a>
     )
 };

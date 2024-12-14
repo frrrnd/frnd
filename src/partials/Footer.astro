@@ -3,8 +3,8 @@
 ---
 <footer class="footer">
     <div class="footer-inner wrap">
-        <p>It's currently <time class="time">06:09 AM</time> in 
-            <svg viewBox="-18 3 93 17" width="95" height="22">
+        <p> <time class="time">06:09 AM</time> <span class="weatherstatus">????</span> with <span class="temp"> --.- </span> in 
+            <svg viewBox="-15 3 91 18" width="91" height="22">
                 <defs>
                     <linearGradient id="gradientWave" x1="0" x2="0" y1="0" y2="1">
                         <stop offset="5%" stop-color="var(--text-primary-color)"></stop>
@@ -17,35 +17,20 @@
                     </pattern>
                 </defs>
                 <!-- texto de baixo, a onda -->
-                <text text-anchor="middle" font-size="1rem" x="27px" y="16px" fill="url(#wave)" fill-opacity="1.0">Florianópolis</text>
+                <text text-anchor="middle" font-size=".8rem" x="27px" y="16px" fill="url(#wave)" fill-opacity="1.0">Florianópolis.</text>
                 <!-- texto de cima -->
-                <text text-anchor="middle" font-size="1rem" x="27px" y="16px" fill="url(#gradientWave)" fill-opacity="0.4">Florianópolis</text>
+                <text text-anchor="middle" font-size=".8rem" x="27px" y="16px" fill="url(#gradientWave)" fill-opacity="0.4">Florianópolis.</text>
             </svg>
-            — Brazil <span class="weatherstatus">and the weather is currently ????</span> with a temperature of <span class="temp"> --.-</span>.</p>
-        <ul class="list-badges">
-            <li>
-                <a href="https://astro.build/" target="_blank">
-                    <img src="/uploads/images/badges/astro.png" alt="Astro">
-                </a>
-            </li>
-
-            <li>
-                <a href="https://github.com/" target="_blank">
-                    <img src="/uploads/images/badges/github.png" alt="Github">
-                </a>
-            </li>
-
-            <li>
-                <a href="https://mdxjs.com/" target="_blank">
-                    <img src="/uploads/images/badges/mdx.png" alt="MDX">
-                </a>
-            </li>
-        </ul>
+        </p>
     </div>
 </footer>
 <style>
     .footer {
         padding-bottom: 4rem;
+        
+        p {
+            font-size: .8rem;
+        }
 
         .wrap {
             border-top: 1px solid var(--divisor);
@@ -59,7 +44,7 @@
 
         time, .emoji {
             display: inline-block;
-            font-size: var(--text-primary-size);
+            font-size: .8rem;
         }
 
         svg {
@@ -67,23 +52,9 @@
         }
     }
 
-    .list-badges {
-        width: 100%;
-        display: flex;
-        flex-direction: row;
-        gap: 12px;
-        /* justify-content: center; */
-
-        img {
-            filter: grayscale(1);
-            transition: .4s;
-            opacity: .4;
-
-            &:hover {
-                filter: grayscale(0);
-                transition: .4s;
-                opacity: 1;
-            }
+    @media screen and (max-width: 475px) {
+        .footer .wrap {
+            padding: 1rem 0;
         }
     }
 </style>

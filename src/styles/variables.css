@@ -19,12 +19,12 @@
     --dark-nav-background: #141414;
 
     /* Light colors */
-    --light-background-color: #eeeeee;
+    --light-background-color: #ffffff;
     --light-text-color: #444444;
     --light-text-secondary-color: #111111;
     --light-title-color: #ababab;
     --light-link-color: #171e27;
-    --light-divisor: #E6E6E6;
+    --light-divisor: #f3f3f3;
     --light-icon-bg: #e7e7e7;
     --light-nav-hover: #e6e6e6;
     --light-menu-bg: rgba(255,255,255,.52);
@@ -34,20 +34,20 @@
     --light-nav-icon: #C3C3C3;
     --light-nav-icon-active: #000000;
     --light-nav-icon-hover: #777676;
-    --light-nav-icon-bg: #FFFFFF;
-    --light-nav-background: rgba(255,255,255,.4);
+    --light-nav-icon-bg: #f7f7f7;
+    --light-nav-background: rgba(250, 250, 250, 1);
 
     /* fonts */
-    --font-serif: 'Instrument Serif', serif;
+    --font-serif: "Crimson Pro", serif;
     /* --font-sans: 'Inter', system-ui, sans-serif; */
-    --font-sans: "Geist", sans-serif;
+    --font-sans: "Inter", sans-serif;
     --font-mono: 'SF Mono', SFMono-Regular, ui-monospace, 'DejaVu Sans Mono', Menlo, Consolas, monospace;
 
     /* --wrap-width: 680px; */
     --wrap-width: 500px;
     --wrap-wide: 960px;
-    /* --text-primary-size: 0.938rem; */
-    --text-primary-size: 1rem;
+    --text-primary-size: 0.938rem;
+    /* --text-primary-size: 1.125rem; */
     --mobile-breakpoint: 475px;
     font-feature-settings: 'dlig' 1;
 }
