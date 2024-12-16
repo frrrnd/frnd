@@ -48,5 +48,26 @@ const renderedNotes = await Promise.all(
 		.article-header, h2 {
 			margin-bottom: 0;
 		}
+
+		.content-article {
+			padding: 1rem 0;
+			margin-bottom: 0;
+			transition: .4s;
+			border-radius: 10px;
+
+			&:not(:first-child) {
+				margin-top: 0;
+			}
+	
+			&:hover {
+				transition: .4s;
+				background-color: rgba(0,0,0,0.03);
+			}
+
+			a {
+				width: 100%;
+				display: block;
+			}
+		}
 	}
 </style>

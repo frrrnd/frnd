@@ -48,9 +48,10 @@ p {
 
     h2 {
         font-size: var(--text-primary-size);
-        font-weight: 400;
-        color: var(--title-color);
+        font-weight: 600;
+        color: var(--link-primary-color);
         margin-bottom: 1rem;
+        padding: 0 1rem;
     }
 
     a:not(:has(h3)) {
@@ -68,7 +69,7 @@ p {
 
     ul {
         list-style: none;
-        padding-left: 0;
+        padding: 0 1rem;
 
         a {
             text-decoration: none;
@@ -79,6 +80,10 @@ p {
 .content-article {
     padding-bottom: 1.5rem;
 
+    h2 {
+        padding: 0 1rem;
+    }
+
     /* &:not(:last-child) {
         border-bottom: 1px solid var(--icon-bg);
     } */
@@ -87,8 +92,13 @@ p {
         margin-top: 1.5rem;
     }
 
+    p {
+        padding: 0 1rem;
+    }
+
     & time {
         opacity: .8;
+        padding: 0 1rem;
     }
 
     & li {

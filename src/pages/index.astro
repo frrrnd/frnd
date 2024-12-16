@@ -14,8 +14,8 @@ works.sort((a,b) => Date.parse(a.data.order) - Date.parse(b.data.order));
 <Layout props={{ title: SiteConfig.title, description: SiteConfig.description, image: SiteConfig.image }}>
 	<main class="main wrap" data-fade="0.4">
 		<section class="content-section">
-			<article class="content-article intro" >
-				<p><strong>Fernando Soares</strong><br> Software Designer passionate about interfaces.</p>
+			<article class="content-article intro">
+				<p><strong>Hey, I'm Fernando</strong><br> Software Designer.</p>
 
 				
 
@@ -32,16 +32,51 @@ works.sort((a,b) => Date.parse(a.data.order) - Date.parse(b.data.order));
 			</article>
 		</section>
 
-		<section class="content-section">
+		<section class="content-section explore">
 			<article class="content-article">
 				<h2>Explore</h2>
-				<ul>
-					<li><a href="/about">About</a></li>
-					<li><a href="/works">Recent Works</a></li>
-					<li><a href="/labs">Labs</a></li>
-					<li><a href="/colophon">Colophon</a></li>
-					<li><a href="/notes">Notes</a></li>
-					<li><a href="/readings">Readings</a></li>
+				<ul class="home-links">
+					<li>
+						<a href="/about">
+							About
+							<span>Who is Fernando?</span>
+						</a>
+					</li>
+
+					<li>
+						<a href="/works">
+							Recent Works
+							<span>Some recent works</span>
+						</a>
+					</li>
+
+					<li>
+						<a href="/labs">
+							Labs
+							<span>Prototypes and other design stuff</span>
+						</a>
+					</li>
+
+					<li>
+						<a href="/colophon">
+							Colophon
+							<span>About this website</span>
+						</a>
+					</li>
+
+					<li>
+						<a href="/notes">
+							Notes
+							<span>Some thoughts</span>
+						</a>
+					</li>
+
+					<li>
+						<a href="/readings">
+							Readings
+							<span>What I'm reading</span>
+						</a>
+					</li>
 				</ul>
 			</article>
 		</section>
@@ -65,7 +100,40 @@ works.sort((a,b) => Date.parse(a.data.order) - Date.parse(b.data.order));
 
 	</main>
 </Layout>
+<style>
+	.intro {
+		padding-bottom: .5rem;
+	}
 
+	.home-links {
+		padding-left: 0;
+
+		a {
+			width: 100%;
+			display: block;
+			padding: 1rem;
+		}
+
+		li {
+			transition: .4s;
+			border-radius: 10px;
+			margin-bottom: 0;
+
+			&:hover {
+				transition: .4s;
+				background-color: rgba(0,0,0,0.03);
+			}
+		}
+		span {
+			color: var(--title-color);
+			display: block;
+		}
+	}
+
+	.explore {
+		padding: 4rem 0;
+	}
+</style>
 
 <script>
 	const anchorSmooth = () => {

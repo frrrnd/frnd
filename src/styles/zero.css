@@ -15,10 +15,6 @@ img, iframe, video {
 
 a {
     text-decoration: none;
-
-    &:hover {
-        opacity: .6;
-    }
 }
 
 small {
@@ -43,4 +39,5 @@ h1, h2, h3, h4, h5, h6 {
 h1 {
     font-size: 1.5rem;
     margin-bottom: 4rem;
+    padding: 0 1rem;
 }
