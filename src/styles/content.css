@@ -192,6 +192,7 @@ p {
     justify-content: space-between;
     margin: 2rem 0;
     font-family: var(--font-mono);
+    padding: 0 1rem;
 
     ul {
         list-style-type: none;
