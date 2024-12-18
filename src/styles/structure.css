@@ -167,11 +167,23 @@ body {
 
 @media screen and (max-width: 475px) {
 
+    .wrap {
+        max-width: 90vw;
+    }
+
+    .wrap-narrow {
+        padding: 0 2rem;
+    }
+
     .wrap-wide {
         padding: 0 1rem;
 
         img, video {
             margin: 1rem auto!important;
+        }
+
+        .article-header {
+            padding: 0 1rem;
         }
     }
 }
@@ -198,5 +210,11 @@ body {
     &:hover {
         background-color: rgba(0,0,0,.02);
         transition: .4s;
+    }
+}
+
+@media screen and (max-width: 475px) {
+    .back-button {
+        position: absolute;
     }
 }
