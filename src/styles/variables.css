@@ -24,7 +24,7 @@
     --light-text-secondary-color: #111111;
     --light-title-color: #7d7d7d;
     --light-link-color: #171e27;
-    --light-divisor: #f3f3f3;
+    --light-divisor: rgba(0,0,0,.03);
     --light-icon-bg: #e7e7e7;
     --light-nav-hover: #e6e6e6;
     --light-menu-bg: rgba(255,255,255,.52);
@@ -40,14 +40,28 @@
     /* fonts */
     --font-serif: "Crimson Pro", serif;
     /* --font-sans: 'Inter', system-ui, sans-serif; */
-    --font-sans: "Inter", sans-serif;
-    --font-mono: 'SF Mono', SFMono-Regular, ui-monospace, 'DejaVu Sans Mono', Menlo, Consolas, monospace;
+    
+    
 
     /* --wrap-width: 680px; */
-    --wrap-width: 500px;
+    
     --wrap-wide: 960px;
     --text-primary-size: 0.938rem;
     /* --text-primary-size: 1.125rem; */
     --mobile-breakpoint: 475px;
     font-feature-settings: 'dlig' 1;
+
+    /* New vars */
+    --gradient-background: linear-gradient(180deg, #DFEAF3 0%, #FFF7EA 100%);
+    /* --wrap-width: 1380px; */
+    --wrap-width: 80vw;
+    --font-sans: "Inter", system-ui, sans-serif;
+    --font-mono: 'SF Mono', SFMono-Regular, ui-monospace, 'DejaVu Sans Mono', Menlo, Consolas, monospace;
+
+    --type-default-size: 0.938rem;
+    --type-title-color: #111111;
+    --type-text-color: #727272;
+    --border-default-radius: 5px;
+
+    --inner-wrap: 540px;
 }

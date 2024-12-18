@@ -20,7 +20,10 @@ const image = `/og/${note.slug}.png`;
 ---
 
 <Layout props={{ title: `${note.data.title} — ${SiteConfig.title}`, description: SiteConfig.description, image: image }}>
-    <main class="main wrap">
+    <main class="main wrap-narrow">
+
+        <a href="/notes" class="back-button">Back to Notes</a>
+
         <article class="content-article">
             <header class="article-header">
                 <h2>{note.data.title}</h2>

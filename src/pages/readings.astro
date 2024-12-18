@@ -20,11 +20,10 @@ const byYear = Object.keys(groupedData).sort((a,b) => b - a);
 ---
 <Layout props={{ title: `Recent Readings — ${SiteConfig.title}`, description: SiteConfig.description, image: SiteConfig.image }}>
     <main class="main">
+
+        <a href="/" class="back-button">Back to Home</a>
+
         <div class="content-article">
-            <section class="wrap">
-            <h1>Readings</h1>
-            <p>Readings from the last few years. I also have a <a href="https://goodreads.com/frnd" target="_blank">goodreads profile</a>.</p>
-            </section>
 
         {byYear.map(year => (
             <section key={year} class="books__year">

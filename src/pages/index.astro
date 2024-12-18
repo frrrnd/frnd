@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import SocialNav from '../components/SocialNav.astro';
+import Header from '../partials/Header.astro';
 import Footer from '../partials/Footer.astro';
 // import LinkWithPreview from '../components/LinkImage/LinkImage.tsx';
 import { getCollection } from 'astro:content';
@@ -12,27 +13,36 @@ works.sort((a,b) => Date.parse(a.data.order) - Date.parse(b.data.order));
 ---
 
 <Layout props={{ title: SiteConfig.title, description: SiteConfig.description, image: SiteConfig.image }}>
-	<main class="main wrap" data-fade="0.4">
-		<section class="content-section">
-			<article class="content-article intro">
-				<p><strong>Hey, I'm Fernando</strong><br> Software Designer.</p>
+	<Header />
+	
+	<main class="main" data-fade="0.4">
 
-				
+		<section class="content-section intro-section wrap">
+			<article class="content-article inner-wrap">
+				<p>Based in Florianópolis, Brazil. Currently working as a freelancer ux/ui designer and with webflow development. I enjoy think with code, sipping coffee, listen to fuzzy music and longboarding.</p>
 
-				<!-- <p>Working as a freelancer with ux/ui, icons, design systems and webflow development for startups and agencies. Running parallel projects like <a target="_blank" href="https://viewport-ui.design">Viewport UI.</a></p> -->
-
-				<!-- <p>To check out some of my work, see my <LinkWithPreview client:load href="#recent-works" text="recent works" images={["/uploads/images/preview/preview-works.webp"]} /> and my <LinkWithPreview client:load href="/labs" text="experiments" images={["/uploads/images/preview/preview-labs.webp"]} />.</p> -->
-				
+				<p>CSS lover. Icon designer enthusiast. Driven by curiosity.</p>
 			</article>
 		</section>
 
-		<section class="content-section">
-			<article class="content-article">
-				<p>Based in Florianópolis, Brazil. Currently working as a freelancer ux/ui designer and with webflow development. I enjoy think with code, sipping coffee, listen to fuzzy music and longboarding. CSS lover. Icon designer enthusiast. Driven by curiosity.</p>
-			</article>
+		<section class="content-section home-works">
+			<ul>
+				{works.map((item, index) => (
+					<li client:load key={index} src={item.data.cover.src} title={item.data.title} slug={item.slug} description={item.data.description}>
+						<a href={`/works/${item.slug}`} title={item.data.title}>
+							<figure>
+								<img src={item.data.cover.src} alt={item.data.title} />
+							</figure>
+
+							<h3>{item.data.title}</h3>
+							<h4></h4>
+						</a>
+					</li>
+                ))}
+			</ul>
 		</section>
 
-		<section class="content-section explore">
+		<section class="content-section explore-section wrap">
 			<article class="content-article">
 				<h2>Explore</h2>
 				<ul class="home-links">
@@ -40,13 +50,6 @@ works.sort((a,b) => Date.parse(a.data.order) - Date.parse(b.data.order));
 						<a href="/about">
 							About
 							<span>Who is Fernando?</span>
-						</a>
-					</li>
-
-					<li>
-						<a href="/works">
-							Recent Works
-							<span>Some recent works</span>
 						</a>
 					</li>
 
@@ -81,6 +84,8 @@ works.sort((a,b) => Date.parse(a.data.order) - Date.parse(b.data.order));
 			</article>
 		</section>
 
+		
+
 		<!-- <section class="content-section" id="recent-works">
 			<article class="content-article works-home">
 				<h2>Recent works</h2>
@@ -90,7 +95,7 @@ works.sort((a,b) => Date.parse(a.data.order) - Date.parse(b.data.order));
 			</article>
 		</section> -->
 
-		<section class="content-section">
+		<section class="content-section wrap">
 			<article class="content-article">
 				<SocialNav />
 			</article>
@@ -101,60 +106,79 @@ works.sort((a,b) => Date.parse(a.data.order) - Date.parse(b.data.order));
 	</main>
 </Layout>
 <style>
-	.intro {
-		padding-bottom: .5rem;
+	.intro-section {
+		padding: 12rem 0;
 	}
 
-	.home-links {
-		padding-left: 0;
+	.home-works {
+		max-width: max-content;
+		margin-bottom: 8rem;
+		overflow-x: scroll;
+  		padding:0 10vw;
+		scrollbar-width: none;
+		-ms-overflow-style: none;
+		-webkit-overflow-scrolling: touch;
+		
 
-		a {
-			width: 100%;
-			display: block;
-			padding: 1rem;
+		ul {
+			list-style-type: none;
+			width: max-content;
+			display: flex;
+			flex-direction: row;
+			gap: 20px;
 		}
 
 		li {
-			transition: .4s;
-			border-radius: 10px;
-			margin-bottom: 0;
+			max-width: 400px;
+			width: 100%;
 
-			&:hover {
-				transition: .4s;
-				background-color: rgba(0,0,0,0.03);
+			figure {
+				margin-bottom: 1rem;
 			}
-		}
-		span {
-			color: var(--title-color);
-			display: block;
+
+			img {
+				border-radius: var(--border-default-radius);
+			}
+
+			h3 {
+				color: var(--type-title-color);
+			}
+
+			h4 {
+				color: var(--type-text-color);
+			}
 		}
 	}
 
-	.explore {
-		padding: 4rem 0;
+	.explore-section {
+		margin-bottom: 8rem;
+
+		h2 {}
+
+		.home-links {
+			display: flex;
+			flex-direction: column;
+			gap: 16px;
+
+			li {
+				color: var(--type-title-color);
+				font-weight: 500;
+
+				span {
+					color: var(--type-text-color);
+					font-weight: 400;
+				}
+
+				a {
+					display: flex;
+					flex-direction: column;
+					width: max-content;
+
+					&:hover {
+						transform: translateX(10px);
+					}
+				}
+			}
+		}
 	}
 </style>
-
-<script>
-	const anchorSmooth = () => {
-		const links = document.querySelectorAll('a[href^="#"]');
-
-		links.forEach(link => {
-			link.addEventListener("click", (event) => {
-			event.preventDefault();
-
-			const targetId = link.getAttribute("href").substring(1);
-			const targetElement = document.getElementById(targetId);
-
-			if (targetElement) {
-				window.scrollTo({
-					top: targetElement.offsetTop,
-					behavior: "smooth"
-				});
-			}
-			});
-		});
-	}
-
-	document.addEventListener("astro:after-swap", anchorSmooth);
-</script>

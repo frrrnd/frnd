@@ -4,8 +4,10 @@ import ImageZoom from '../components/ImageZoom/ImageZoom.jsx';
 import { SiteConfig } from "../utils/SiteConfig";
 ---
 <Layout props={{ title: `About — ${SiteConfig.title}`, description: SiteConfig.description, image: SiteConfig.image }}>
-    <main class="main wrap">
-        <h1>About</h1>
+    <main class="main wrap-narrow">
+        
+        <a href="/" class="back-button">Back to home</a>
+        
         <section class="content-section">
             <article class="content-article">
                 <ImageZoom client:load src="/frnd-avatar.jpg" alt="Yo!" />
@@ -29,7 +31,7 @@ import { SiteConfig } from "../utils/SiteConfig";
         </section>
 
         <section class="content-section">
-            <article class="content-article">
+            <article class="content-article things-list">
                 <h2>What I Do</h2>
                 <p>I design interfaces from concept to finish.</p>
                 <ul>
@@ -55,3 +57,8 @@ import { SiteConfig } from "../utils/SiteConfig";
         </section>
     </main>
 </Layout>
+<style>
+    .things-list li {
+        color: var(--type-text-color);
+    }
+</style>

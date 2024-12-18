@@ -1,44 +1,64 @@
 ---
-import LinkWithPreview from '../components/LinkImage/LinkImage.tsx';
+import MainNavigation from "./MainNavigation.astro";
 ---
 
 <header class="header" id="header">
     <div class="wrap">
         <a href="/">
             <figure class="skate">
-                <img src="/skate.svg" />
+                <img src="/frnd-avatar.jpg" alt="Yo!" />
             </figure>
+
+            <div class="heading">
+                <h1>Fernando Soares</h1>
+                <h2>User Interface Designer</h2>
+            </div>
         </a>
+
+        <MainNavigation />
+
     </div>
 </header>
 
 <style>
     .header {
-        display: flex;
-        flex-direction: column;
-        position: relative;
         margin: 0 auto 1rem;
+        
+        .wrap {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+        }
 
         a {
-            display: block;
+            display: flex;
+            flex-direction: row;
             width: max-content;
-            padding: 0 1rem;
+            gap: 12px;
         }
-    }
+        
+        figure {
+            display: inline-block;
+            width: 36px;
 
-    .header h1 {
-        font-size: 1.5rem;
-        color: var(--text-secondary-color);
-        width: 100%;
-        font-weight: 500;
-        line-height: 1.2;
-        margin-bottom: 0;
-        display: block;
-    }
+            img {
+                border-radius: 100%;
+            }
+        }
 
-    .skate {
-        max-width: 70px;
-        width: 100%;
-        margin-bottom: 2rem;
+        h1 {
+            font-size: var(--type-default-size);
+            color: var(--type-title-color);
+            width: 100%;
+            font-weight: 500;
+            line-height: 1.2;
+            margin-bottom: 0;
+            display: block;
+        }
+
+        h2 {
+            color: var(--type-text-color);
+        }
     }
 </style>

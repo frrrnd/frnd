@@ -51,7 +51,6 @@ p {
         font-weight: 600;
         color: var(--link-primary-color);
         margin-bottom: 1rem;
-        padding: 0 1rem;
     }
 
     a:not(:has(h3)) {
@@ -69,7 +68,6 @@ p {
 
     ul {
         list-style: none;
-        padding: 0 1rem;
 
         a {
             text-decoration: none;
@@ -80,25 +78,12 @@ p {
 .content-article {
     padding-bottom: 1.5rem;
 
-    h2 {
-        padding: 0 1rem;
-    }
-
-    /* &:not(:last-child) {
-        border-bottom: 1px solid var(--icon-bg);
-    } */
-
     &:not(:first-child) {
         margin-top: 1.5rem;
     }
 
-    p {
-        padding: 0 1rem;
-    }
-
     & time {
         opacity: .8;
-        padding: 0 1rem;
     }
 
     & li {
@@ -192,7 +177,6 @@ p {
     justify-content: space-between;
     margin: 2rem 0;
     font-family: var(--font-mono);
-    padding: 0 1rem;
 
     ul {
         list-style-type: none;

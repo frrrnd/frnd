@@ -123,8 +123,8 @@
 html {
     box-sizing: border-box;
     position: relative;
-    background: var(--general-background-color);
-    height: 100%;
+    background: var(--gradient-background);
+    min-height: 100%;
     scroll-behavior: "smooth";
 }
 
@@ -134,18 +134,23 @@ body {
     -webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
     scroll-behavior: smooth;
-    color: var(--text-primary-color);
+    color: var(--type-text-color);
     width: 100%;
-    min-height: 100%;
-    font-size: var(--text-primary-size);
+    height: 100%;
+    font-size: var(--type-default-size);
     overflow-x: hidden;
     position: relative;
 }
 
 .wrap {
-    max-width: calc(var(--wrap-width) + 40px);
+    max-width: var(--wrap-width);
     width: 100%;
     margin: 0 auto;
+}
+
+.inner-wrap {
+    max-width: var(--inner-wrap);
+    width: 100%;
 }
 
 .wrap-wide {
@@ -154,10 +159,17 @@ body {
     margin: 0 auto;
 }
 
+.wrap-narrow {
+    max-width: 600px;
+    width: 100%;
+    margin: 0 auto;
+}
+
 @media screen and (max-width: 475px) {
     .wrap {
         padding: 0 1rem;
     }
+    
     .wrap-wide {
         padding: 0 1rem;
 
@@ -174,5 +186,20 @@ body {
 @media screen and (max-width: 475px) {
     .content {
         padding-top: 4rem;
+    }
+}
+
+.back-button {
+    border: 1px solid rgba(0,0,0,.05);
+    padding: 8px 16px;
+    border-radius: 30px;
+    transition: .4s;
+    position: fixed;
+    left: 20px;
+    top: 20px;
+
+    &:hover {
+        background-color: rgba(0,0,0,.02);
+        transition: .4s;
     }
 }

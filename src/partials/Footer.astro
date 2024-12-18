@@ -3,7 +3,7 @@
 ---
 <footer class="footer">
     <div class="footer-inner wrap">
-        <p> <time class="time">06:09 AM</time> <span class="weatherstatus">????</span> with <span class="temp"> --.- </span> in 
+        <p> <time class="time">06:09 AM</time> <span class="weatherstatus">????</span> with <span class="temp">--.-</span> in 
             <svg viewBox="-15 3 91 18" width="91" height="22">
                 <defs>
                     <linearGradient id="gradientWave" x1="0" x2="0" y1="0" y2="1">
@@ -26,7 +26,7 @@
 </footer>
 <style>
     .footer {
-        padding:0 1rem 4rem;
+        padding: 2rem 0;
         
         p {
             font-size: .8rem;
@@ -175,7 +175,7 @@
             const roundedTemperature = Math.round(temperature);
 
             $(".weatherstatus").innerHTML = terms[weathercode] || "Weather data not available.";
-            $(".temp").innerText = `${roundedTemperature} °C`;
+            $(".temp").innerText = `${roundedTemperature}°C`;
         } catch (error) {
             console.error("Failed to fetch weather data", error);
             $(".weatherstatus").innerHTML = "Failed to fetch weather data.";

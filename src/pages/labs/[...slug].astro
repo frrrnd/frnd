@@ -17,7 +17,10 @@ const { Content } = await item.render();
 ---
 
 <Layout props={{ title: `${item.data.title} — ${SiteConfig.title}`, description: SiteConfig.description, image: SiteConfig.image }}>
-    <main class="main wrap">
+    <main class="main wrap-narrow">
+        
+        <a href="/labs" class="back-button">Back to Labs</a>
+
         <article class="content-article">
             <header class="article-header">
                 <h2>{item.data.title}</h2>

@@ -17,8 +17,10 @@ const renderedNotes = await Promise.all(
 
 ---
 <Layout props={{ title: `Notes — ${SiteConfig.title}`, description: SiteConfig.description, image: SiteConfig.image }}>
-	<main class="main wrap">
-		<h1>Notes</h1>
+	<main class="main wrap-narrow">
+
+		<a href="/" class="back-button">Back to Home</a>
+
 		<section class="content-section notes-list">
 		{renderedNotes.map((note) => (
 			<article class="content-article">
@@ -57,16 +59,6 @@ const renderedNotes = await Promise.all(
 
 			&:not(:first-child) {
 				margin-top: 0;
-			}
-	
-			&:hover {
-				transition: .4s;
-				background-color: rgba(0,0,0,0.03);
-			}
-
-			a {
-				width: 100%;
-				display: block;
 			}
 		}
 	}

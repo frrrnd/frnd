@@ -15,7 +15,10 @@ const renderedLabs = await Promise.all(
 );
 ---
 <Layout props={{ title: `Labs — ${SiteConfig.title}`, description: SiteConfig.description, image: SiteConfig.image }}>
-    <main class="main wrap">
+    <main class="main wrap-narrow">
+
+		<a href="/" class="back-button">Back to home</a>
+		
 		<section class="content-section">
 		{renderedLabs.map((post) => (
 			<article class="content-article">
