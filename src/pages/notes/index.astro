@@ -27,11 +27,12 @@ const renderedNotes = await Promise.all(
 				<header class="article-header">
 					<a href={`/notes/${note.slug}`} title={`View ${note.data.title}`}>
 						<h2>{note.data.title}</h2>
-						<FormattedDate date={note.data.publishDate} />
+						{/* <FormattedDate date={note.data.publishDate} /> */}
+						<p>{note.data.description}</p>
 					</a>
 				</header>
 
-				<note.Content />
+				{/* <note.Content /> */}
 
 			</article>
 		))}
