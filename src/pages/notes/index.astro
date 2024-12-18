@@ -27,19 +27,12 @@ const renderedNotes = await Promise.all(
 				<header class="article-header">
 					<a href={`/notes/${note.slug}`} title={`View ${note.data.title}`}>
 						<h2>{note.data.title}</h2>
+						<FormattedDate date={note.data.publishDate} />
 					</a>
 				</header>
 
-				{/* <note.Content /> */}
+				<note.Content />
 
-				<footer class="article-footer">
-					<a href={`/notes/${note.slug}`} title={`Permalink to ${note.data.title}`} class="article-permalink">
-					<FormattedDate date={note.data.publishDate} />
-					{/* {note.data.updateDate && (
-						<div>Updated on <FormattedDate date={note.data.updateDate} /></div>
-					)} */}
-					</a>
-				</footer>
 			</article>
 		))}
 		</section>
@@ -48,23 +41,23 @@ const renderedNotes = await Promise.all(
 <style>
 	.notes-list {
 
-		.article-header, h2 {
-			margin: 0;
+		.article-header h2 {
+        	font-size: 1.2rem;
+			margin-bottom: 0;
+    	}
+		
+		.content-article:not(:first-child) {
+			padding-top: 2rem;
+		}
+
+		.content-article {
+			margin-bottom: 6rem;
 		}
 
 		.content-article {
 			padding: 1rem 0;
 			margin-bottom: 0;
-			transition: .4s;
 			border-radius: 10px;
-			display: flex;
-			flex-direction: row;
-			justify-content: space-between;
-
-			&:hover {
-				opacity: .6;
-				transition: .4s;
-			}
 		}
 	}
 </style>
