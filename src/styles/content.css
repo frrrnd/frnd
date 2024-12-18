@@ -78,9 +78,9 @@ p {
 .content-article {
     padding-bottom: 1.5rem;
 
-    &:not(:first-child) {
+    /* &:not(:first-child) {
         margin-top: 1.5rem;
-    }
+    } */
 
     & time {
         opacity: .8;
