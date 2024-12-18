@@ -15,7 +15,7 @@ const renderedLabs = await Promise.all(
 );
 ---
 <Layout props={{ title: `Labs — ${SiteConfig.title}`, description: SiteConfig.description, image: SiteConfig.image }}>
-    <main class="main wrap-narrow">
+    <main class="main wrap-narrow labs-index">
 
 		<a href="/" class="back-button">Back to home</a>
 		
@@ -38,4 +38,15 @@ const renderedLabs = await Promise.all(
     .article-header h2 {
         font-size: 1.2rem;
     }
+
+	.labs-index {
+
+		.content-article:not(:first-child) {
+			padding-top: 2rem;
+		}
+
+		.content-article {
+			margin-bottom: 4rem;
+		}
+	}
 </style>

@@ -52,7 +52,7 @@
     font-feature-settings: 'dlig' 1;
 
     /* New vars */
-    --gradient-background: linear-gradient(180deg, #DFEAF3 0%, #FFF7EA 100%);
+    --gradient-background: linear-gradient(180deg, #DFEAF3 0%, #fff5f5 100%);
     /* --wrap-width: 1380px; */
     --wrap-width: 80vw;
     --font-sans: "Inter", system-ui, sans-serif;

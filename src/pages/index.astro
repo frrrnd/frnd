@@ -35,7 +35,7 @@ works.sort((a,b) => Date.parse(a.data.order) - Date.parse(b.data.order));
 							</figure>
 
 							<h3>{item.data.title}</h3>
-							<h4></h4>
+							<h4>{item.data.type}</h4>
 						</a>
 					</li>
                 ))}
@@ -84,17 +84,6 @@ works.sort((a,b) => Date.parse(a.data.order) - Date.parse(b.data.order));
 			</article>
 		</section>
 
-		
-
-		<!-- <section class="content-section" id="recent-works">
-			<article class="content-article works-home">
-				<h2>Recent works</h2>
-				{works.map((item, index) => (
-					<PortfolioCard client:load key={index} src={item.data.cover.src} title={item.data.title} slug={item.slug} description={item.data.description} />
-                ))}
-			</article>
-		</section> -->
-
 		<section class="content-section wrap">
 			<article class="content-article">
 				<SocialNav />
@@ -124,6 +113,10 @@ works.sort((a,b) => Date.parse(a.data.order) - Date.parse(b.data.order));
 		scrollbar-width: none;
 		-ms-overflow-style: none;
 		-webkit-overflow-scrolling: touch;
+
+		h3 {
+			font-weight: 500;
+		}
 		
 
 		ul {
