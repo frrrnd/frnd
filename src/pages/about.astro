@@ -10,7 +10,8 @@ import { SiteConfig } from "../utils/SiteConfig";
         
         <section class="content-section">
             <article class="content-article">
-                <ImageZoom client:load src="/frnd-avatar.jpg" alt="Yo!" />
+
+                <img src="/polaroid-frnd.png" alt="Yo!" class="polaroid-photo">
 
                 <p>My name is Fernando Soares, a self-taught designer with 13 years of experience. I learned HTML when I was 12 and have been in love with interfaces ever since.</p>
                 
@@ -60,5 +61,18 @@ import { SiteConfig } from "../utils/SiteConfig";
 <style>
     .things-list li {
         color: var(--type-text-color);
+    }
+
+    .polaroid-photo {
+        max-width: 400px;
+        margin: 0 auto;
+        transform: rotate(-5deg);
+        transition: .4s;
+        margin-bottom: 4rem;
+
+        &:hover {
+            transform: rotate(0);
+            transition: .4s;
+        }
     }
 </style>
