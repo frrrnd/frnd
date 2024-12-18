@@ -110,6 +110,12 @@ works.sort((a,b) => Date.parse(a.data.order) - Date.parse(b.data.order));
 		padding: 12rem 0;
 	}
 
+	@media screen and (max-width: 475px) {
+		.intro-section {
+			padding: 4rem 0;
+		}
+	}
+
 	.home-works {
 		max-width: max-content;
 		margin-bottom: 8rem;
@@ -150,6 +156,14 @@ works.sort((a,b) => Date.parse(a.data.order) - Date.parse(b.data.order));
 		}
 	}
 
+	@media screen and (max-width: 475px) {
+		.home-works {
+			li {
+				max-width: 260px;
+			}
+		}
+	}
+
 	.explore-section {
 		margin-bottom: 8rem;
 
@@ -179,6 +193,12 @@ works.sort((a,b) => Date.parse(a.data.order) - Date.parse(b.data.order));
 					}
 				}
 			}
+		}
+	}
+
+	@media screen and (max-width: 475px) {
+		.explore-section {
+			margin-bottom: 2rem;
 		}
 	}
 </style>

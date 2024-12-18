@@ -166,10 +166,7 @@ body {
 }
 
 @media screen and (max-width: 475px) {
-    .wrap {
-        padding: 0 1rem;
-    }
-    
+
     .wrap-wide {
         padding: 0 1rem;
 
