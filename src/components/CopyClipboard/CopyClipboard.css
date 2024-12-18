@@ -7,11 +7,6 @@
     text-underline-offset: 3px;
     transition: .4s;
     position: relative;
-
-    &:hover {
-        opacity: .6;
-        transition: .4s;
-    }
 }
 
 
