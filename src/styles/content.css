@@ -84,6 +84,7 @@ p {
 
     & time {
         opacity: .8;
+        font-size: .8rem;
     }
 
     & li {

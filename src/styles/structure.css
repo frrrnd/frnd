@@ -163,16 +163,13 @@ body {
     max-width: 600px;
     width: 100%;
     margin: 0 auto;
+    padding: 0 1rem;
 }
 
-@media screen and (max-width: 475px) {
+@media screen and (max-width: 620px) {
 
     .wrap {
         max-width: 90vw;
-    }
-
-    .wrap-narrow {
-        padding: 0 2rem;
     }
 
     .wrap-wide {
@@ -192,11 +189,6 @@ body {
     padding-top: 6rem;
 }
 
-@media screen and (max-width: 475px) {
-    .content {
-        padding-top: 4rem;
-    }
-}
 
 .back-button {
     border: 1px solid rgba(0,0,0,.05);
@@ -204,8 +196,8 @@ body {
     border-radius: 30px;
     transition: .4s;
     position: fixed;
-    left: 20px;
-    top: 20px;
+    left: 1rem;
+    top: 1rem;
 
     &:hover {
         background-color: rgba(0,0,0,.02);

@@ -25,7 +25,7 @@ const renderedNotes = await Promise.all(
 		{renderedNotes.map((note) => (
 			<article class="content-article">
 				<header class="article-header">
-					<a href={`/notes/${note.slug}`} title={`Permalink to ${note.data.title}`}>
+					<a href={`/notes/${note.slug}`} title={`View ${note.data.title}`}>
 						<h2>{note.data.title}</h2>
 					</a>
 				</header>
@@ -47,8 +47,9 @@ const renderedNotes = await Promise.all(
 </Layout>
 <style>
 	.notes-list {
+
 		.article-header, h2 {
-			margin-bottom: 0;
+			margin: 0;
 		}
 
 		.content-article {
@@ -56,9 +57,13 @@ const renderedNotes = await Promise.all(
 			margin-bottom: 0;
 			transition: .4s;
 			border-radius: 10px;
+			display: flex;
+			flex-direction: row;
+			justify-content: space-between;
 
-			&:not(:first-child) {
-				margin-top: 0;
+			&:hover {
+				opacity: .6;
+				transition: .4s;
 			}
 		}
 	}
