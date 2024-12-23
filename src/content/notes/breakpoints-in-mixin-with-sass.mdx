@@ -1,0 +1,92 @@
+---
+title: "Breakpoints in mixin with SASS"
+publishDate: "2017-03-24 03:00"
+description: Easy implementation and maintenance
+draft: false
+tags: ['css', 'sass', 'responsive']
+image: ""
+---
+import ImageZoom from '../../components/ImageZoom/ImageZoom.jsx';
+
+<figure>
+    <ImageZoom client:load src="/uploads/images/notes/breakpoints.webp" alt="Breakpoints" />
+</figure>
+
+Making responsive websites is no easy task. Organization can sometimes become an enemy to development and maintenance. That’s why developers are always looking for methods or techniques to make this work easier. Here’s a tip for those who feel overwhelmed by media queries and responsive adjustments.
+
+We’ll create one mixin with three conditions in SASS to be used on any necessary element: small for smartphones, medium for tablets, and large for computers (you can adjust the values as needed).
+
+Check out the mixin below:
+
+```css
+@mixin breakpoint($name) {
+    @if $name == small {
+        @media (max-width: 767px) {
+            @content;
+        }
+    }
+
+    @else if $name == medium {
+        @media (max-width: 1024px) {
+            @content;
+        }
+    }
+
+    @else if $name == large {
+        @media (min-width: 1025px) {
+            @content;
+        }
+    }
+}
+```
+
+It’s straightforward to understand.
+
+“But how do I apply this mixin to my components?”
+
+Applying the mixin is simple:
+
+```css
+.elemento {
+    @include breakpoint(small) {
+        width: 100%;
+    }
+
+    @include breakpoint(medium) {
+        width: 80%;
+    }
+    
+    @include breakpoint(large) {
+        width: 50%;
+    }
+}
+
+```
+
+This code will be compiled into:
+
+```css
+    @media (max-width: 767px) { 
+	   .elemento { 
+	     width: 100%; 
+	   } 
+	} 
+
+	@media (max-width: 1024px) { 
+	   .elemento { 
+	     width: 80%; 
+	   } 
+	}
+	 
+	@media (min-width: 1025px) { 
+	   .elemento { 
+	     width: 50%; 
+	   } 
+	} 
+```
+
+Depending on your layout, you might not need to apply all three conditions to an element.
+
+This mixin makes adjustments easier by centralizing the element's styles in one place and keeping everything organized. It’s ideal for those using Atomic Design as a methodology.
+
+_This note was originally published in Portuguese._

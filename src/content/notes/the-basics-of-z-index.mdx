@@ -1,0 +1,41 @@
+---
+title: "The basics of z-index"
+publishDate: "2017-09-17 03:00"
+description: Positioning the right way
+draft: false
+tags: ['css', 'z-index']
+image: ""
+---
+
+### `z-index`  
+
+The `z-index` CSS property determines the positioning of elements along the Z-axis, which refers to the depth of elements on the screen — closer or farther from the viewer.
+
+### Key Points
+
+- Only elements with `position: absolute`, `relative`, or `fixed` support the `z-index` property.  
+- Higher `z-index` values bring the element closer to the viewer.  
+- There are no strict limitations on the value of `z-index`. Most browsers use 32-bit integers, allowing values from `-2147483648` to `2147483647`.  
+- Negative values are accepted and position the element further away from the viewer.  
+
+### Example  
+
+```css
+.box {
+    position: absolute;
+    z-index: 1;
+}
+
+.box-2 {
+    position: absolute;
+    z-index: 2;
+}
+
+.box-3 {
+    position: absolute;
+    z-index: 3;
+}
+```  
+
+In this example:  
+- `.box-3` will be displayed above `.box-2`, and `.box-2` will appear above `.box`.  

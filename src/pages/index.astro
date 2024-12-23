@@ -26,7 +26,7 @@ works.sort((a,b) => Date.parse(a.data.order) - Date.parse(b.data.order));
 		</section>
 
 		<section class="content-section home-works">
-			<ul>
+			<ul class="works-items">
 				{works.map((item, index) => (
 					<li client:load key={index} src={item.data.cover.src} title={item.data.title} slug={item.slug} description={item.data.description}>
 						<a href={`/works/${item.slug}`} title={item.data.title}>
@@ -125,6 +125,8 @@ works.sort((a,b) => Date.parse(a.data.order) - Date.parse(b.data.order));
 			display: flex;
 			flex-direction: row;
 			gap: 24px;
+			position: sticky;
+			top: 0;
 		}
 
 		li {
@@ -162,6 +164,11 @@ works.sort((a,b) => Date.parse(a.data.order) - Date.parse(b.data.order));
 	.explore-section {
 		margin-bottom: 8rem;
 
+		ul {
+			list-style-type: none;
+			padding-left: 0;
+		}
+
 		h2 {}
 
 		.home-links {
@@ -197,3 +204,29 @@ works.sort((a,b) => Date.parse(a.data.order) - Date.parse(b.data.order));
 		}
 	}
 </style>
+<script>
+	function initCarousel() {
+		const carousel = document.querySelector('.home-works');
+		
+		if (!carousel) return;
+		
+		carousel.addEventListener('wheel', function(e) {
+		if (e.deltaY !== 0) {
+			const containerScrollPosition = carousel.scrollLeft;
+			const maxScroll = carousel.scrollWidth - carousel.clientWidth;
+			const scrollAmount = e.deltaY;
+			const newScrollPosition = containerScrollPosition + scrollAmount;
+			
+			if ((newScrollPosition <= maxScroll && newScrollPosition >= 0) || 
+				(scrollAmount < 0 && containerScrollPosition > 0)) {
+			e.preventDefault();
+			carousel.scrollLeft = newScrollPosition;
+			}
+		}
+		}, { passive: false });
+  	}
+
+	initCarousel();
+
+	document.addEventListener("astro:after-swap", initCarousel);
+</script>

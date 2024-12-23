@@ -1,0 +1,81 @@
+---
+title: "Typography with PX, EM or REM"
+publishDate: "2022-11-29 03:00"
+description: Units and accessibility
+draft: false
+tags: ['css', 'typography']
+image: ""
+---
+import ImageZoom from '../../components/ImageZoom/ImageZoom.jsx';
+
+CSS font typography units can be classified into two groups: **Relative** and **Absolute**.
+The most well-known, without doubt, is px. But in a world where we have various devices with different sizes and screens, it's ideal not to work with absolute values, meaning our measurements should be flexible to work in the best possible way on any screen size. This is where the relative units "em" and "rem" come in.
+
+## PX
+Pixels are fixed units in the document. They aren't relative to any other element and don't depend on any other unit or variation. They will always be the defined size.
+```css
+.heading {
+    font-size: 22px;
+}
+```
+In this case, our `.heading` will have a font-size of 22px regardless of the screen size, parent element, or document, since it's using an **absolute** unit.
+> Most modern browsers have 16px as the default font-size.
+> 
+## REM
+These are units relative to the root element of the html document, which is the `<html>` tag.
+Knowing that our root element's default value is 16px (if not altered), we can work with the idea that 1rem = 16px.
+Our `.heading` would look like this:
+```css
+.heading {
+    font-size: 2rem; /* 2 * 16px = 32px */
+}
+/* Another value */
+.heading {
+    font-size: 1.5rem; /* 1.5 * 16px = 24px */
+}
+```
+To avoid having to calculate REM values all the time, there's a little hack that makes using it much easier.
+```css
+html {
+    font-size: 62.5%; /* Changes default from 16px to 10px */
+}
+body {
+    font-size: 1.4rem; /* 14px */
+}
+h1 {
+    font-size: 1.6rem; /* 16px */
+}
+```
+There are tools to help with conversion, like this <a target="_blank" href="https://nekocalc.com/px-to-rem-converter">calculator</a> and even a <a target="_blank" href="https://marketplace.visualstudio.com/items?itemName=sainoba.px-to-rem">VS Code extension</a>.
+
+## EM
+Also a relative unit, but in this case, relative to the **parent** element and not the root element.
+```html
+<article>
+    <h1>Heading</h1> <!-- 2 * 28px = 56px -->
+    <section>
+        <h1>Subheading</h1> <!-- 2 * 22px = 44px -->
+    </section>
+</article>
+<style>
+/* Parent elements */
+article {
+    font-size: 28px;
+}
+section {
+    font-size: 22px;
+}
+/* Child element */
+h1 {
+    font-size: 2em;
+}
+</style>
+```
+If we had more elements grouped one inside another, the child element follows the parent of the level above. This gets more confusing, which is why **em** is easier to get lost with.
+
+## Accessibility
+If the user zooms in the browser, elements with REM and PX will remain the same size.
+However, if the user changes their browser settings and changes the default size from 16px to any other value, elements defined with REM start with the user-defined default and will change proportionally according to their zoom, while elements with px will only change when they zoom.
+
+## Conclusion
+Use REM for scalable interfaces. REM and PX scale zoom the same way, but REM is based on user preferences first. Use EM only when an element should scale according to its parent. REM is **accessibility**. **✨**

@@ -26,8 +26,8 @@ const image = `/og/${note.slug}.png`;
 
         <article class="content-article">
             <header class="article-header">
-                <h2>{note.data.title}</h2>
                 <FormattedDate date={note.data.publishDate} />
+                <h1>{note.data.title}</h1>
             </header>
             
             <div class="note-content">
@@ -37,7 +37,28 @@ const image = `/og/${note.slug}.png`;
     </main>
 </Layout>
 <style>
-    .article-header h2 {
-        font-size: 1.2rem;
+    .article-header h1 {
+        font-size: 1.6rem;
+        font-weight: 700;
+    }
+
+    .note-content {
+        h2 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            margin-top: 2rem;
+        }
+
+        h3 {
+            font-size: 1.2rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+
+        h4 {
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
     }
 </style>

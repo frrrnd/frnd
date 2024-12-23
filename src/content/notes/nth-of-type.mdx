@@ -1,0 +1,56 @@
+---
+title: "NTH of type"
+publishDate: "2022-11-13 03:00"
+description: pseudo-classes to rescue
+draft: false
+tags: ['css', 'nth of type', 'pseudo-class']
+image: ""
+---
+
+`nth-of-type` is a pseudo-class that selects elements based on their position among *siblings* of the same type (tag name).  
+
+### Syntax  
+
+`:nth-of-type(<an + b> | even | odd)`  
+
+### Example  
+
+```html
+<div>
+    <div>This div doesn't count.</div>
+    <p>First paragraph.</p>
+    <p class="color">Second paragraph.</p>
+    <div>This one doesn't count either.</div>
+    <p class="color">Third paragraph.</p>
+    <p>Last paragraph.</p>
+</div>
+```  
+
+```css
+/* Odd paragraphs */
+
+p:nth-of-type(2n+1) {
+    color: red;
+}
+
+/* Even paragraphs */
+
+p:nth-of-type(2n) {
+    color: blue;
+}
+
+/* First paragraph */
+
+p:nth-of-type(1) { 
+    font-weight: bold;
+}
+
+/* Selects the third paragraph matching both 2n+1 and the 'color' class.  
+The second paragraph has the 'color' class but doesn't match 2n+1. */
+
+p.color:nth-of-type(2n+1) {
+    text-decoration: underline;
+}
+```  
+
+Try it out on [CodePen.](https://codepen.io/frrrnd/pen/MWXoazw)  

@@ -1,0 +1,69 @@
+---
+title: "Backdrop Filter Blur vs Filter Blur"
+publishDate: "2023-12-19 03:00"
+description: How this properties works
+draft: false
+tags: ['css', 'blur', 'figma']
+image: ""
+---
+import ImageZoom from '../../components/ImageZoom/ImageZoom.jsx';
+
+
+<figure>
+    <ImageZoom client:load src="/uploads/images/notes/blur.webp" alt="Blur" />
+</figure>
+
+Just like in Figma, in CSS we have two properties to apply *blur* to elements.
+Although they produce the same effect, they differ in their applications.
+
+## backdrop-filter: blur
+
+This property adds blur to the **background** of an element. The elements inside the parent element are not affected by the changes. The element needs to be transparent or partially transparent for the effect to work.
+
+CSS syntax:
+
+```css
+.element {
+	backdrop-filter: blur(10px);
+}
+```
+
+In figma: 
+
+```html
+Effects > Background blur
+```
+
+## filter: blur
+
+The `filter: blur` applies the effect to the entire element, including its child elements. It is commonly used for images and SVGs with the `<feGaussianBlur>` tag.
+
+CSS syntax:
+
+```css
+img {
+	filter: blur(10px);
+	filter: url(#blur); /* embedded SVG */
+	filter: url(folder/file.svg#blur); /* svg externo */
+}
+```
+
+Em svg:
+
+```html
+<svg role="none">
+	<filter id="blur">
+		<feGaussianBlur stdDeviation="10" edgeMode="duplicate" />
+	</filter>
+</svg>
+```
+
+In figma:
+
+```html
+Effects > Layer Blur
+```
+
+These effects can cause confusion during the hand-off from Figma to code. Using them correctly ensures there are no differences in the final element.
+
+_This note was originally published in Portuguese._
