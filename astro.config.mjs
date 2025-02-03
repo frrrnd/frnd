@@ -44,8 +44,8 @@ export default defineConfig({
       }
     }
   },
-  adapter: netlify(),
-  output: 'server',
+  // adapter: netlify(),
+  output: 'static',
   build: {
     format: 'directory'
   }
