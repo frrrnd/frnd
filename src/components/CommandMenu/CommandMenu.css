@@ -1,9 +1,13 @@
 .command-wrapper {
     z-index: 1;
+    width: 100%;
+    height: 100%;
 }
 
 .command-overlay {
     z-index: 90;
+    width: 100%;
+    height: 100%;
 }
 
 .command-menu {
@@ -12,6 +16,12 @@
     padding: calc(var(--spacing-1) / 4);
     border-radius: var(--radius-lg);
     z-index: 999;
+    position: fixed;
+    top: 10vh;
+    max-width: 36rem;
+    overflow: hidden;
+    width: 100%; /* Adiciona largura responsiva */
+    margin: 0 auto;
 
     .item-selected {
         background-color: rgba(var(--body-text-color), .05);
@@ -50,6 +60,9 @@
     border-radius: var(--radius-sm);
     padding: calc(var(--spacing-1) / 2);
     backdrop-filter: blur(20px);
+    position: fixed;
+    top: var(--spacing-2);
+    left: var(--spacing-2);
 }
 
 .command-inner {
@@ -116,5 +129,30 @@
     .main {
         z-index: -1;
         position: relative;
+    }
+}
+
+@media screen and (max-width: 756px) {
+    .open-command {
+        top: var(--spacing-1);
+        left: var(--spacing-1);
+    }
+
+    .float-navigation {
+        position: fixed;
+        top: var(--spacing-2);
+    }
+
+    .command-footer {
+        display: none;
+    }
+
+    .command-menu {
+        position: inherit;
+        top: 0;
+    }
+
+    .command-wrapper {
+        padding: 0 var(--spacing-2);
     }
 }

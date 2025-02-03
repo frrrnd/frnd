@@ -197,7 +197,7 @@ const CommandMenu = () => {
         onClick={() => setOpen(false)}
       />
       
-      <div className="fixed inset-x-0 top-[10vh] mx-auto max-w-xl command-menu shadow-lg overflow-hidden">
+      <div className="inset-x-0 command-menu shadow-lg overflow-hidden">
         
         <div className="flex flex-col max-h-[80vh] command-inner">
           <div className="flex items-center justify-between p-4 command-header">
