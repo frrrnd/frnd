@@ -7,7 +7,7 @@ import { getCollection } from 'astro:content';
 import { SiteConfig } from '@utils/SiteConfig';
 import DateN from '@partials/Date.astro';
 import Grid from '@components/utils/Grid.astro';
-// import SpotifyNowPlaying from '@components/NowPlaying/NowPlaying.jsx';
+import SpotifyNowPlaying from '@components/NowPlaying/NowPlaying.jsx';
 import WorkPreview from '@components/WorkPreview/WorkPreview.tsx';
 
 import books from '../data/books.json';
@@ -275,7 +275,7 @@ const renderedNotes = await Promise.all(
 			</Grid>
 		</section>
 
-		<!-- <section class="index__section wrap">
+		<section class="index__section wrap">
 			<Grid isContainer>
 				<Grid sm="12" md="12">
 					<h2>Listening</h2>
@@ -285,9 +285,7 @@ const renderedNotes = await Promise.all(
 					<SpotifyNowPlaying client:load />
 				</Grid>
 			</Grid>
-		</section> -->
-
-		
+		</section>
 
 	</main>
 
