@@ -1,64 +1,61 @@
 ---
-import Layout from '../../layouts/Layout.astro';
 import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
 import FormattedDate from '../../partials/formattedDate.astro';
 import { SiteConfig } from '../../utils/SiteConfig';
+import Header from '../../partials/Header.astro';
+import Breadcrumbs from '@partials/Breadcrumbs.astro';
+// import Share from '../../components/Share/Share.jsx';
+
+export const prerender = true;
 
 export async function getStaticPaths() {
     const notes = await getCollection('notes');
 
     return notes.map((note) => ({
         params: { slug: note.slug },
-        props: note,
+        props: { note },
     }));
 }
 
-const note = Astro.props;
-const { Content } = await note.render();
+const { note } = Astro.props;
 
-const image = `/og/${note.slug}.png`;
+let Content = null;
+let frontmatter = {};
+
+if (note) {
+    frontmatter = note.data || {};
+    if (note.render) {
+        const rendered = await note.render();
+        Content = rendered.Content || null;
+    }
+}
 ---
 
-<Layout props={{ title: `${note.data.title} — ${SiteConfig.title}`, description: SiteConfig.description, image: image }}>
-    <main class="main wrap-narrow">
+<Layout props={{ 
+    title: `${frontmatter.title} — ${SiteConfig.title}`, 
+    description: SiteConfig.description, 
+    image: SiteConfig.image }}>
 
-        <a href="/notes" class="back-button">Back to Notes</a>
+    <Header />
+    
+    <main class="main wrap">
+        <article class="content-article wrap">
+            <header class="page__heading">
+                <div class="heading__left">
+                    <h1>{note.data.title}</h1>
+                    <FormattedDate date={note.data.publishDate} />
+                </div>
 
-        <article class="content-article">
-            <header class="article-header">
-                <FormattedDate date={note.data.publishDate} />
-                <h1>{note.data.title}</h1>
+                <!-- <div class="heading__right">
+                    <Share slug={`https://frnd.design/notes/${note.slug}`} client:load />
+                </div> -->
             </header>
-            
-            <div class="note-content">
+        
+            <section class="note__content">
                 <Content />
-            </div>
+            </section>
         </article>
+        <Breadcrumbs />
     </main>
 </Layout>
-<style>
-    .article-header h1 {
-        font-size: 1.6rem;
-        font-weight: 700;
-    }
-
-    .note-content {
-        h2 {
-            font-size: 1.4rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            margin-top: 2rem;
-        }
-
-        h3 {
-            font-size: 1.2rem;
-            font-weight: 500;
-            margin-bottom: 1rem;
-        }
-
-        h4 {
-            font-weight: 500;
-            margin-bottom: 1rem;
-        }
-    }
-</style>

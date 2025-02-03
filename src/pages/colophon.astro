@@ -1,28 +1,37 @@
 ---
-import Layout from '../layouts/Layout.astro'
-import ImageZoom from '../components/ImageZoom/ImageZoom.jsx';
-import { SiteConfig } from "../utils/SiteConfig";
+import Layout from '@layouts/Layout.astro'
+import { SiteConfig } from '@utils/SiteConfig';
+import Header from '@partials/Header.astro';
+import PageHeading from '@partials/PageHeading.astro';
+import Grid from '@components/utils/Grid.astro';
 ---
 <Layout props={{ title: `Colophon — ${SiteConfig.title}`, description: SiteConfig.description, image: SiteConfig.image }}>
-    <main class="main wrap-narrow">
 
-        <a href="/" class="back-button">Back to Home</a>
+    <Header />
+
+    <main class="main wrap-wider">
+        <PageHeading title="Colophon" description="About this website." />
         
-        <section class="content-section">
-            <article class="content-article">
+        <section class="index__section">
+            <Grid isContainer>
+                <Grid sm="12" md="4"></Grid>
+                <Grid sm="12" md="8">
+                    <article class="content-article">
 
-                <p>This website is written with good old html and css on top of <a href="https://astro.build/" target="_blank">Astro</a>, build as static website and deployed with <a target="_blank"  href="https://netlify.app">Netlify</a>.</p>
-
-                <p>The content (notes, labs and works) are written in markdown with <a href="https://mdxjs.com/" target="_blank">MDX</a>.</p>
-                
-                <p>Some animations with <a href="https://react.dev/" target="_blank">React</a> and <a href="https://www.framer.com/motion/" target="_blank">Framer Motion</a> or in pure css.</p>
-
-                <p><a href="https://rsms.me/inter/" target="_blank">Inter</a> is the main typeface. </p>
-
-                <p>A lot of coffee was consumed during the whole process. A huge thanks to my bros <a href="https://eryc.cc">Eryc</a> and <a href="https://www.weliton.me/">Welliton</a> with feedbacks. 🖤</p>
-
-                <ImageZoom client:load src="/nicki.jpg" alt="Nicki" />
-            </article>
+                        <p>This website is written with good old html and css on top of <a href="https://astro.build/" target="_blank">Astro</a>, build as static website and deployed with <a target="_blank"  href="https://netlify.app">Netlify</a>.</p>
+        
+                        <p>The content (notes, labs and works) are written in markdown with <a href="https://mdxjs.com/" target="_blank">MDX</a>.</p>
+                        
+                        <p>Some animations with <a href="https://react.dev/" target="_blank">React</a> and <a href="https://www.framer.com/motion/" target="_blank">Framer Motion</a> or in pure css.</p>
+        
+                        <p><a href="https://rsms.me/inter/" target="_blank">Inter</a> is the main typeface and <a href="https://fonts.google.com/specimen/Young+Serif" target="_blank">Young Serif</a> for titles. </p>
+        
+                        <p>A lot of coffee was consumed during the whole process. A huge thanks to my bros <a href="https://eryc.cc">Eryc</a> and <a href="https://www.weliton.me/">Welliton</a> with feedbacks. 🖤</p>
+        
+                        <img src="/nicki.jpg" alt="Nicki" />
+                    </article>
+                </Grid>
+            </Grid>
         </section>
 
     </main>

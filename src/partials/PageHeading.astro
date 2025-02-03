@@ -1,0 +1,21 @@
+---
+import Grid from '@components/utils/Grid.astro';
+
+const { title, description } = Astro.props;
+
+---
+
+<section class="index__section">
+    <article>
+      <Grid isContainer class="page__heading">
+        <Grid sm="12" md="4">
+          <h2>{title}</h2>
+        </Grid>
+
+        <Grid sm="12" md="8">
+          <p>{description}</p>
+        </Grid>
+      </Grid>
+
+    </article>
+  </section>

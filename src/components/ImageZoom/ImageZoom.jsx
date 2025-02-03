@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { motion, useMotionValue, useSpring, AnimatePresence } from 'framer-motion';
 import './ImageZoom.css';
 
-const ImageZoom = ({ src, alt }) => {
+const ImageZoom = ({ src, alt, caption }) => {
   const [mounted, setMounted] = useState(false);
   const [isZoomed, setIsZoomed] = useState(false);
   const [isAnimating, setIsAnimating] = useState(false);
@@ -94,7 +94,8 @@ const ImageZoom = ({ src, alt }) => {
   };
 
   if (!mounted) {
-    return <img src={src} alt={alt} className="max-w-full h-auto cursor-zoom-in" ref={imageRef} />;
+    return 
+      <img src={src} alt={alt} className="max-w-full h-auto cursor-zoom-in" ref={imageRef} />;
   }
 
   return (
@@ -129,6 +130,11 @@ const ImageZoom = ({ src, alt }) => {
           alt={alt}
           className={`max-w-full my-4 border-media h-auto ${isZoomed ? 'cursor-zoom-out' : 'cursor-zoom-in'}`}
         />
+        {caption && (
+          <motion.figcaption className="text-sm text-gray-600 mt-2 text-center">
+            {caption}
+          </motion.figcaption>
+        )}
       </motion.figure>
     </>
   );

@@ -1,0 +1,228 @@
+.see-more {
+    color: var(--tertiary-color);
+    display: flex;
+    width: 100%;
+    justify-content: flex-end;
+    font-size: var(--font-size-small);
+    margin-top: var(--spacing-2);
+
+    a {
+        transition: var(--transition-default);
+
+        &:hover {
+            color: rgb(var(--title-color));
+            transition: var(--transition-default);
+        }
+    }
+
+
+    i {
+        font-style: normal;
+        display: inline-block;
+        margin-left: 5px;
+        transition: .4s;
+    }
+}
+
+.see-more a:hover i {
+    transform: translateX(5px);
+    transition: .4s;
+}
+
+.index__section {
+    margin-bottom: var(--spacing-4);
+    padding-top: var(--spacing-1);
+
+    &:not(:first-child) {
+        /* border-top: 1px solid rgb(var(--body-text-color), .05); */
+    }
+    
+    &:first-child {
+        margin-bottom: var(--spacing-1);
+    }
+
+    h1 {
+        font-weight: 400;
+        font-family: var(--title-font);
+        font-size: var(--font-size-h3);
+        color: rgb(var(--title-color));
+        /* line-height: 1.2; */
+
+        svg {
+            margin-bottom: var(--spacing-2);
+
+            path {
+                fill: rgb(var(--accent-color));
+            }
+        }
+        
+
+        a {
+            text-decoration: none;
+        }
+    }
+
+    h2 {
+        color: var(--tertiary-color);
+        font-family: var(--title-font);
+        text-transform: uppercase;
+        font-weight: 500;
+        letter-spacing: .5px;
+        font-size: var(--font-size-xsmall);
+    }
+}
+
+.works__list {
+
+    article {
+        margin-bottom: var(--spacing-1);
+
+        a {
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        h3, span {
+            width: max-content;
+            flex-shrink: 0;
+        }
+
+        hr {
+			width: 100%;
+			border-top: 1.5px dotted rgb(var(--body-text-color), .2);
+			margin: 0 20px;
+		}
+    }
+}
+
+.labs__list {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: var(--spacing-1);
+    margin-bottom: var(--spacing-1);
+
+    article {
+        transition: .4s;
+
+        &:hover {
+            opacity: .8;
+            transition: .4s;
+        }
+
+        &:nth-of-type(1) {
+            width: 100%;
+        }
+
+        &:nth-of-type(2),
+        &:nth-of-type(3) {
+            flex: 1;
+        }
+    }
+
+    figure {
+        img {
+            border-radius: var(--radius-md);
+            border: 1px solid rgb(var(--body-text-color), .05);
+        }
+    }
+}
+
+.reading__list {
+    .book {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+
+        figure {
+            max-width: 60px;
+            margin-right: var(--spacing-1);
+        }
+
+        h3 {
+            margin-top: 0;
+            font-weight: 500;
+        }
+
+        p {
+            color: var(--tertiary-color);
+        }
+    }
+}
+
+/* Spotify */
+
+.spotify-player {
+    h3 {
+        margin-top: 0;
+        font-weight: 500;
+    }
+
+    p {
+        color: var(--tertiary-color);
+    }
+}
+
+.playing-bars {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    width: 13px;
+    height: 13px;
+    margin-right: 4px;
+    
+    span {
+        width: 3px;
+        height: 100%;
+        background-color: #1DB954;
+        border-radius: 3px;
+        transform-origin: bottom;
+        content: '';    
+    }
+
+    
+
+    span {
+        &:nth-of-type(2) {
+          animation-delay: -2.2s; /* Start at the end of animation */
+        }
+      
+        &:nth-of-type(3) {
+          animation-delay: -3.7s; /* Start mid-way of return of animation */
+        }
+      }
+}
+
+.stoped span {
+    height: 10%;
+    transform: translateY(10px);
+}
+
+.playing span {
+    animation: bounce 2.2s ease infinite alternate;
+}
+
+@keyframes bounce {
+    10% {
+      transform: scaleY(0.3); /* start by scaling to 30% */
+    }
+  
+    30% {
+      transform: scaleY(1); /* scale up to 100% */
+    }
+  
+    60% {
+      transform: scaleY(0.5); /* scale down to 50% */
+    }
+  
+    80% {
+      transform: scaleY(0.75); /* scale up to 75% */
+    }
+  
+    100% {
+      transform: scaleY(0.6); /* scale down to 60% */
+    }
+  }

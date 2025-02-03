@@ -1,0 +1,14 @@
+a {
+    transition: var(--transition-default);
+
+    &:hover {
+        color: rgb(var(--title-color));
+        transition: var(--transition-default);
+    }
+}
+
+.motion-image {
+    width: 236px;
+    height: 133px;
+    border-radius: 3px;
+}

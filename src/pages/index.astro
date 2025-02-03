@@ -1,212 +1,301 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import SocialNav from '../components/SocialNav.astro';
-import Header from '../partials/Header.astro';
-import Footer from '../partials/Footer.astro';
-// import LinkWithPreview from '../components/LinkImage/LinkImage.tsx';
+import Layout from '@layouts/Layout.astro';
+import SocialNav from '@components/SocialNav.astro';
+import Header from '@partials/Header.astro';
+import Footer from '@partials/Footer.astro';
 import { getCollection } from 'astro:content';
-import { SiteConfig } from '../utils/SiteConfig';
-import PortfolioCard from '../components/PortfolioCard/PortfolioCard';
+import { SiteConfig } from '@utils/SiteConfig';
+import DateN from '@partials/Date.astro';
+import Grid from '@components/utils/Grid.astro';
+import SpotifyNowPlaying from '@components/NowPlaying/NowPlaying.jsx';
+import WorkPreview from '@components/WorkPreview/WorkPreview.tsx';
 
-const works = await getCollection('works');
-works.sort((a,b) => Date.parse(a.data.order) - Date.parse(b.data.order));
+import books from '../data/books.json';
+const readingBooks = books.filter(book => book.status === "reading");
+
+const booksId = readingBooks.map((book, index) => ({
+    id: index + 1,
+    ...book
+}));
+
+const groupedData = booksId.reduce((acc, item) => {
+    if (!acc[item.yearRead]) {
+        acc[item.yearRead] = [];
+    }
+    acc[item.yearRead].push(item);
+    return acc;
+}, {});
+
+const byYear = Object.keys(groupedData).sort((a, b) => b - a);
+
+const labs = await getCollection('labs');
+labs.sort((a,b) => Date.parse(a.data.order) - Date.parse(b.data.order));
+
+const latestLabs = labs.slice(0,4);
+
+const renderedLabs = await Promise.all(
+	latestLabs.map(async (note) => {
+		const { Content } = await note.render();
+		return { ...note, Content };
+	})
+);
+
+const notes = await getCollection('notes');
+notes.sort((a,b) => Date.parse(b.data.publishDate) - Date.parse(a.data.publishDate));
+
+const latestNotes = notes.slice(0,5);
+
+const renderedNotes = await Promise.all(
+	latestNotes.map(async (note) => {
+		const { Content } = await note.render();
+		return { ...note, Content };
+	})
+);
 ---
 
 <Layout props={{ title: SiteConfig.title, description: SiteConfig.description, image: SiteConfig.image }}>
+	
 	<Header />
 	
-	<main class="main" data-fade="0.4">
+	<main class="main">
+		<section class="index__section wrap">
+			<Grid isContainer>
+				<Grid sm="12" md="12">
+					<h1>
+						<svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<path fill-rule="evenodd" clip-rule="evenodd" d="M24.75 0.935547H0.75L11.8411 11.9741L0.750012 23.0651H8.1792L19.244 11.9741L13.6325 6.49415H19.244L24.75 0.935547Z" />
+						</svg>
 
-		<section class="content-section intro-section wrap">
-			<article class="content-article inner-wrap">
-				<p>Based in Florianópolis, Brazil. Currently working as a freelancer ux/ui designer and with webflow development. I enjoy think with code, sipping coffee, listen to fuzzy music and longboarding.</p>
-
-				<p>CSS lover. Icon designer enthusiast. Driven by curiosity.</p>
-			</article>
+						<a href="/">Fernando Soares, <br> user interface designer.</a>
+					</h1>
+				</Grid>
+			</Grid>
 		</section>
 
-		<section class="content-section home-works">
-			<ul class="works-items">
-				{works.map((item, index) => (
-					<li client:load key={index} src={item.data.cover.src} title={item.data.title} slug={item.slug} description={item.data.description}>
-						<a href={`/works/${item.slug}`} title={item.data.title}>
-							<figure>
-								<img src={item.data.cover.src} alt={item.data.title} />
-							</figure>
+		<section class="index__section wrap">
+			<Grid isContainer>
+				<Grid sm="12" md="12">
+					<article class="content-article">
+						<p>Based in Florianópolis, Brazil. Currently working as a freelancer ux/ui designer and with webflow development. I enjoy think with code, sipping coffee, listen to fuzzy music and longboarding.</p>
 
-							<h3>{item.data.title}</h3>
-							<h4>{item.data.type}</h4>
-						</a>
-					</li>
-                ))}
-			</ul>
+						<p>CSS lover. Icon designer enthusiast. Driven by curiosity.</p>
+					</article>
+				</Grid>
+			</Grid>
 		</section>
 
-		<section class="content-section explore-section wrap">
-			<article class="content-article">
-				<h2>Explore</h2>
-				<ul class="home-links">
-					<li>
-						<a href="/about">
-							About
-							<span>Who is Fernando?</span>
-						</a>
-					</li>
+		<section class="index__section wrap">
+			<Grid isContainer>
+				<Grid sm="12" md="12">
+					<h2>Experiments</h2>
+				</Grid>
 
-					<li>
-						<a href="/labs">
-							Labs
-							<span>Prototypes and other design stuff</span>
-						</a>
-					</li>
+				<Grid sm="12" md="12">
+					<section class="labs__list">
+						<article>
+							<a href="/labs/arc-icons" title="Arc Icons">
+								<figure>
+									<img src="/uploads/images/home/arc-icons--home.png" alt="Arc Icons" />
+								</figure>
+							</a>
+						</article>
+		
+						<article>
+							<a href="/labs/dynamic-island" title="Dynamic Island">
+								<figure>
+									<img src="/uploads/images/portfolio/labs/dynamic-island.png" alt="Dynamic Island" />
+								</figure>
+							</a>
+						</article>
+		
+		
+						<article>
+							<a href="/works/trackr" title="Trackr">
+								<figure>
+									<img src="/uploads/images/home/trackr--home.png" alt="Trackr" />
+								</figure>
+							</a>
+						</article>
+					</section>
+				</Grid>
+			</Grid>
 
-					<li>
-						<a href="/colophon">
-							Colophon
-							<span>About this website</span>
-						</a>
-					</li>
-
-					<li>
-						<a href="/notes">
-							Notes
-							<span>Some thoughts</span>
-						</a>
-					</li>
-
-					<li>
-						<a href="/readings">
-							Readings
-							<span>What I'm reading</span>
-						</a>
-					</li>
-				</ul>
-			</article>
+			<div class="wrap">
+				<div class="see-more">
+					<a href="/labs" title="View experiments">View experiments <i>⇢</i></a>
+				</div>
+			</div>
 		</section>
 
-		<section class="content-section wrap">
-			<article class="content-article">
-				<SocialNav />
-			</article>
+		<section class="index__section wrap">
+			<Grid isContainer>
+				<Grid sm="12" md="12">
+					<h2>Recent works</h2>
+				</Grid>
+			
+
+			<Grid sm="12" md="12">
+				<section class="works__list">
+					<article>
+						<WorkPreview client:load  
+							href="/works/ben-soleimani" 
+							image="/uploads/images/portfolio/ben/ben-03.webp"
+							>
+							<h3>Ben Soleimani</h3>
+							<hr />
+							<span class="work--type">Ecommerce</span>
+						</WorkPreview>
+					</article>
+
+					<article>
+						<WorkPreview client:load  
+							href="/works/cloudbox" 
+							image="/uploads/images/portfolio/cloudbox/cloudbox-01.webp"
+							>
+							<h3>CloudBox</h3>
+							<hr />
+							<span class="work--type">Asset Manager</span>
+						</WorkPreview>
+					</article>
+
+					<article>
+						<WorkPreview client:load  
+							href="/works/logcms" 
+							image="/uploads/images/portfolio/logcms/logcms-01.webp"
+							>
+							<h3>LogCMS</h3>
+							<hr />
+							<span class="work--type">Content Manager</span>
+						</WorkPreview>
+					</article>
+
+					<article>
+						<WorkPreview client:load  
+							href="/works/bitpouch" 
+							image="/uploads/images/portfolio/bitpouch/bitpouch-03.webp"
+							>
+							<h3>BitPouch</h3>
+							<hr />
+							<span class="work--type">App</span>
+						</WorkPreview>
+					</article>
+
+					<article>
+						<WorkPreview client:load  
+							href="/works/viewport" 
+							image="/uploads/images/portfolio/viewport/viewport-01.webp"
+							>
+							<h3>Viewport UI</h3>
+							<hr />
+							<span class="work--type">Website</span>
+						</WorkPreview>
+					</article>
+				</section>
+			</Grid>
+		</Grid>
+			
+
+			<div class="wrap">
+				<div class="see-more">
+					<a href="/works" title="View experiments">View works <i>⇢</i></a>
+				</div>
+			</div>
 		</section>
 
-		<Footer />
+		<section class="index__section wrap">
+			<Grid isContainer>
+				<Grid sm="12" md="12">
+					<h2>Recent notes</h2>
+				</Grid>
 
-	</main>
-</Layout>
-<style>
-	.intro-section {
-		padding: 12rem 0;
-	}
+				<Grid sm="12" md="12">
+					<section class="notes__list">
+						{renderedNotes.map((note) => (
+						<article>
+							<a href={`/notes/${note.slug}`} title={`View ${note.data.title}`}>
+								<h3>{note.data.title}</h3>
+								<hr />
+								<DateN date={note.data.publishDate} />
+							</a>
+						</article>
+						))}
 
-	@media screen and (max-width: 475px) {
-		.intro-section {
-			padding: 4rem 0;
-		}
-	}
+						
+					<div class="see-more">
+						<a href="/notes" title="See all notes">View all notes <i>⇢</i></a>
+					</div>
 
-	.home-works {
-		max-width: max-content;
-		margin-bottom: 8rem;
-		overflow-x: scroll;
-  		padding:0 10vw;
-		scrollbar-width: none;
-		-ms-overflow-style: none;
-		-webkit-overflow-scrolling: touch;
+					</section>
+				</Grid>
+			</Grid>
+		</section>
 
-		h3 {
-			font-weight: 500;
-		}
+		<!-- <section class="index__section wrap">
+			<Grid isContainer>
+				<Grid sm="12" md="12">
+					<h2>Currently reading</h2>
+				</Grid>
+
+				<Grid sm="12" md="12">
+					<section class="reading__list">
+
+					{byYear.map(year => (
+						<section>
+							{groupedData[year].map(item => (
+								<article class="book" key={item.id}>
+									<figure>
+										<img src={item.coverUrl} alt={item.title} loading="lazy" />
+									</figure>
+									<div class="book__details">
+										<h3>{item.title}</h3>
+										<p>{item.author}</p>
+									</div>
+								</article>
+							))}
+						</section>
+					))}
+
+					<div class="see-more">
+						<a href="/readings" title="See all notes">View all readings <i>⇢</i></a>
+					</div>
+					</section>
+				</Grid>
+			</Grid>
+		</section> -->
+
+		<section class="index__section wrap">
+			<Grid isContainer>
+				<Grid sm="12" md="12">
+					<h2>Connect</h2>
+				</Grid>
+
+				<Grid sm="12" md="12">
+					<SocialNav />
+				</Grid>
+			</Grid>
+		</section>
+
+		<section class="index__section wrap">
+			<Grid isContainer>
+				<Grid sm="12" md="12">
+					<h2>Listening</h2>
+				</Grid>
+
+				<Grid sm="12" md="12">
+					<SpotifyNowPlaying client:load />
+				</Grid>
+			</Grid>
+		</section>
+
 		
 
-		ul {
-			list-style-type: none;
-			width: max-content;
-			display: flex;
-			flex-direction: row;
-			gap: 24px;
-			position: sticky;
-			top: 0;
-		}
+	</main>
 
-		li {
-			max-width: 400px;
-			width: 100%;
-
-			figure {
-				margin-bottom: 1rem;
-			}
-
-			img {
-				border-radius: var(--border-default-radius);
-			}
-
-			h3 {
-				color: var(--type-title-color);
-			}
-
-			h4 {
-				color: var(--type-text-color);
-			}
-		}
-	}
-
-	@media screen and (max-width: 475px) {
-		.home-works {
-			padding: 0 1.5rem;
-
-			li {
-				max-width: 260px;
-			}
-		}
-	}
-
-	.explore-section {
-		margin-bottom: 8rem;
-
-		ul {
-			list-style-type: none;
-			padding-left: 0;
-		}
-
-		h2 {}
-
-		.home-links {
-			display: flex;
-			flex-direction: column;
-			gap: 16px;
-
-			li {
-				color: var(--type-title-color);
-				font-weight: 500;
-
-				span {
-					color: var(--type-text-color);
-					font-weight: 400;
-				}
-
-				a {
-					display: flex;
-					flex-direction: column;
-					width: max-content;
-
-					&:hover {
-						transform: translateX(10px);
-					}
-				}
-			}
-		}
-	}
-
-	@media screen and (max-width: 475px) {
-		.explore-section {
-			margin-bottom: 2rem;
-		}
-	}
-</style>
+	<Footer />
+</Layout>
 <script>
 	function initCarousel() {
-		const carousel = document.querySelector('.home-works');
+		const carousel = document.querySelector('.index-works');
 		
 		if (!carousel) return;
 		

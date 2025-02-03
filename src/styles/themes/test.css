@@ -1,0 +1,21 @@
+html.light-theme {
+
+    --general-background-color: #FEE6FF;
+    
+    --typo-title-color: theme(colors.slate.900);
+    --typo-subtitle-color: theme(colors.slate.400);
+    --typo-text-color: #193718;
+    
+    --default-border: theme(colors.slate.100);
+    
+    --link-primary-color: theme(colors.slate.500);
+    --link-primary-color-hover: theme(colors.slate.300);
+
+    --nav-link-hover: theme(colors.slate.50);
+
+    --bloquote-border: theme(colors.slate.100);
+
+    --notes-link-hover: theme(colors.slate.100);
+    --type-mono: theme(colors.slate.500);
+
+}

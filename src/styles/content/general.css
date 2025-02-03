@@ -1,0 +1,20 @@
+.page-heading {
+    width: 100%;
+    padding-bottom: 4rem;
+
+    h2 {
+        font-size: var(--font-size-p);
+        font-weight: 500;
+        font-family: var(--title-font);
+        line-height: 1;
+        color: rgb(var(--title-color));
+        text-transform: uppercase;
+    }
+}
+
+.page__heading {
+    h2 {
+        color: rgb(var(--title-color));
+        font-size: var(--font-size-p);
+    }
+}

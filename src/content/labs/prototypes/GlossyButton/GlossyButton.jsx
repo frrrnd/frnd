@@ -17,7 +17,7 @@ const GlossyButton = () => {
         onMouseMove={handleMouseMove}
         style={{ '--x': buttonPosition.x, '--y': buttonPosition.y }}
       >
-        Button!
+        Button
       </a>
     </div>
   );

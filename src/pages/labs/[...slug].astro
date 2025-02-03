@@ -1,37 +1,61 @@
 ---
-import Layout from '../../layouts/Layout.astro';
 import { getCollection } from 'astro:content';
-import { SiteConfig } from '../../utils/SiteConfig';
+import Layout from '@layouts/Layout.astro';
+import { SiteConfig } from '@utils/SiteConfig';
+import Header from '@partials/Header.astro';
+import Grid from '@components/utils/Grid.astro';
+import Breadcrumbs from '@partials/Breadcrumbs.astro';
+
+export const prerender = true;
 
 export async function getStaticPaths() {
     const labs = await getCollection('labs');
 
-    return labs.map((item) => ({
-        params: { slug: item.slug },
-        props: item,
+    return labs.map((lab) => ({
+        params: { slug: lab.slug },
+        props: { lab },
     }));
 }
 
-const item = Astro.props;
-const { Content } = await item.render();
+const { lab } = Astro.props;
+
+let Content = null;
+let frontmatter = {};
+
+if (lab) {
+    frontmatter = lab.data || {};
+    if (lab.render) {
+        const rendered = await lab.render();
+        Content = rendered.Content || null;
+    }
+}
+
 ---
 
-<Layout props={{ title: `${item.data.title} — ${SiteConfig.title}`, description: SiteConfig.description, image: SiteConfig.image }}>
-    <main class="main wrap-narrow">
+<Layout props={{ title: `${frontmatter.title} — ${SiteConfig.title}`, description: SiteConfig.description, image: SiteConfig.image }}>
+    <Header />
+    
+    <main class="main wrap-wider">
+        <section class="index__section">
+            <article>
+              <Grid isContainer class="page__heading">
+                <Grid sm="12" md="4">
+                  <h2>{frontmatter.title}</h2>
+                </Grid>
         
-        <a href="/labs" class="back-button">Back to Labs</a>
+                <Grid sm="12" md="8">
+                  <p><Fragment set:html={frontmatter.description} /></p>
+                </Grid>
+              </Grid>
+            </article>
+          </section>
 
-        <article class="content-article">
-            <header class="article-header">
-                <h2>{item.data.title}</h2>
-            </header>
-            
-            <Content />
-        </article>
+        <section class="content-article">
+            <div class="note__content">
+                {Content ? <Content /> : <p>Conteúdo não disponível.</p>}
+            </div>
+        </section>
+
+        <Breadcrumbs />
     </main>
 </Layout>
-<style>
-    .article-header h2 {
-        font-size: 1.2rem;
-    }
-</style>

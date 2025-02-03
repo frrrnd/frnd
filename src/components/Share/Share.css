@@ -1,0 +1,13 @@
+.share {
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    color: inherit;
+    text-decoration: none!important;
+    text-underline-offset: 3px;
+    transition: .4s;
+    position: relative;
+    background-color: rgba(var(--body-text-color), 0.1);
+    padding: var(--spacing-0) var(--spacing-1);
+    border-radius: var(--radius-lg);
+}

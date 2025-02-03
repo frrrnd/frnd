@@ -20,11 +20,12 @@ const worksCollection = defineCollection({
         isDraft: z.boolean(),
         description: z.string(),
         tags: z.array(z.string()),
-        type: z.string(z.string()).optional(),
+        year: z.string(),
+        link: z.string().optional(),
+        role: z.string(),
+        type: z.string(),
         publishDate: z.string().or(z.date()).transform((val) => new Date(val)),
-        cover: image().refine((img) => img.width >= 200, {
-            message: "Imagem errada",
-        }),
+        cover: image(),
         order: z.number(),
     })
 });
@@ -36,7 +37,9 @@ const labsCollection = defineCollection({
         isDraft: z.boolean(),
         description: z.string(),
         tags: z.array(z.string()),
-        publishDate: z.string().or(z.date()).transform((val) => new Date(val))
+        type: z.string(z.string()).optional(),
+        publishDate: z.string().or(z.date()).transform((val) => new Date(val)),
+        cover: image(),
     })
 });
 

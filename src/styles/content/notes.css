@@ -1,0 +1,92 @@
+.notes__list {
+
+    article {
+        margin-bottom: var(--spacing-1);
+
+        a {
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            transition: var(--transition-default);
+            
+            &:hover {
+                h3, time {
+                    color: rgb(var(--title-color));
+                    transition: var(--transition-default);
+                }
+            }
+        }
+
+        h3, time {
+            width: max-content;
+            flex-shrink: 0;
+            transition: var(--transition-default);
+        }
+
+        hr {
+			width: 100%;
+			border-top: 1.5px dotted rgb(var(--body-text-color), .2);
+			margin: 0 20px;
+		}
+    }
+}
+
+/* List page */
+.notes__page {
+    h2 {
+        color: rgb(var(--title-color));
+    }
+
+    time, p {
+        transition: var(--transition-default);
+    }
+
+    a {
+        transition: var(--transition-default);
+
+        &:hover {
+            time, p {
+                color: rgb(var(--title-color));
+                transition: var(--transition-default);
+            }
+        }
+    }
+}
+
+/* Single */
+.note__article {
+    .page__heading {
+        border-bottom: 1px solid rgb(var(--body-text-color), .05);
+        padding-bottom: var(--spacing-1);
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    h1 {
+        font-family: var(--title-font);
+        color: rgb(var(--title-color));
+    }
+}
+
+.note__content {
+    h2, h3, h4, h5 {
+        font-weight: 500;
+        color: rgb(var(--title-color));
+        margin:var(--spacing-2) 0 var(--spacing-1);
+    }
+
+    img {
+        margin-bottom: var(--spacing-2);
+    }
+
+    .component-canvas {
+        width: 100%;
+        border-radius: var(--radius-sm);
+        background-color: rgb(var(--command-menu-inner-bg));
+        margin-bottom: var(--spacing-2);
+    }
+}

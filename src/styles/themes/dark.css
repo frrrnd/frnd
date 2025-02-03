@@ -1,0 +1,20 @@
+html.dark-theme:root {
+    --black: 9, 9, 11;
+    --white: 255, 255, 255;
+    --gray: 175, 175, 175;
+
+    --black-shade-1: 22, 22, 22;
+    --black-shade-2: 26, 26, 26;
+
+    --violet: 96, 88, 233;
+
+     /* UI Colors */
+
+     --primary-color: var(--black);
+     --secondary-color: var(--gray);
+     --title-color: var(--white);
+     --tertiary-color: rgba(var(--secondary-color), .5);
+     --accent-color: var(--violet);
+     --command-menu-bg: var(--black-shade-1);
+     --command-menu-inner-bg: var(--black-shade-2);
+}

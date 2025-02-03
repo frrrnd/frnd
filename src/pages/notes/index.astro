@@ -1,8 +1,11 @@
 ---
-import Layout from '../../layouts/Layout.astro';
+import Layout from '@layouts/Layout.astro';
 import { getCollection } from 'astro:content';
-import FormattedDate from '../../partials/formattedDate.astro';
-import { SiteConfig } from "../../utils/SiteConfig";
+import DateN from '@partials/Date.astro';
+import { SiteConfig } from "@utils/SiteConfig";
+import Header from '@partials/Header.astro';
+import Grid from '@components/utils/Grid.astro';
+import PageHeading from '@partials/PageHeading.astro';
 
 const notes = await getCollection('notes');
 
@@ -17,67 +20,29 @@ const renderedNotes = await Promise.all(
 
 ---
 <Layout props={{ title: `Notes — ${SiteConfig.title}`, description: SiteConfig.description, image: SiteConfig.image }}>
-	<main class="main wrap-narrow">
+	
+	<Header />
+	
+	<main class="main wrap-wider">
+		<PageHeading title="Notes" description="A collection of thoughts & ideas." />
 
-		<a href="/" class="back-button">Back to Home</a>
-
-		<section class="content-section notes-list">
+		<section class="notes__page">
 		{renderedNotes.map((note) => (
 			<article class="content-article">
-				<header class="article-header">
-					<a href={`/notes/${note.slug}`} title={`View ${note.data.title}`}>
-						<h2>{note.data.title}</h2>
-						<hr/>
-						<FormattedDate date={note.data.publishDate} />
-						{/* <p>{note.data.description}</p> */}
-					</a>
-				</header>
+				<a href={`/notes/${note.slug}`} title={`View ${note.data.title}`}>
+					<Grid isContainer>
+						<Grid sm="12" md="4">
+							<DateN date={note.data.publishDate} />
+						</Grid>
 
-				{/* <note.Content /> */}
-
+						<Grid sm="12" md="8">
+							<h2>{note.data.title}</h2>
+							<p>{note.data.description}</p>
+						</Grid>
+					</Grid>
+				</a>
 			</article>
 		))}
 		</section>
 	</main>
 </Layout>
-<style>
-	.notes-list {
-		padding-bottom: 4rem;
-
-		.article-header a {
-			width: 100%;
-			display: flex;
-			flex-direction: row;
-			justify-content: space-between;
-			align-items: center;
-			transition: .3s;
-
-			&:hover {
-				opacity: .7;
-			}
-		}
-
-		.article-header h2 {
-        	font-size: var(--type-default-size);
-			margin-bottom: 0;
-			width: max-content;
-			flex-shrink: 0;
-    	}
-
-		.content-article {
-			margin-bottom: 0;
-			border-radius: 10px;
-			padding-bottom: 1rem;
-		}
-
-		hr {
-			width: 100%;
-			border-top: 1px solid #dddddd;
-			margin: 0 20px;
-		}
-
-		time {
-			flex-shrink: 0;
-		}
-	}
-</style>

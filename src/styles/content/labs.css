@@ -1,0 +1,42 @@
+.labsItem__list {
+    margin-top: var(--spacing-8);
+}
+
+.labsItem {
+    margin-bottom: var(--spacing-4);
+
+    a {
+        position: relative;
+        width: 100%;
+        height: auto;
+        display: block;
+        aspect-ratio: 1 / 1;
+        
+    }
+
+    img {
+        border-radius: var(--radius-sm);
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+        margin-bottom: var(--spacing-2);
+    }
+
+    .labsItem__details {
+       display: flex;
+       flex-direction: row;
+       font-family: var(--title-font);
+       text-transform: uppercase;
+       font-size: var(--font-size-small);
+
+       h2 {
+        font-weight: 600;
+       }
+
+       span {
+        margin-left: var(--spacing-1);
+        opacity: .5;
+       }
+    }
+}

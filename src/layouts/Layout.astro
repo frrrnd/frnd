@@ -1,8 +1,5 @@
 ---
-import Header from '../partials/Header.astro';
-import Head, { type Headprops } from '../partials/Head.astro';
-// import ColorMode from '../components/utils/ColorMode.astro';
-import FloatNavigation from '../partials/FloatNavigation.astro';
+import Head, { type Headprops } from '@partials/Head.astro';
 import { ViewTransitions } from 'astro:transitions';
 
 const {
@@ -11,24 +8,25 @@ const {
 ---
 
 <!doctype html>
-<html lang="en" class="light-theme">
+<html lang="en" class="dark-theme">
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<meta name="theme-color" content="#DFEAF3">
+		<meta name="theme-color" content="#0a0812">
 		<link rel="icon" href="favicon.png">
+
 		<link rel="preconnect" href="https://rsms.me/">
 		<link rel="stylesheet" href="https://rsms.me/inter/inter.css">
-		
-		<link rel="preconnect" href="https://rsms.me/">
-		<link rel="stylesheet" href="https://rsms.me/inter/inter.css">
-	
+
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
+
 		<Head props={{ title, description, image }} />
 		<ViewTransitions />
 	</head>
 	<body>
-		<!-- <ColorMode /> -->
-		<!-- <FloatNavigation /> -->
+		
 		<div class="content">
 			<slot />
 		</div>

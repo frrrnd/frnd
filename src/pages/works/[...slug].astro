@@ -1,34 +1,91 @@
 ---
 import { getCollection } from "astro:content";
-import Layout from '../../layouts/Layout.astro';
-import { SiteConfig } from "../../utils/SiteConfig";
+import Layout from "@layouts/Layout.astro";
+import { SiteConfig } from "@utils/SiteConfig";
+import Header from "@partials/Header.astro";
+import PageHeading from '@partials/PageHeading.astro';
+import Grid from '@components/utils/Grid.astro';
+import Breadcrumbs from '@partials/Breadcrumbs.astro';
+
+export const prerender = true;
 
 export async function getStaticPaths() {
     const portfolio = await getCollection('works');
 
     return portfolio.map((item) => ({
         params: { slug: item.slug },
-        props: item,
+        props: { item },
     }));
 }
 
-const item = Astro.props;
-const { Content } = await item.render();
+const { item } = Astro.props;
+
+let Content = null;
+let frontmatter = {};
+
+
+if (item) {
+    frontmatter = item.data || {};
+    if (item.render) {
+        const rendered = await item.render();
+        Content = rendered.Content || null;
+    }
+}
 ---
 
-<Layout props={{ title: `${item.data.title} — ${SiteConfig.title}`, description: SiteConfig.description, image: SiteConfig.image }}>
-    <main class="main">
+<Layout props={{
+    title: `${frontmatter.title || "Sem título"} — ${SiteConfig.title}`,
+    description: SiteConfig.description || "Descrição não fornecida",
+    image: SiteConfig.image || "Imagem padrão"
+}}>
+    <Header />
 
-        <a href="/" class="back-button">Back to home</a>
+    <main class="main wrap-wider works__slug">
+        <section class="index__section">
+            <article>
+              <Grid isContainer class="page__heading">
+                <Grid sm="12" md="4">
+                  <h2>{frontmatter.title}</h2>
+                </Grid>
+        
+                <Grid sm="12" md="8">
+                  <p><Fragment set:html={frontmatter.description} /></p>
+                </Grid>
+              </Grid>
+            </article>
+          </section>
 
-        <article class="content-article wrap-wide">
-            <header class="article-header">
-                <h2>{item.data.title}</h2>
-            </header>
-
-            <div class="note-content">
-                <Content />
+        <Grid isContainer>
+            <Grid sm="12" md="4"></Grid>
+            
+            <Grid sm="12" md="8">
+                <div class="work__data">
+                    <ul>
+                        <li>Role</li>
+                        <li>{frontmatter.role || "Não especificado"}</li>
+                    </ul>
+        
+                    <ul>
+                        <li>Year</li>
+                        <li>{frontmatter.year || "Não especificado"}</li>
+                    </ul>
+        
+                    {frontmatter.link &&
+                    <ul>
+                        <li>Link</li>
+                        <li>
+                            <a href={`https://${frontmatter.link}`} title="See live" target="_blank" rel="noopener noreferrer">{frontmatter.link}</a>
+                        </li>
+                    </ul>}
             </div>
-        </article>
+            </Grid>
+        </Grid>
+        
+        <section class="content-article">
+            <div class="note-content">
+                {Content ? <Content /> : <p>Conteúdo não disponível.</p>}
+            </div>
+        </section>
+        <Breadcrumbs />
     </main>
 </Layout>

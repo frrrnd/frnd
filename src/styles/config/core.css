@@ -1,0 +1,52 @@
+@import url(../themes/light.css);
+@import url(../themes/dark.css);
+
+:root {
+ 
+     /* Semantic Colors */
+     --body-foreground-color: var(--primary-color);
+     --body-text-color: var(--secondary-color);
+     --body-link-color: var(--tertiary-color);
+
+     --body-foreground-darker-color: hsl(from rgb(var(--body-foreground-color)) h s calc(l - 2));
+
+    /* Fonts */
+    --title-font: "Inter", system-ui, sans-serif;
+    --text-font: "Inter", system-ui, sans-serif;
+    --mono-font: monospace;
+
+   /* 1.414 - Augmented Fourth Scale */
+    --font-size-h1: 1rem;
+    --font-size-h2: 1rem;
+    --font-size-h3: 1rem;
+    --font-size-h4: 1rem;
+    --font-size-h5: 1rem;
+    --font-size-h6: 1rem;
+    --font-size-p: 1rem;
+    --font-size-small: 0.85rem;
+    --font-size-xsmall: 0.8rem;
+
+    /* Structure */
+    --wrap-width: 38rem;
+    --wrap-wider: 70rem;
+    --wrap-media: 35rem;
+
+    /* Spacing */
+    --spacing-0: 0.5rem;
+    --spacing-1: 1rem;
+    --spacing-2: 2rem;
+    --spacing-4: 4rem;
+    --spacing-8: 8rem;
+    --spacing-12: 12rem;
+    --spacing-16: 16rem;
+
+    /* Radius */
+    --radius-sm: 4px;
+    --radius-md: 8px;
+    --radius-lg: 16px;
+
+    /* Others */
+    --transition-default: .4s;
+    --opacity-default: .6;
+    --radius-default: 10px;
+}

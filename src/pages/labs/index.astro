@@ -1,52 +1,50 @@
 ---
 import { getCollection } from 'astro:content';
-import Layout from '../../layouts/Layout.astro'
-import { SiteConfig } from "../../utils/SiteConfig";
+import Layout from '@layouts/Layout.astro'
+import { SiteConfig } from "@utils/SiteConfig";
+import Header from '@partials/Header.astro';
+import Grid from '@components/utils/Grid.astro';
+import PageHeading from '@partials/PageHeading.astro';
 
 const labs = await getCollection('labs');
 
 labs.sort((a,b) => Date.parse(b.data.publishDate) - Date.parse(a.data.publishDate));
 
 const renderedLabs = await Promise.all(
-	labs.map(async (post) => {
-		const { Content } = await post.render();
-		return { ...post, Content };
-	})
+  labs.map(async (post) => {
+    const { Content } = await post.render();
+    return { ...post, Content };
+  })
 );
 ---
+
 <Layout props={{ title: `Labs — ${SiteConfig.title}`, description: SiteConfig.description, image: SiteConfig.image }}>
-    <main class="main wrap-narrow labs-index">
+    <Header />
+  
+    <main class="main">
+      <div class="wrap-wider">
+        <PageHeading title="Labs" description="Experiments, concepts and other design stuff." />
+      </div>
 
-		<a href="/" class="back-button">Back to home</a>
-		
-		<section class="content-section">
-		{renderedLabs.map((post) => (
-			<article class="content-article">
-				<header class="article-header">
-					<a href={`/labs/${post.slug}`} title={`Permalink to ${post.data.title}`}>
-						<h2>{post.data.title}</h2>
-					</a>
-				</header>
-				
-				<post.Content />
-			</article>
-		))}
-		</section>
-	</main>
+      <section class="labsItem__list wrap-wider">
+        <Grid isContainer>
+          {renderedLabs.map((post) => (
+            <Grid sm="12" md="4">
+              <article class="labsItem">
+                <a href={`/labs/${post.slug}`}>
+                  
+                  <img src={post.data.cover.src} alt={post.data.title}/>
+
+                  <div class="labsItem__details">
+                    <h2>{post.data.title}</h2>
+                    <span class="post-type">{post.data.type}</span>
+                  </div>
+                </a>
+              </article>
+            </Grid>
+          ))}
+        </Grid>
+      </section>
+    </main>
+
 </Layout>
-<style>
-    .article-header h2 {
-        font-size: 1.2rem;
-    }
-
-	.labs-index {
-
-		.content-article:not(:first-child) {
-			padding-top: 2rem;
-		}
-
-		.content-article {
-			margin-bottom: 4rem;
-		}
-	}
-</style>

@@ -8,7 +8,7 @@ const CopyClipboard = () => {
     const copyToClipBoard = async copyMe => {
         try {
             await navigator.clipboard.writeText(copyMe);
-            setCopySuccess('Copied!');
+            setCopySuccess('copied!');
         } catch (err) {
             setCopySuccess('Failed to copy!');
         }
@@ -31,7 +31,7 @@ const CopyClipboard = () => {
                 e.preventDefault();
                 copyToClipBoard('dotfernando@gmail.com')}}
         >
-            {copySuccess ? 'Email Copied!' : 'Copy email'}
+            {copySuccess ? 'Email copied!' : 'Copy email'}
         </a>
     )
 };

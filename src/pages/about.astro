@@ -1,78 +1,122 @@
 ---
-import Layout from '../layouts/Layout.astro'
-import ImageZoom from '../components/ImageZoom/ImageZoom.jsx';
-import { SiteConfig } from "../utils/SiteConfig";
+import Layout from '@layouts/Layout.astro';
+import { SiteConfig } from '@utils/SiteConfig';
+import Header from '@partials/Header.astro';
+import Grid from '@components/utils/Grid.astro';
+import PageHeading from '@partials/PageHeading.astro';
 ---
 <Layout props={{ title: `About — ${SiteConfig.title}`, description: SiteConfig.description, image: SiteConfig.image }}>
-    <main class="main wrap-narrow">
+
+    <Header />
+
+    <main class="main wrap-wider">
+
+        <PageHeading title="About" description="Fernando Soares" />
+
+        <section class="index__section">
+            <Grid isContainer>
+                <Grid sm="12" md="4">
+
+                </Grid>
+
+                <Grid sm="12" md="8">
+                    <article class="content-article">
+                        <p>Self-taught designer with 13 years of experience. I learned HTML when I was 12 and have been in love with interfaces ever since.</p>
+                    
+                        <p>I worked with brands like Massey-Fergusson, Valtra, Figueirense FC, Petrobras, Ryzen and etc.</p>
         
-        <a href="/" class="back-button">Back to home</a>
+                        <p>I believe that my knowledge of Front-End development helps me design real-world interfaces and solve problems with a holistic view of the product. Solving complex problems with simple solutions.</p>
         
-        <section class="content-section">
+                        <p>Working as a freelancer with ux/ui, icons and design systems for startups and agencies, and running parallel projects like <a target="_blank" href="https://viewport-ui.design">Viewport UI.</a></p>
+                    </article>
+                </Grid>
+            </Grid>
+        </section>
+
+        <section class="index__section">
             <article class="content-article">
+                <Grid isContainer>
+                    <Grid sm="12" md="12">
+                        <h2>Experience</h2>
+                    </Grid>
 
-                <img src="/polaroid-frnd.png" alt="Yo!" class="polaroid-photo">
-
-                <p>My name is Fernando Soares, a self-taught designer with 13 years of experience. I learned HTML when I was 12 and have been in love with interfaces ever since.</p>
-                
-                <p>I worked with brands like Massey-Fergusson, Valtra, Figueirense FC, Petrobras, Ryzen and etc.</p>
-
-                <p>I believe that my knowledge of Front-End development helps me design real-world interfaces and solve problems with a holistic view of the product. Solving complex problems with simple solutuions.</p>
-
-                <p><a href="/public/uploads/cv-fernando-soares.pdf" download>Download my CV.</a></p>
-            
+                    <Grid sm="12" md="12">
+                        <Grid isContainer class="experience__list">
+                            <Grid sm="12" md="4" class="experience__year">
+                                <p>2023 — Now</p>
+                            </Grid>
+        
+                            <Grid sm="12" md="8">
+                                <p><strong>Freelancer</strong></p>
+                                <p>UX/UI, Icons and Design Systems.</p>
+                            </Grid>
+                        </Grid>
+        
+                        <Grid isContainer class="experience__list">
+                            <Grid sm="12" md="4" class="experience__year">
+                                <p>2020 — 2023</p>
+                            </Grid>
+        
+                            <Grid sm="12" md="8">
+                                <p><strong>Front End Designer @ Transformação Digital</strong></p>
+                                <p>Web Design, Wordpress, UX Analysis</p>
+                            </Grid>
+                        </Grid>
+                        
+                        <Grid isContainer class="experience__list">
+                            <Grid sm="12" md="4" class="experience__year">
+                                <p>2019 — 2020</p>
+                            </Grid>
+        
+                            <Grid sm="12" md="8">
+                                <p><strong>UX/UI Designer @ Mint Labs</strong></p>
+                                <p>UX/UI Design, Wordpress</p>
+                            </Grid>
+                        </Grid>
+        
+                        <Grid isContainer class="experience__list">
+                            <Grid sm="12" md="4" class="experience__year">
+                                <p>2015 — 2019</p>
+                            </Grid>
+        
+                            <Grid sm="12" md="8">
+                                <p><strong>UX/UI Designer @ Sábia Experience</strong></p>
+                                <p>UX/UI Design, Wordpress</p>
+                            </Grid>
+                        </Grid>
+        
+                        <Grid isContainer class="experience__list">
+                            <Grid sm="12" md="4" class="experience__year">
+                                <p>2013 — 2015</p>
+                            </Grid>
+        
+                            <Grid sm="12" md="8">
+                                <p><strong>UX/UI & Front End @ Deon Sistemas</strong></p>
+                                <p>UX/UI Design, Front End</p>
+                            </Grid>
+                        </Grid>
+                        <Grid isContainer class="experience__list">
+                            <Grid sm="12" md="4" class="experience__year">
+                                <p>2011 — 2013</p>
+                            </Grid>
+        
+                            <Grid sm="12" md="8">
+                                <p><strong>UX/UI & Front End @ Ação Direta Web Studio</strong></p>
+                                <p>UX/UI Design, Front End</p>
+                            </Grid>
+                        </Grid>
+                    </Grid>
+                </Grid>
             </article>
         </section>
 
-        <section class="content-section">
-            <article class="content-article">
-                <h2>Now</h2>
-                <p>Working as a freelancer with ux/ui, icons and design systems for startups and agencies, and running parallel projects like <a target="_blank" href="https://viewport-ui.design">Viewport UI.</a></p>
-            </article>
-        </section>
-
-        <section class="content-section">
-            <article class="content-article things-list">
-                <h2>What I Do</h2>
-                <p>I design interfaces from concept to finish.</p>
-                <ul>
-                    <li>Research;</li>
-                    <li>Information Architeture;</li>
-                    <li>Wireframes & Prototypes;</li>
-                    <li>Usability Tests;</li>
-                    <li>Visual Design and Interaction;</li>
-                    <li>Documentation;</li>
-                    <li>Design System/Style guide;</li>
-                    <li>HTML, CSS and JS.</li>
-                </ul>
-            </article>
-        </section>
-
-        <section class="content-section">
-            <article class="content-article">
-                <h2>What I Use</h2>
-                <p>I use <a href="https://figma.com/@fers" target="_blank">Figma</a> as my main tool for almost everything.</p>
-                <p>As a proccess I worked with SCRUM, design thinking, design sprint and double diamond.</p>
-                <p>Webflow as low-code tool.</p>
-            </article>
+        <section class="index__section">
+            <Grid isContainer>
+                <Grid sm="12" md="4"></Grid>
+                <Grid sm="12" md="8">
+                    <img src="/frnd-avatar.jpg" alt="Yo!">
+                </Grid>
+            </Grid>
         </section>
     </main>
 </Layout>
-<style>
-    .things-list li {
-        color: var(--type-text-color);
-    }
-
-    .polaroid-photo {
-        max-width: 400px;
-        margin: 0 auto;
-        transform: rotate(0);
-        transition: .4s;
-        margin-bottom: 4rem;
-
-        &:hover {
-            transform: rotate(-5deg);
-            transition: .4s;
-        }
-    }
-</style>

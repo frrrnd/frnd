@@ -16,8 +16,9 @@ const isActive = (path) => {
 
 <nav class="main-navigation">
     <ul>
-        <li><a class={isActive("about") ? "active" : ""} href="/about">About</a></li>
-        <li><a class={isActive("notes") ? "active" : ""} href="/notes">Notes</a></li>
+        <li><a class={isActive("about") ? "active" : ""} href="/about">about</a></li>
+        <li><a class={isActive("labs") ? "active" : ""} href="/labs">labs</a></li>
+        <li><a class={isActive("notes") ? "active" : ""} href="/notes">notes</a></li>
         <li><CopyClipboard client:load /></li>
     </ul>
 </nav>
@@ -36,39 +37,27 @@ const isActive = (path) => {
 
     li {
         display: inline-block;
-        margin: 0 12px;
+        margin: 0 4px;
+
+        &:last-child {
+            margin-right: 0;
+        }
 
         a {
-            border: 1px solid rgba(0,0,0,.05);
             padding: 8px 16px;
-            border-radius: 30px;
+            border-radius: var(--border-default-radius);
             transition: .4s;
 
             &:hover {
-                background-color: rgba(0,0,0,.04);
+                background-color: var(--link-button-hover);
                 transition: .4s;
             }
         }
     }
 
     .active {
-        color: var(--type-title-color)!important;
+        color: var(--typo-title-color)!important;
         position: relative;
-        font-weight: 600;
-
-        &:after {
-            content: "";
-            width: 3px;
-            height: 3px;
-            background-color: var(--type-title-color);
-            display: block;
-            position: absolute;
-            left: 0;
-            right: 0;
-            bottom: 3px;
-            margin: 0 auto;
-            border-radius: 100%;
-        }
     }
 
     @media screen and (max-width: 756px) {
