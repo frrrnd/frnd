@@ -42,7 +42,7 @@
     }
 
     h1 {
-        font-weight: 400;
+        font-weight: 600;
         font-family: var(--title-font);
         font-size: var(--font-size-h3);
         color: rgb(var(--title-color));

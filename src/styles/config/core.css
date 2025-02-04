@@ -11,8 +11,8 @@
      --body-foreground-darker-color: hsl(from rgb(var(--body-foreground-color)) h s calc(l - 2));
 
     /* Fonts */
-    --title-font: "Inter", system-ui, sans-serif;
-    --text-font: "Inter", system-ui, sans-serif;
+    --title-font: "Satoshi Variable", system-ui, sans-serif;
+    --text-font: "Satoshi Variable", system-ui, sans-serif;
     --mono-font: monospace;
 
    /* 1.414 - Augmented Fourth Scale */
