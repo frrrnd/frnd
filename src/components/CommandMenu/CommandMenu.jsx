@@ -255,7 +255,7 @@ const CommandMenu = () => {
                         href={item.href}
                         target={item.target}
                         rel={item.target === "_blank" ? "noopener noreferrer" : undefined}
-                        className={`flex items-center gap-3 px-3 py-3 rounded-lg text-sm transition-colors 
+                        className={`flex items-center gap-3 px-2 py-2 rounded-lg text-sm transition-colors 
                           ${selectedIndex === flatIndex ? 'item-selected' : ''} 
                           ${hoverIndex === flatIndex ? 'item-hover' : 'hover:bg-gray-50 dark:hover:bg-gray-900'}
                         `}

@@ -1,6 +1,6 @@
 ---
 import Head, { type Headprops } from '@partials/Head.astro';
-import { ViewTransitions } from 'astro:transitions';
+import { ClientRouter } from 'astro:transitions';
 
 const {
   props: { title, description, image },
@@ -8,7 +8,7 @@ const {
 ---
 
 <!doctype html>
-<html lang="en" class="dark-theme">
+<html lang="en" class="light-theme">
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -23,7 +23,7 @@ const {
 		<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
 
 		<Head props={{ title, description, image }} />
-		<ViewTransitions />
+		<ClientRouter />
 	</head>
 	<body>
 		

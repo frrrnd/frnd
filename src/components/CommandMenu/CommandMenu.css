@@ -56,7 +56,7 @@
 }
 
 .open-command {
-    background-color: rgba(var(--body-text-color), 0.1);
+    background-color: rgba(var(--body-text-color), 0.05);
     border-radius: var(--radius-sm);
     padding: calc(var(--spacing-1) / 2);
     backdrop-filter: blur(20px);

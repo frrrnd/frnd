@@ -1,13 +1,23 @@
 html.light-theme:root {
     --black: 68, 68, 68;
-    --white: 255, 255, 255;
+    --white: 246, 246, 246;
     --gray: 171, 171, 171;
 
-    --blue: 42, 67, 255;
+    --black-shade-1: 22, 22, 22;
+    --black-shade-2: 26, 26, 26;
+
+    --white-shade-1: 246, 246, 246;
+    --white-shade-2: 236, 236, 236;
+
+    --violet: 96, 88, 233;
 
      /* UI Colors */
 
      --primary-color: var(--white);
      --secondary-color: var(--black);
+     --title-color: var(--black);
      --tertiary-color: rgba(var(--secondary-color), .5);
+     --accent-color: var(--violet);
+     --command-menu-bg: var(--white-shade-2);
+     --command-menu-inner-bg: var(--white-shade-1);
 }

@@ -7,26 +7,11 @@ import { getCollection } from 'astro:content';
 import { SiteConfig } from '@utils/SiteConfig';
 import DateN from '@partials/Date.astro';
 import Grid from '@components/utils/Grid.astro';
-import SpotifyNowPlaying from '@components/NowPlaying/NowPlaying.jsx';
-import WorkPreview from '@components/WorkPreview/WorkPreview.tsx';
 
-import books from '../data/books.json';
-const readingBooks = books.filter(book => book.status === "reading");
-
-const booksId = readingBooks.map((book, index) => ({
-    id: index + 1,
-    ...book
-}));
-
-const groupedData = booksId.reduce((acc, item) => {
-    if (!acc[item.yearRead]) {
-        acc[item.yearRead] = [];
-    }
-    acc[item.yearRead].push(item);
-    return acc;
-}, {});
-
-const byYear = Object.keys(groupedData).sort((a, b) => b - a);
+const works = await getCollection('works');
+const filteredWorks = works.filter(item => !item.data.isDraft);
+filteredWorks.sort((a,b) => Date.parse(a.data.order) - Date.parse(b.data.order));
+const latestWorks = filteredWorks.slice(0,5);
 
 const labs = await getCollection('labs');
 labs.sort((a,b) => Date.parse(a.data.order) - Date.parse(b.data.order));
@@ -78,12 +63,13 @@ const renderedNotes = await Promise.all(
 					<article class="content-article">
 						<p>Based in Florianópolis, Brazil. Currently working as a freelancer ux/ui designer and with webflow development. I enjoy think with code, sipping coffee, listen to fuzzy music and longboarding.</p>
 
-						<p>CSS lover. Icon designer enthusiast. Driven by curiosity.</p>
+						<p>CSS lover. Icon designer enthusiast. Driven by curiosity. ½ of <a href="https://viewport-ui.design" title="Viewport">Viewport UI.</a></p>
 					</article>
 				</Grid>
 			</Grid>
 		</section>
 
+		<!--
 		<section class="index__section wrap">
 			<Grid isContainer>
 				<Grid sm="12" md="12">
@@ -126,6 +112,7 @@ const renderedNotes = await Promise.all(
 				</div>
 			</div>
 		</section>
+		 -->
 
 		<section class="index__section wrap">
 			<Grid isContainer>
@@ -136,7 +123,19 @@ const renderedNotes = await Promise.all(
 
 			<Grid sm="12" md="12">
 				<section class="works__list">
-					<article>
+					{latestWorks.map((item) => (
+					<article class="works__list--home">
+						<a href={`/works/${item.slug}`} title={item.data.title}>
+							<img src={item.data.cover.src} alt={item.data.title} loading="lazy" />
+						</a>
+						<div class="work__details">
+							<h3>{item.data.title}</h3>
+							<h4>{item.data.type}</h4>
+						</div>
+					</article>
+					))}
+
+					<!-- <article>
 						<WorkPreview client:load  
 							href="/works/ben-soleimani" 
 							image="/uploads/images/portfolio/ben/ben-03.webp"
@@ -189,7 +188,7 @@ const renderedNotes = await Promise.all(
 							<hr />
 							<span class="work--type">Website</span>
 						</WorkPreview>
-					</article>
+					</article> -->
 				</section>
 			</Grid>
 		</Grid>
@@ -197,7 +196,7 @@ const renderedNotes = await Promise.all(
 
 			<div class="wrap">
 				<div class="see-more">
-					<a href="/works" title="View experiments">View works <i>⇢</i></a>
+					<a href="/works" title="View experiments">View all recent works <i>⇢</i></a>
 				</div>
 			</div>
 		</section>

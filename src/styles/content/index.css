@@ -98,6 +98,33 @@
     }
 }
 
+.works__list--home:not(:last-child) {
+    margin-bottom: var(--spacing-4)!important;
+}
+
+.works__list--home {
+
+    a {
+        display: block;
+    }
+
+    img {
+        border-radius: 5px;
+        margin-bottom: var(--spacing-1);
+    }
+
+    .work__details {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+
+        h4 {
+            color: rgb(var(--body-text-color), .5);
+            font-size: var(--font-size-small);
+        }
+    }
+}
+
 .labs__list {
     display: flex;
     flex-direction: row;
