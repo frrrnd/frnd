@@ -80,7 +80,7 @@ export default function DinoGame() {
       console.error("Failed to load dino image", e)
       checkAllLoaded() // Continue even if image fails to load
     }
-    dinoImg.current.src = "/public/dino.png"
+    dinoImg.current.src = "/dino.png"
 
     cactusImg.current = new Image()
     cactusImg.current.onload = checkAllLoaded
@@ -88,7 +88,7 @@ export default function DinoGame() {
       console.error("Failed to load cactus image", e)
       checkAllLoaded()
     }
-    cactusImg.current.src = "/public/cactus.png"
+    cactusImg.current.src = "/cactus.png"
 
     groundImg.current = new Image()
     groundImg.current.onload = checkAllLoaded
@@ -96,7 +96,7 @@ export default function DinoGame() {
       console.error("Failed to load ground image", e)
       checkAllLoaded()
     }
-    groundImg.current.src = "/public/ground.png"
+    groundImg.current.src = "/ground.png"
 
     cloudImg.current = new Image()
     cloudImg.current.onload = checkAllLoaded
@@ -104,7 +104,7 @@ export default function DinoGame() {
       console.error("Failed to load cloud image", e)
       checkAllLoaded()
     }
-    cloudImg.current.src = "/public/cloud.png"
+    cloudImg.current.src = "/cloud.png"
 
     gameOverImg.current = new Image()
     gameOverImg.current.onload = checkAllLoaded
@@ -112,7 +112,7 @@ export default function DinoGame() {
       console.error("Failed to load game over image", e)
       checkAllLoaded()
     }
-    gameOverImg.current.src = "/public/game-over.png"
+    gameOverImg.current.src = "/game-over.png"
 
     return () => {
       // Clean up image onload handlers
@@ -239,7 +239,7 @@ export default function DinoGame() {
     ctx.font = "bold 24px 'Press Start 2P', monospace"
     ctx.fillStyle = "white"
     ctx.textAlign = "center"
-    ctx.fillText("DINO RUNNER", canvas.width / 2, canvas.height / 2 - 40)
+    ctx.fillText("RUNNER", canvas.width / 2, canvas.height / 2 - 40)
 
     // Draw start message
     ctx.font = "16px 'Press Start 2P', monospace"
@@ -506,19 +506,19 @@ export default function DinoGame() {
   }
 
   return (
-    <div className="flex flex-col min-h-screen bg-gradient-to-b from-blue-500 to-cyan-500">
-      <div className="relative border border-white/20 rounded-lg overflow-hidden shadow-xl">
+    <div className="flex flex-col ">
+      <div className="relative  overflow-hidden ">
         {!imagesLoaded && !isStarted && (
           <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-b from-blue-500 to-cyan-500">
             <p className="text-white">Loading game...</p>
           </div>
         )}
-        <canvas ref={canvasRef} width={800} height={300} className="w-full h-full max-w-[800px] max-h-[300px]" />
+        <canvas ref={canvasRef} width={800} height={300} className="w-full h-full max-w-[800px] max-h-[300px] bg-gradient-to-b from-blue-500 to-cyan-500 shadow-xl border border-white/20 rounded-lg" />
       </div>
 
-      <div className="mt-6 text-sm text-white">
+      {/* <div className="mt-6 text-sm text-white">
         <p>Press ENTER to start • SPACE to jump • ESC to exit</p>
-      </div>
+      </div> */}
     </div>
   )
 }
