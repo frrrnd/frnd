@@ -5,7 +5,6 @@ import { SiteConfig } from "@utils/SiteConfig";
 import Header from "@partials/Header.astro";
 import PageHeading from '@partials/PageHeading.astro';
 import Grid from '@components/utils/Grid.astro';
-import Breadcrumbs from '@partials/Breadcrumbs.astro';
 
 export const prerender = true;
 
@@ -40,52 +39,43 @@ if (item) {
 }}>
     <Header />
 
-    <main class="main wrap-wider works__slug">
+    <main class="main works__slug">
         <section class="index__section">
             <article>
               <Grid isContainer class="page__heading">
                 <Grid sm="12" md="4">
                   <h2>{frontmatter.title}</h2>
-                </Grid>
-        
-                <Grid sm="12" md="8">
-                  <p><Fragment set:html={frontmatter.description} /></p>
-                </Grid>
-              </Grid>
-            </article>
-          </section>
-
-        <Grid isContainer>
-            <Grid sm="12" md="4"></Grid>
-            
-            <Grid sm="12" md="8">
-                <div class="work__data">
+                  <div class="work__data">
                     <ul>
-                        <li>Role</li>
                         <li>{frontmatter.role || "Não especificado"}</li>
                     </ul>
         
                     <ul>
-                        <li>Year</li>
                         <li>{frontmatter.year || "Não especificado"}</li>
                     </ul>
         
-                    {frontmatter.link &&
+                    <!-- {frontmatter.link &&
                     <ul>
-                        <li>Link</li>
                         <li>
                             <a href={`https://${frontmatter.link}`} title="See live" target="_blank" rel="noopener noreferrer">{frontmatter.link}</a>
                         </li>
-                    </ul>}
-            </div>
-            </Grid>
-        </Grid>
+                    </ul>} -->
+                </div>
+                </Grid>
+        
+                <Grid sm="12" md="6">
+                    
+
+                    <p class="work__desc"><Fragment set:html={frontmatter.description} /></p>
+                </Grid>
+              </Grid>
+            </article>
+          </section>
         
         <section class="content-article">
             <div class="note-content">
                 {Content ? <Content /> : <p>Conteúdo não disponível.</p>}
             </div>
         </section>
-        <Breadcrumbs />
     </main>
 </Layout>

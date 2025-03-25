@@ -1,5 +1,6 @@
 ---
 import Layout from '@layouts/Layout.astro';
+import girls from '@api/girls.json';
 import { SiteConfig } from '@utils/SiteConfig';
 import Header from '@partials/Header.astro';
 import PageHeading from '@partials/PageHeading.astro';
@@ -8,69 +9,16 @@ import PageHeading from '@partials/PageHeading.astro';
 <Layout props={{ title: `My Girls — ${SiteConfig.title}`, description: SiteConfig.description, image: SiteConfig.image }}>
     <Header />
 
-    <main class="main">
-      <div class="wrap-wider">
-        <PageHeading title="My Girls" description="Nicki (the tortie) & Mia (the siamese). They are both 12 years old and were rescued from the streets." />
-      </div>
+    <main class="main internal-spacing">
+      <PageHeading title="My Girls" description="Nicki (the tortie) & Mia (the siamese). They are both 12 years old and were rescued from the streets." />
 
-        <section class="mansory">
+      <section class="mansory">
+        {girls.map(girl => (
           <figure>
-            <img src="/uploads/images/albums/girls/01.webp" alt="Mia" loading="lazy" />
+            <img src={girl.src} alt={girl.alt} loading="lazy" />
           </figure>
-          <figure>
-            <img src="/uploads/images/albums/girls/02.webp" alt="Mia" loading="lazy" />
-          </figure>
-          <figure>
-            <img src="/uploads/images/albums/girls/03.webp" alt="Mia" loading="lazy" />
-          </figure>
-          <figure>
-            <img src="/uploads/images/albums/girls/04.webp" alt="Nicki" loading="lazy" />
-          </figure>
-          <figure>
-            <img src="/uploads/images/albums/girls/05.webp" alt="Nicki" loading="lazy" />
-          </figure>
-          <figure>
-            <img src="/uploads/images/albums/girls/06.webp" alt="Nicki" loading="lazy" />
-          </figure>
-          <figure>
-            <img src="/uploads/images/albums/girls/07.webp" alt="Nicki" loading="lazy" />
-          </figure>
-          <figure>
-            <img src="/uploads/images/albums/girls/08.webp" alt="Nicki" loading="lazy" />
-          </figure>
-          <figure>
-            <img src="/uploads/images/albums/girls/09.webp" alt="Nicki" loading="lazy" />
-          </figure>
-          <figure>
-            <img src="/uploads/images/albums/girls/10.webp" alt="Mia" loading="lazy" />
-          </figure>
-          <figure>
-            <img src="/uploads/images/albums/girls/11.webp" alt="Mia" loading="lazy" />
-          </figure>
-          <figure>
-            <img src="/uploads/images/albums/girls/12.webp" alt="Nicki" loading="lazy" />
-          </figure>
-          <figure>
-            <img src="/uploads/images/albums/girls/13.webp" alt="Mia" loading="lazy" />
-          </figure>
-          <figure>
-            <img src="/uploads/images/albums/girls/15.webp" alt="Mia" loading="lazy" />
-          </figure>
-          <figure>
-            <img src="/uploads/images/albums/girls/16.webp" alt="Mia" loading="lazy" />
-          </figure>
-          <figure>
-            <img src="/uploads/images/albums/girls/17.webp" alt="Mia" loading="lazy" />
-          </figure>
-          <figure>
-            <img src="/uploads/images/albums/girls/18.webp" alt="Mia" loading="lazy" />
-          </figure>
-          <figure>
-            <img src="/uploads/images/albums/girls/19.webp" alt="Mia" loading="lazy" />
-          </figure>
-          <figure>
-            <img src="/uploads/images/albums/girls/20.webp" alt="Nicki" loading="lazy" />
-          </figure>
-        </section>
+        ))}
+      </section>
+
     </main>
 </Layout>

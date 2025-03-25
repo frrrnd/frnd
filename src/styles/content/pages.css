@@ -1,9 +1,8 @@
 .page__heading {
-    margin-bottom: var(--spacing-8);
+    margin-bottom: var(--spacing-2);
 
     h1, h2 {
         font-weight: 500;
-        font-size: var(--font-size-h6);
     }
 
     h1 {
@@ -107,11 +106,10 @@
 
     & blockquote {
         margin-left: 0;
-        padding: 1rem;
+        padding-left: 1rem;
         font-weight: 400;
-        background-color: rgb(var(--command-menu-inner-bg));
-        border-radius: 5px;
         margin-bottom: 1rem;
+        border-left: 2px solid rgba(var(--body-text-color), .2);
 
         p {
             margin-bottom: 0;
@@ -155,8 +153,8 @@
     p {
         margin-bottom: calc(var(--spacing-1) / 2);
 
-        &:nth-child(1) {
-            color: rgb(var(--title-color));
+        &:nth-child(2) {
+            color: rgba(var(--body-text-color), .5);
         }
     }
 }
@@ -166,4 +164,8 @@
         font-size: var(--font-size-small);
         color: rgb(var(--body-text-color))!important;
     }
+}
+
+.about-photo {
+    margin-bottom: var(--spacing-2);
 }

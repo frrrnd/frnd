@@ -6,6 +6,9 @@
 
     h3 {
         margin-bottom: 1rem;
+        text-align: right;
+        padding-right: var(--spacing-2);
+        padding-top: var(--spacing-1);
     }
 }
 
@@ -42,7 +45,7 @@
         margin-bottom: 0;
         cursor: pointer;
         transform-origin: left center;
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.3s ease;
         overflow: hidden;
         display: block;
         position: relative;
@@ -82,14 +85,14 @@
         margin-top: 1rem;
         margin-bottom: 0;
         padding: 0;
-        color: var(--typo-text-color);
+        color: rgba(var(--body-text-color), 1);
         font-size: 1rem;
     }
 
     p {
         padding: 0;
         margin-bottom: 0;
-        color: var(--typo-site-subtitle-color);
+        color: rgba(var(--body-text-color), .7);
     }
 }
 

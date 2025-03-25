@@ -4,7 +4,7 @@ import Layout from '../../layouts/Layout.astro';
 import FormattedDate from '../../partials/formattedDate.astro';
 import { SiteConfig } from '../../utils/SiteConfig';
 import Header from '../../partials/Header.astro';
-import Breadcrumbs from '@partials/Breadcrumbs.astro';
+import Grid from '@components/utils/Grid.astro';
 // import Share from '../../components/Share/Share.jsx';
 
 export const prerender = true;
@@ -39,23 +39,28 @@ if (note) {
 
     <Header />
     
-    <main class="main wrap">
-        <article class="content-article wrap">
-            <header class="page__heading">
-                <div class="heading__left">
-                    <h1>{note.data.title}</h1>
-                    <FormattedDate date={note.data.publishDate} />
-                </div>
+    <main class="main internal-spacing">
+        <Grid isContainer>
+            <Grid sm="12" md="4"></Grid>
+            <Grid sm="12" md="4">
+                <article class="content-article">
+                    <header class="page__heading">
+                        <div class="heading__left">
+                            <h1>{note.data.title}</h1>
+                            <FormattedDate date={note.data.publishDate} />
+                        </div>
 
-                <!-- <div class="heading__right">
-                    <Share slug={`https://frnd.design/notes/${note.slug}`} client:load />
-                </div> -->
-            </header>
-        
-            <section class="note__content">
-                <Content />
-            </section>
-        </article>
-        <Breadcrumbs />
+                        <!-- <div class="heading__right">
+                            <Share slug={`https://frnd.design/notes/${note.slug}`} client:load />
+                        </div> -->
+                    </header>
+                
+                    <section class="note__content">
+                        <Content />
+                    </section>
+                </article>
+            </Grid>
+            <Grid sm="12" md="4"></Grid>
+        </Grid>
     </main>
 </Layout>

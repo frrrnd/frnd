@@ -50,10 +50,10 @@ body {
     height: 100%;
     font-size: var(--font-size-p);
     font-weight: 430;
+    padding: var(--spacing-1);
 }
 
 .content {
-    padding-top: var(--spacing-12);
     position: relative;
 }
 
@@ -78,3 +78,91 @@ body {
         padding: 0 var(--spacing-1);
     }
 }
+
+.header {
+    width: 100%;
+    font-size: var(--font-size-h1);
+    padding: var(--spacing-2) var(--spacing-1);
+
+    .header__fixed {
+        position: fixed;
+        width: 100%;
+        left: 0;
+        top: 0;
+        z-index: 10;
+        padding: var(--spacing-2) var(--spacing-1);
+        background: transparent;
+        mix-blend-mode: difference;
+        color: rgb(191, 191, 191);
+    }
+
+    span {
+        color: #5d5d5d;
+        margin-left: calc(var(--spacing-1) / 2);
+    }
+
+    .header__content {
+        display: flex;
+        /* text-transform: uppercase; */
+
+        ul {
+            list-style-type: none;
+            display: flex;
+            flex-direction: row;
+            gap: var(--spacing-4);
+        }
+
+        a {
+            transition: .3s;
+        }
+
+        a:hover {
+            color: rgba(191, 191, 191, .7);
+            transition: .3s;
+        }
+
+        .active {
+            position: relative;
+
+            &:after {
+                content: "";
+                width: 4px;
+                height: 4px;
+                background-color: rgb(var(--accent-color));
+                filter: invert(100%);
+                position: absolute;
+                top: 0;
+                right: -.5rem;
+                border-radius: 100%;
+            }
+        }
+    }
+
+    .align-right {
+        justify-content: flex-end;
+    }
+}
+
+.internal-spacing {
+    padding-top: calc(var(--spacing-8) * 2);
+}
+
+.date-right {
+    text-align: right;
+    padding-right: var(--spacing-2);
+}
+
+@media screen and (max-width: 768px) {
+    .hide-mobile {
+        display: none;
+    }
+
+    .align-right {
+        justify-content: flex-start;
+    }
+
+    .date-right {
+        text-align: left;
+    }
+  }
+

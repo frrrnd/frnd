@@ -1,155 +1,69 @@
 ---
 import Grid from '../components/utils/Grid.astro';
 ---
-<footer class="footer wrap">
-
+<footer class="footer">
     <Grid isContainer>
-        <Grid sm="12" md="12">
-            <p><time class="now-time">06:09 AM</time> <span class="weatherstatus">---</span> with <span class="temp">--.-</span> in Florianópolis.
-            </p>
+        <Grid sm="12" md="4">
+            <p>© 2025</p>
         </Grid>
 
-        <Grid sm="12" md="12">
-            <h2>© 2025</h2>
+        <Grid sm="12" md="2">
+            <div class="footer__content hide-mobile">
+                <h4>Explore</h4>
+            </div>
+
+            <div class="footer__content hide-mobile">
+                <h4>Colophon</h4>
+            </div>
+        </Grid>
+
+        <Grid sm="12" md="6">
+            <div class="footer__content">
+                <ul>
+                    <li><a href="/readings">Readings</a></li>
+                    <li><a href="/my-girls">My Girls</a></li>
+                    <li><a target="_blank" href="https://www.are.na/fer-nshpf_to31q/channels">Are.na</a></li>
+                    <li><a target="_blank" href="https://x.com/frrrnd">x.com</a></li>
+                </ul>
+            </div>
+
+            <div class="footer__content">
+                <ul>
+                    <li>Built with <span><a href="https://astro.build/" target="_blank">Astro</a></span></li>
+                    <li>Hosted on <span><a href="https://www.netlify.com/" target="_blank">Netlify</a></span></li>
+                    <li>Typeface is <span><a href="https://uncut.wtf/sans-serif/uncut-sans/" target="_blank">Uncut Sans Variable</a></span></li>
+                </ul>
+            </div>
         </Grid>
     </Grid>
 </footer>
 <style>
 
     .footer {
-        font-size: var(--font-size-small);
-        padding: var(--spacing-1) 0 var(--spacing-8);
-        color: var(--tertiary-color);
+        font-size: var(--font-size-h1);
+        padding: var(--spacing-2) 0 var(--spacing-2);
+        color: rgba(var(--body-text-color), .5);
         border-top: 1px solid rgb(var(--body-text-color), .05);
-
-        time, .emoji {
-            display: inline-block;
-        }
-
-        .emoji {
-            color: #000;
-        }
-
-        svg {
-            display: inline-block;
-        }
+        margin-top: var(--spacing-2);
     }
 
-    @media screen and (max-width: 768px) {
-        .footer {
-            padding: var(--spacing-1);
+    .footer__content {
+        margin-bottom: var(--spacing-4);
+        min-height: 100px;
+
+        h4 {
+            margin-bottom: var(--spacing-1);
+            font-weight: normal;
+        }
+
+        a {
+            color: rgba(var(--body-text-color), 1);
+            transition: .4s;
+
+            &:hover {
+                color: rgba(var(--body-text-color), .5);
+                transition: .4s;
+            }
         }
     }
 </style>
-
-<script>
-    const $ = (e) => document.querySelector(e);
-
-    const update = {
-    oldtime: function () {
-        
-        $(".now-time").innerHTML = `${new Date().toLocaleTimeString(
-        "en-US",
-        {
-            timeZone: "America/Sao_Paulo",
-            hour: "2-digit",
-            minute: "2-digit",
-            hour12: true,
-        }
-        )}`;
-    },
-
-    time: function () {
-
-        $(".now-time").innerHTML = `${new Date().toLocaleTimeString(
-        "en-US",
-        {
-            timeZone: "America/Sao_Paulo",
-            hour: "2-digit",
-            minute: "2-digit",
-            hour12: true,
-        }
-        )}`;
-    },
-
-    weather: async function () {
-        try {
-            const response = await fetch(
-                "https://api.open-meteo.com/v1/forecast?latitude=-27.6667&longitude=-48.5505&current_weather=true"
-            );
-
-            if (!response.ok) {
-                throw new Error("Network response was not ok");
-            }
-
-            const data = await response.json();
-
-            // Verifique se current_weather existe antes de acessá-lo
-            if (!data.current_weather) {
-                throw new Error("Current weather data is missing");
-            }
-
-            const { temperature, weathercode } = data.current_weather;
-
-            const terms = {
-                0: "and the sky is clear <span class='emoji'>☀️</span>",
-                1: "and the weather is currently mainly clear <span class='emoji'>🌤️</span>",
-                2: "and the weather is currently partly cloudy <span class='emoji'>⛅</span>",
-                3: "and the weather is currently overcast <span class='emoji'>☁️</span>",
-                45: "and the weather is currently foggy <span class='emoji'>🌫️</span>",
-                48: "and the weather is currently foggy <span class='emoji'>🌫️</span>",
-                51: "and it is currently drizzling <span class='emoji'>🌦️</span>",
-                53: "and it is currently drizzling <span class='emoji'>🌦️</span>",
-                55: "and it is currently drizzling <span class='emoji'>🌦️</span>",
-                56: "and it is currently lightly freezing drizzling <span class='emoji'>🌧️</span>",
-                57: "and it is currently heavily freezing drizzling <span class='emoji'>🌧️</span>",
-                61: "and it is currently raining lightly <span class='emoji'>🌧️</span>",
-                63: "and it is currently raining moderately <span class='emoji'>🌧️</span>",
-                65: "and it is currently raining heavily <span class='emoji'>🌧️</span>",
-                66: "and it is currently lightly freezing raining <span class='emoji'>🌧️</span>",
-                67: "and it is currently heavily freezing raining <span class='emoji'>🌧️</span>",
-                71: "and it is currently snowing <span class='emoji'>❄️</span>",
-                73: "and it is currently snowing <span class='emoji'>❄️</span>",
-                75: "and it is currently snowing <span class='emoji'>❄️</span>",
-                77: "and it is currently falling graupel <span class='emoji'>❄️</span>",
-                80: "and it is currently lightly showering rain <span class='emoji'>🌨️</span>",
-                81: "and it is currently moderately showering rain <span class='emoji'>🌨️</span>",
-                82: "and it is currently showering rain <span class='emoji'>🌨️</span>",
-                85: "and it is currently lightly showering snow <span class='emoji'>🌨️</span>",
-                86: "and it is currently showering snow <span class='emoji'>🌨️</span>",
-                95: "and it is currently thunderstorming <span class='emoji'>⛈️</span>",
-                96: "and it is currently thunderstorming <span class='emoji'>⛈️</span>",
-                99: "and it is currently thunderstorming <span class='emoji'>⛈️</span>",
-            };
-
-            const roundedTemperature = Math.round(temperature);
-
-            $(".weatherstatus").innerHTML = terms[weathercode] || "Weather data not available.";
-            $(".temp").innerText = `${roundedTemperature}°C`;
-        } catch (error) {
-            console.error("Failed to fetch weather data", error);
-            $(".weatherstatus").innerHTML = "Failed to fetch weather data.";
-            $(".temp").innerText = "--";
-        }
-    },
-
-    };
-
-    const main = async function () {
-        update.time();
-        update.weather();
-
-        setInterval(update.time, 60000); // Atualiza o relógio a cada 60 segundos.
-        setInterval(update.weather, 5 * 60 * 1000); // Atualiza o clima a cada 5 minutos.
-
-        //   $(".copyright").innerText = `© ${new Date().getFullYear()}`;
-    };
-
-    main();
-
-    // document.getElementById("year").innerHTML = (new Date().getFullYear());
-
-    document.addEventListener("astro:after-swap", main);
-
-
-</script>

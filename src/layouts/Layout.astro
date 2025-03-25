@@ -1,5 +1,6 @@
 ---
 import Head, { type Headprops } from '@partials/Head.astro';
+import Footer from '@partials/Footer.astro';
 import { ClientRouter } from 'astro:transitions';
 
 const {
@@ -13,14 +14,7 @@ const {
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<meta name="theme-color" content="#F6F6F6">
-		<link rel="icon" href="favicon.png">
-
-		<link rel="preconnect" href="https://rsms.me/">
-		<link rel="stylesheet" href="https://rsms.me/inter/inter.css">
-
-		<link rel="preconnect" href="https://fonts.googleapis.com">
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-		<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
+		<link rel="icon" href="/favicon.png">
 
 		<Head props={{ title, description, image }} />
 		<ClientRouter />
@@ -30,5 +24,7 @@ const {
 		<div class="content">
 			<slot />
 		</div>
+
+		<Footer />
 	</body>
 </html>

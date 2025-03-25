@@ -40,7 +40,8 @@ export default defineConfig({
         '@layouts': '/src/layouts',
         '@utils': '/src/utils',
         '@partials': '/src/partials',
-        '@components': '/src/components'
+        '@components': '/src/components',
+        '@api': '/src/pages/api',
       }
     }
   },

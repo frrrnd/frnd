@@ -3,7 +3,6 @@
     padding-bottom: 4rem;
 
     h2 {
-        font-size: var(--font-size-p);
         font-weight: 500;
         font-family: var(--title-font);
         line-height: 1;
@@ -13,8 +12,9 @@
 }
 
 .page__heading {
+    font-size: var(--font-size-h1);
+
     h2 {
         color: rgb(var(--title-color));
-        font-size: var(--font-size-p);
     }
 }

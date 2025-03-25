@@ -9,114 +9,130 @@ import PageHeading from '@partials/PageHeading.astro';
 
     <Header />
 
-    <main class="main wrap-wider">
+    <main class="main internal-spacing">
 
-        <PageHeading title="About" description="Fernando Soares" />
+        <!-- <PageHeading title="About" description="Fernando Soares" /> -->
 
-        <section class="index__section">
+        <section class="index__section about-content">
             <Grid isContainer>
                 <Grid sm="12" md="4">
-
+                    <img src="/frnd-avatar.jpg" alt="Yo!" class="about-photo">
                 </Grid>
 
-                <Grid sm="12" md="8">
+                <Grid sm="12" md="1"></Grid>
+
+                <Grid sm="12" md="5">
                     <article class="content-article">
+                        <p>Based in Florianópolis, Brazil. Currently working as a freelancer ux/ui designer and with webflow development. I enjoy think with code, sipping coffee, listen to fuzzy music and longboarding.</p>
+
+                        <p>CSS lover. Icon designer enthusiast. Driven by curiosity.  ½ of <a href="https://viewport-ui.design" target="_blank">Viewport UI.</a></p>
+
                         <p>Self-taught designer with 13 years of experience. I learned HTML when I was 12 and have been in love with interfaces ever since.</p>
                     
                         <p>I worked with brands like Massey-Fergusson, Valtra, Figueirense FC, Petrobras, Ryzen and etc.</p>
         
                         <p>I believe that my knowledge of Front-End development helps me design real-world interfaces and solve problems with a holistic view of the product. Solving complex problems with simple solutions.</p>
-        
-                        <p>Working as a freelancer with ux/ui, icons and design systems for startups and agencies, and running parallel projects like <a target="_blank" href="https://viewport-ui.design">Viewport UI.</a></p>
                     </article>
                 </Grid>
             </Grid>
         </section>
 
-        <section class="index__section">
+        <section class="index__section about-content">
             <article class="content-article">
                 <Grid isContainer>
-                    <Grid sm="12" md="12">
-                        <h2>Experience</h2>
+                    <Grid sm="12" md="4">
                     </Grid>
 
-                    <Grid sm="12" md="12">
-                        <Grid isContainer class="experience__list">
-                            <Grid sm="12" md="4" class="experience__year">
-                                <p>2023 — Now</p>
-                            </Grid>
-        
-                            <Grid sm="12" md="8">
-                                <p><strong>Freelancer</strong></p>
-                                <p>UX/UI, Icons and Design Systems.</p>
-                            </Grid>
+                    <Grid sm="12" md="1">
+                    </Grid>
+
+                    <Grid sm="12" md="7">
+                        <Grid sm="12" md="12">
+                            <h2>Experience</h2>
                         </Grid>
-        
-                        <Grid isContainer class="experience__list">
-                            <Grid sm="12" md="4" class="experience__year">
-                                <p>2020 — 2023</p>
+    
+                        <Grid sm="12" md="12">
+                            <Grid isContainer class="experience__list">
+                                <Grid sm="12" md="2" class="experience__year">
+                                    <p>2023 — Now</p>
+                                </Grid>
+            
+                                <Grid sm="12" md="8">
+                                    <p><strong>Freelancer</strong></p>
+                                    <p>UX/UI, Icons and Design Systems.</p>
+                                </Grid>
                             </Grid>
-        
-                            <Grid sm="12" md="8">
-                                <p><strong>Front End Designer @ Transformação Digital</strong></p>
-                                <p>Web Design, Wordpress, UX Analysis</p>
+            
+                            <Grid isContainer class="experience__list">
+                                <Grid sm="12" md="2" class="experience__year">
+                                    <p>2020 — 2023</p>
+                                </Grid>
+            
+                                <Grid sm="12" md="8">
+                                    <p><strong>Front End Designer @ Transformação Digital</strong></p>
+                                    <p>Low Code, Web Design, Wordpress & UX Analysis</p>
+                                </Grid>
                             </Grid>
-                        </Grid>
-                        
-                        <Grid isContainer class="experience__list">
-                            <Grid sm="12" md="4" class="experience__year">
-                                <p>2019 — 2020</p>
+                            
+                            <Grid isContainer class="experience__list">
+                                <Grid sm="12" md="2" class="experience__year">
+                                    <p>2019 — 2020</p>
+                                </Grid>
+            
+                                <Grid sm="12" md="8">
+                                    <p><strong>UX/UI Designer @ Mint Labs</strong></p>
+                                    <p>UX/UI Design, Wordpress</p>
+                                </Grid>
                             </Grid>
-        
-                            <Grid sm="12" md="8">
-                                <p><strong>UX/UI Designer @ Mint Labs</strong></p>
-                                <p>UX/UI Design, Wordpress</p>
+            
+                            <Grid isContainer class="experience__list">
+                                <Grid sm="12" md="2" class="experience__year">
+                                    <p>2015 — 2019</p>
+                                </Grid>
+            
+                                <Grid sm="12" md="8">
+                                    <p><strong>UX/UI Designer @ Sábia Experience</strong></p>
+                                    <p>UX/UI, Product, AR & VR, Wordpress & Design System</p>
+                                </Grid>
                             </Grid>
-                        </Grid>
-        
-                        <Grid isContainer class="experience__list">
-                            <Grid sm="12" md="4" class="experience__year">
-                                <p>2015 — 2019</p>
+            
+                            <Grid isContainer class="experience__list">
+                                <Grid sm="12" md="2" class="experience__year">
+                                    <p>2013 — 2015</p>
+                                </Grid>
+            
+                                <Grid sm="12" md="8">
+                                    <p><strong>UX/UI & Front End @ Deon Sistemas</strong></p>
+                                    <p>UX/UI, Apps, CMS, Front End & Wordpress</p>
+                                </Grid>
                             </Grid>
-        
-                            <Grid sm="12" md="8">
-                                <p><strong>UX/UI Designer @ Sábia Experience</strong></p>
-                                <p>UX/UI Design, Wordpress</p>
-                            </Grid>
-                        </Grid>
-        
-                        <Grid isContainer class="experience__list">
-                            <Grid sm="12" md="4" class="experience__year">
-                                <p>2013 — 2015</p>
-                            </Grid>
-        
-                            <Grid sm="12" md="8">
-                                <p><strong>UX/UI & Front End @ Deon Sistemas</strong></p>
-                                <p>UX/UI Design, Front End</p>
-                            </Grid>
-                        </Grid>
-                        <Grid isContainer class="experience__list">
-                            <Grid sm="12" md="4" class="experience__year">
-                                <p>2011 — 2013</p>
-                            </Grid>
-        
-                            <Grid sm="12" md="8">
-                                <p><strong>UX/UI & Front End @ Ação Direta Web Studio</strong></p>
-                                <p>UX/UI Design, Front End</p>
+                            <Grid isContainer class="experience__list">
+                                <Grid sm="12" md="2" class="experience__year">
+                                    <p>2011 — 2013</p>
+                                </Grid>
+            
+                                <Grid sm="12" md="8">
+                                    <p><strong>UX/UI & Front End @ Ação Direta Web Studio</strong></p>
+                                    <p>UX/UI, Front End & Wordpress</p>
+                                </Grid>
                             </Grid>
                         </Grid>
                     </Grid>
                 </Grid>
             </article>
         </section>
-
-        <section class="index__section">
-            <Grid isContainer>
-                <Grid sm="12" md="4"></Grid>
-                <Grid sm="12" md="8">
-                    <img src="/frnd-avatar.jpg" alt="Yo!">
-                </Grid>
-            </Grid>
-        </section>
     </main>
 </Layout>
+<style>
+    .about-content {
+        font-size: var(--font-size-h1);
+
+        img {
+            border-radius: 10px;
+        }
+    }
+
+    .internal-spacing {
+        padding-top: calc(var(--spacing-8) * 2);
+    }
+</style>

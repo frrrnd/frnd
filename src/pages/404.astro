@@ -1,0 +1,28 @@
+---
+import Layout from '@layouts/Layout.astro';
+import { SiteConfig } from '@utils/SiteConfig';
+import Header from '@partials/Header.astro';
+import Grid from '@components/utils/Grid.astro';
+
+import JumpGame from '@components/JumpGame/JumpGame.tsx'
+---
+
+<Layout props={{ title: `Not Found — ${SiteConfig.title}`, description: SiteConfig.description, image: SiteConfig.image }}>
+    <Header />
+
+    <main class="main internal-spacing">
+
+        <section>
+            <Grid isContainer>
+                <Grid sm="12" md="4">
+                    <h2>Page not found, but a game was found!</h2>
+                </Grid>
+
+                <Grid sm="12" md="6">
+                    <JumpGame client:load />
+                </Grid>
+            </Grid>
+        </section>
+    </main>
+
+</Layout>
