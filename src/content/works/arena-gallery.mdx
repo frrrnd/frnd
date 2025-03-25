@@ -1,0 +1,32 @@
+---
+title: "Arena Gallery"
+description: "A minimalist web app designed to display an Are.na channel as a grid gallery. Built with pure HTML, CSS, and vanilla JavaScript, it supports both public and private channels. The interface is clean and distraction-free, focusing on a seamless visual browsing experience."
+type: "Web App"
+isDraft: false
+tags: ["teste", "portfolio"]
+publishDate: "2025-03-18"
+cover: "/public/uploads/images/portfolio/arena/arena-gallery-01.png"
+order: 1
+role: "UX/UI Design & Front End"
+year: "2025"
+---
+
+import Grid from '../../components/utils/Grid.astro';
+
+<Grid isContainer>
+    <Grid sm="12" md="12">
+        <img src="/uploads/images/portfolio/arena/arena-gallery-02.png" alt="Arena Gallery" loading="lazy" />
+    </Grid>
+
+    <Grid sm="12" md="8">
+        <img src="/uploads/images/portfolio/arena/arena-gallery-03.png" alt="Arena Gallery" loading="lazy" />
+    </Grid>
+
+    <Grid sm="12" md="4">
+        <img src="/uploads/images/portfolio/arena/arena-gallery-04.png" alt="Arena Gallery" loading="lazy" class="image__fit" />
+    </Grid>
+
+    <Grid sm="12" md="12">
+        <a class="work__link" href="https://github.com/frrrnd/arena-gallery" target="_blank">GitHub Repo</a>
+    </Grid>
+</Grid>

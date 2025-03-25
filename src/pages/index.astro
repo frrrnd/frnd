@@ -1,41 +1,15 @@
 ---
 import Layout from '@layouts/Layout.astro';
-import SocialNav from '@components/SocialNav.astro';
 import Header from '@partials/Header.astro';
-import Footer from '@partials/Footer.astro';
 import { getCollection } from 'astro:content';
 import { SiteConfig } from '@utils/SiteConfig';
-import DateN from '@partials/Date.astro';
 import Grid from '@components/utils/Grid.astro';
 
 const works = await getCollection('works');
 const filteredWorks = works.filter(item => !item.data.isDraft);
 filteredWorks.sort((a,b) => Date.parse(a.data.order) - Date.parse(b.data.order));
-const latestWorks = filteredWorks.slice(0,5);
+const latestWorks = filteredWorks.slice(0,20);
 
-const labs = await getCollection('labs');
-labs.sort((a,b) => Date.parse(a.data.order) - Date.parse(b.data.order));
-
-const latestLabs = labs.slice(0,4);
-
-const renderedLabs = await Promise.all(
-	latestLabs.map(async (note) => {
-		const { Content } = await note.render();
-		return { ...note, Content };
-	})
-);
-
-const notes = await getCollection('notes');
-notes.sort((a,b) => Date.parse(b.data.publishDate) - Date.parse(a.data.publishDate));
-
-const latestNotes = notes.slice(0,5);
-
-const renderedNotes = await Promise.all(
-	latestNotes.map(async (note) => {
-		const { Content } = await note.render();
-		return { ...note, Content };
-	})
-);
 ---
 
 <Layout props={{ title: SiteConfig.title, description: SiteConfig.description, image: SiteConfig.image }}>
@@ -43,276 +17,20 @@ const renderedNotes = await Promise.all(
 	<Header />
 	
 	<main class="main">
-		<section class="index__section wrap">
-			<Grid isContainer>
-				<Grid sm="12" md="12">
-					<h1>
-						<!-- <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-							<path fill-rule="evenodd" clip-rule="evenodd" d="M24.75 0.935547H0.75L11.8411 11.9741L0.750012 23.0651H8.1792L19.244 11.9741L13.6325 6.49415H19.244L24.75 0.935547Z" />
-						</svg> -->
+		<section class="index__works">
+				{latestWorks.map((item) => (
+				<article class="works__list--home">
+					<a href={`/works/${item.slug}`}>
+						<img src={item.data.cover.src} alt={item.data.title} loading="lazy" />
 
-						<a href="/">Fernando Soares, <br> user interface designer.</a>
-					</h1>
-				</Grid>
-			</Grid>
-		</section>
-
-		<section class="index__section wrap">
-			<Grid isContainer>
-				<Grid sm="12" md="12">
-					<article class="content-article">
-						<p>Based in Florianópolis, Brazil. Currently working as a freelancer ux/ui designer and with webflow development. I enjoy think with code, sipping coffee, listen to fuzzy music and longboarding.</p>
-
-						<p>CSS lover. Icon designer enthusiast. Driven by curiosity. ½ of <a href="https://viewport-ui.design" title="Viewport">Viewport UI.</a></p>
-					</article>
-				</Grid>
-			</Grid>
-		</section>
-
-		<!--
-		<section class="index__section wrap">
-			<Grid isContainer>
-				<Grid sm="12" md="12">
-					<h2>Experiments</h2>
-				</Grid>
-
-				<Grid sm="12" md="12">
-					<section class="labs__list">
-						<article>
-							<a href="/labs/arc-icons" title="Arc Icons">
-								<figure>
-									<img src="/uploads/images/home/arc-icons--home.png" alt="Arc Icons" />
-								</figure>
-							</a>
-						</article>
-		
-						<article>
-							<a href="/labs/dynamic-island" title="Dynamic Island">
-								<figure>
-									<img src="/uploads/images/portfolio/labs/dynamic-island.png" alt="Dynamic Island" />
-								</figure>
-							</a>
-						</article>
-		
-		
-						<article>
-							<a href="/works/trackr" title="Trackr">
-								<figure>
-									<img src="/uploads/images/home/trackr--home.png" alt="Trackr" />
-								</figure>
-							</a>
-						</article>
-					</section>
-				</Grid>
-			</Grid>
-
-			<div class="wrap">
-				<div class="see-more">
-					<a href="/labs" title="View experiments">View experiments <i>⇢</i></a>
-				</div>
-			</div>
-		</section>
-		 -->
-
-		<section class="index__section wrap">
-			<Grid isContainer>
-				<Grid sm="12" md="12">
-					<h2>Recent works</h2>
-				</Grid>
-			
-
-			<Grid sm="12" md="12">
-				<section class="works__list">
-					{latestWorks.map((item) => (
-					<article class="works__list--home">
-						<a href={`/works/${item.slug}`} title={item.data.title}>
-							<img src={item.data.cover.src} alt={item.data.title} loading="lazy" />
-						</a>
 						<div class="work__details">
-							<h3>{item.data.title}</h3>
-							<h4>{item.data.type}</h4>
+							<h2>{item.data.title}</h2>
+							<h3>{item.data.type}</h3>
 						</div>
-					</article>
-					))}
+					</a>
+				</article>
+				))}
 
-					<!-- <article>
-						<WorkPreview client:load  
-							href="/works/ben-soleimani" 
-							image="/uploads/images/portfolio/ben/ben-03.webp"
-							>
-							<h3>Ben Soleimani</h3>
-							<hr />
-							<span class="work--type">Ecommerce</span>
-						</WorkPreview>
-					</article>
-
-					<article>
-						<WorkPreview client:load  
-							href="/works/cloudbox" 
-							image="/uploads/images/portfolio/cloudbox/cloudbox-01.webp"
-							>
-							<h3>CloudBox</h3>
-							<hr />
-							<span class="work--type">Asset Manager</span>
-						</WorkPreview>
-					</article>
-
-					<article>
-						<WorkPreview client:load  
-							href="/works/logcms" 
-							image="/uploads/images/portfolio/logcms/logcms-01.webp"
-							>
-							<h3>LogCMS</h3>
-							<hr />
-							<span class="work--type">Content Manager</span>
-						</WorkPreview>
-					</article>
-
-					<article>
-						<WorkPreview client:load  
-							href="/works/bitpouch" 
-							image="/uploads/images/portfolio/bitpouch/bitpouch-03.webp"
-							>
-							<h3>BitPouch</h3>
-							<hr />
-							<span class="work--type">App</span>
-						</WorkPreview>
-					</article>
-
-					<article>
-						<WorkPreview client:load  
-							href="/works/viewport" 
-							image="/uploads/images/portfolio/viewport/viewport-01.webp"
-							>
-							<h3>Viewport UI</h3>
-							<hr />
-							<span class="work--type">Website</span>
-						</WorkPreview>
-					</article> -->
-				</section>
-			</Grid>
-		</Grid>
-			
-
-			<div class="wrap">
-				<div class="see-more">
-					<a href="/works" title="View experiments">View all recent works <i>⇢</i></a>
-				</div>
-			</div>
 		</section>
-
-		<section class="index__section wrap">
-			<Grid isContainer>
-				<Grid sm="12" md="12">
-					<h2>Recent notes</h2>
-				</Grid>
-
-				<Grid sm="12" md="12">
-					<section class="notes__list">
-						{renderedNotes.map((note) => (
-						<article>
-							<a href={`/notes/${note.slug}`} title={`View ${note.data.title}`}>
-								<h3>{note.data.title}</h3>
-								<hr />
-								<DateN date={note.data.publishDate} />
-							</a>
-						</article>
-						))}
-
-						
-					<div class="see-more">
-						<a href="/notes" title="See all notes">View all notes <i>⇢</i></a>
-					</div>
-
-					</section>
-				</Grid>
-			</Grid>
-		</section>
-
-		<!-- <section class="index__section wrap">
-			<Grid isContainer>
-				<Grid sm="12" md="12">
-					<h2>Currently reading</h2>
-				</Grid>
-
-				<Grid sm="12" md="12">
-					<section class="reading__list">
-
-					{byYear.map(year => (
-						<section>
-							{groupedData[year].map(item => (
-								<article class="book" key={item.id}>
-									<figure>
-										<img src={item.coverUrl} alt={item.title} loading="lazy" />
-									</figure>
-									<div class="book__details">
-										<h3>{item.title}</h3>
-										<p>{item.author}</p>
-									</div>
-								</article>
-							))}
-						</section>
-					))}
-
-					<div class="see-more">
-						<a href="/readings" title="See all notes">View all readings <i>⇢</i></a>
-					</div>
-					</section>
-				</Grid>
-			</Grid>
-		</section> -->
-
-		<section class="index__section wrap">
-			<Grid isContainer>
-				<Grid sm="12" md="12">
-					<h2>Connect</h2>
-				</Grid>
-
-				<Grid sm="12" md="12">
-					<SocialNav />
-				</Grid>
-			</Grid>
-		</section>
-
-		<!-- <section class="index__section wrap">
-			<Grid isContainer>
-				<Grid sm="12" md="12">
-					<h2>Listening</h2>
-				</Grid>
-
-				<Grid sm="12" md="12">
-					<SpotifyNowPlaying client:load />
-				</Grid>
-			</Grid>
-		</section> -->
-
 	</main>
-
-	<Footer />
 </Layout>
-<script>
-	function initCarousel() {
-		const carousel = document.querySelector('.index-works');
-		
-		if (!carousel) return;
-		
-		carousel.addEventListener('wheel', function(e) {
-		if (e.deltaY !== 0) {
-			const containerScrollPosition = carousel.scrollLeft;
-			const maxScroll = carousel.scrollWidth - carousel.clientWidth;
-			const scrollAmount = e.deltaY;
-			const newScrollPosition = containerScrollPosition + scrollAmount;
-			
-			if ((newScrollPosition <= maxScroll && newScrollPosition >= 0) || 
-				(scrollAmount < 0 && containerScrollPosition > 0)) {
-			e.preventDefault();
-			carousel.scrollLeft = newScrollPosition;
-			}
-		}
-		}, { passive: false });
-  	}
-
-	initCarousel();
-
-	document.addEventListener("astro:after-swap", initCarousel);
-</script>

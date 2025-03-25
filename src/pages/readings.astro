@@ -1,9 +1,10 @@
 ---
-import Layout from '../layouts/Layout.astro'
-import books from '../data/books.json';
-import { SiteConfig } from "../utils/SiteConfig";
-import Header from '../partials/Header.astro';
+import Layout from '@layouts/Layout.astro'
+import books from '@api/books.json';
+import { SiteConfig } from '@utils/SiteConfig';
+import Header from '@partials/Header.astro';
 import PageHeading from '@partials/PageHeading.astro';
+import Grid from '@components/utils/Grid.astro';
 
 const booksId = books.map((book, index) => ({
     id: index + 1,
@@ -24,48 +25,54 @@ const byYear = Object.keys(groupedData).sort((a,b) => b - a);
     
     <Header />
     
-    <main class="main">
-        <div class="wrap-wider">
-            <PageHeading title="Readings" description="What I've been reading recently." />
-        </div>
+    <main class="main internal-spacing">
 
-        <div class="content-article wrap-wider">
+        <PageHeading title="Readings" description="What I've been reading recently." />
+
+        <div class="content-article">
 
         {byYear.map(year => (
             <section key={year} class="books__year">
-                <h3>{year}</h3>
-                <ul class="books__list">
-                    {groupedData[year].map(item => (
-                        <li class="book" key={item.id}>
-                            <figure>
-                                <img src={item.coverUrl} alt={item.title} loading="lazy" />
-                            </figure>
-                            <h2>{item.title}</h2>
-                            <p>{item.author}</p>
+                <Grid isContainer>
+                    <Grid sm="12" md="4">
+                        <h3>{year}</h3>
+                    </Grid>
 
-                            {item.status === "reading" ? (
-                                <span class="book__status book__status--reading">
-                                    <i>
-                                        <svg width="8" height="11" viewBox="0 0 8 11" fill="none">
-                                            <path d="M0.672607 0.98291H7.39672V10.9829L4.03466 7.82644L0.672607 10.9829V0.98291Z" fill="black"/>
-                                        </svg>
-                                    </i>
-                                    Reading
-                                </span>
-                            ): (
-                                <span class="book__status book__status--finished">
-                                    <i>
-                                        <svg width="11" height="8" viewBox="0 0 11 8" fill="none">
-                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M1.85935 2.80465L0.681152 3.98285L4.21576 7.51746L10.1068 1.62644L8.92857 0.448242L4.21576 5.16105L1.85935 2.80465Z" fill="black"/>
-                                        </svg>
+                    <Grid sm="12" md="8">
+                        <ul class="books__list">
+                        {groupedData[year].map(item => (
+                            <li class="book" key={item.id}>
+                                <figure>
+                                    <img src={item.coverUrl} alt={item.title} loading="lazy" />
+                                </figure>
+                                <h2>{item.title}</h2>
+                                <p>{item.author}</p>
 
-                                    </i>
-                                    Finished
-                                </span>
-                            )}
-                        </li>
-                    ))}
-                </ul>
+                                {item.status === "reading" ? (
+                                    <span class="book__status book__status--reading">
+                                        <i>
+                                            <svg width="8" height="11" viewBox="0 0 8 11" fill="none">
+                                                <path d="M0.672607 0.98291H7.39672V10.9829L4.03466 7.82644L0.672607 10.9829V0.98291Z" fill="black"/>
+                                            </svg>
+                                        </i>
+                                        Reading
+                                    </span>
+                                ): (
+                                    <span class="book__status book__status--finished">
+                                        <i>
+                                            <svg width="11" height="8" viewBox="0 0 11 8" fill="none">
+                                                <path fill-rule="evenodd" clip-rule="evenodd" d="M1.85935 2.80465L0.681152 3.98285L4.21576 7.51746L10.1068 1.62644L8.92857 0.448242L4.21576 5.16105L1.85935 2.80465Z" fill="black"/>
+                                            </svg>
+
+                                        </i>
+                                        Finished
+                                    </span>
+                                )}
+                            </li>
+                        ))}
+                    </ul>    
+                    </Grid>
+                </Grid>
 
             </section>
         ))}

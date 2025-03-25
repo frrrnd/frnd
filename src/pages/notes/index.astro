@@ -23,15 +23,15 @@ const renderedNotes = await Promise.all(
 	
 	<Header />
 	
-	<main class="main wrap-wider">
+	<main class="main internal-spacing">
 		<PageHeading title="Notes" description="A collection of thoughts & ideas." />
 
 		<section class="notes__page">
 		{renderedNotes.map((note) => (
 			<article class="content-article">
-				<a href={`/notes/${note.slug}`} title={`View ${note.data.title}`}>
+				<a href={`/notes/${note.slug}`} title={`Read ${note.data.title}`}>
 					<Grid isContainer>
-						<Grid sm="12" md="4">
+						<Grid sm="12" md="4" class="date-right">
 							<DateN date={note.data.publishDate} />
 						</Grid>
 

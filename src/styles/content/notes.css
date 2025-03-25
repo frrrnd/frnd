@@ -48,6 +48,12 @@
 
 /* List page */
 .notes__page {
+    font-size: var(--font-size-h1);
+
+    .content-article {
+        margin-bottom: var(--spacing-2);
+    }
+    
     h2 {
         color: rgb(var(--title-color));
     }
@@ -87,9 +93,15 @@
 
 .note__content {
     h2, h3, h4, h5 {
-        font-weight: 500;
+        font-weight: 600!important;
         color: rgb(var(--title-color));
         margin:var(--spacing-2) 0 var(--spacing-1);
+        font-size: var(--font-size-h1);
+    }
+
+    p, li {
+        font-size: var(--font-size-h1);
+        margin-bottom: var(--spacing-2)!important;
     }
 
     img {

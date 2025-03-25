@@ -1,7 +1,50 @@
 ---
-import FloatNavigation from "@partials/FloatNavigation.astro";
+import Grid from '@components/utils/Grid.astro';
+import CopyClipboard from '@components/CopyClipboard/CopyClipboard.jsx';
+
+const pathname = new URL(Astro.request.url).pathname;
+const currentPath = pathname.slice(1); // remove the first "/"
+
+const isActive = (path) => {
+    if (path === "" && currentPath === "") {
+        return true; // Ativa "Home" somente quando a URL atual é a raiz
+    } else if (path !== "" && currentPath.startsWith(path)) {
+        return true; // Ativa outras rotas se o currentPath começa com path
+    }
+    return false;
+};
 ---
 
 <header class="header">
-    <FloatNavigation />
+    <div class="header__fixed">
+        <Grid isContainer>
+            <Grid sm="12" md="12" lg="4">
+                <div class="header__content">
+                    <h1><a href="/">Fernando Soares <span> Interface Designer</span></a></h1>
+                </div>
+            </Grid>
+
+            <Grid sm="6" md="6" lg="4">
+                <div class="header__content">
+                    <nav>
+                        <ul>
+                            <li><a class={isActive("work") ? "active" : ""} href="/">Work</a></li>
+                            <li><a class={isActive("about") ? "active" : ""} href="/about">About</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </Grid>
+
+            <Grid sm="6" md="6" lg="4">
+                <div class="header__content align-right">
+                    <nav>
+                        <ul>
+                            <li><a class={isActive("notes") ? "active" : ""} href="/notes">Notes</a></li>
+                            <li><CopyClipboard client:load /></li>
+                        </ul>
+                    </nav>
+                </div>
+            </Grid>
+        </Grid>
+    </div>
 </header>
