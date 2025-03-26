@@ -55,6 +55,8 @@ body {
 
 .content {
     position: relative;
+    margin-bottom: 35vh;
+    background: rgba(var(--body-foreground-color), 1);
 }
 
 .wrap {

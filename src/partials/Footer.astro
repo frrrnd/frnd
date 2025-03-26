@@ -1,7 +1,7 @@
 ---
 import Grid from '../components/utils/Grid.astro';
 ---
-<footer class="footer">
+<footer class="footer fixed bottom-0 left-0">
     <Grid isContainer>
         <Grid sm="12" md="4">
             <p>© 2025</p>
@@ -41,10 +41,12 @@ import Grid from '../components/utils/Grid.astro';
 
     .footer {
         font-size: var(--font-size-h1);
-        padding: var(--spacing-2) 0 var(--spacing-2);
+        padding: var(--spacing-2) var(--spacing-1);
         color: rgba(var(--body-text-color), .5);
         border-top: 1px solid rgb(var(--body-text-color), .05);
         margin-top: var(--spacing-2);
+        width: 100%;
+        z-index: -1;
     }
 
     .footer__content {
