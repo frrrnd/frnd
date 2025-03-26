@@ -48,13 +48,13 @@
 
 .work__data {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     font-family: var(--title-font);
     text-transform: uppercase;
     font-size: var(--font-size-p);
-    margin-top: var(--spacing-2);
-    margin-bottom: var(--spacing-4);
+    margin-bottom: var(--spacing-2);
     color: rgba(var(--body-text-color), .7);
+    gap: 1rem;
 
     ul {
         padding-left: 0;
@@ -70,6 +70,12 @@
     font-size: var(--font-size-h1);
 
     .page__heading {
+        margin-bottom: var(--spacing-2);
+    }
+
+    .work__title {
+        font-size: var(--font-size-xxl);
+        font-weight: 400;
         margin-bottom: var(--spacing-2);
     }
 }

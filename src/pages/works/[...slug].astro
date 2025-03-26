@@ -44,27 +44,28 @@ if (item) {
             <article>
               <Grid isContainer class="page__heading">
                 <Grid sm="12" md="4">
-                  <h2>{frontmatter.title}</h2>
-                  <div class="work__data">
-                    <ul>
-                        <li>{frontmatter.role || "Não especificado"}</li>
-                    </ul>
-        
-                    <ul>
-                        <li>{frontmatter.year || "Não especificado"}</li>
-                    </ul>
-        
-                    <!-- {frontmatter.link &&
-                    <ul>
-                        <li>
-                            <a href={`https://${frontmatter.link}`} title="See live" target="_blank" rel="noopener noreferrer">{frontmatter.link}</a>
-                        </li>
-                    </ul>} -->
-                </div>
+                  
                 </Grid>
         
                 <Grid sm="12" md="6">
+                    <div class="work__data">
+                        <ul>
+                            <li>{frontmatter.role || "Não especificado"}</li>
+                        </ul>
+            
+                        <ul>
+                            <li>{frontmatter.year || "Não especificado"}</li>
+                        </ul>
+            
+                        <!-- {frontmatter.link &&
+                        <ul>
+                            <li>
+                                <a href={`https://${frontmatter.link}`} title="See live" target="_blank" rel="noopener noreferrer">{frontmatter.link}</a>
+                            </li>
+                        </ul>} -->
+                    </div>
                     
+                    <h2 class="work__title">{frontmatter.title}</h2>
 
                     <p class="work__desc"><Fragment set:html={frontmatter.description} /></p>
                 </Grid>
