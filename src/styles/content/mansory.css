@@ -14,6 +14,7 @@
       figure > img {
         grid-row: 1 / -1;
         grid-column: 1;
+        border-radius: 10px;
       }
       
       figcaption {
