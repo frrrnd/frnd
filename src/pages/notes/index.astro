@@ -31,11 +31,11 @@ const renderedNotes = await Promise.all(
 			<article class="content-article">
 				<a href={`/notes/${note.slug}`} title={`Read ${note.data.title}`}>
 					<Grid isContainer>
-						<Grid sm="12" md="4" class="date-right">
+						<Grid sm="12" md="3" class="date-right">
 							<DateN date={note.data.publishDate} />
 						</Grid>
 
-						<Grid sm="12" md="8">
+						<Grid sm="12" md="5">
 							<h2>{note.data.title}</h2>
 							<p>{note.data.description}</p>
 						</Grid>

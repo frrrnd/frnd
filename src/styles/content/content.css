@@ -1,24 +1,10 @@
 li, p {
     code {
-        font-size: var(--type-default-size);
-        color: var(--code-highlight);
-        background: var(--code-highlight-bg);
-        border-radius: var(--border-default-radius);
+        font-size: var(--font-size-small);
+        background: hsla(0, 0%, 90%, 1);
+        border-radius: var(--radius-sm);
         padding: 2px 5px;
-    }
-}
-
-.mono {
-    font-family: var(--font-mono);
-    text-transform: uppercase;
-    font-weight: 400;
-    font-size: 12px;
-    letter-spacing: 1px;
-    display: block;
-    margin-bottom: 1rem;
-
-    & a {
-        color: var(--link-primary-color)!important;
+        font-weight: 500;
     }
 }
 
@@ -31,14 +17,6 @@ li, p {
         font-size: var(--text-primary-size);
         margin-bottom: 1rem;
     }
-
-    /* a:not(:has(h3)) {
-        color: var(--link-primary-color);
-        text-decoration: underline;
-        text-underline-offset: 3px;
-        transition: .4s;
-        text-decoration-color: var(--title-color);
-    } */
 
     a h3 {
         font-size: var(--text-primary-color);
@@ -62,7 +40,7 @@ li, p {
     }
 
     & time {
-        opacity: .8;
+        opacity: var(--opacity-default);
     }
 
     & ul {
@@ -74,11 +52,11 @@ li, p {
     p a {
         text-decoration: underline;
         text-underline-offset: 3px;
-        text-decoration-color: rgba(var(--body-text-color), .5);
+        text-decoration-color: hsla(var(--body-link-color), .5);
         transition: .4s;
+        color: hsla(var(--body-link-color), 1);
 
         &:hover {
-            color: var(--link-primary-color-hover);
             transition: .4s;
         }
     }
@@ -93,7 +71,7 @@ li, p {
             width: auto;
             display: inline-block;
             margin-right: 1rem;
-            color: rgb(var(--body-text-color));
+            color: hsla(var(--body-text-color), .6);
         }
     }
 
@@ -106,19 +84,18 @@ li, p {
     }
 
     & pre {
-        padding: 1rem;
+        padding: var(--spacing-1);
         border-radius: 5px;
         font-size: .8rem;
-        margin-bottom: 1rem;
-        font-size: 1rem;
-        background-color: transparent!important;
+        margin-bottom: var(--spacing-1);
+        font-size: var(--font-size-small);
     }
 
     & blockquote {
         margin-left: 0;
         padding: 1rem;
         font-weight: 400;
-        border-left: 2px solid gray;
+        border-left: 2px solid hsla(var(--body-text-color), .6);
         margin-bottom: 1rem;
 
         p {
@@ -194,7 +171,6 @@ li, p {
     position: absolute;
     top: 12px;
     left: 12px;
-    background: rgba(255,255,255,.8);
     backdrop-filter: blur(8px);
     padding: 4px 8px;
     border-radius: 25px;

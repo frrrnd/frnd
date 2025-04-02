@@ -3,25 +3,26 @@ import Grid from '../components/utils/Grid.astro';
 ---
 <footer class="footer fixed bottom-0 left-0">
     <Grid isContainer>
-        <Grid sm="12" md="4">
+        <Grid sm="12" md="3">
             <p>© 2025</p>
         </Grid>
 
-        <Grid sm="12" md="2">
-            <div class="footer__content hide-mobile">
+        <Grid sm="6" md="3">
+            <div class="footer__content">
                 <h4>Explore</h4>
             </div>
 
-            <div class="footer__content hide-mobile">
+            <div class="footer__content">
                 <h4>Colophon</h4>
             </div>
         </Grid>
 
-        <Grid sm="12" md="6">
+        <Grid sm="6" md="3">
             <div class="footer__content">
                 <ul>
                     <li><a href="/readings">Readings</a></li>
                     <li><a href="/my-girls">My Girls</a></li>
+                    <li><a target="_blank" href="https://linkedin/in/frrrnd">Linkedin</a></li>
                     <li><a target="_blank" href="https://www.are.na/fer-nshpf_to31q/channels">Are.na</a></li>
                     <li><a target="_blank" href="https://x.com/frrrnd">x.com</a></li>
                 </ul>
@@ -42,8 +43,8 @@ import Grid from '../components/utils/Grid.astro';
     .footer {
         font-size: var(--font-size-h1);
         padding: var(--spacing-2) var(--spacing-1);
-        color: rgba(var(--body-text-color), .5);
-        border-top: 1px solid rgb(var(--body-text-color), .05);
+        color: hsla(var(--body-text-color), .5);
+        border-top: 1px solid hsla(var(--body-text-color), .05);
         margin-top: var(--spacing-2);
         width: 100%;
         z-index: 0;
@@ -51,7 +52,7 @@ import Grid from '../components/utils/Grid.astro';
 
     .footer__content {
         margin-bottom: var(--spacing-4);
-        min-height: 120px;
+        min-height: 150px;
 
         h4 {
             margin-bottom: var(--spacing-1);
@@ -59,11 +60,11 @@ import Grid from '../components/utils/Grid.astro';
         }
 
         a {
-            color: rgba(var(--body-text-color), 1);
+            color: hsla(var(--body-text-color), 1);
             transition: .4s;
 
             &:hover {
-                color: rgba(var(--body-text-color), .5);
+                opacity: var(--opacity-default);
                 transition: .4s;
             }
         }

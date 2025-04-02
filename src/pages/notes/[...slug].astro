@@ -5,24 +5,22 @@ import FormattedDate from '../../partials/formattedDate.astro';
 import { SiteConfig } from '../../utils/SiteConfig';
 import Header from '../../partials/Header.astro';
 import Grid from '@components/utils/Grid.astro';
-// import Share from '../../components/Share/Share.jsx';
-
-export const prerender = true;
-
+// export const prerender = true;
 export async function getStaticPaths() {
     const notes = await getCollection('notes');
-
     return notes.map((note) => ({
         params: { slug: note.slug },
         props: { note },
     }));
 }
-
 const { note } = Astro.props;
+const colors = note?.data?.colors ?? {};
+const backgroundColor = colors.backgroundColor || "red";
+const textColor = colors.textColor || "yellow";
+const linkColor = colors.linkColor || "black";
 
 let Content = null;
 let frontmatter = {};
-
 if (note) {
     frontmatter = note.data || {};
     if (note.render) {
@@ -30,29 +28,38 @@ if (note) {
         Content = rendered.Content || null;
     }
 }
+
+const themeClass = note?.data?.colors ? "custom-theme" : "light-theme";
+
+const customStyles = `
+  :root.${themeClass} {
+    --backgroundColor: ${backgroundColor};
+    --textColor: ${textColor};
+    --linkColor: ${linkColor};
+  }
+`;
+
 ---
 
 <Layout props={{ 
     title: `${frontmatter.title} — ${SiteConfig.title}`, 
     description: SiteConfig.description, 
-    image: SiteConfig.image }}>
+    image: SiteConfig.image, 
+    themeClass: themeClass,
+    }}>
 
     <Header />
     
     <main class="main internal-spacing">
         <Grid isContainer>
-            <Grid sm="12" md="4"></Grid>
-            <Grid sm="12" md="4">
-                <article class="content-article">
+            <Grid sm="12" md="2" lg="3"></Grid>
+            <Grid sm="12" md="8" lg="5">
+                <article class="content-article note__article">
                     <header class="page__heading">
                         <div class="heading__left">
                             <h1>{note.data.title}</h1>
                             <FormattedDate date={note.data.publishDate} />
                         </div>
-
-                        <!-- <div class="heading__right">
-                            <Share slug={`https://frnd.design/notes/${note.slug}`} client:load />
-                        </div> -->
                     </header>
                 
                     <section class="note__content">
@@ -60,7 +67,15 @@ if (note) {
                     </section>
                 </article>
             </Grid>
-            <Grid sm="12" md="4"></Grid>
+            <Grid sm="12" md="2" lg="4"></Grid>
         </Grid>
     </main>
 </Layout>
+<style set:html={customStyles}></style>
+<style>
+  :root.custom-theme {
+    --primary-color: var(--backgroundColor);
+    --secondary-color: var(--textColor);
+    --tertiary-color: var(--linkColor);
+  }
+</style>

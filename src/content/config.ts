@@ -10,6 +10,14 @@ const notesCollection = defineCollection({
         publishDate: z.string().or(z.date()).transform((val) => new Date(val)),
         updateDate: z.string().or(z.date()).transform((val) => new Date(val)).optional(),
         cover: z.string().optional(),
+        colors: z.union([
+            z.object({
+              backgroundColor: z.string().optional(),
+              textColor: z.string().optional(),
+              linkColor: z.string().optional(),
+            }),
+            z.undefined(),
+          ]).optional(),
     })
 });
 

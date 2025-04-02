@@ -4,11 +4,9 @@
 :root {
  
      /* Semantic Colors */
-     --body-foreground-color: var(--primary-color);
+     --body-background-color: var(--primary-color);
      --body-text-color: var(--secondary-color);
      --body-link-color: var(--tertiary-color);
-
-     --body-foreground-darker-color: hsl(from rgb(var(--body-foreground-color)) h s calc(l - 2));
 
     /* Fonts */
     --title-font: "UncutSans Variable", system-ui, sans-serif;
@@ -23,6 +21,7 @@
     --font-size-h5: 1rem;
     --font-size-h6: 1rem;
     --font-size-p: 1rem;
+    --font-size-regular: 1.2rem;
     --font-size-small: 0.85rem;
     --font-size-xsmall: 0.8rem;
     --font-size-xxl: 3rem;

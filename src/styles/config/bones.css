@@ -5,8 +5,8 @@
 }
 
 ::selection {
-    background-color: rgb(var(--accent-color));
-    color: rgb(var(--primary-color));
+    background-color: hsla(var(--body-text-color));
+    color: hsla(var(--body-background-color));
 }
 
 ::view-transition-old(root),
@@ -35,7 +35,7 @@
 html {
     box-sizing: border-box;
     position: relative;
-    background: rgba(var(--body-foreground-color), 1);
+    background: hsla(var(--body-background-color), 1);
     min-height: 100%;
     scroll-behavior: smooth;
 }
@@ -45,18 +45,22 @@ body {
     text-rendering: optimizelegibility;
     -webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
-    color: rgba(var(--body-text-color), 1);
+    background: hsla(var(--body-background-color), 1);
+    color: hsla(var(--body-text-color), 1);
     width: 100%;
     height: 100%;
-    font-size: var(--font-size-p);
+    font-size: var(--font-size-regular);
     font-weight: 430;
-    padding: var(--spacing-1);
+}
+
+.main {
+    padding: 0 var(--spacing-1);
 }
 
 .content {
     position: relative;
-    margin-bottom: 45dvh;
-    background: rgba(var(--body-foreground-color), 1);
+    margin-bottom: 70dvh;
+    background: hsla(var(--body-background-color), 1);
     z-index: 2;
 }
 
@@ -82,69 +86,6 @@ body {
     }
 }
 
-.header {
-    width: 100%;
-    font-size: var(--font-size-h1);
-    padding: var(--spacing-2) var(--spacing-1);
-
-    .header__fixed {
-        position: fixed;
-        width: 100%;
-        left: 0;
-        top: 0;
-        z-index: 10;
-        padding: var(--spacing-2) var(--spacing-1);
-        background: transparent;
-        mix-blend-mode: difference;
-        color: rgb(191, 191, 191);
-    }
-
-    span {
-        color: #5d5d5d;
-        margin-left: calc(var(--spacing-1) / 2);
-    }
-
-    .header__content {
-        display: flex;
-        /* text-transform: uppercase; */
-
-        ul {
-            list-style-type: none;
-            display: flex;
-            flex-direction: row;
-            gap: var(--spacing-4);
-        }
-
-        a {
-            transition: .3s;
-        }
-
-        a:hover {
-            color: rgba(191, 191, 191, .7);
-            transition: .3s;
-        }
-
-        .active {
-            position: relative;
-
-            &:after {
-                content: "";
-                width: 4px;
-                height: 4px;
-                background-color: rgb(var(--accent-color));
-                filter: invert(100%);
-                position: absolute;
-                top: 0;
-                right: -.5rem;
-                border-radius: 100%;
-            }
-        }
-    }
-
-    .align-right {
-        justify-content: flex-end;
-    }
-}
 
 .internal-spacing {
     padding-top: calc(var(--spacing-8) * 2);

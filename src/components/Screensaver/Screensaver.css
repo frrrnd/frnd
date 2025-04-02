@@ -1,0 +1,57 @@
+/* Container styles */
+.screensaver-container {
+    width: 100%;
+    height: 92vh;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+  
+  /* Title styles */
+  .screensaver-title {
+    z-index: 30;
+    font-size: 3rem;
+    font-weight: bold;
+    color: var(--body-background-color);
+    mix-blend-mode: difference;
+  }
+  
+  @media (min-width: 768px) {
+    .screensaver-title {
+      font-size: 6rem;
+    }
+  }
+  
+  /* Image container styles */
+  .screensaver-image-container {
+    width: 5rem;
+    height: 5rem;
+    overflow: hidden;
+  }
+  
+  @media (min-width: 768px) {
+    .screensaver-image-container {
+      width: 12rem;
+      height: 12rem;
+    }
+  }
+  
+  /* Image styles */
+  .screensaver-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  /* Screensaver element styles */
+  .screensaver-element {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translate(0, 0);
+    will-change: transform;
+  }
+  
+  

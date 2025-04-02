@@ -6,15 +6,10 @@
         font-weight: 500;
         font-family: var(--title-font);
         line-height: 1;
-        color: rgb(var(--title-color));
         text-transform: uppercase;
     }
 }
 
 .page__heading {
     font-size: var(--font-size-h1);
-
-    h2 {
-        color: rgb(var(--title-color));
-    }
 }

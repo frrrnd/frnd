@@ -11,23 +11,25 @@
   },
   "dependencies": {
     "@astrojs/check": "^0.9.4",
-    "@astrojs/mdx": "^4.2.0",
-    "@astrojs/netlify": "^6.2.3",
-    "@astrojs/react": "^4.2.1",
-    "@astrojs/tailwind": "^6.0.0",
+    "@astrojs/mdx": "^4.2.3",
+    "@astrojs/netlify": "^6.2.5",
+    "@astrojs/react": "^4.2.3",
     "@types/react": "^18.3.18",
     "@types/react-dom": "^18.3.5",
-    "astro": "^5.5.2",
+    "astro": "^5.5.6",
     "astro-breadcrumbs": "^3.3.1",
     "astro-og-canvas": "^0.5.6",
     "astro-seo": "^0.8.4",
     "framer-motion": "^11.18.0",
     "lucide-react": "^0.473.0",
     "markdown-it": "^14.1.0",
+    "npm": "^11.2.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-intersection-observer": "^9.15.0",
-    "tailwindcss": "^3.4.17",
     "typescript": "^5.7.3"
+  },
+  "devDependencies": {
+    "@astrojs/tailwind": "^6.0.2"
   }
 }

@@ -2,7 +2,6 @@ a {
     transition: var(--transition-default);
 
     &:hover {
-        color: rgb(var(--title-color));
         transition: var(--transition-default);
     }
 }

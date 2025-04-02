@@ -1,7 +1,7 @@
 .index__works {
     column-count: 3;
     column-gap: var(--spacing-1);
-    padding: var(--spacing-1) 0;
+    padding: var(--spacing-2) 0;
 }
 
 @media (max-width: 1024px) {
@@ -24,8 +24,8 @@
     a {
         display: block;
         position: relative;
-        background-color: #E8E8E8;
-        border-radius: 10px;
+        background-color: hsla(0, 0%, 91%, 1);
+        border-radius: var(--radius-md);
         overflow: hidden;
         transition: transform .3s cubic-bezier(0.4, 0, 0.2, 1);
         transform-origin: center;
@@ -53,9 +53,9 @@
         transition: .3s;
 
         h2, h3 {
-           background-color: white;
+           background-color: hsla(var(--body-background-color), 1);
            padding: calc(var(--spacing-1) / 4) calc(var(--spacing-1) / 2);
-           border-radius: 5px;
+           border-radius: var(--radius-sm);
            font-size: var(--font-size-small);
         }
     }

@@ -13,7 +13,6 @@
             
             &:hover {
                 h3, time {
-                    color: rgb(var(--title-color));
                     transition: var(--transition-default);
                 }
             }
@@ -53,10 +52,6 @@
     .content-article {
         margin-bottom: var(--spacing-2);
     }
-    
-    h2 {
-        color: rgb(var(--title-color));
-    }
 
     time, p {
         transition: var(--transition-default);
@@ -67,7 +62,6 @@
 
         &:hover {
             time, p {
-                color: rgb(var(--title-color));
                 transition: var(--transition-default);
             }
         }
@@ -86,15 +80,13 @@
     }
 
     h1 {
-        font-family: var(--title-font);
-        color: rgb(var(--title-color));
+        font-size: var(--font-size-xxl);
     }
 }
 
 .note__content {
     h2, h3, h4, h5 {
         font-weight: 600!important;
-        color: rgb(var(--title-color));
         margin:var(--spacing-2) 0 var(--spacing-1);
         font-size: var(--font-size-h1);
     }

@@ -8,7 +8,7 @@ import Grid from '@components/utils/Grid.astro';
 const works = await getCollection('works');
 const filteredWorks = works.filter(item => !item.data.isDraft);
 filteredWorks.sort((a,b) => Date.parse(a.data.order) - Date.parse(b.data.order));
-const latestWorks = filteredWorks.slice(0,20);
+const latestWorks = filteredWorks.slice(0,25);
 
 ---
 

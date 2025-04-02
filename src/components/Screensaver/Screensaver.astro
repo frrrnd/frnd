@@ -1,0 +1,116 @@
+---
+// Define props with TypeScript interface
+interface Props {
+  speed?: number;
+  startPositionX?: number;
+  startPositionY?: number;
+  startAngle?: number;
+  containerId: string;
+  index: number;
+}
+
+// Destructure props with defaults
+const { 
+  speed = 3, 
+  startPositionX = 0, 
+  startPositionY = 0, 
+  startAngle = 45,
+  containerId,
+  index
+} = Astro.props;
+
+import './Screensaver.css';
+---
+
+<div 
+  class="screensaver-element" 
+  id={`screensaver-element-${index}`}
+  data-speed={speed}
+  data-start-position-x={startPositionX}
+  data-start-position-y={startPositionY}
+  data-start-angle={startAngle}
+  data-container-id={containerId}
+>
+  <slot />
+</div>
+
+<script define:vars={{ speed, startPositionX, startPositionY, startAngle, containerId, index }}>
+  // This script will run on the client side
+  document.addEventListener('DOMContentLoaded', () => {
+    const container = document.getElementById(containerId);
+    const element = document.getElementById(`screensaver-element-${index}`);
+    
+    if (!container || !element) return;
+    
+    // Initialize position and angle
+    let x = 0;
+    let y = 0;
+    let angle = (startAngle * Math.PI) / 180;
+    
+    // Get dimensions
+    const getContainerDimensions = () => {
+      const rect = container.getBoundingClientRect();
+      return { width: rect.width, height: rect.height };
+    };
+    
+    const getElementDimensions = () => {
+      const rect = element.getBoundingClientRect();
+      return { width: rect.width, height: rect.height };
+    };
+    
+    // Set initial position
+    const setPosition = () => {
+      const containerDimensions = getContainerDimensions();
+      const elementDimensions = getElementDimensions();
+      
+      x = (startPositionX / 100) * (containerDimensions.width - elementDimensions.width);
+      y = (startPositionY / 100) * (containerDimensions.height - elementDimensions.height);
+      
+      updateElementPosition();
+    };
+    
+    // Update element position
+    const updateElementPosition = () => {
+      element.style.transform = `translate(${x}px, ${y}px)`;
+    };
+    
+    // Animation frame function
+    const animate = () => {
+      const velocity = speed;
+      const dx = Math.cos(angle) * velocity;
+      const dy = Math.sin(angle) * velocity;
+      
+      const containerDimensions = getContainerDimensions();
+      const elementDimensions = getElementDimensions();
+      
+      let newX = x + dx;
+      let newY = y + dy;
+      
+      // Check for collisions with container boundaries
+      if (newX <= 0 || newX + elementDimensions.width >= containerDimensions.width) {
+        angle = Math.PI - angle;
+        newX = Math.max(0, Math.min(newX, containerDimensions.width - elementDimensions.width));
+      }
+      
+      if (newY <= 0 || newY + elementDimensions.height >= containerDimensions.height) {
+        angle = -angle;
+        newY = Math.max(0, Math.min(newY, containerDimensions.height - elementDimensions.height));
+      }
+      
+      x = newX;
+      y = newY;
+      
+      updateElementPosition();
+      
+      requestAnimationFrame(animate);
+    };
+    
+    // Initialize
+    setPosition();
+    requestAnimationFrame(animate);
+    
+    // Handle window resize
+    window.addEventListener('resize', setPosition);
+  });
+</script>
+

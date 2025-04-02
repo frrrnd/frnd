@@ -11,50 +11,114 @@ import PageHeading from '@partials/PageHeading.astro';
 
     <main class="main internal-spacing">
 
-        <!-- <PageHeading title="About" description="Fernando Soares" /> -->
+        <PageHeading title="About" description="Senior UI Designer based in Florianópolis, Brazil." />
 
-        <section class="index__section about-content">
+        <section class="page__content">
             <Grid isContainer>
-                <Grid sm="12" md="4">
-                    <img src="/frnd-avatar.jpg" alt="Yo!" class="about-photo">
-                </Grid>
-
-                <Grid sm="12" md="2"></Grid>
+                <Grid sm="12" md="3"></Grid>
 
                 <Grid sm="12" md="5">
                     <article class="content-article">
-                        <p>Senior UI Designer based in Florianópolis, Brazil. Currently working as a freelancer ux/ui designer and with webflow development. I enjoy think with design, sipping coffee, listen to fuzzy music and longboarding.</p>
+                        <p>I'm a freelance UX/UI designer working with interfaces, icons and Webflow development. I love thinking through design, sipping coffee, listening to fuzzy music, and longboarding.</p>
 
-                        <p>CSS lover. Icon designer enthusiast. Driven by curiosity.  ½ of <a href="https://viewport-ui.design" target="_blank">Viewport UI.</a></p>
+                        <p>A CSS lover, icon design enthusiast and  ½ of <a href="https://viewport-ui.design" target="_blank">Viewport UI</a>. I'm driven by curiosity.</p>
 
-                        <p>Self-taught designer with 13 years of experience. I learned HTML when I was 12 and have been in love with interfaces ever since.</p>
+                        <p>With 13 years of experience, I started my journey in design as a self-taught professional. I learned HTML at the age of 12 and have been in love with interfaces ever since.</p>
                     
-                        <p>I worked with brands like Massey-Fergusson, Valtra, Figueirense FC, Petrobras, Ryzen and etc.</p>
+                        <p>Throughout my career, I've collaborated with brands such as Massey-Ferguson, Valtra, Figueirense FC, Petrobras, Ryzen, and more.</p>
         
-                        <p>I believe that my knowledge of Front-End development helps me design real-world interfaces and solve problems with a holistic view of the product. Solving complex problems with simple solutions.</p>
+                        <p>I believe my Front-End development skills enhance my ability to design real-world interfaces, allowing me to approach problems holistically. My focus is on solving complex challenges with simple, effective solutions.</p>
                     </article>
                 </Grid>
             </Grid>
         </section>
 
-        <section class="index__section about-content">
-            <article class="content-article">
+        <section class="page__content">
+            <figure>
+                <img src="/frnd-avatar.jpg" alt="Yo!" class="about-photo">
+            </figure>
+        </section>
+
+        <!-- <section class="page__content">
+            <article class="dos__list">
                 <Grid isContainer>
                     <Grid sm="12" md="4">
+                        <h2>What I Do</h2>
                     </Grid>
 
-                    <Grid sm="12" md="2">
-                    </Grid>
-
-                    <Grid sm="12" md="6">
+                    <Grid sm="12" md="8">
                         <Grid sm="12" md="12">
-                            <h2>Experience</h2>
+                            <Grid isContainer>
+                                <Grid sm="12" md="2">
+                                    <i>—</i>
+                                </Grid>
+                                <Grid sm="12" md="8">
+                                    <p>Web Design</p>
+                                </Grid>
+                            </Grid>
+
+                            <Grid isContainer>
+                                <Grid sm="12" md="2">
+                                    <i>—</i>
+                                </Grid>
+                                <Grid sm="12" md="8">
+                                    <p>App Design</p>
+                                </Grid>
+                            </Grid>
+
+                            <Grid isContainer>
+                                <Grid sm="12" md="2">
+                                    <i>—</i>
+                                </Grid>
+                                <Grid sm="12" md="8">
+                                    <p>Webflow/Framer Development</p>
+                                </Grid>
+                            </Grid>
+
+                            <Grid isContainer>
+                                <Grid sm="12" md="2">
+                                    <i>—</i>
+                                </Grid>
+                                <Grid sm="12" md="8">
+                                    <p>Design Systems</p>
+                                </Grid>
+                            </Grid>
+
+                            <Grid isContainer>
+                                <Grid sm="12" md="2">
+                                    <i>—</i>
+                                </Grid>
+                                <Grid sm="12" md="8">
+                                    <p>Prototypes</p>
+                                </Grid>
+                            </Grid>
+
+                            <Grid isContainer>
+                                <Grid sm="12" md="2">
+                                    <i>—</i>
+                                </Grid>
+                                <Grid sm="12" md="8">
+                                    <p>Icons/App Icon</p>
+                                </Grid>
+                            </Grid>
                         </Grid>
-    
+                    </Grid>
+                </Grid>
+            </article>
+        </section>
+
+        <section class="page__content">
+            <article class="experience__list">
+                <Grid isContainer>
+                    <Grid sm="12" md="4">
+                        <h2>Experience</h2>
+                    </Grid>
+
+                    <Grid sm="12" md="8">    
                         <Grid sm="12" md="12">
-                            <Grid isContainer class="experience__list">
-                                <Grid sm="12" md="2" class="experience__year">
-                                    <p>2023 — Now</p>
+                            <Grid isContainer>
+                                <Grid sm="12" md="2">
+                                    <p class="experience__year">2023 — Now</p>
                                 </Grid>
             
                                 <Grid sm="12" md="8">
@@ -63,9 +127,9 @@ import PageHeading from '@partials/PageHeading.astro';
                                 </Grid>
                             </Grid>
             
-                            <Grid isContainer class="experience__list">
-                                <Grid sm="12" md="2" class="experience__year">
-                                    <p>2020 — 2023</p>
+                            <Grid isContainer>
+                                <Grid sm="12" md="2" >
+                                    <p class="experience__year">2020 — 2023</p>
                                 </Grid>
             
                                 <Grid sm="12" md="8">
@@ -74,9 +138,9 @@ import PageHeading from '@partials/PageHeading.astro';
                                 </Grid>
                             </Grid>
                             
-                            <Grid isContainer class="experience__list">
-                                <Grid sm="12" md="2" class="experience__year">
-                                    <p>2019 — 2020</p>
+                            <Grid isContainer>
+                                <Grid sm="12" md="2">
+                                    <p class="experience__year">2019 — 2020</p>
                                 </Grid>
             
                                 <Grid sm="12" md="8">
@@ -85,9 +149,11 @@ import PageHeading from '@partials/PageHeading.astro';
                                 </Grid>
                             </Grid>
             
-                            <Grid isContainer class="experience__list">
-                                <Grid sm="12" md="2" class="experience__year">
-                                    <p>2015 — 2019</p>
+                            <Grid isContainer>
+                                <Grid sm="12" md="2">
+                                    <div>
+                                        <p class="experience__year">2015 — 2019</p>
+                                    </div>
                                 </Grid>
             
                                 <Grid sm="12" md="8">
@@ -96,9 +162,9 @@ import PageHeading from '@partials/PageHeading.astro';
                                 </Grid>
                             </Grid>
             
-                            <Grid isContainer class="experience__list">
-                                <Grid sm="12" md="2" class="experience__year">
-                                    <p>2013 — 2015</p>
+                            <Grid isContainer>
+                                <Grid sm="12" md="2">
+                                    <p class="experience__year">2013 — 2015</p>
                                 </Grid>
             
                                 <Grid sm="12" md="8">
@@ -106,9 +172,10 @@ import PageHeading from '@partials/PageHeading.astro';
                                     <p>UX/UI, Apps, CMS, Front End & Wordpress</p>
                                 </Grid>
                             </Grid>
-                            <Grid isContainer class="experience__list">
-                                <Grid sm="12" md="2" class="experience__year">
-                                    <p>2011 — 2013</p>
+
+                            <Grid isContainer>
+                                <Grid sm="12" md="2">
+                                    <p class="experience__year">2011 — 2013</p>
                                 </Grid>
             
                                 <Grid sm="12" md="8">
@@ -120,19 +187,42 @@ import PageHeading from '@partials/PageHeading.astro';
                     </Grid>
                 </Grid>
             </article>
-        </section>
+        </section> -->
+
     </main>
 </Layout>
-<style>
-    .about-content {
-        font-size: var(--font-size-h1);
 
-        img {
-            border-radius: 10px;
+<style>
+    .experience__list {
+        .grid-container {
+            margin: var(--spacing-2) 0;
         }
     }
 
-    .internal-spacing {
-        padding-top: calc(var(--spacing-8) * 2);
+    .experience__year {
+        color: hsla(var(--body-text-color), var(--opacity-default));
+    }
+
+    .about-photo {
+        /* max-width: 400px; */
+        border-radius: var(--radius-md);
+    }
+
+    .dos__list {
+       .grid-container {
+        margin: var(--spacing-1) 0;
+       }
+
+       i {
+        font-style: normal;
+        color: hsla(var(--body-text-color), var(--opacity-default));
+        text-align: right;
+        display: block;
+        width: 100%;
+       }
+    }
+
+    .page__content {
+        margin-bottom: var(--spacing-2);
     }
 </style>

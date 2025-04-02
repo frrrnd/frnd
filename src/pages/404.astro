@@ -3,26 +3,38 @@ import Layout from '@layouts/Layout.astro';
 import { SiteConfig } from '@utils/SiteConfig';
 import Header from '@partials/Header.astro';
 import Grid from '@components/utils/Grid.astro';
+import Screensaver from '@components/Screensaver/Screensaver.astro';
+import { exampleImages } from '@components/Screensaver/demo-images';
 
-import JumpGame from '@components/JumpGame/JumpGame.tsx'
 ---
 
-<Layout props={{ title: `Not Found — ${SiteConfig.title}`, description: SiteConfig.description, image: SiteConfig.image }}>
+<Layout props={{ title: `404 Not Found — ${SiteConfig.title}`, description: SiteConfig.description, image: SiteConfig.image }}>
     <Header />
 
-    <main class="main internal-spacing">
-
-        <section>
-            <Grid isContainer>
-                <Grid sm="12" md="4">
-                    <h2>Page not found, but a game was found!</h2>
-                </Grid>
-
-                <Grid sm="12" md="6">
-                    <JumpGame client:load />
-                </Grid>
-            </Grid>
-        </section>
+    <main class="main">
+        <div class="screensaver-container" id="screensaver-container">
+            <h1 class="screensaver-title">
+                page not found
+              </h1>
+            {[...exampleImages, ...exampleImages].map((image, index) => (
+                <Screensaver
+                speed={1}
+                startPositionX={index * 2}
+                startPositionY={index * 4}
+                startAngle={40}
+                containerId="screensaver-container"
+                index={index}
+                >
+                <div class="screensaver-image-container">
+                    <img
+                    src={image.url || "/placeholder.svg"}
+                    alt={`${index + 1}`}
+                    class="screensaver-image"
+                    />
+                </div>
+                </Screensaver>
+            ))}
+          </div>
     </main>
 
 </Layout>

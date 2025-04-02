@@ -43,26 +43,15 @@ if (item) {
         <section class="index__section">
             <article>
               <Grid isContainer class="page__heading">
-                <Grid sm="12" md="4">
+                <Grid sm="12" md="3">
                   
                 </Grid>
         
-                <Grid sm="12" md="6">
+                <Grid sm="12" md="5">
                     <div class="work__data">
                         <ul>
-                            <li>{frontmatter.role || "Não especificado"}</li>
+                            <li>{frontmatter.role} ・ {frontmatter.year}</li>
                         </ul>
-            
-                        <ul>
-                            <li>{frontmatter.year || "Não especificado"}</li>
-                        </ul>
-            
-                        <!-- {frontmatter.link &&
-                        <ul>
-                            <li>
-                                <a href={`https://${frontmatter.link}`} title="See live" target="_blank" rel="noopener noreferrer">{frontmatter.link}</a>
-                            </li>
-                        </ul>} -->
                     </div>
                     
                     <h2 class="work__title">{frontmatter.title}</h2>
