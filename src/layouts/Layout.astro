@@ -7,13 +7,36 @@ const {
   props: { title, description, image, themeClass = "" },
 } = Astro.props as HeadProps;
 ---
+<script>
+function updateThemeColor() {
+
+    const backgroundColor = getComputedStyle(document.documentElement)
+        .getPropertyValue('--backgroundColor')
+        .trim(); 
+
+    if (backgroundColor) {
+        document.querySelector('meta[name="theme-color"]').setAttribute(
+            "content",
+            `hsla(${backgroundColor}, 1)`
+        );
+    }
+}
+
+	document.addEventListener("DOMContentLoaded", updateThemeColor);
+
+	document.addEventListener("astro:after-swap", updateThemeColor);
+
+	const observer = new MutationObserver(updateThemeColor);
+	observer.observe(document.documentElement, { attributes: true, attributeFilter: ['style'] });
+
+</script>
 
 <!doctype html>
 <html lang="en" class={themeClass || "light-theme"}>
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<meta name="theme-color" content="transparent">
+		<meta name="theme-color" content="hsla(0, 0%, 100%, 1)">
 		<link rel="icon" href="/favicon.png">
 
 		<Head props={{ title, description, image }} />
