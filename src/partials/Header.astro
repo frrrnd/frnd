@@ -30,7 +30,7 @@ const isActive = (path) => {
                 </div>
             </Grid>
 
-            <Grid sm="6" md="4" lg="5">
+            <Grid sm="12" md="4" lg="5">
                 <div class="header__content">
                     <nav>
                         <ul>
@@ -41,7 +41,7 @@ const isActive = (path) => {
                 </div>
             </Grid>
 
-            <Grid sm="6" md="4" lg="4">
+            <Grid sm="12" md="4" lg="4">
                 <div class="header__content align-right">
                     <nav>
                         <ul>
@@ -67,6 +67,12 @@ const isActive = (path) => {
             top: 0;
             z-index: 10;
             padding: var(--spacing-2) var(--spacing-1);
+        }
+
+        @media screen and (max-width: 767px) {
+            .header__fixed {
+                position: initial;
+            }
         }
 
         .blend-text {
@@ -122,5 +128,13 @@ const isActive = (path) => {
         .align-right {
             justify-content: flex-end;
         }
+
+        @media screen and (max-width: 767px) {
+            .align-right {
+                justify-content: flex-start;
+            }
+        }
     }
+
+    
 </style>
