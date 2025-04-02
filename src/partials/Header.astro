@@ -133,6 +133,18 @@ const isActive = (path) => {
             .align-right {
                 justify-content: flex-start;
             }
+
+            .header__content {
+                nav, ul, li {
+                    width: 100%;
+                }
+            }
+        }
+    }
+
+    @media screen and (max-width: 767px) {
+        .header {
+            padding: var(--spacing-1) 0;
         }
     }
 
