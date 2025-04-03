@@ -108,5 +108,9 @@ body {
     .date-right {
         text-align: left;
     }
+
+    .internal-spacing {
+        padding-top: var(--spacing-4);
+    }
   }
 
