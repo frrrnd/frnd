@@ -1,14 +1,12 @@
 html.dark-theme:root {
     /* Tokens */
-    --black: 9, 9, 11;
-    --white: 255, 255, 255;
-    --gray: 175, 175, 175;
-
-    --violet: 96, 88, 233;
+    --black: 0, 0%, 6%;
+    --white: 0, 0%, 100%;
+    --cream: 160, 100%, 60%;
+    /* --cream: 250, 100%, 75%; */
      
     /* UI Colors */
      --primary-color: var(--black);
-     --secondary-color: var(--gray);
-     --tertiary-color: hsla(var(--secondary-color), .5);
-     --accent-color: var(--violet);
+     --secondary-color: var(--white);
+     --accent-color: var(--cream);
 }

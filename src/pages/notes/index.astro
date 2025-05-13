@@ -20,29 +20,33 @@ const renderedNotes = await Promise.all(
 
 ---
 <Layout props={{ title: `Notes — ${SiteConfig.title}`, description: SiteConfig.description, image: SiteConfig.image }}>
-	
+
 	<Header />
 	
-	<main class="main internal-spacing">
+	<main class="main">
 		<PageHeading title="Notes" description="A collection of thoughts & ideas." />
 
-		<section class="notes__page">
+		<section class="block__content--articles wrap-lg">
 		{renderedNotes.map((note) => (
-			<article class="content-article">
+			<article class="notes__item">
 				<a href={`/notes/${note.slug}`} title={`Read ${note.data.title}`}>
-					<Grid isContainer>
-						<Grid sm="12" md="3" class="date-right">
-							<DateN date={note.data.publishDate} />
-						</Grid>
-
-						<Grid sm="12" md="5">
-							<h2>{note.data.title}</h2>
-							<p>{note.data.description}</p>
-						</Grid>
-					</Grid>
+					<header>
+						<h2>{note.data.title}</h2>
+						<DateN date={note.data.publishDate} />
+					</header>
+					
+					<p>{note.data.description}</p>
 				</a>
 			</article>
 		))}
 		</section>
 	</main>
 </Layout>
+
+<style>
+	.notes__item {
+		h2 {
+			font-weight: 500;
+		}
+	}
+</style>

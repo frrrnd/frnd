@@ -1,6 +1,10 @@
 @import url(../themes/light.css);
 @import url(../themes/dark.css);
 
+@supports (font-variation-settings: normal) {
+    :root { font-family: InterVariable, sans-serif; }
+  }
+
 :root {
  
      /* Semantic Colors */
@@ -9,27 +13,30 @@
      --body-link-color: var(--tertiary-color);
 
     /* Fonts */
-    --title-font: "UncutSans Variable", system-ui, sans-serif;
-    --text-font: "UncutSans Variable", system-ui, sans-serif;
+    --title-font: "Instrument Serif", serif;
+    --text-font: "Inter", system-ui, sans-serif;
     --mono-font: monospace;
+    font-feature-settings: 'liga' 1, 'calt' 1;
 
    /* 1.414 - Augmented Fourth Scale */
-    --font-size-h1: 1.2rem;
+    --font-size-h1: 2.6rem;
     --font-size-h2: 1rem;
     --font-size-h3: 1rem;
     --font-size-h4: 1rem;
     --font-size-h5: 1rem;
     --font-size-h6: 1rem;
     --font-size-p: 1rem;
-    --font-size-regular: 1.2rem;
+    --font-size-regular: 0.9rem;
     --font-size-small: 0.85rem;
     --font-size-xsmall: 0.8rem;
     --font-size-xxl: 3rem;
 
     /* Structure */
-    --wrap-width: 38rem;
-    --wrap-wider: 70rem;
-    --wrap-media: 35rem;
+    --wrap-sm: 37.5rem;
+    --wrap-md: 56.25rem;
+    --wrap-lg: 42rem;
+    --wrap-xlg: 70rem;
+    --wrap-media: 90rem;
 
     /* Spacing */
     --spacing-0: 0.5rem;

@@ -35,6 +35,7 @@ const worksCollection = defineCollection({
         publishDate: z.string().or(z.date()).transform((val) => new Date(val)),
         cover: image(),
         order: z.number(),
+        icon: z.string().optional(),
     })
 });
 

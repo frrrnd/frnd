@@ -1,12 +1,12 @@
 html.light-theme:root {
     /* Tokens */
     --black: 0, 0%, 20%;
-    --white: 0, 0%, 100%;
-    --violet: 243, 77%, 63%;
+    --white: 216, 20%, 95%;
+    --blu: 235, 100%, 73%;
      
     /* Semantic */
      --primary-color: var(--white);
      --secondary-color: var(--black);
      --tertiary-color: hsla(var(--secondary-color), .5);
-     --accent-color: var(--violet);
+     --accent-color: var(--blu);
 }

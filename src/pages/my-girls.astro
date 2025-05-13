@@ -9,16 +9,26 @@ import PageHeading from '@partials/PageHeading.astro';
 <Layout props={{ title: `My Girls — ${SiteConfig.title}`, description: SiteConfig.description, image: SiteConfig.image }}>
     <Header />
 
-    <main class="main internal-spacing">
+    <main class="main">
+      
       <PageHeading title="My Girls" description="Nicki (the tortie) & Mia (the siamese). They are both 12 years old and were rescued from the streets." />
 
-      <section class="mansory">
-        {girls.map(girl => (
-          <figure>
-            <img src={girl.src} alt={girl.alt} loading="lazy" />
-          </figure>
-        ))}
+      <section class="page__content wrap-media">
+        <section class="mansory">
+          {girls.map(girl => (
+            <figure>
+              <img src={girl.src} alt={girl.alt} loading="lazy" />
+            </figure>
+          ))}
+        </section>
       </section>
-
     </main>
 </Layout>
+
+<style>
+  @media screen and (max-width: 768px) {
+    .page__content {
+        padding: 0 var(--spacing-1);
+      }
+    }
+</style>

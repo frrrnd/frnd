@@ -5,17 +5,21 @@ const { title, description } = Astro.props;
 
 ---
 
-<section class="index__section">
-    <article>
-      <Grid isContainer class="page__heading">
-        <Grid sm="12" md="3">
-          <h2>{title}</h2>
-        </Grid>
-
-        <Grid sm="12" md="5">
-          <p>{description}</p>
-        </Grid>
-      </Grid>
-
+<section class="page__heading">
+    <article class="wrap-lg">
+        <h2>{title}</h2>
+        <p>{description}</p>
     </article>
-  </section>
+</section>
+
+<style>
+  .page__heading {
+    margin-bottom: var(--spacing-2);
+
+    h2 {
+      margin-bottom: calc(var(--spacing-1) / 2);
+      font-family: var(--title-font);
+      font-size: 3rem;
+    }
+  }
+</style>

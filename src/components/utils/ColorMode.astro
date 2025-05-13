@@ -59,7 +59,7 @@
             themeIcon.style.transform = "translateY(-32px)";
         } else {
             root.classList.add("light-theme");
-            metaColor.setAttribute("content", "#FFFFFF");
+            metaColor.setAttribute("content", "#EDEDED");
             themeIcon.style.transform = "translateY(0)";
         }
 
@@ -67,7 +67,7 @@
         if (root.classList.contains('dark-theme')) {
             root.classList.remove("dark-theme");
             root.classList.add("light-theme");
-            metaColor.setAttribute("content", "#FFFFFF");
+            metaColor.setAttribute("content", "#EDEDED");
             localStorage.setItem("theme", "light");
             themeIcon.style.transform = "translateY(0)";
         } else {

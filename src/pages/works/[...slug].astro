@@ -39,33 +39,64 @@ if (item) {
 }}>
     <Header />
 
-    <main class="main works__slug">
-        <section class="index__section">
-            <article>
-              <Grid isContainer class="page__heading">
-                <Grid sm="12" md="3">
-                  
-                </Grid>
-        
-                <Grid sm="12" md="5">
-                    <div class="work__data">
-                        <ul>
-                            <li>{frontmatter.role} ・ {frontmatter.year}</li>
-                        </ul>
-                    </div>
-                    
-                    <h2 class="work__title">{frontmatter.title}</h2>
+    <main>
+        <article class="wrap-lg">
+            <header>
+                <h1>{frontmatter.title}</h1>
+                <h2>{frontmatter.role}・{frontmatter.year}</h2>
+            </header>
 
-                    <p class="work__desc"><Fragment set:html={frontmatter.description} /></p>
-                </Grid>
-              </Grid>
-            </article>
-          </section>
-        
-        <section class="content-article">
-            <div class="note-content">
+            <p><Fragment set:html={frontmatter.description} /></p>
+
+            {frontmatter.link ? <a class="work__link" target="_blank" href={`https://${frontmatter.link}`}> {frontmatter.link}</a> : ""}
+
+        </article>
+
+            <section class="content-article">
+            <div class="note-content wrap-wider">
                 {Content ? <Content /> : <p>Conteúdo não disponível.</p>}
             </div>
         </section>
     </main>
 </Layout>
+<style>
+    header {
+        margin-bottom: var(--spacing-4);
+        text-align: center;
+        width: 100%;
+
+        h1 {
+            font-size: 3rem;
+            font-family: var(--title-font);
+        }
+
+        h2 {
+            font-size: 0.9rem;
+            color: hsla(var(--text-body-color), 0.6);
+        }
+    }
+
+    article {
+        margin-bottom: var(--spacing-8);
+    }
+
+    section {
+        margin-bottom: var(--spacing-8);
+    }
+
+    .work__link {
+        margin: var(--spacing-2) 0;
+        display: block;
+        font-size: 0.9rem;
+        color: #5a93ff;
+        font-family: var(--mono-font);
+        display: flex;
+        flex-direction: row;
+
+        &:before {
+            content: "﹂";
+            display: flex;
+            margin-right: 8px;
+        }
+    }
+</style>

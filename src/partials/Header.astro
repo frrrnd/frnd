@@ -9,144 +9,53 @@ const currentPath = pathname.slice(1); // remove the first "/"
 const isNotesPage = currentPath.startsWith('notes/'); // Removido o '/' do início já que currentPath não o tem
 
 // Definindo classes condicionalmente
-const headerClasses = isNotesPage ? 'header__fixed' : 'header__fixed blend-text';
+// const headerClasses = isNotesPage ? 'header__fixed' : 'header__fixed blend-text';
 
-const isActive = (path) => {
-    if (path === "" && currentPath === "") {
-        return true; // Ativa "Home" somente quando a URL atual é a raiz
-    } else if (path !== "" && currentPath.startsWith(path)) {
-        return true; // Ativa outras rotas se o currentPath começa com path
-    }
-    return false;
-};
+// const isActive = (path) => {
+//     if (path === "" && currentPath === "") {
+//         return true; // Ativa "Home" somente quando a URL atual é a raiz
+//     } else if (path !== "" && currentPath.startsWith(path)) {
+//         return true; // Ativa outras rotas se o currentPath começa com path
+//     }
+//     return false;
+// };
 ---
 
 <header class="header">
-    <div class={headerClasses}>
-        <Grid isContainer>
-            <Grid sm="12" md="4" lg="3">
-                <div class="header__content">
-                    <h1><a href="/">Fernando Soares <span> UI Designer</span></a></h1>
-                </div>
-            </Grid>
-
-            <Grid sm="12" md="4" lg="5">
-                <div class="header__content">
-                    <nav>
-                        <ul>
-                            <li><a class={isActive("work") ? "active" : ""} href="/">Work</a></li>
-                            <li><a class={isActive("about") ? "active" : ""} href="/about">About</a></li>
-                        </ul>
-                    </nav>
-                </div>
-            </Grid>
-
-            <Grid sm="12" md="4" lg="4">
-                <div class="header__content align-right">
-                    <nav>
-                        <ul>
-                            <li><a class={isActive("notes") ? "active" : ""} href="/notes">Notes</a></li>
-                            <li><CopyClipboard client:load /></li>
-                        </ul>
-                    </nav>
-                </div>
-            </Grid>
-        </Grid>
-    </div>
+    <!-- <div class="header__content">
+        <nav>
+            <ul>
+                <li><a class={isActive("/") ? "active" : ""} href="/">Work</a></li>
+                <li><a class={isActive("about") ? "active" : ""} href="/about">About</a></li>
+                <li><a class={isActive("notes") ? "active" : ""} href="/notes">Notes</a></li>
+            </ul>
+        </nav>
+    </div> -->
+    <a href="/" class="header__logo">
+       Home
+    </a>
 </header>
 <style>
     .header {
-        width: 100%;
-        font-size: var(--font-size-h1);
-        padding: var(--spacing-2) var(--spacing-1);
+        padding: var(--spacing-4) 0;
+    }
 
-        .header__fixed {
-            position: fixed;
-            width: 100%;
-            left: 0;
-            top: 0;
-            z-index: 10;
-            padding: var(--spacing-2) var(--spacing-1);
-        }
+    .header__logo {
+        width: 32px;
+        height: 36px;
+        margin: 0 auto;
+        display: block;
+        background: url('/public/assets/images/logo-sprite.png') 0 36px;
+        text-indent: -999px;
 
-        @media screen and (max-width: 767px) {
-            .header__fixed {
-                position: initial;
-            }
-        }
-
-        .blend-text {
-            background: transparent;
-            mix-blend-mode: difference;
-            color: hsla(0, 0%, 70%, 1);
-
-            span {
-                color: hsla(var(--body-background-color), 0.3);
-            }
-        }
-
-        span {
-            color: hsla(var(--body-text-color), 0.5);
-            margin-left: calc(var(--spacing-1) / 2);
-        }
-
-        .header__content {
-            display: flex;
-
-            ul {
-                list-style-type: none;
-                display: flex;
-                flex-direction: row;
-                gap: var(--spacing-4);
-            }
-
-            a {
-                transition: .3s;
-            }
-
-            a:hover {
-                opacity: .5;
-                transition: .3s;
-            }
-
-            .active {
-                position: relative;
-
-                &:after {
-                    content: "";
-                    width: 4px;
-                    height: 4px;
-                    background-color: hsl(var(--accent-color));
-                    position: absolute;
-                    top: 0;
-                    right: -.5rem;
-                    border-radius: 100%;
-                }
-            }
-        }
-
-        .align-right {
-            justify-content: flex-end;
-        }
-
-        @media screen and (max-width: 767px) {
-            .align-right {
-                justify-content: flex-start;
-            }
-
-            .header__content {
-                nav, ul, li {
-                    width: 100%;
-                }
-            }
+        &:hover {
+            animation: sprite 2s steps(10) infinite;
+            opacity: 1;
         }
     }
 
-    @media screen and (max-width: 767px) {
-        .header {
-            padding: var(--spacing-1) 0;
-        }
+    @keyframes sprite {
+        from {background-position: 0px;}
+        to {background-position: -320px;}
     }
-
-    
 </style>

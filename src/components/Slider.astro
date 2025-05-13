@@ -1,0 +1,401 @@
+---
+/**
+ * Componente Slider para Astro
+ * 
+ * @param {Array} images - Array de objetos com informações das imagens
+ * @param {string} images[].src - Caminho da imagem
+ * @param {string} images[].alt - Texto alternativo da imagem
+ * @param {string} images[].link - Link para onde a imagem deve direcionar
+ * @param {string} images[].description
+ * @param {string} images[].title
+ * @param {string} images[].type
+ * @param {string} images[].year
+ */
+
+ interface SlideImage {
+  src: string;
+  alt: string;
+  link: string;
+  description: string;
+  title: string;
+  type: string;
+  year: number;
+}
+
+interface Props {
+  images: SlideImage[];
+}
+
+const { images } = Astro.props;
+---
+
+<div class="slider-container">
+  <div class="slider-track">
+    {images.map((image, index) => (
+      <a href={image.link} class="slide">
+        <div class="slide__content">
+            <figure>
+                <img src={image.src} alt={image.alt} loading={index > 2 ? "lazy" : "eager"} />
+            </figure>
+            
+            <div class="slide__details">
+                <p><strong>{image.title}</strong> — {image.type}</p>
+                <p>{image.year}</p>
+            </div>
+        </div>
+
+        <p class="slide__description">{image.description}</p>
+      </a>
+    ))}
+  </div>
+</div>
+
+<style>
+  .slider-container {
+    position: relative;
+    padding: 60px 0;
+    overflow: hidden;
+    width: 100%;
+  }
+
+  .slider-track {
+    display: flex;
+    transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+    will-change: transform;
+    backface-visibility: hidden;
+    transform-style: preserve-3d;
+  }
+
+  .slide {
+    max-width: 900px;
+    width: 100%;
+    height: auto;
+    flex-shrink: 0;
+    margin-right: 20px;
+    overflow: hidden;
+    user-select: none;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    opacity: 0.6;
+    display: block;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  @media screen and (max-width: 768px) {
+    .slide {
+      margin-right: 10px;
+    }
+  }
+
+  .slide__content {
+    background: white;
+    border-radius: 8px;
+    border: 1px solid hsla(var(--body-text-color), .03);
+    font-size: 0.9rem;
+  }
+
+  .slide__details {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: calc(var(--spacing-1) * 1.6);
+    padding-top: 0;
+    color: hsla(var(--body-text-color), 1);
+  }
+
+  .slide img {
+    width: 900px;
+    /* object-fit: none; */
+    display: block;
+    image-rendering: auto;
+  }
+
+  .slide__description {
+    padding: var(--spacing-1) 0;
+    width: 100%;
+    text-align: center;
+    font-size: 0.9rem;
+  }
+
+  .slide.active {
+    opacity: 1;
+  }
+
+  @media (max-width: 1200px) {
+    .slide {
+      width: 800px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .slide {
+      width: 80vw;
+    }
+  }
+</style>
+
+<script>
+  class CenteredSlider {
+    container: HTMLElement;
+    track: HTMLElement;
+    slides: HTMLElement[];
+    currentIndex: number;
+    slideWidth: number;
+    slideFullWidth: number;
+    containerWidth: number;
+    offset: number;
+    totalWidth: number;
+    maxTranslate: number;
+    minTranslate: number;
+    dragStartX: number;
+    initialTranslate: number;
+    isDragging: boolean;
+
+    constructor(container: HTMLElement) {
+      // Elementos DOM
+      this.container = container;
+      this.track = container.querySelector('.slider-track') as HTMLElement;
+      this.slides = Array.from(container.querySelectorAll('.slide')) as HTMLElement[];
+      
+      // Variáveis de estado
+      this.currentIndex = 0;
+      this.slideWidth = 0;
+      this.slideFullWidth = 0;
+      this.containerWidth = 0;
+      this.offset = 0;
+      this.totalWidth = 0;
+      this.maxTranslate = 0;
+      this.minTranslate = 0;
+      this.dragStartX = 0;
+      this.initialTranslate = 0;
+      this.isDragging = false;
+
+      // Inicialização
+      this.init();
+      this.setupEventListeners();
+    }
+
+    init() {
+      if (this.slides.length === 0) return;
+      
+      this.calculateDimensions();
+      this.centerSlide(this.currentIndex, false);
+      this.updateActiveState();
+
+      // Para evitar problemas com o view-transition do Astro
+      document.addEventListener('astro:page-load', () => {
+        this.calculateDimensions();
+        this.centerSlide(this.currentIndex, false);
+        this.updateActiveState();
+      });
+
+      // Quando o documento se torna visível (útil para transições de view)
+      document.addEventListener('visibilitychange', () => {
+        if (document.visibilityState === 'visible') {
+          this.calculateDimensions();
+          this.centerSlide(this.currentIndex, false);
+        }
+      });
+    }
+
+    calculateDimensions() {
+      if (this.slides.length === 0) return;
+      
+      const slideRect = this.slides[0].getBoundingClientRect();
+      this.slideWidth = slideRect.width;
+      
+      const slideStyle = window.getComputedStyle(this.slides[0]);
+      const slideMargin = parseInt(slideStyle.marginRight, 10) + parseInt(slideStyle.marginLeft, 10);
+      
+      this.slideFullWidth = this.slideWidth + slideMargin;
+      this.containerWidth = this.container.clientWidth;
+      this.offset = (this.containerWidth - this.slideWidth) / 2;
+      
+      // Ajuste para o espaçamento entre slides
+      this.totalWidth = this.slides.length * this.slideFullWidth;
+      this.maxTranslate = this.offset;
+      this.minTranslate = -(this.totalWidth - this.containerWidth + this.offset - this.slideFullWidth);
+    }
+
+    setupEventListeners() {
+      // Redimensionamento da janela
+      window.addEventListener('resize', this.debounce(() => {
+        this.calculateDimensions();
+        this.centerSlide(this.currentIndex, false);
+      }, 250));
+
+      // Eventos de mouse/touch
+      this.track.addEventListener('mousedown', this.onDragStart.bind(this));
+      window.addEventListener('mousemove', this.onDragMove.bind(this));
+      window.addEventListener('mouseup', this.onDragEnd.bind(this));
+
+      // Touch events
+      this.track.addEventListener('touchstart', this.onDragStart.bind(this), { passive: true });
+      window.addEventListener('touchmove', this.onDragMove.bind(this), { passive: false });
+      window.addEventListener('touchend', this.onDragEnd.bind(this));
+
+      // Wheel event (scroll do mouse) - apenas nos slides
+      this.slides.forEach(slide => {
+        slide.addEventListener('wheel', this.onWheel.bind(this), { passive: false });
+      });
+    }
+
+    debounce(func: Function, wait: number) {
+      let timeout: number | undefined;
+      return (...args: any[]) => {
+        const later = () => {
+          clearTimeout(timeout);
+          func(...args);
+        };
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait) as unknown as number;
+      };
+    }
+
+    onDragStart(e: MouseEvent | TouchEvent) {
+      if (this.isDragging) return;
+      
+      this.isDragging = true;
+      this.dragStartX = 'touches' in e ? e.touches[0].clientX : e.clientX;
+      this.initialTranslate = this.getCurrentTranslate();
+      
+      // Desativar a transição durante o arrasto
+      this.track.style.transition = 'none';
+      
+      // Mudar o cursor para "grabbing"
+      this.track.style.cursor = 'grabbing';
+      
+      // Prevenir o comportamento padrão para mouse
+      if ('touches' in e === false) {
+        e.preventDefault();
+      }
+    }
+
+    onDragMove(e: MouseEvent | TouchEvent) {
+      if (!this.isDragging) return;
+      
+      const currentPosition = 'touches' in e ? e.touches[0].clientX : e.clientX;
+      const diff = currentPosition - this.dragStartX;
+      
+      let newTranslate = this.initialTranslate + diff;
+      
+      // Adicionar resistência quando arrastar além dos limites
+      if (newTranslate > this.maxTranslate) {
+        const overDrag = newTranslate - this.maxTranslate;
+        newTranslate = this.maxTranslate + (overDrag * 0.3);
+      } else if (newTranslate < this.minTranslate) {
+        const overDrag = this.minTranslate - newTranslate;
+        newTranslate = this.minTranslate - (overDrag * 0.3);
+      }
+      
+      this.track.style.transform = `translateX(${newTranslate}px)`;
+      
+      // Evitar o scroll da página em dispositivos móveis durante o arrasto
+      if ('touches' in e) {
+        e.preventDefault();
+      }
+    }
+
+    onDragEnd(e: MouseEvent | TouchEvent) {
+      if (!this.isDragging) return;
+      
+      this.isDragging = false;
+      
+      // Restaurar a transição
+      this.track.style.transition = 'transform 0.5s cubic-bezier(0.25, 1, 0.5, 1)';
+      this.track.style.cursor = '';
+      
+      const currentPosition = 'changedTouches' in e 
+        ? e.changedTouches[0].clientX 
+        : ('clientX' in e ? e.clientX : this.dragStartX);
+      
+      const diff = currentPosition - this.dragStartX;
+      
+      // Determinar a direção do movimento
+      if (Math.abs(diff) > this.slideWidth * 0.2) {
+        if (diff > 0) {
+          this.goToSlide(Math.max(0, this.currentIndex - 1));
+        } else {
+          this.goToSlide(Math.min(this.slides.length - 1, this.currentIndex + 1));
+        }
+      } else {
+        // Voltar para o slide atual se o arrastar não foi suficiente
+        this.centerSlide(this.currentIndex);
+      }
+    }
+
+    onWheel(e: WheelEvent) {
+      // Verificar se o evento ocorreu diretamente em um slide
+      if (e.currentTarget && this.slides.includes(e.currentTarget as HTMLElement)) {
+        e.preventDefault();
+        
+        // Detectar direção do scroll
+        if (e.deltaY > 0) {
+          this.goToSlide(Math.min(this.slides.length - 1, this.currentIndex + 1));
+        } else if (e.deltaY < 0) {
+          this.goToSlide(Math.max(0, this.currentIndex - 1));
+        }
+      }
+    }
+
+    goToSlide(index: number) {
+      if (index === this.currentIndex) return;
+      
+      this.currentIndex = index;
+      this.centerSlide(index);
+    }
+
+    centerSlide(index: number, withAnimation = true) {
+      if (!withAnimation) {
+        this.track.style.transition = 'none';
+      } else {
+        this.track.style.transition = 'transform 0.5s cubic-bezier(0.25, 1, 0.5, 1)';
+      }
+      
+      const translateX = this.offset - (index * this.slideFullWidth);
+      this.track.style.transform = `translateX(${translateX}px)`;
+      
+      // Forçar reflow para garantir que 'none' seja aplicado antes de restaurar
+      if (!withAnimation) {
+        this.track.offsetHeight;
+        this.track.style.transition = 'transform 0.5s cubic-bezier(0.25, 1, 0.5, 1)';
+      }
+      
+      this.updateActiveState();
+    }
+
+    getCurrentTranslate(): number {
+      const style = window.getComputedStyle(this.track);
+      const matrix = new DOMMatrix(style.transform);
+      return matrix.m41;
+    }
+
+    updateActiveState() {
+      this.slides.forEach((slide, i) => {
+        if (i === this.currentIndex) {
+          slide.classList.add('active');
+        } else {
+          slide.classList.remove('active');
+        }
+      });
+    }
+  }
+
+  // Inicializar todos os sliders na página
+  document.addEventListener('astro:page-load', () => {
+    initSliders();
+  });
+
+  // Inicialização inicial
+  document.addEventListener('DOMContentLoaded', () => {
+    initSliders();
+  });
+
+  function initSliders() {
+    const sliderContainers = document.querySelectorAll('.slider-container');
+    sliderContainers.forEach(container => {
+      new CenteredSlider(container as HTMLElement);
+    });
+  }
+</script>

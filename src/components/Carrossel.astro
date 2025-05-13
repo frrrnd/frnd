@@ -1,0 +1,283 @@
+---
+// Carrossel.astro
+// Componente de carrossel responsivo com animação contínua e suporte para arrasto
+
+// Defina as props do componente
+interface Props {
+  // Array de objetos de imagem
+  images: Array<{
+    src: string;
+    alt: string;
+  }>;
+  // Velocidade da animação em pixels por segundo (opcional, padrão: 50)
+  speedPx?: number;
+}
+
+// Receba as props com valores padrão
+const { images, speedPx = 50 } = Astro.props;
+
+// Para um carrossel verdadeiramente contínuo, duplicamos as imagens várias vezes
+// para garantir que temos itens suficientes para um ciclo completo
+const duplicatedImages = [...images, ...images, ...images];
+---
+
+<div class="carrossel-outer">
+  <div class="carrossel-container">
+    <div class="carrossel-track" id="carrosselTrack" data-speed={speedPx}>
+      {/* Renderizar as imagens em triplicata para garantir continuidade */}
+      {duplicatedImages.map((image) => (
+        <div class="carrossel-item">
+          <img src={image.src} alt={image.alt} loading="lazy" draggable="false" />
+        </div>
+      ))}
+    </div>
+  </div>
+</div>
+
+<script>
+  /**
+   * Carrossel verdadeiramente infinito sem saltos
+   */
+  document.addEventListener('astro:page-load', initCarrossel);
+  document.addEventListener('DOMContentLoaded', initCarrossel);
+
+  function initCarrossel() {
+    const track = document.getElementById('carrosselTrack');
+    if (!track) return;
+
+    // Configuração inicial
+    const speed = parseFloat(track.dataset.speed || '50');
+    const items = track.querySelectorAll('.carrossel-item');
+    const originalItemCount = items.length / 3; // Estamos usando 3 cópias dos itens originais
+    
+    let isDragging = false;
+    let startX = 0;
+    let currentTranslate = 0;
+    let prevTranslate = 0;
+    let animationID = null;
+    let itemWidth = 0;
+    let containerWidth = 0;
+    let totalWidth = 0;
+    
+    // Função para calcular dimensões
+    function calculateDimensions() {
+      if (items.length === 0) return;
+      
+      const firstItem = items[0];
+      const style = getComputedStyle(firstItem);
+      const marginRight = parseInt(style.marginRight) || 0;
+      const gap = parseInt(getComputedStyle(track).columnGap) || 16; // 1rem default
+      
+      itemWidth = firstItem.offsetWidth + gap;
+      containerWidth = track.parentElement.offsetWidth;
+      totalWidth = itemWidth * originalItemCount;
+      
+      // Posicionar o carrossel para começar no segundo conjunto (para permitir rolagem para trás)
+      setPositionByIndex(originalItemCount);
+    }
+    
+    // Função para definir a posição pelo índice
+    function setPositionByIndex(index) {
+      currentTranslate = -itemWidth * index;
+      prevTranslate = currentTranslate;
+      setSliderPosition();
+    }
+    
+    // Função para aplicar a posição do slider
+    function setSliderPosition() {
+      track.style.transform = `translateX(${currentTranslate}px)`;
+    }
+    
+    // Função para verificar e ajustar a posição para criar um loop infinito
+    function checkBoundary() {
+      // Se rolou além do primeiro conjunto (para a direita)
+      if (currentTranslate > -itemWidth) {
+        // Move para o segundo conjunto
+        currentTranslate -= totalWidth;
+        prevTranslate = currentTranslate;
+        setSliderPosition();
+      }
+      
+      // Se rolou além do terceiro conjunto (para a esquerda)
+      else if (currentTranslate < -(totalWidth * 2 - itemWidth)) {
+        // Move para o segundo conjunto
+        currentTranslate += totalWidth;
+        prevTranslate = currentTranslate;
+        setSliderPosition();
+      }
+    }
+    
+    // Função de animação para autoplay
+    function animation() {
+      if (isDragging) return;
+      
+      // Move continuamente para a esquerda
+      currentTranslate -= speed / 60;
+      
+      // Verifica e ajusta os limites para criar efeito de loop infinito
+      checkBoundary();
+      
+      // Aplica a nova posição
+      setSliderPosition();
+      
+      // Continua a animação
+      animationID = requestAnimationFrame(animation);
+    }
+    
+    // Inicia a animação
+    function startAnimation() {
+      cancelAnimationFrame(animationID);
+      animationID = requestAnimationFrame(animation);
+    }
+    
+    // Para a animação
+    function stopAnimation() {
+      cancelAnimationFrame(animationID);
+    }
+    
+    // Manipuladores de eventos para desktop
+    function touchStart(event) {
+      if (event.type === 'mousedown') event.preventDefault();
+      
+      isDragging = true;
+      startX = event.type.includes('mouse') ? event.pageX : event.touches[0].pageX;
+      
+      stopAnimation();
+      track.style.cursor = 'grabbing';
+    }
+    
+    function touchMove(event) {
+      if (!isDragging) return;
+      
+      const currentX = event.type.includes('mouse') ? event.pageX : event.touches[0].pageX;
+      const diff = currentX - startX;
+      
+      currentTranslate = prevTranslate + diff;
+      setSliderPosition();
+    }
+    
+    function touchEnd() {
+      isDragging = false;
+      prevTranslate = currentTranslate;
+      
+      // Verifica e ajusta os limites
+      checkBoundary();
+      
+      track.style.cursor = 'grab';
+      
+      // Reinicia a animação após o arrasto
+      startAnimation();
+    }
+    
+    // Configurar eventos de mouse
+    track.addEventListener('mousedown', touchStart);
+    window.addEventListener('mousemove', touchMove);
+    window.addEventListener('mouseup', touchEnd);
+    
+    // Configurar eventos de toque
+    track.addEventListener('touchstart', touchStart, { passive: true });
+    window.addEventListener('touchmove', touchMove, { passive: true });
+    window.addEventListener('touchend', touchEnd);
+    
+    // Controle da animação com hover
+    track.addEventListener('mouseenter', stopAnimation);
+    track.addEventListener('mouseleave', () => {
+      if (!isDragging) startAnimation();
+    });
+    
+    // Ajustar ao redimensionar
+    window.addEventListener('resize', () => {
+      calculateDimensions();
+    });
+    
+    // Pausar quando a página não estiver visível
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) {
+        stopAnimation();
+      } else if (!isDragging) {
+        startAnimation();
+      }
+    });
+    
+    // Inicialização após carregamento das imagens
+    let loadedCount = 0;
+    const allImages = track.querySelectorAll('img');
+    
+    function checkAllImagesLoaded() {
+      loadedCount++;
+      if (loadedCount === allImages.length) {
+        calculateDimensions();
+        startAnimation();
+      }
+    }
+    
+    allImages.forEach(img => {
+      if (img.complete) {
+        checkAllImagesLoaded();
+      } else {
+        img.addEventListener('load', checkAllImagesLoaded);
+      }
+    });
+    
+    // Iniciar imediatamente se as imagens já estiverem carregadas
+    if (loadedCount === allImages.length) {
+      calculateDimensions();
+      startAnimation();
+    }
+  }
+</script>
+
+<style>
+  .carrossel-outer {
+    width: 100%;
+    overflow: hidden;
+    margin-bottom: var(--spacing-4);
+  }
+  
+  .carrossel-container {
+    width: 100%;
+    padding: 1rem 0;
+    overflow: hidden;
+    position: relative;
+  }
+  
+  .carrossel-track {
+    display: flex;
+    cursor: grab;
+    will-change: transform;
+    gap: 1rem;
+  }
+  
+  .carrossel-item {
+    flex: 0 0 auto;
+    max-width: 400px;
+    width: calc(20% - 0.8rem); /* 5 imagens visíveis com gap entre elas */
+  }
+  
+  .carrossel-item img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 12px;
+    pointer-events: none; /* Impede que as imagens sejam arrastadas */
+  }
+  
+  /* Responsividade para telas menores */
+  @media (max-width: 1200px) {
+    .carrossel-item {
+      width: calc(25% - 0.75rem); /* 4 imagens visíveis */
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .carrossel-item {
+      width: calc(33.333% - 0.667rem); /* 3 imagens visíveis */
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .carrossel-item {
+      width: calc(50% - 0.5rem); /* 2 imagens visíveis */
+    }
+  }
+</style>

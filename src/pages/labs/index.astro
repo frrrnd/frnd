@@ -8,10 +8,12 @@ import PageHeading from '@partials/PageHeading.astro';
 
 const labs = await getCollection('labs');
 
-labs.sort((a,b) => Date.parse(b.data.publishDate) - Date.parse(a.data.publishDate));
+const publishedLabs = labs.filter(post => !post.data.isDraft);
+
+publishedLabs.sort((a, b) => Date.parse(b.data.publishDate) - Date.parse(a.data.publishDate));
 
 const renderedLabs = await Promise.all(
-  labs.map(async (post) => {
+  publishedLabs.map(async (post) => {
     const { Content } = await post.render();
     return { ...post, Content };
   })
@@ -22,29 +24,69 @@ const renderedLabs = await Promise.all(
     <Header />
   
     <main class="main">
-      <div class="wrap-wider">
+      <div class="wrap-lg">
+
         <PageHeading title="Labs" description="Experiments, concepts and other design stuff." />
+        
       </div>
 
-      <section class="labsItem__list wrap-wider">
-        <Grid isContainer>
+      <section class="labsItem__list wrap-media">
+        <div class="mansory">
           {renderedLabs.map((post) => (
-            <Grid sm="12" md="4">
-              <article class="labsItem">
-                <a href={`/labs/${post.slug}`}>
-                  
+              <figure>
                   <img src={post.data.cover.src} alt={post.data.title}/>
-
-                  <div class="labsItem__details">
-                    <h2>{post.data.title}</h2>
-                    <span class="post-type">{post.data.type}</span>
-                  </div>
-                </a>
-              </article>
-            </Grid>
+                  <figcaption>
+                    <h3>{post.data.title}</h3>
+                    <h4>{post.data.type}</h4>
+                  </figcaption>
+              </figure>
           ))}
-        </Grid>
+          </div>
       </section>
     </main>
-
 </Layout>
+
+<style>
+  .labsItem__list {
+    margin-bottom: var(--spacing-8);
+
+    h3 {
+      margin-bottom: calc(var(--spacing-1) / 2);
+      font-weight: 500;
+    }
+
+    h4 {
+      color: hsla(var(--body-text-color), .6);
+    }
+  }
+
+  figure {
+    position: relative;
+
+    &:hover {
+      
+      figcaption {
+        opacity: 1;
+        transition: .4s;
+      }
+    }
+  }
+
+  figcaption {
+    width: 100%;
+    position: absolute;
+    background-color: hsla(var(--body-background-color), 0.8);
+    height: 100%;
+    border-radius: var(--radius-md);
+    padding: var(--spacing-1);
+    align-content: end;
+    opacity: 0;
+    transition: .4s;
+  }
+
+  @media screen and (max-width: 768px) {
+	.labsItem__list {
+			padding: 0 var(--spacing-1);
+		}
+	}
+</style>

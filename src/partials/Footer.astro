@@ -1,71 +1,121 @@
 ---
 import Grid from '../components/utils/Grid.astro';
+import CopyClipboard from '@components/CopyClipboard/CopyClipboard.jsx';
+import { getCommitInfo } from '../utils/commit.ts';
+
+const { commitId, commitDate } = getCommitInfo();
+
+function formatDate(dateString: string) {
+  const date = new Date(dateString);
+  const month = String(date.getMonth() + 1).padStart(2, '0'); // getMonth() começa do 0
+  const day = String(date.getDate()).padStart(2, '0');
+  const year = date.getFullYear();
+  return `${month}.${day}.${year}`;
+}
 ---
-<footer class="footer fixed bottom-0 left-0">
-    <Grid isContainer>
-        <Grid sm="12" md="3">
-            <p>© 2025</p>
-        </Grid>
+<footer class="footer wrap-lg">
+    <section class="footer__end">
+        <CopyClipboard client:load />
 
-        <Grid sm="6" md="3">
-            <div class="footer__content">
-                <h4>Explore</h4>
-            </div>
+        <!-- <div class="footer__bottom">
+            <p><a target="_blank" href="https://x.com/frrrnd">@frrrnd</a></p>
+        </div> -->
+    </section>
 
-            <div class="footer__content">
-                <h4>Colophon</h4>
-            </div>
-        </Grid>
+    <section class="footer__content">
+        <ul>
+            <li class="shuffle"><a href="/about">About</a></li>
+            <li class="shuffle"><a href="/works">Works</a></li>
+            <li class="shuffle"><a href="/notes">Notes</a></li>
+            <li class="shuffle"><a href="/labs">Labs</a></li>
+            <li class="shuffle"><a href="/my-girls">My Girls</a></li>
+            <li class="shuffle"><a href="/readings">Readings</a></li>
+        </ul>
+    </section>
 
-        <Grid sm="6" md="3">
-            <div class="footer__content">
-                <ul>
-                    <li><a href="/readings">Readings</a></li>
-                    <li><a href="/my-girls">My Girls</a></li>
-                    <li><a target="_blank" href="https://linkedin/in/frrrnd">Linkedin</a></li>
-                    <li><a target="_blank" href="https://www.are.na/fer-nshpf_to31q/channels">Are.na</a></li>
-                    <li><a target="_blank" href="https://x.com/frrrnd">x.com</a></li>
-                </ul>
-            </div>
-
-            <div class="footer__content">
-                <ul>
-                    <li>Built with <span><a href="https://astro.build/" target="_blank">Astro</a></span></li>
-                    <li>Hosted on <span><a href="https://www.netlify.com/" target="_blank">Netlify</a></span></li>
-                    <li>Typeface is <span><a href="https://uncut.wtf/sans-serif/uncut-sans/" target="_blank">Uncut Sans Variable</a></span></li>
-                </ul>
-            </div>
-        </Grid>
-    </Grid>
+    <!-- <section class="footer__data">
+        <p>Last updated {formatDate(commitDate)}</p>
+        <p>{commitId}</p>
+    </section> -->
+        
 </footer>
 <style>
-
     .footer {
-        font-size: var(--font-size-h1);
-        padding: var(--spacing-2) var(--spacing-1);
-        color: hsla(var(--body-text-color), .5);
-        border-top: 1px solid hsla(var(--body-text-color), .05);
-        margin-top: var(--spacing-2);
-        width: 100%;
-        z-index: 0;
+        padding-bottom: var(--spacing-2);
+        padding-top: var(--spacing-8);
+        font-size: 0.9rem;
     }
 
     .footer__content {
-        margin-bottom: var(--spacing-4);
-        min-height: 150px;
+        margin-bottom: var(--spacing-2);
+        display: flex;
+        flex-direction: row;
+        gap: var(--spacing-2);
 
         h4 {
             margin-bottom: var(--spacing-1);
-            font-weight: normal;
+            color: hsla(var(--body-text-color), 1);
+        }
+
+        ul {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            gap: var(--spacing-2);
+            list-style-type: none;
+            padding-left: 0;
+            margin: 0 auto;
         }
 
         a {
-            color: hsla(var(--body-text-color), 1);
-            transition: .4s;
+            color: hsla(var(--body-text-color), 0.6);
+        }
+    }
 
-            &:hover {
-                opacity: var(--opacity-default);
-                transition: .4s;
+    .footer__end {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: var(--spacing-4);
+        
+        p {
+            font-size: 1rem;
+        }
+    }
+
+    .footer__bottom {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        margin-top: var(--spacing-1);
+        
+        p {
+            font-size: var(--font-size-small);
+            font-weight: 400;
+            width: 100%;
+            text-align: center;
+            color: hsl(var(--body-text-color), 0.3);
+        }
+    }
+
+
+    .footer__data {
+        opacity: 0.5;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+
+        p {
+            font-size: 0.8rem;
+            font-weight: 300;
+        }
+    }
+
+    @media screen and (max-width: 768px) {
+        .footer__content {
+            ul {
+                flex-direction: column;
+                text-align: center;
+                font-size: 1.5rem;
             }
         }
     }
