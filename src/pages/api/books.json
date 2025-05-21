@@ -1,9 +1,23 @@
 [
     {
+      "title": "Crime e Castigo",
+      "author": "Fyodor Dostoyevsky",
+      "coverUrl": "/uploads/images/books/crime.webp",
+      "status": "finished",
+      "yearRead": 2025
+    },
+    {
+      "title": "The Last Question",
+      "author": "Isaac Asimov",
+      "coverUrl": "/uploads/images/books/last-question.webp",
+      "status": "finished",
+      "yearRead": 2025
+    },
+    {
       "title": "Sul da Fronteira, Oeste do Sol",
       "author": "Haruki Murakami",
       "coverUrl": "/uploads/images/books/sul-fronteira.webp",
-      "status": "reading",
+      "status": "finished",
       "yearRead": 2025
     },
     {
