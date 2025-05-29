@@ -149,3 +149,46 @@
         }
     }
 }
+
+/* Home */
+
+.brands {
+    text-align: center;
+    padding: var(--spacing-8) 0 var(--spacing-2) 0;
+
+    h3 {
+        color: hsla(var(--body-text-color), .5);
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        font-size: 12px;
+        margin-bottom: var(--spacing-4);
+    }
+
+    ul {
+        list-style-type: none;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        max-width: 80%;
+        width: 100%;
+        margin: var(--spacing-2) auto;
+        gap: var(--spacing-4);
+        opacity: .5;
+        padding-left: 0;
+    }
+
+    img {
+        filter: grayscale(1);
+    }
+}
+
+@media screen and (max-width: 768px) {
+   .brands {
+    ul {
+        flex-direction: column;
+        max-width: 20%;
+    }
+   }
+}
