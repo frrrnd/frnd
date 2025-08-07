@@ -8,6 +8,7 @@
 /* Pages and posts content */
 
 /* @import url(content/content.css); */
+@import url(content/index.css);
 @import url(content/pages.css);
 @import url(content/mansory.css);
 @import url(content/labs.css);

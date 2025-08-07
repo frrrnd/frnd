@@ -3,14 +3,9 @@
     width: max-content;
     margin:0 auto;
     height: 100%;
-    color: hsla(var(--body-text-color), 1);
     text-decoration: none!important;
-    text-align: center;
-    text-underline-offset: 3px;
     position: relative;
     transition: var(--transition-default);
-    font-family: var(--title-font);
-    font-size: 2rem;
 
     &:hover {
       opacity: .8;

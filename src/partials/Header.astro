@@ -31,31 +31,17 @@ const isNotesPage = currentPath.startsWith('notes/'); // Removido o '/' do iníc
             </ul>
         </nav>
     </div> -->
-    <a href="/" class="header__logo">
+    <!-- <a href="/" class="header__logo">
        Home
-    </a>
+    </a> -->
+
+    <div class="wrap-sm">
+        <a href="/" class="shuffle"> ← back to home</a>
+    </div>
 </header>
 <style>
     .header {
         padding: var(--spacing-4) 0;
-    }
-
-    .header__logo {
-        width: 32px;
-        height: 36px;
-        margin: 0 auto;
-        display: block;
-        background: url('/public/assets/images/logo-sprite.png') 0 36px;
-        text-indent: -999px;
-
-        &:hover {
-            animation: sprite 2s steps(10) infinite;
-            opacity: 1;
-        }
-    }
-
-    @keyframes sprite {
-        from {background-position: 0px;}
-        to {background-position: -320px;}
+        margin-bottom: var(--spacing-4);
     }
 </style>

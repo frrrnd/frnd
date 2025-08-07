@@ -1,0 +1,98 @@
+---
+import Layout from '@layouts/Layout.astro';
+import { SiteConfig } from '@utils/SiteConfig';
+import Header from '@partials/Header.astro';
+import Footer from '@partials/Footer.astro';
+import Grid from '@components/utils/Grid.astro';
+import girls from '@api/girls.json';
+---
+<Layout props={{ title: `About — ${SiteConfig.title}`, description: SiteConfig.description, image: SiteConfig.image }}>
+
+    <Header />
+
+    <main>
+        <section class="wrap-sm">
+            <section class="block__content">
+                <article class="content-article">
+                    <h4>I'm a ux/ui designer based in <span>Florianópolis - Brazil</span> working with interfaces, icons and Webflow development.</h4>
+
+                    <h4>I love thinking through design, sipping coffee, listening to fuzzy music, and longboarding.</h4>
+
+                    <figure>
+                        <img src="/frnd-avatar.jpg" alt="Yo!" class="about-photo">
+                    </figure>
+
+                    <h4>I'm driven by curiosity. CSS lover, icon design enthusiast and  ½ of 
+                        
+                        <a href="https://viewport-ui.design" target="_blank">
+                            <i>
+                                <svg width="39" height="39" viewBox="0 0 39 39" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M0.421875 10.4749C0.421875 4.92273 4.9232 0.421402 10.4754 0.421402L28.3682 0.421402C33.9204 0.421402 38.4219 4.92273 38.4219 10.4749V28.3677C38.4219 33.9199 33.9204 38.4214 28.3682 38.4214H10.4754C4.9232 38.4214 0.421875 33.9199 0.421875 28.3677L0.421875 10.4749ZM3.5307 27.8786C3.53086 32.0428 6.90844 35.4182 11.0725 35.4182H27.7712C31.9352 35.4182 35.3129 32.0428 35.3129 27.8786V24.7832C35.3129 20.6189 31.9354 17.2434 27.7712 17.2434H11.0725C6.90835 17.2434 3.5307 20.6189 3.5307 24.7832V27.8786Z" fill="black"/>
+                                </svg>
+                            </i>
+                            Viewport UI.
+                        </a></h4>
+
+                    <h4>With 13 years of experience, I started my journey in design as a self-taught professional. I learned HTML at the age of 12 and have been in love with interfaces ever since.</h4>
+                
+                    <h4>Throughout my career, I've collaborated with brands such as Massey-Ferguson, Valtra, Coca-Cola, Accenture, Petrobras and more.</h4>
+
+                    <a class="download-btn" download href="/uploads/cv-fernando-soares.pdf">
+                        <i>
+                            <svg width="18" height="18" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M6.5 26.5H24.5M7.5 13.5L15.5 20.5M15.5 20.5L23.5 13.5M15.5 20.5V3.5" stroke="black" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </i>
+                        Download my CV
+                    </a>
+                </article>
+            </section>
+        </section>
+
+        <section class="wrap-media">
+            <section class="mansory">
+            {girls.map(girl => (
+                <figure>
+                <img src={girl.src} alt={girl.alt} loading="lazy" />
+                </figure>
+            ))}
+            </section>
+        </section>
+    </main>
+
+    <Footer/>
+</Layout>
+
+<style>
+    .mansory {
+        padding-top: 10vh;
+    }
+
+    .about-photo {
+        margin: var(--spacing-4) 0;
+    }
+
+    .download-btn {
+        padding: var(--spacing-1);
+        background-color: hsla(var(--body-text-color), 1);
+        border-radius: var(--radius-md);
+        color: hsla(var(--body-background-color), 1);
+        cursor: pointer;
+        margin: var(--spacing-2) 0;
+        display: inline-flex;
+        align-items: center;
+        font-weight: 500;
+        
+        i {
+            display: inline-block;
+            margin-right: calc(var(--spacing-1) / 2);
+            height: 18px;
+
+            svg {
+                path {
+                    stroke: hsla(var(--body-background-color), 1);
+                }
+            }
+        }
+    }
+</style>

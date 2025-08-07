@@ -1,0 +1,83 @@
+.mail-component {
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.mail-component:hover {
+  background: rgba(0, 0, 0, 0.05);
+  border-color: rgba(0, 0, 0, 0.1);
+}
+
+.mail-component:focus-visible {
+  outline: 2px solid #007acc;
+  outline-offset: 2px;
+}
+
+.mail-text {
+  display: inline-block;
+  position: relative;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.02em;
+}
+
+/* Tema escuro */
+@media (prefers-color-scheme: dark) {
+  .mail-component:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.15);
+  }
+  
+  .mail-component:focus-visible {
+    outline-color: #4da6ff;
+  }
+}
+
+/* Customizações opcionais */
+.mail-component.mail-large {
+  font-size: 1.125rem;
+  padding: 10px 16px;
+}
+
+.mail-component.mail-small {
+  font-size: 0.875rem;
+  padding: 6px 10px;
+}
+
+.mail-component.mail-primary {
+  color: #007acc;
+}
+
+.mail-component.mail-primary:hover {
+  background: rgba(0, 122, 204, 0.1);
+  border-color: rgba(0, 122, 204, 0.2);
+}
+
+.mail-component.mail-subtle {
+  color: #6b7280;
+  font-weight: 400;
+}
+
+.mail-component.mail-subtle:hover {
+  color: #374151;
+}
+
+@media (prefers-color-scheme: dark) {
+  .mail-component.mail-primary {
+    color: #4da6ff;
+  }
+  
+  .mail-component.mail-primary:hover {
+    background: rgba(77, 166, 255, 0.1);
+    border-color: rgba(77, 166, 255, 0.2);
+  }
+  
+  .mail-component.mail-subtle {
+    color: #9ca3af;
+  }
+  
+  .mail-component.mail-subtle:hover {
+    color: #d1d5db;
+  }
+}

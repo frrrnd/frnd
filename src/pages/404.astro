@@ -9,8 +9,6 @@ import { exampleImages } from '@components/Screensaver/demo-images';
 ---
 
 <Layout props={{ title: `404 Not Found — ${SiteConfig.title}`, description: SiteConfig.description, image: SiteConfig.image }}>
-    <Header />
-
     <main class="main">
         <div class="screensaver-container" id="screensaver-container">
             <h1 class="screensaver-title">
@@ -25,16 +23,15 @@ import { exampleImages } from '@components/Screensaver/demo-images';
                 containerId="screensaver-container"
                 index={index}
                 >
-                <div class="screensaver-image-container">
-                    <img
-                    src={image.url || "/placeholder.svg"}
-                    alt={`${index + 1}`}
-                    class="screensaver-image"
-                    />
-                </div>
+                    <div class="screensaver-image-container">
+                        <img
+                        src={image.url || "/placeholder.svg"}
+                        alt={`${index + 1}`}
+                        class="screensaver-image"
+                        />
+                    </div>
                 </Screensaver>
             ))}
           </div>
     </main>
-
 </Layout>

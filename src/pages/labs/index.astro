@@ -3,6 +3,7 @@ import { getCollection } from 'astro:content';
 import Layout from '@layouts/Layout.astro'
 import { SiteConfig } from "@utils/SiteConfig";
 import Header from '@partials/Header.astro';
+import Footer from '@partials/Footer.astro';
 import Grid from '@components/utils/Grid.astro';
 import PageHeading from '@partials/PageHeading.astro';
 
@@ -31,19 +32,21 @@ const renderedLabs = await Promise.all(
       </div>
 
       <section class="labsItem__list wrap-media">
-        <div class="mansory">
+        <div class="mansory two-column">
           {renderedLabs.map((post) => (
               <figure>
                   <img src={post.data.cover.src} alt={post.data.title}/>
-                  <figcaption>
+                  {/* <figcaption>
                     <h3>{post.data.title}</h3>
                     <h4>{post.data.type}</h4>
-                  </figcaption>
+                  </figcaption> */}
               </figure>
           ))}
           </div>
       </section>
     </main>
+
+    <Footer />
 </Layout>
 
 <style>

@@ -41,7 +41,6 @@ body {
 	-moz-osx-font-smoothing: grayscale;
     background: hsla(var(--body-background-color), 1);
     color: hsla(var(--body-text-color), 0.6);
-    animation: gradient 15s ease infinite;
     width: 100%;
     height: 100%;
     font-size: var(--font-size-regular);
@@ -51,27 +50,31 @@ body {
 
 
 .wrap {
-    max-width: var(--wrap-md);
+    max-width: var(--wrap-lg);
     width: 100%;
     margin: 0 auto;
+    padding: 0 var(--spacing-2);
 }
 
 .wrap-sm {
     max-width: var(--wrap-sm);
     width: 100%;
     margin: 0 auto;
+    padding: 0 var(--spacing-2);
 }
 
 .wrap-lg {
     max-width: var(--wrap-lg);
     width: 100%;
     margin: 0 auto;
+    padding: 0 var(--spacing-2);
 }
 
 .wrap-wider {
     max-width: var(--wrap-xlg);
     width: 100%;
     margin: 0 auto;
+    padding: 0 var(--spacing-2);
 }
 
 .wrap-media {
@@ -80,17 +83,7 @@ body {
     margin: 0 auto;
 }
 
-@media screen and (max-width: 768px) {
-   .wrap-lg, .wrap {
-    padding: 0 var(--spacing-1);
-   }
-}
-
 .shuffle {
     font-kerning: none;
     font-feature-settings: "liga" 0;
-}
-
-.back-to {
-    margin-bottom: var(--spacing-8);
 }

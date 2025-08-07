@@ -1,359 +1,49 @@
 ---
-import Layout from '@layouts/Layout.astro';
-import Header from '@partials/Header.astro';
 import { getCollection } from 'astro:content';
 import { SiteConfig } from '@utils/SiteConfig';
-import Grid from '@components/utils/Grid.astro';
+import Layout from '@layouts/Layout.astro';
+import HeaderHome from '@partials/HeaderHome.astro';
 import FormattedDate from '@partials/formattedDate.astro';
-import Hero from '@partials/Hero.astro';
+import Footer from '@partials/Footer.astro';
 
 const works = await getCollection('works');
 const filteredWorks = works.filter(item => !item.data.isDraft);
-filteredWorks.sort((a,b) => Date.parse(a.data.order) - Date.parse(b.data.order));
-const latestWorks = filteredWorks.slice(0,7);
+filteredWorks.sort((a, b) => b.data.order - a.data.order);
+// const latestWorks = filteredWorks.slice(0,9);
 
-const notes = await getCollection('notes');
-const filteredNotes = notes.filter(item => !item.data.isDraft);
-filteredNotes.sort((a,b) => Date.parse(b.data.publishDate) - Date.parse(a.data.publishDate));
-const latestNotes = filteredNotes.slice(0,4);
 ---
 
 <Layout props={{ title: SiteConfig.title, description: SiteConfig.description, image: SiteConfig.image }}>
-
-  
-	
-	<Header />
+  <HeaderHome />
 	
 	<main class="main">
-    <section class="heading">
-      <div class="wrap">
-        <h1>Hi — I'm Fernando,</h1>
-        <h2>shaping interfaces with <em>intention.</em></h2>
-      </div>
-    </section>
-
-    <section class="block__content wrap">
-			<article class="wrap-sm intro">
-        <p>Senior UI Designer with front-end background based on Florianópolis, Brazil. I love design clean, simple and user-friendly interfaces. ½ of <a href="https://viewport-ui.design" target="_blank">Viewport UI</a>.</p>
-      </article>
-		</section>
-
-    <Hero />
-
-    <section class="block__content wrap brands">
-      <h3>Brands I've worked with</h3>
-
-      <ul>
-        <li>
-          <img src="/assets/images/brands/petrobras.svg" alt="Petrobras">
-        </li>
-
-        <li>
-          <img src="/assets/images/brands/valtra.svg" alt="Valtra">
-        </li>
-
-        <li>
-          <img src="/assets/images/brands/massey.svg" alt="Massey Fergusson">
-        </li>
-
-        <li>
-          <img src="/assets/images/brands/raizen.svg" alt="Raízen">
-        </li>
-
-        <li>
-          <img src="/assets/images/brands/algar.svg" alt="Algar">
-        </li>
-
-        <li>
-          <img src="/assets/images/brands/coca.svg" alt="Coca-Cola">
-        </li>
-
-      </ul>
-    </section>
-		
-		 <!-- <section class="block__content wrap-sm">
-			<h4>Some Works</h4>
-
-     <ul class="block__list--works">
-        {latestWorks.map((item) => (
-          <li>
-            <a href={`/works/${item.slug}`}>
-              <div class="work__content">
-                <figure>
-                  <img src={item.data.icon} alt={item.data.title}>
-                </figure>
-                
-                <div class="work__details shuffle">
-                  <h3>{item.data.title}</h3>
-                  <h5>{item.data.type}・{item.data.year}</h5>
+    <section class="wrap latest-works">
+        {filteredWorks.map((item) => (
+          <article class="home__work">
+            <a href={`/works/${item.slug}`} title={"View " + item.data.title}>
+             <div class="home__work--details">
+              <div class="details--top">
+                <h3>{item.data.title}</h3>
+                <p>{item.data.role}・{item.data.year}</p>
+              </div>
+              
+              <div class="details--bottom">
+                <div class="details--left">
+                  <p>{item.data.description}</p>
                 </div>
               </div>
+            </div>
 
-              <i>
-                <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <circle cx="16" cy="16" r="16" fill="#D9D9D9"/>
-                  <path d="M16.7101 21.7102L21.7101 16.7102C21.8011 16.6151 21.8725 16.5029 21.9201 16.3802C22.0201 16.1367 22.0201 15.8636 21.9201 15.6202C21.8725 15.4974 21.8011 15.3853 21.7101 15.2902L16.7101 10.2902C16.6169 10.1969 16.5062 10.123 16.3844 10.0725C16.2625 10.0221 16.132 9.99609 16.0001 9.99609C15.7338 9.99609 15.4784 10.1019 15.2901 10.2902C15.1018 10.4785 14.996 10.7339 14.996 11.0002C14.996 11.2665 15.1018 11.5219 15.2901 11.7102L18.5901 15.0002L11.0001 15.0002C10.7349 15.0002 10.4805 15.1055 10.293 15.2931C10.1055 15.4806 10.0001 15.735 10.0001 16.0002C10.0001 16.2654 10.1055 16.5198 10.293 16.7073C10.4805 16.8948 10.7349 17.0002 11.0001 17.0002L18.5901 17.0002L15.2901 20.2902C15.1964 20.3831 15.122 20.4937 15.0712 20.6156C15.0204 20.7375 14.9943 20.8682 14.9943 21.0002C14.9943 21.1322 15.0204 21.2629 15.0712 21.3848C15.122 21.5066 15.1964 21.6172 15.2901 21.7102C15.3831 21.8039 15.4937 21.8783 15.6155 21.9291C15.7374 21.9798 15.8681 22.006 16.0001 22.006C16.1321 22.006 16.2628 21.9798 16.3847 21.9291C16.5065 21.8783 16.6171 21.8039 16.7101 21.7102Z" fill="white"/>
-                </svg>
-              </i>
-
+              <figure>
+                  <img src={item.data.cover.src} alt={item.data.title} />
+              </figure>
             </a>
-          </li>
+          </article>
         ))}
-      </ul>
-		</section>-->
 
-		<!-- <section class="block__content wrap">
-			<h4>Latest Notes</h4>
+    </section>
 
-      <ul class="block__content--list block__list--notes">
-        {latestNotes.map((item) => (
-          <li>
-            <a class="shuffle" href={`/notes/${item.slug}`}>
-              <h3>{item.data.title}</h3>
-              <h5><FormattedDate date={item.data.publishDate} /></h5>
-            </a>
-          </li>
-        ))}
-      </ul>
-		</section> -->
 	</main>
+
+  <Footer />
 </Layout>
-
-<script>
-// Objeto global para armazenar todos os intervalos ativos
-window.shuffleIntervals = {};
-
-// Função para limpar completamente todos os efeitos shuffle ativos
-function cleanupAllShuffleEffects() {
-  // Limpar todos os intervalos registrados
-  Object.keys(window.shuffleIntervals).forEach(id => {
-    clearInterval(window.shuffleIntervals[id]);
-    delete window.shuffleIntervals[id];
-  });
-  
-  // Restaurar todos os textos originais para elementos ativos
-  document.querySelectorAll(".shuffle").forEach(el => {
-    if (el.dataset.originalText) {
-      el.textContent = el.dataset.originalText;
-    }
-    
-    // Para elementos com filhos
-    if (el.querySelectorAll("[data-original-text]").length > 0) {
-      el.querySelectorAll("[data-original-text]").forEach(child => {
-        child.textContent = child.dataset.originalText;
-      });
-    }
-  });
-}
-
-// Função principal de inicialização com proteção contra duplicação
-function initializeShuffle() {
-  // Limpar completamente qualquer efeito ativo antes de reinicializar
-  cleanupAllShuffleEffects();
-  
-  // Remover todos os event listeners antigos usando a técnica de clonagem
-  document.querySelectorAll(".shuffle").forEach(shuffledEl => {
-    const clone = shuffledEl.cloneNode(true);
-    if (shuffledEl.parentNode) {
-      shuffledEl.parentNode.replaceChild(clone, shuffledEl);
-    }
-  });
-  
-  // Agora reinicializar com os elementos clonados/limpos
-  let shuffledEls = document.querySelectorAll(".shuffle");
-  let duration = 20;
-  let framesMax = 7;
-  
-  shuffledEls.forEach((shuffledEl) => {
-    // Array para armazenar todos os elementos filhos com texto
-    const childElements = [];
-    const textOriginals = [];
-    
-    // Se o elemento tem filhos, vamos usar todos eles
-    if (shuffledEl.children.length > 0) {
-      // Pegar todos os elementos filhos que contêm texto
-      Array.from(shuffledEl.children).forEach(child => {
-        if (child.textContent.trim() !== '') {
-          childElements.push(child);
-          textOriginals.push(child.textContent);
-          // Armazenar o texto original como atributo de dados
-          child.dataset.originalText = child.textContent;
-        }
-      });
-    }
-    // Se não tiver filhos ou nenhum filho com texto, usamos o próprio elemento
-    if (childElements.length === 0) {
-      childElements.push(shuffledEl);
-      textOriginals.push(shuffledEl.textContent);
-      // Armazenar o texto original como atributo de dados
-      shuffledEl.dataset.originalText = shuffledEl.textContent;
-    }
-    
-    // Associamos um identificador único ao elemento para rastreamento
-    const uniqueId = 'shuffle-' + Date.now() + '-' + Math.random().toString(36).substr(2, 9);
-    shuffledEl.dataset.shuffleId = uniqueId;
-    
-    // Adicionar evento hover
-    shuffledEl.addEventListener("mouseover", function() {
-      // Limpar qualquer intervalo anterior associado a este elemento
-      if (window.shuffleIntervals[uniqueId]) {
-        clearInterval(window.shuffleIntervals[uniqueId]);
-        delete window.shuffleIntervals[uniqueId];
-      }
-      
-      let frame = 0;
-      const inter = setInterval(() => {
-        if(frame < framesMax) {
-          childElements.forEach((el) => {
-            let chars = el.textContent.split("");
-            let shuffled = shuffleArr(chars);
-            el.textContent = shuffled.join("");
-          });
-          frame++;
-        } else {
-          // Limpar intervalo e restaurar texto original quando terminar
-          clearInterval(inter);
-          childElements.forEach((el, i) => {
-            el.textContent = textOriginals[i];
-          });
-          // Remover do registro de intervalos ativos
-          delete window.shuffleIntervals[uniqueId];
-        }
-      }, duration);
-      
-      // Registrar o intervalo
-      window.shuffleIntervals[uniqueId] = inter;
-    });
-    
-    // Parar o efeito e restaurar todos os textos originais no mouseleave
-    shuffledEl.addEventListener("mouseleave", function() {
-      if (window.shuffleIntervals[uniqueId]) {
-        clearInterval(window.shuffleIntervals[uniqueId]);
-        delete window.shuffleIntervals[uniqueId];
-      }
-      
-      // Restaurar texto original imediatamente
-      childElements.forEach((el, i) => {
-        el.textContent = textOriginals[i];
-      });
-    });
-  });
-}
-
-function shuffleArr(arr) {
-  return arr.reduce(
-    ([a, b]) => (
-      b.push(...a.splice((Math.random() * a.length) | 0, 1)), [a, b]
-    ),
-    [[...arr], []]
-  )[1];
-}
-
-// Lidar com navegação no Astro e SPA de forma robusta
-function handleNavigationEvents() {
-  // Limpeza antes de qualquer troca de página
-  document.addEventListener('astro:before-swap', () => {
-    cleanupAllShuffleEffects();
-  });
-
-  // Reinicializar após troca de página
-  document.addEventListener('astro:after-swap', () => {
-    // Pequeno timeout para garantir que DOM esteja estável
-    setTimeout(() => {
-      initializeShuffle();
-    }, 100);
-  });
-  
-  // Hooks de navegação adicionais para outros frameworks
-  window.addEventListener('popstate', () => {
-    cleanupAllShuffleEffects();
-    // Pequeno timeout para garantir que DOM esteja estável
-    setTimeout(() => {
-      initializeShuffle();
-    }, 100);
-  });
-  
-  // Para detecção de navegação em SPAs que usam History API
-  const originalPushState = window.history.pushState;
-  window.history.pushState = function() {
-    originalPushState.apply(this, arguments);
-    cleanupAllShuffleEffects();
-    setTimeout(() => {
-      initializeShuffle();
-    }, 100);
-  };
-}
-
-// Inicialização
-document.addEventListener('DOMContentLoaded', () => {
-  // Configurar handlers de navegação
-  handleNavigationEvents();
-  
-  // Inicialização inicial
-  initializeShuffle();
-});
-
-// Garantir que o código seja executado mesmo se o evento DOMContentLoaded já tiver ocorrido
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', () => {
-    handleNavigationEvents();
-    initializeShuffle();
-  });
-} else {
-  handleNavigationEvents();
-  initializeShuffle();
-}
-
-// Disponibilizar globalmente
-window.initializeShuffle = initializeShuffle;
-window.cleanupAllShuffleEffects = cleanupAllShuffleEffects;
-
-</script>
-
-<style>
-  .heading {
-        margin-bottom: var(--spacing-2);
-        font-family: var(--title-font);
-        text-align: center;
-        
-        h1, h2 {
-            color: hsla(var(--body-text-color), 0.5);
-            font-size: 3rem;
-        }
-
-        em {
-            font-style: italic;
-            color: hsla(var(--body-text-color), 1);
-            letter-spacing: 0;
-        }
-
-        a {
-            display: block;
-            width: max-content;
-        }
-    }
-
-    .intro {
-      text-align: center;
-    }
-
-    @media screen and (max-width: 768px) {
-      .heading {
-        text-align: left;
-
-        h1, h2 {
-          font-size: 2.4rem;
-        }
-      }
-
-      .intro {
-        text-align: left;
-
-        p br {
-          margin-bottom: var(--spacing-2);
-          display: block;
-          width: 100%;
-        }
-      }
-    }
-</style>

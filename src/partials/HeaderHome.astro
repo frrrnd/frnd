@@ -1,0 +1,68 @@
+---
+import LinkWithPreview from '@components/LinkImage/LinkImage.tsx';
+import Mail from '@components/Mail/Mail.tsx';
+
+---
+
+<header class="header intro">
+    <div class="wrap">
+        <h1><a href="/">Fernando Soares,</a></h1>
+        <h2>user interface designer</h2>
+        <h4>more about <LinkWithPreview client:load href="/me" text="me" 
+            images={[
+                "/frnd-avatar.jpg", 
+                "/uploads/images/albums/girls/02.webp",
+                "/uploads/images/albums/girls/05.webp"
+            ]} /> 
+            or <Mail 
+                client:load 
+                href="mailto:hi@frnd.design" 
+                hover="hi@frnd.design"
+                speed={15}
+                >
+                mail me
+                </Mail>
+        </h4>
+    </div>
+</header>
+
+<style>
+    .intro {
+    max-width: 100%;
+    /* height: 95vh; */
+    padding-top: 25vh;
+    margin-bottom: 35vh;
+    
+    .wrap {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    h1 {
+        color: hsla(var(--body-text-color), 1);
+        line-height: .7;
+    }
+
+    h2 {
+        line-height: 1.6;
+        margin-bottom: var(--spacing-2);
+        color: hsla(var(--body-text-color), .4);
+
+        a {
+            color: hsla(var(--body-text-color), 1);
+        }
+    }
+
+    h4 {
+        font-size: var(--font-size-h4);
+        color: hsla(var(--body-text-color), .4);
+        font-weight: 450;
+
+        a {
+            color: hsla(var(--accent-color), 1);
+        }
+    }
+}
+</style>

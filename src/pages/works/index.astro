@@ -18,7 +18,7 @@ works.sort((a,b) => Date.parse(a.data.order) - Date.parse(b.data.order));
 
 		<section class="works__page wrap-wider">
 			<Grid isContainer>
-			{works.map((item) => (
+			{latestWorks.map((item) => (
 				<Grid sm="12" md="6">
 					<article>
 						<a href={`/works/${item.slug}`} title={item.data.title}>

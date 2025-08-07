@@ -36,6 +36,14 @@ const worksCollection = defineCollection({
         cover: image(),
         order: z.number(),
         icon: z.string().optional(),
+        colors: z.union([
+            z.object({
+              backgroundColor: z.string().optional(),
+              textColor: z.string().optional(),
+              linkColor: z.string().optional(),
+            }),
+            z.undefined(),
+          ]).optional(),
     })
 });
 

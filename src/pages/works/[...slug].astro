@@ -3,10 +3,11 @@ import { getCollection } from "astro:content";
 import Layout from "@layouts/Layout.astro";
 import { SiteConfig } from "@utils/SiteConfig";
 import Header from "@partials/Header.astro";
+import Footer from "@partials/Footer.astro";
 import PageHeading from '@partials/PageHeading.astro';
 import Grid from '@components/utils/Grid.astro';
 
-export const prerender = true;
+//export const prerender = true;
 
 export async function getStaticPaths() {
     const portfolio = await getCollection('works');
@@ -18,10 +19,13 @@ export async function getStaticPaths() {
 }
 
 const { item } = Astro.props;
+const colors = item?.data?.colors ?? {};
+const backgroundColor = colors.backgroundColor || "black";
+const textColor = colors.textColor || "yellow";
+const linkColor = colors.linkColor || "red";
 
 let Content = null;
 let frontmatter = {};
-
 
 if (item) {
     frontmatter = item.data || {};
@@ -30,73 +34,120 @@ if (item) {
         Content = rendered.Content || null;
     }
 }
+
+const themeClass = item?.data?.colors ? "custom-theme" : "dark-theme";
+
+const customStyles = `
+  :root.${themeClass} {
+    --backgroundColor: ${backgroundColor};
+    --textColor: ${textColor};
+    --linkColor: ${linkColor};
+  }
+`;
+
 ---
 
 <Layout props={{
     title: `${frontmatter.title || "Sem título"} — ${SiteConfig.title}`,
     description: SiteConfig.description || "Descrição não fornecida",
-    image: SiteConfig.image || "Imagem padrão"
+    image: SiteConfig.image || "Imagem padrão",
+    themeClass: themeClass,
 }}>
     <Header />
 
     <main>
-        <article class="wrap-lg">
+        <article class="wrap-sm">
             <header>
                 <h1>{frontmatter.title}</h1>
-                <h2>{frontmatter.role}・{frontmatter.year}</h2>
+                <p>{frontmatter.role}・{frontmatter.year}</p>
             </header>
-
-            <p><Fragment set:html={frontmatter.description} /></p>
-
-            {frontmatter.link ? <a class="work__link" target="_blank" href={`https://${frontmatter.link}`}> {frontmatter.link}</a> : ""}
-
         </article>
-
-            <section class="content-article">
-            <div class="note-content wrap-wider">
+        
+        <section class="content-article">
+            <article class="note-content">
                 {Content ? <Content /> : <p>Conteúdo não disponível.</p>}
-            </div>
+            </article>
         </section>
     </main>
+
+    <Footer />
 </Layout>
+<style set:html={customStyles}></style>
 <style>
+    :root.custom-theme {
+        --primary-color: var(--backgroundColor);
+        --secondary-color: var(--textColor);
+        --tertiary-color: var(--linkColor);
+    }
+
+    article {
+        p {
+            a {
+                color: hsla(var(--tertiary-color), 1);
+                text-decoration-color: hsla(var(--tertiary-color), 1);
+            }
+        }
+    }
+
+
     header {
-        margin-bottom: var(--spacing-4);
-        text-align: center;
         width: 100%;
 
         h1 {
-            font-size: 3rem;
+            font-size: var(--font-size-h1);
             font-family: var(--title-font);
+            color: hsla(var(--tertiary-color), 1);
         }
 
         h2 {
             font-size: 0.9rem;
             color: hsla(var(--text-body-color), 0.6);
         }
-    }
 
-    article {
-        margin-bottom: var(--spacing-8);
+        p {
+            font-size: var(--font-size-small);
+            text-transform: uppercase;
+            font-family: monospace;
+            letter-spacing: 0.5px;
+        }
     }
 
     section {
         margin-bottom: var(--spacing-8);
     }
 
-    .work__link {
-        margin: var(--spacing-2) 0;
-        display: block;
-        font-size: 0.9rem;
-        color: #5a93ff;
-        font-family: var(--mono-font);
-        display: flex;
-        flex-direction: row;
+    .note-content {
+        margin-top: var(--spacing-4);
 
-        &:before {
-            content: "﹂";
+        h2 {
+            font-size: var(--font-size-h5);
+            margin-top: var(--spacing-2);
+            margin-bottom: var(--spacing-1);
+            font-weight: 500;
+            color: hsla(var(--secondary-color), 1);
+        }
+
+        .wrap-sm {
+            margin-bottom: var(--spacing-8);
+        }
+
+        .work__link {
+            margin: var(--spacing-4) 0 var(--spacing-2) 0;
+            font-size: 0.8rem;
             display: flex;
-            margin-right: 8px;
+            flex-direction: row;
+            color: hsla(var(--tertiary-color), 1);
+            text-decoration-color: hsla(var(--tertiary-color), 1);
+            text-transform: uppercase;
+            font-family: monospace;
+            letter-spacing: 0.5px;
+
+            &:before {
+                content: "→";
+                display: flex;
+                margin-right: 8px;
+            }
         }
     }
+
 </style>

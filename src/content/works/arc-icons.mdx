@@ -6,28 +6,46 @@ isDraft: true
 tags: ["portfolio"]
 publishDate: "2025-03-15 20:12"
 cover: "/public/uploads/images/portfolio/arc/arc-cover.png"
-order: 12
+order: 9
 role: "Design"
 year: "2024"
 link: ""
+colors:
+  backgroundColor: "237, 61%, 8%"
+  textColor: "0, 0%, 100%"
+  linkColor: "323, 91%, 63%"
 ---
 
 import Grid from '../../components/utils/Grid.astro';
 
-<Grid isContainer>
-    <Grid sm="12" md="12">
-        <img src="/uploads/images/portfolio/arc/arc-04.png" alt="Arc Icons" loading="lazy" />
-    </Grid>
+<div class="wrap-sm">
 
-    <Grid sm="12" md="6">
-        <img src="/uploads/images/portfolio/arc/arc-02.png" alt="Arc Icons" loading="lazy" />
-    </Grid>
+I developed an icon for the Arc browser inspired by the synthwave style of the 80s, available in both light and dark modes. The chrome design reflects a nostalgic and futuristic aesthetic, aiming to create an emotional connection with users.
 
-    <Grid sm="12" md="6">
-        <img src="/uploads/images/portfolio/arc/arc-03.png" alt="Arc Icons" loading="lazy" class="image__fit" />
-    </Grid>
 
-    <Grid sm="12" md="12">
-        <img src="/uploads/images/portfolio/arc/arc-05.png" alt="Arc Icons" loading="lazy" />
+## Role 
+
+I was responsible for the icon design, from research to creating versions for different modes. I worked on the color palette and textures, ensuring a cohesive and appealing result, with iterations based on user feedback.
+
+
+</div>
+
+<div class="wrap-wider">
+    <Grid isContainer>
+        <Grid sm="12" md="12">
+            <img src="/uploads/images/portfolio/arc/arc-04.png" alt="Arc Icons" loading="lazy" />
+        </Grid>
+
+        <Grid sm="12" md="6">
+            <img src="/uploads/images/portfolio/arc/arc-02.png" alt="Arc Icons" loading="lazy" />
+        </Grid>
+
+        <Grid sm="12" md="6">
+            <img src="/uploads/images/portfolio/arc/arc-03.png" alt="Arc Icons" loading="lazy" class="image__fit" />
+        </Grid>
+
+        <Grid sm="12" md="12">
+            <img src="/uploads/images/portfolio/arc/arc-05.png" alt="Arc Icons" loading="lazy" />
+        </Grid>
     </Grid>
-</Grid>
+</div>

@@ -1,29 +1,49 @@
 ---
 title: "Arena Gallery"
-description: "A minimalist web app designed to display an Are.na channel as a grid gallery. Built with pure HTML, CSS, and vanilla JavaScript, it supports both public and private channels. The interface is clean and distraction-free, focusing on a seamless visual browsing experience."
+description: "A minimalist web app designed to display an Are.na channel as a grid gallery."
 type: "Web App"
 isDraft: false
 tags: ["teste", "portfolio"]
 publishDate: "2025-03-18"
 cover: "/public/uploads/images/portfolio/arena/arena-cover.png"
-order: 8
+order: 5
 role: "UX/UI Design & Front End"
 year: "2025"
 link: "github.com/frrrnd/arena-gallery"
+colors:
+  backgroundColor: "0, 0%, 91%"
+  textColor: "0, 0%, 25%"
+  linkColor: "9, 91%, 63%"
 ---
 
 import Grid from '../../components/utils/Grid.astro';
 
-<Grid isContainer>
-    <Grid sm="12" md="12">
-        <img src="/uploads/images/portfolio/arena/arena-gallery-02.png" alt="Arena Gallery" loading="lazy" />
-    </Grid>
+<div class="wrap-sm">
 
-    <Grid sm="12" md="8">
-        <img src="/uploads/images/portfolio/arena/arena-gallery-03.png" alt="Arena Gallery" loading="lazy" />
-    </Grid>
+## Overview
 
-    <Grid sm="12" md="4">
-        <img src="/uploads/images/portfolio/arena/arena-gallery-04.png" alt="Arena Gallery" loading="lazy" class="image__fit" />
+Arena Gallery is a minimalist web app that displays Are.na channels as grid galleries. Built using pure HTML, CSS, and vanilla JavaScript, it supports both public and private channels. The interface is clean and distraction-free, providing users with a seamless and visually focused browsing experience.
+
+
+## Role 
+
+I designed and developed the entire UX/UI of the app, focusing on simplicity and usability. My goal was to create a straightforward interface that highlights content without distractions, ensuring smooth navigation and quick access to channels for all users.
+
+
+</div>
+
+<div class="wrap-wider">
+    <Grid isContainer>
+        <Grid sm="12" md="12">
+            <img src="/uploads/images/portfolio/arena/arena-gallery-02.png" alt="Arena Gallery" loading="lazy" />
+        </Grid>
+
+        <Grid sm="12" md="8">
+            <img src="/uploads/images/portfolio/arena/arena-gallery-03.png" alt="Arena Gallery" loading="lazy" />
+        </Grid>
+
+        <Grid sm="12" md="4">
+            <img src="/uploads/images/portfolio/arena/arena-gallery-04.png" alt="Arena Gallery" loading="lazy" class="image__fit" />
+        </Grid>
     </Grid>
-</Grid>
+</div>

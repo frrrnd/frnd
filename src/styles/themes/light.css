@@ -2,11 +2,11 @@ html.light-theme:root {
     /* Tokens */
     --black: 0, 0%, 20%;
     --white: 216, 20%, 95%;
-    --blu: 235, 100%, 73%;
+    --orange: 18, 100%, 53%;
      
     /* Semantic */
      --primary-color: var(--white);
      --secondary-color: var(--black);
      --tertiary-color: hsla(var(--secondary-color), .5);
-     --accent-color: var(--blu);
+     --accent-color: var(--orange);
 }

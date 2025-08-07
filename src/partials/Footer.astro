@@ -1,70 +1,49 @@
 ---
 import Grid from '../components/utils/Grid.astro';
-import CopyClipboard from '@components/CopyClipboard/CopyClipboard.jsx';
-import { getCommitInfo } from '../utils/commit.ts';
-
-const { commitId, commitDate } = getCommitInfo();
-
-function formatDate(dateString: string) {
-  const date = new Date(dateString);
-  const month = String(date.getMonth() + 1).padStart(2, '0'); // getMonth() começa do 0
-  const day = String(date.getDate()).padStart(2, '0');
-  const year = date.getFullYear();
-  return `${month}.${day}.${year}`;
-}
+import Top from '@components/utils/toTop.astro';
 ---
+
+<Top />
+
 <footer class="footer wrap">
-    <section class="footer__end">
-        <CopyClipboard client:load />
-
-        <!-- <div class="footer__bottom">
-            <p><a target="_blank" href="https://x.com/frrrnd">@frrrnd</a></p>
-        </div> -->
-    </section>
-
     <section class="footer__content">
         <ul>
-            <li class="shuffle"><a href="/about">About</a></li>
-            <li class="shuffle"><a href="/works">Works</a></li>
-            <li class="shuffle"><a href="/notes">Notes</a></li>
+            <li class="shuffle"><a href="/">Home</a></li>
+            <li class="shuffle"><a href="/me">About</a></li>
             <li class="shuffle"><a href="/labs">Labs</a></li>
-            <li class="shuffle"><a href="/my-girls">My Girls</a></li>
             <li class="shuffle"><a href="/readings">Readings</a></li>
         </ul>
-    </section>
 
-    <!-- <section class="footer__data">
-        <p>Last updated {formatDate(commitDate)}</p>
-        <p>{commitId}</p>
-    </section> -->
+        <ul>
+            <li class="shuffle"><a href="https://x.com/frrrnd" target="_blank">x.com</a></li>
+            <li class="shuffle"><a href="mailto:hi@frnd.design" target="_blank">Email</a></li>
+            <li class="shuffle"><a href="https://linkedin.com/in/frrrnd" target="_blank">Linkedin</a></li>
+        </ul>
+    </section>
         
 </footer>
 <style>
     .footer {
         padding-bottom: var(--spacing-2);
         padding-top: var(--spacing-4);
-        font-size: 0.9rem;
+        font-size: 0.8rem;
+        font-family: monospace;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
     }
 
     .footer__content {
         margin-bottom: var(--spacing-2);
         display: flex;
         flex-direction: row;
-        gap: var(--spacing-2);
-
-        h4 {
-            margin-bottom: var(--spacing-1);
-            color: hsla(var(--body-text-color), 1);
-        }
+        justify-content: space-between;
 
         ul {
             display: flex;
             flex-direction: row;
-            justify-content: center;
             gap: var(--spacing-2);
             list-style-type: none;
             padding-left: 0;
-            margin: 0 auto;
         }
 
         a {
@@ -72,51 +51,205 @@ function formatDate(dateString: string) {
         }
     }
 
-    .footer__end {
-        display: flex;
-        flex-direction: column;
-        margin-bottom: var(--spacing-4);
-        
-        p {
-            font-size: 1rem;
-        }
-    }
-
-    .footer__bottom {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        margin-top: var(--spacing-1);
-        
-        p {
-            font-size: var(--font-size-small);
-            font-weight: 400;
-            width: 100%;
-            text-align: center;
-            color: hsl(var(--body-text-color), 0.3);
-        }
-    }
-
-
-    .footer__data {
-        opacity: 0.5;
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-
-        p {
-            font-size: 0.8rem;
-            font-weight: 300;
-        }
-    }
-
     @media screen and (max-width: 768px) {
         .footer__content {
+          flex-direction: column;
+
             ul {
                 flex-direction: column;
-                text-align: center;
                 font-size: 1.5rem;
             }
         }
     }
 </style>
+
+<script>
+// Objeto global para armazenar todos os intervalos ativos
+window.shuffleIntervals = {};
+
+// Função para limpar completamente todos os efeitos shuffle ativos
+function cleanupAllShuffleEffects() {
+  // Limpar todos os intervalos registrados
+  Object.keys(window.shuffleIntervals).forEach(id => {
+    clearInterval(window.shuffleIntervals[id]);
+    delete window.shuffleIntervals[id];
+  });
+  
+  // Restaurar todos os textos originais para elementos ativos
+  document.querySelectorAll(".shuffle").forEach(el => {
+    if (el.dataset.originalText) {
+      el.textContent = el.dataset.originalText;
+    }
+    
+    // Para elementos com filhos
+    if (el.querySelectorAll("[data-original-text]").length > 0) {
+      el.querySelectorAll("[data-original-text]").forEach(child => {
+        child.textContent = child.dataset.originalText;
+      });
+    }
+  });
+}
+
+// Função principal de inicialização com proteção contra duplicação
+function initializeShuffle() {
+  // Limpar completamente qualquer efeito ativo antes de reinicializar
+  cleanupAllShuffleEffects();
+  
+  // Remover todos os event listeners antigos usando a técnica de clonagem
+  document.querySelectorAll(".shuffle").forEach(shuffledEl => {
+    const clone = shuffledEl.cloneNode(true);
+    if (shuffledEl.parentNode) {
+      shuffledEl.parentNode.replaceChild(clone, shuffledEl);
+    }
+  });
+  
+  // Agora reinicializar com os elementos clonados/limpos
+  let shuffledEls = document.querySelectorAll(".shuffle");
+  let duration = 20;
+  let framesMax = 7;
+  
+  shuffledEls.forEach((shuffledEl) => {
+    // Array para armazenar todos os elementos filhos com texto
+    const childElements = [];
+    const textOriginals = [];
+    
+    // Se o elemento tem filhos, vamos usar todos eles
+    if (shuffledEl.children.length > 0) {
+      // Pegar todos os elementos filhos que contêm texto
+      Array.from(shuffledEl.children).forEach(child => {
+        if (child.textContent.trim() !== '') {
+          childElements.push(child);
+          textOriginals.push(child.textContent);
+          // Armazenar o texto original como atributo de dados
+          child.dataset.originalText = child.textContent;
+        }
+      });
+    }
+    // Se não tiver filhos ou nenhum filho com texto, usamos o próprio elemento
+    if (childElements.length === 0) {
+      childElements.push(shuffledEl);
+      textOriginals.push(shuffledEl.textContent);
+      // Armazenar o texto original como atributo de dados
+      shuffledEl.dataset.originalText = shuffledEl.textContent;
+    }
+    
+    // Associamos um identificador único ao elemento para rastreamento
+    const uniqueId = 'shuffle-' + Date.now() + '-' + Math.random().toString(36).substr(2, 9);
+    shuffledEl.dataset.shuffleId = uniqueId;
+    
+    // Adicionar evento hover
+    shuffledEl.addEventListener("mouseover", function() {
+      // Limpar qualquer intervalo anterior associado a este elemento
+      if (window.shuffleIntervals[uniqueId]) {
+        clearInterval(window.shuffleIntervals[uniqueId]);
+        delete window.shuffleIntervals[uniqueId];
+      }
+      
+      let frame = 0;
+      const inter = setInterval(() => {
+        if(frame < framesMax) {
+          childElements.forEach((el) => {
+            let chars = el.textContent.split("");
+            let shuffled = shuffleArr(chars);
+            el.textContent = shuffled.join("");
+          });
+          frame++;
+        } else {
+          // Limpar intervalo e restaurar texto original quando terminar
+          clearInterval(inter);
+          childElements.forEach((el, i) => {
+            el.textContent = textOriginals[i];
+          });
+          // Remover do registro de intervalos ativos
+          delete window.shuffleIntervals[uniqueId];
+        }
+      }, duration);
+      
+      // Registrar o intervalo
+      window.shuffleIntervals[uniqueId] = inter;
+    });
+    
+    // Parar o efeito e restaurar todos os textos originais no mouseleave
+    shuffledEl.addEventListener("mouseleave", function() {
+      if (window.shuffleIntervals[uniqueId]) {
+        clearInterval(window.shuffleIntervals[uniqueId]);
+        delete window.shuffleIntervals[uniqueId];
+      }
+      
+      // Restaurar texto original imediatamente
+      childElements.forEach((el, i) => {
+        el.textContent = textOriginals[i];
+      });
+    });
+  });
+}
+
+function shuffleArr(arr) {
+  return arr.reduce(
+    ([a, b]) => (
+      b.push(...a.splice((Math.random() * a.length) | 0, 1)), [a, b]
+    ),
+    [[...arr], []]
+  )[1];
+}
+
+// Lidar com navegação no Astro e SPA de forma robusta
+function handleNavigationEvents() {
+  // Limpeza antes de qualquer troca de página
+  document.addEventListener('astro:before-swap', () => {
+    cleanupAllShuffleEffects();
+  });
+
+  // Reinicializar após troca de página
+  document.addEventListener('astro:after-swap', () => {
+    // Pequeno timeout para garantir que DOM esteja estável
+    setTimeout(() => {
+      initializeShuffle();
+    }, 100);
+  });
+  
+  // Hooks de navegação adicionais para outros frameworks
+  window.addEventListener('popstate', () => {
+    cleanupAllShuffleEffects();
+    // Pequeno timeout para garantir que DOM esteja estável
+    setTimeout(() => {
+      initializeShuffle();
+    }, 100);
+  });
+  
+  // Para detecção de navegação em SPAs que usam History API
+  const originalPushState = window.history.pushState;
+  window.history.pushState = function() {
+    originalPushState.apply(this, arguments);
+    cleanupAllShuffleEffects();
+    setTimeout(() => {
+      initializeShuffle();
+    }, 100);
+  };
+}
+
+// Inicialização
+document.addEventListener('DOMContentLoaded', () => {
+  // Configurar handlers de navegação
+  handleNavigationEvents();
+  
+  // Inicialização inicial
+  initializeShuffle();
+});
+
+// Garantir que o código seja executado mesmo se o evento DOMContentLoaded já tiver ocorrido
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', () => {
+    handleNavigationEvents();
+    initializeShuffle();
+  });
+} else {
+  handleNavigationEvents();
+  initializeShuffle();
+}
+
+// Disponibilizar globalmente
+window.initializeShuffle = initializeShuffle;
+window.cleanupAllShuffleEffects = cleanupAllShuffleEffects;
+
+</script>

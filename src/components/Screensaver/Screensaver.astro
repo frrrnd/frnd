@@ -10,10 +10,10 @@ interface Props {
 }
 
 // Destructure props with defaults
-const { 
-  speed = 3, 
-  startPositionX = 0, 
-  startPositionY = 0, 
+const {
+  speed = 3,
+  startPositionX = 0,
+  startPositionY = 0,
   startAngle = 45,
   containerId,
   index
@@ -22,8 +22,8 @@ const {
 import './Screensaver.css';
 ---
 
-<div 
-  class="screensaver-element" 
+<div
+  class="screensaver-element"
   id={`screensaver-element-${index}`}
   data-speed={speed}
   data-start-position-x={startPositionX}
@@ -35,82 +35,116 @@ import './Screensaver.css';
 </div>
 
 <script define:vars={{ speed, startPositionX, startPositionY, startAngle, containerId, index }}>
-  // This script will run on the client side
-  document.addEventListener('DOMContentLoaded', () => {
+  // Função para inicializar o screensaver
+  function initScreensaver() {
     const container = document.getElementById(containerId);
     const element = document.getElementById(`screensaver-element-${index}`);
-    
+   
     if (!container || !element) return;
-    
+   
+    // Verifica se já está animando para evitar múltiplas animações
+    if (element.dataset.animating === 'true') return;
+    element.dataset.animating = 'true';
+   
     // Initialize position and angle
     let x = 0;
     let y = 0;
     let angle = (startAngle * Math.PI) / 180;
-    
+    let animationId;
+   
     // Get dimensions
     const getContainerDimensions = () => {
       const rect = container.getBoundingClientRect();
       return { width: rect.width, height: rect.height };
     };
-    
+   
     const getElementDimensions = () => {
       const rect = element.getBoundingClientRect();
       return { width: rect.width, height: rect.height };
     };
-    
+   
     // Set initial position
     const setPosition = () => {
       const containerDimensions = getContainerDimensions();
       const elementDimensions = getElementDimensions();
-      
+     
       x = (startPositionX / 100) * (containerDimensions.width - elementDimensions.width);
       y = (startPositionY / 100) * (containerDimensions.height - elementDimensions.height);
-      
+     
       updateElementPosition();
     };
-    
+   
     // Update element position
     const updateElementPosition = () => {
       element.style.transform = `translate(${x}px, ${y}px)`;
     };
-    
+   
     // Animation frame function
     const animate = () => {
       const velocity = speed;
       const dx = Math.cos(angle) * velocity;
       const dy = Math.sin(angle) * velocity;
-      
+     
       const containerDimensions = getContainerDimensions();
       const elementDimensions = getElementDimensions();
-      
+     
       let newX = x + dx;
       let newY = y + dy;
-      
+     
       // Check for collisions with container boundaries
       if (newX <= 0 || newX + elementDimensions.width >= containerDimensions.width) {
         angle = Math.PI - angle;
         newX = Math.max(0, Math.min(newX, containerDimensions.width - elementDimensions.width));
       }
-      
+     
       if (newY <= 0 || newY + elementDimensions.height >= containerDimensions.height) {
         angle = -angle;
         newY = Math.max(0, Math.min(newY, containerDimensions.height - elementDimensions.height));
       }
-      
+     
       x = newX;
       y = newY;
-      
+     
       updateElementPosition();
-      
-      requestAnimationFrame(animate);
+     
+      animationId = requestAnimationFrame(animate);
     };
-    
+
+    // Função para parar a animação
+    const stopAnimation = () => {
+      if (animationId) {
+        cancelAnimationFrame(animationId);
+      }
+      element.dataset.animating = 'false';
+    };
+   
     // Initialize
     setPosition();
-    requestAnimationFrame(animate);
-    
+    animationId = requestAnimationFrame(animate);
+   
     // Handle window resize
-    window.addEventListener('resize', setPosition);
-  });
-</script>
+    const resizeHandler = () => setPosition();
+    window.addEventListener('resize', resizeHandler);
 
+    // Cleanup quando a página for trocada
+    document.addEventListener('astro:before-preparation', stopAnimation);
+    
+    // Cleanup quando o componente for removido
+    return () => {
+      stopAnimation();
+      window.removeEventListener('resize', resizeHandler);
+      document.removeEventListener('astro:before-preparation', stopAnimation);
+    };
+  }
+
+  // Inicializa imediatamente se o DOM já estiver carregado
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initScreensaver);
+  } else {
+    // DOM já está carregado, inicializa imediatamente
+    initScreensaver();
+  }
+
+  // Também escuta o evento de navegação do Astro
+  document.addEventListener('astro:page-load', initScreensaver);
+</script>

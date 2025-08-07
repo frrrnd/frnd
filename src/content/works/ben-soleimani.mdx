@@ -1,43 +1,62 @@
 ---
 title: "Ben Soleimani"
-description: "Ben Soleimani is a world renowned for unparalleled handcrafted rug offerings and innovative use of texture. With a unwavering commitment to excellence, Ben Soleimani has redefined luxury home offerings, through meticulous attention to detail and uncompromising dedication to quality."
+description: "Ben Soleimani is a world renowned for unparalleled handcrafted rug offerings and innovative use of texture."
 type: "Ecommerce"
 isDraft: false
 tags: ["portfolio"]
 publishDate: "2024-09-17 11:44"
 cover: "/public/uploads/images/portfolio/ben/bensoleimani-cover.png"
 icon: "/public/uploads/images/portfolio/ben/ben-icon.png"
-order: 2
+order: 14
 role: "UX/UI Design"
 year: "2024 — 2025"
 link: "bensoleimani.com"
+colors:
+  backgroundColor: "0, 0%, 91%"
+  textColor: "0, 0%, 25%"
+  linkColor: "205, 81%, 8%"
 ---
 
 import Grid from '../../components/utils/Grid.astro';
 
+<div class="wrap-sm">
 
-<Grid isContainer>
-    <Grid sm="12" md="12">
-        <img src="/uploads/images/portfolio/ben/ben-01.webp" alt="Ben Soleimani" loading="lazy" />
-    </Grid>
+Ben Soleimani is a high-end e-commerce brand specializing in luxury furniture and handwoven rugs. Known for its innovative use of texture and exceptional craftsmanship, the brand brings timeless design to modern interiors with a strong focus on quality and detail.
 
-    <Grid sm="12" md="12">
-        <img src="/uploads/images/portfolio/ben/ben-02.png" alt="Ben Soleimani" loading="lazy" />
-    </Grid>
 
-    <Grid sm="12" md="12">
-        <img src="/uploads/images/portfolio/ben/ben-03.webp" alt="Ben Soleimani" loading="lazy" />
-    </Grid>
+## Role 
 
-    <Grid sm="12" md="12">
-        <img src="/uploads/images/portfolio/ben/ben-04.webp" alt="Ben Soleimani" loading="lazy" />
-    </Grid>
+As a UX/UI Designer, I translate ideas from the internal team into intuitive and elegant interfaces. My responsibilities include designing high-fidelity prototypes, improving site usability, and continuously refining the customer journey to enhance both aesthetics and performance.
 
-    <Grid sm="12" md="12">
-        <img src="/uploads/images/portfolio/ben/ben-05.webp" alt="Ben Soleimani" loading="lazy" />
-    </Grid>
 
-    <Grid sm="12" md="12">
-        <img src="/uploads/images/portfolio/ben/ben-06.webp" alt="Ben Soleimani" loading="lazy" />
+{frontmatter.link ? <a class="work__link" target="_blank" href={`https://${frontmatter.link}`}> {frontmatter.link}</a> : ""}
+
+</div>
+
+<div class="wrap-wider">
+    <Grid isContainer>
+        <Grid sm="12" md="12">
+            <img src="/uploads/images/portfolio/ben/ben-01.webp" alt="Ben Soleimani" loading="lazy" />
+        </Grid>
+
+        <Grid sm="12" md="12">
+            <img src="/uploads/images/portfolio/ben/ben-02.png" alt="Ben Soleimani" loading="lazy" />
+        </Grid>
+
+        <Grid sm="12" md="12">
+            <img src="/uploads/images/portfolio/ben/ben-03.webp" alt="Ben Soleimani" loading="lazy" />
+        </Grid>
+
+        <Grid sm="12" md="12">
+            <img src="/uploads/images/portfolio/ben/ben-04.webp" alt="Ben Soleimani" loading="lazy" />
+        </Grid>
+
+        <Grid sm="12" md="12">
+            <img src="/uploads/images/portfolio/ben/ben-05.webp" alt="Ben Soleimani" loading="lazy" />
+        </Grid>
+
+        <Grid sm="12" md="12">
+            <img src="/uploads/images/portfolio/ben/ben-06.webp" alt="Ben Soleimani" loading="lazy" />
+        </Grid>
     </Grid>
-</Grid>
+</div>

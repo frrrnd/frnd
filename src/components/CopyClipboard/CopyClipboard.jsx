@@ -49,7 +49,7 @@ const CopyClipboard = () => {
     return (
         <div>
             <a
-                className={`clipboard ${isClicked ? 'clicked' : ''}`}
+                className={`btn btn--primary clipboard ${isClicked ? 'clicked' : ''}`}
                 href="#!"
                 onClick={(e) => {
                     e.preventDefault();

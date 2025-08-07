@@ -1,3 +1,7 @@
+html {
+    box-sizing: border-box;
+}
+
 *, *:before, *:after {
     box-sizing: inherit;
 }
@@ -14,7 +18,7 @@ img, iframe, video {
 }
 
 img {
-    border-radius: var(--radius-sm);
+    border-radius: var(--radius-md);
 }
 
 a {
@@ -45,10 +49,35 @@ i {
 }
 
 h1, h2, h3, h4, h5, h6 {
-    font-weight: 400;
-    color: hsla(var(--body-text-color), 1);
     margin: 0;
-    font-size: var(--font-size-regular);
+}
+
+h1 {
+    font-size: var(--font-size-h1);
+}
+
+h2 {
+    font-size: var(--font-size-h2);
+}
+
+h3 {
+    font-size: var(--font-size-h3);
+}
+
+h4 {
+    font-size: var(--font-size-h4);
+}
+
+h5 {
+    font-size: var(--font-size-h5);
+}
+
+h6 {
+    font-size: var(--font-size-h6);
+}
+
+h1, h2 {
+    font-weight: 450;
 }
 
 p {

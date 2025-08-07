@@ -1,0 +1,32 @@
+/* LinkWithPreview.css */
+
+.link-preview-container {
+  position: relative;
+  display: inline-block;
+}
+
+.preview-wrapper {
+  position: absolute;
+  z-index: 100;
+}
+
+.preview-motion-container {
+  position: absolute;
+  pointer-events: none;
+}
+
+.preview-image-container {
+  width: 12rem; /* 192px - equivalente a w-48 */
+  height: 8rem; /* 128px - equivalente a h-32 */
+  border-radius: 0.5rem; /* 8px - equivalente a rounded-lg */
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* equivalente a shadow-lg */
+  overflow: hidden;
+  background-color: white;
+}
+
+.preview-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 10;
+}

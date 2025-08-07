@@ -1,18 +1,31 @@
 ---
 ---
-<button id="to-top">Go to top ↑</button>
+<button id="to-top">
+    <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M15.9993 6.66675V25.3334M15.9993 6.66675L25.3327 16.0001M15.9993 6.66675L6.66602 16.0001" stroke="black" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+</button>
 
 <style>
     #to-top {
         -webkit-appearance: none;
+        -moz-appearance: none;
         border: none;
-        background-color: none;
+        background-color: transparent;
         position: fixed;
         bottom: 20px;
         right: 20px;
-        color: var(--text-primary-color);
-        font-size: 0.8rem;
+        font-size: 2rem;
         transition: .4s;
+        cursor: pointer;
+
+        svg path {
+            stroke: hsla(var(--secondary-color), 1);
+        }
+
+        &:hover {
+            background-color: transparent;
+        }
     }
 </style>
 <script>
@@ -40,7 +53,7 @@
             
             const scrollPercentage = (scrollPosition / scrollTotal) * 100;
 
-            if (scrollPercentage > 80) {
+            if (scrollPercentage > 20) {
                 scrollToTopBtn.style.opacity = "1";
                 scrollToTopBtn.style.visibility = "visible";
             } else {
