@@ -2,9 +2,9 @@
 import { getCollection } from 'astro:content';
 import { SiteConfig } from '@utils/SiteConfig';
 import Layout from '@layouts/Layout.astro';
-import HeaderHome from '@partials/HeaderHome.astro';
 import FormattedDate from '@partials/formattedDate.astro';
-import Footer from '@partials/Footer.astro';
+import Header from '@partials/Header.astro';
+import Hero from '@partials/Hero.astro';
 
 const works = await getCollection('works');
 const filteredWorks = works.filter(item => !item.data.isDraft);
@@ -14,9 +14,27 @@ filteredWorks.sort((a, b) => b.data.order - a.data.order);
 ---
 
 <Layout props={{ title: SiteConfig.title, description: SiteConfig.description, image: SiteConfig.image }}>
-  <HeaderHome />
+  <Hero>
+    
+    <Header />
+    
+    <section class="hero__content">
+      <div class="hero--headline">
+        <div class="wrap-wider">
+          <h1>Hi, I'm Fernando Soares.</h1>
+          <h2>Interface Designer based on <span>Florianópolis, Brazil.</span></h2>
+        </div>
+      </div>
+
+      <div class="hero--contact">
+        <div class="wrap-wider">
+          <h3>say hello — <a href="mailto:hi@frnd.design">hi@frnd.design</a></h3>
+        </div>
+      </div>
+    </section>
+  </Hero>
 	
-	<main class="main">
+	<!-- <main class="main">
     <section class="wrap latest-works">
         {filteredWorks.map((item) => (
           <article class="home__work">
@@ -41,7 +59,25 @@ filteredWorks.sort((a, b) => b.data.order - a.data.order);
           </article>
         ))}
     </section>
-	</main>
+	</main> -->
 
-  <Footer />
 </Layout>
+<style>
+  .hero__content {
+    padding-bottom: var(--spacing-8);
+  }
+
+  .hero--headline {
+    padding: var(--spacing-2) 0;
+
+    h1 {
+      margin-bottom: var(--spacing-1);
+    }
+  }
+
+  .hero--contact {
+    border-top: 1px solid rgba(255, 255, 255, .10);
+    border-bottom: 1px solid rgba(255, 255, 255, .10);
+    padding: var(--spacing-2) 0;
+  }
+</style>

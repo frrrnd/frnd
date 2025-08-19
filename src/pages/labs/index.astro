@@ -25,13 +25,9 @@ const renderedLabs = await Promise.all(
     <Header />
   
     <main class="main">
-      <div class="wrap-lg">
-
         <PageHeading title="Labs" description="Experiments, concepts and other design stuff." />
-        
-      </div>
 
-      <section class="labsItem__list wrap-media">
+      <section class="labsItem__list wrap-wider">
         <div class="mansory two-column">
           {renderedLabs.map((post) => (
               <figure>

@@ -5,3 +5,24 @@
      font-display: swap;
      font-style: normal;
 }
+
+@font-face {
+     font-family: 'Apple Garamond';
+     src: url('/assets/fonts/AppleGaramond.woff2') format('woff2');
+     font-weight: normal;
+     font-style: normal;
+}
+
+@font-face {
+     font-family: 'Apple Garamond Light';
+     src: url('/assets/fonts/AppleGaramond-Light.woff2') format('woff2');
+     font-weight: light;
+     font-style: normal;
+}
+
+@font-face {
+     font-family: 'Apple Garamond Light Italic';
+     src: url('/assets/fonts/AppleGaramond-LightItalic.woff2') format('woff2');
+     font-weight: light;
+     font-style: normal;
+}

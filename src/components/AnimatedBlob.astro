@@ -1,0 +1,381 @@
+---
+// AnimatedBlob.astro
+---
+
+<div id="animated-blob-container" class="blob-container">
+  <div class="blob-animation-wrapper">
+    <svg class="blob-svg" fill="none" preserveAspectRatio="none" viewBox="0 0 1920 1080" width="100%" height="100%">
+      <g clip-path="url(#clip0_1_13)" id="animated-blob">
+        <!-- Background gradient -->
+        <rect fill="url(#paint0_linear_1_13)" height="100%" width="100%" />
+        
+        <!-- Large animated ellipse -->
+        <ellipse
+          cx="1023.55"
+          cy="449.962"
+          fill="url(#paint1_linear_1_13)"
+          id="blob-main"
+          rx="988.774"
+          ry="583.123"
+          transform="rotate(30 1023.55 449.962)"
+        />
+        
+        <!-- Secondary animated ellipse with drop shadow -->
+        <g filter="url(#filter0_d_1_13)" id="blob-secondary">
+          <ellipse
+            cx="1087.93"
+            cy="672.704"
+            fill="url(#paint2_radial_1_13)"
+            rx="524.878"
+            ry="420.634"
+            transform="rotate(18.5205 1087.93 672.704)"
+          />
+        </g>
+        
+        <!-- Small floating circle -->
+        <circle 
+          cx="1824" 
+          cy="89" 
+          fill="var(--fill-0, #1A0341)" 
+          id="blob-accent" 
+          r="189" 
+        />
+        
+        <!-- Mouse cursor indicator -->
+        <circle 
+          id="mouse-cursor"
+          cx="0" 
+          cy="0" 
+          fill="rgba(255, 255, 255, 0)" 
+          r="15"
+        />
+        
+        <!-- Blur overlay -->
+        <foreignObject height="100%" width="100%" x="0" y="0">
+          <div
+            class="blur-overlay"
+            xmlns="http://www.w3.org/1999/xhtml"
+          ></div>
+        </foreignObject>
+        
+        <!-- Final overlay -->
+        <rect
+          data-figma-bg-blur-radius="188.4"
+          fill="var(--fill-0, white)"
+          fill-opacity="0.01"
+          height="100%"
+          id="Rectangle 7"
+          width="100%"
+        />
+
+        <rect width="100%" height="100%" filter="url(#grainNoise)" opacity="0.5" />
+      </g>
+      
+      <defs>
+        <filter
+          color-interpolation-filters="sRGB"
+          filterUnits="userSpaceOnUse"
+          height="872.812"
+          id="filter0_d_1_13"
+          width="1151.89"
+          x="572.487"
+          y="240.297"
+        >
+          <feFlood flood-opacity="0" result="BackgroundImageFix" />
+          <feColorMatrix
+            in="SourceAlpha"
+            result="hardAlpha"
+            type="matrix"
+            values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+          />
+          <feOffset dx="117" dy="4" />
+          <feGaussianBlur stdDeviation="2" />
+          <feComposite in2="hardAlpha" operator="out" />
+          <feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0.49 0" />
+          <feBlend in2="BackgroundImageFix" mode="normal" result="effect1_dropShadow_1_13" />
+          <feBlend in="SourceGraphic" in2="effect1_dropShadow_1_13" mode="normal" result="shape" />
+        </filter>
+        
+        
+        <linearGradient gradientUnits="userSpaceOnUse" id="paint0_linear_1_13" x1="960" x2="960" y1="0" y2="1080">
+          <stop stop-color="#5951FA" />
+          <stop offset="0.5" stop-color="#2423B8" />
+          <stop offset="0.956638" stop-color="#07010E" />
+        </linearGradient>
+        
+        <linearGradient
+          gradientUnits="userSpaceOnUse"
+          id="paint1_linear_1_13"
+          x1="1379.34"
+          x2="446.936"
+          y1="-298.693"
+          y2="573.338"
+        >
+          <stop stop-color="#FF3D7B" />
+          <stop offset="0.538462" stop-color="#FF9DBC" stop-opacity="0.888174" />
+          <stop offset="1" stop-color="#DD36FF" stop-opacity="0.26" />
+        </linearGradient>
+        
+        <radialGradient
+          cx="0"
+          cy="0"
+          gradientTransform="translate(1087.93 672.704) rotate(90) scale(420.634 524.878)"
+          gradientUnits="userSpaceOnUse"
+          id="paint2_radial_1_13"
+          r="1"
+        >
+          <stop stop-color="#130130" />
+          <stop offset="1" stop-color="#090E3A" />
+        </radialGradient>
+        
+        <clipPath id="clip0_1_13">
+          <rect fill="white" height="1080" width="1920" />
+        </clipPath>
+
+        <filter id="grainNoise" x="0" y="0" width="100%" height="100%" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+          <!-- baseFrequency alto = grão mais fino; baixo = grão mais largo -->
+          <feTurbulence type="fractalNoise" baseFrequency="0.75" numOctaves="2" seed="7" stitchTiles="stitch" result="noise"/>
+          <feColorMatrix in="noise" type="saturate" values="0" result="bwNoise" />
+          <feColorMatrix in="bwNoise" type="matrix"
+    values="0 0 0 0 0
+            0 0 0 0 0
+            0 0 0 0 0
+            0 0 0 1 0" />
+        </filter>
+      </defs>
+    </svg>
+  </div>
+</div>
+
+<style>
+  /* Container styles */
+  .blob-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    pointer-events: auto;
+  }
+
+  /* Animation wrapper */
+  .blob-animation-wrapper {
+    /* animation: blob-container 30s ease-in-out infinite; */
+    width: 100%;
+    height: 100%;
+  }
+
+  /* SVG styles */
+  .blob-svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  /* Blur overlay */
+  .blur-overlay {
+    backdrop-filter: blur(100px);
+    -webkit-backdrop-filter: blur(100px);
+    height: 100%;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.01);
+  }
+
+  /* Blob animations */
+  #blob-main {
+    animation: blob-main 25s ease-in-out infinite;
+    transform-origin: 1023.55px 449.962px;
+    transition: transform 0.3s ease-out;
+  }
+
+  #blob-secondary ellipse {
+    animation: blob-secondary 20s ease-in-out infinite;
+    transform-origin: 1087.93px 672.704px;
+    transition: transform 0.3s ease-out;
+  }
+
+  #blob-accent {
+    animation: blob-accent 15s ease-in-out infinite;
+    transform-origin: 1824px 89px;
+    transition: transform 0.3s ease-out;
+  }
+
+  #mouse-cursor {
+    transition: all 0.1s ease-out;
+  }
+
+  /* Keyframe animations */
+  @keyframes blob-main {
+    0%, 100% {
+      transform: translate(0px, 0px) rotate(30deg) scale(1);
+    }
+    25% {
+      transform: translate(80px, -60px) rotate(40deg) scale(1.08);
+    }
+    50% {
+      transform: translate(-60px, 50px) rotate(20deg) scale(0.95);
+    }
+    75% {
+      transform: translate(40px, -30px) rotate(50deg) scale(1.05);
+    }
+  }
+
+  @keyframes blob-secondary {
+    0%, 100% {
+      transform: translate(0px, 0px) rotate(18.5205deg) scale(1);
+    }
+    20% {
+      transform: translate(-70px, 60px) rotate(30deg) scale(1.12);
+    }
+    40% {
+      transform: translate(90px, -45px) rotate(5deg) scale(0.92);
+    }
+    60% {
+      transform: translate(-45px, -70px) rotate(40deg) scale(1.08);
+    }
+    80% {
+      transform: translate(60px, 35px) rotate(10deg) scale(0.96);
+    }
+  }
+
+  @keyframes blob-accent {
+    0%, 100% {
+      transform: translate(0px, 0px) scale(1);
+    }
+    30% {
+      transform: translate(120px, -90px) scale(1.25);
+    }
+    70% {
+      transform: translate(-80px, 100px) scale(0.85);
+    }
+  }
+
+  @keyframes blob-container {
+    0%, 100% {
+      transform: scale(1);
+    }
+    25% {
+      transform: scale(1.03);
+    }
+    50% {
+      transform: scale(1.05);
+    }
+    75% {
+      transform: scale(1.02);
+    }
+  }
+</style>
+
+<script>
+  // Mouse tracking and repulsion effect
+  interface MousePosition {
+    x: number;
+    y: number;
+  }
+
+  let mousePosition: MousePosition = { x: 0, y: 0 };
+  let container: HTMLElement | null = null;
+  let mouseCursor: SVGElement | null = null;
+  let blobMain: SVGElement | null = null;
+  let blobSecondary: SVGElement | null = null;
+  let blobAccent: SVGElement | null = null;
+
+  function initializeElements() {
+    container = document.getElementById('animated-blob-container');
+    mouseCursor = document.getElementById('mouse-cursor');
+    blobMain = document.getElementById('blob-main');
+    blobSecondary = document.getElementById('blob-secondary');
+    blobAccent = document.getElementById('blob-accent');
+  }
+
+  function calculateRepulsion(blobX: number, blobY: number, intensity: number = 80) {
+    const distance = Math.sqrt(
+      Math.pow((mousePosition.x * 1920) - blobX, 2) + 
+      Math.pow((mousePosition.y * 1080) - blobY, 2)
+    );
+    
+    const maxDistance = 400;
+    const repulsionStrength = Math.max(0, (maxDistance - distance) / maxDistance);
+    
+    const deltaX = blobX - (mousePosition.x * 1920);
+    const deltaY = blobY - (mousePosition.y * 1080);
+    
+    const moveX = (deltaX / distance) * repulsionStrength * intensity;
+    const moveY = (deltaY / distance) * repulsionStrength * intensity;
+    
+    return {
+      x: isNaN(moveX) ? 0 : moveX,
+      y: isNaN(moveY) ? 0 : moveY,
+      scale: 1 - (repulsionStrength * 0.1)
+    };
+  }
+
+  function updateBlobPositions() {
+    if (!container || !mouseCursor || !blobMain || !blobSecondary || !blobAccent) return;
+
+    // Update mouse cursor position
+    mouseCursor.setAttribute('cx', (mousePosition.x * 1920).toString());
+    mouseCursor.setAttribute('cy', (mousePosition.y * 1080).toString());
+
+    // Calculate repulsion for each blob
+    const mainBlobRepulsion = calculateRepulsion(1023.55, 449.962, 100);
+    const secondaryBlobRepulsion = calculateRepulsion(1087.93, 672.704, 80);
+    const accentBlobRepulsion = calculateRepulsion(1824, 89, 120);
+
+    // Apply transformations
+    blobMain.style.transform = `translate(${mainBlobRepulsion.x}px, ${mainBlobRepulsion.y}px) scale(${mainBlobRepulsion.scale})`;
+    
+    const secondaryEllipse = blobSecondary.querySelector('ellipse');
+    if (secondaryEllipse) {
+      secondaryEllipse.style.transform = `translate(${secondaryBlobRepulsion.x}px, ${secondaryBlobRepulsion.y}px) scale(${secondaryBlobRepulsion.scale})`;
+    }
+    
+    blobAccent.style.transform = `translate(${accentBlobRepulsion.x}px, ${accentBlobRepulsion.y}px) scale(${accentBlobRepulsion.scale})`;
+  }
+
+  function handleMouseMove(e: MouseEvent) {
+    if (container) {
+      const rect = container.getBoundingClientRect();
+      const x = (e.clientX - rect.left) / rect.width;
+      const y = (e.clientY - rect.top) / rect.height;
+      mousePosition = { x: Math.max(0, Math.min(1, x)), y: Math.max(0, Math.min(1, y)) };
+      updateBlobPositions();
+    }
+  }
+
+  // Initialize when DOM is ready
+  function initialize() {
+    initializeElements();
+    if (container) {
+      // Add event listeners
+      container.addEventListener('mousemove', handleMouseMove);
+      window.addEventListener('mousemove', handleMouseMove);
+      
+      // Set initial cursor position to center
+      mousePosition = { x: 0.5, y: 0.5 };
+      updateBlobPositions();
+    }
+  }
+
+  // Wait for DOM to be fully loaded
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initialize);
+  } else {
+    initialize();
+  }
+
+  // Also try after a short delay to ensure everything is rendered
+  setTimeout(initialize, 100);
+
+  // Cleanup function
+  window.addEventListener('beforeunload', () => {
+    if (container) {
+      container.removeEventListener('mousemove', handleMouseMove);
+    }
+    window.removeEventListener('mousemove', handleMouseMove);
+  });
+</script>

@@ -1,7 +1,16 @@
+.main {
+    padding-top: var(--spacing-12);
+}
+
 .page__heading {
 
     h1, h2 {
         font-weight: 500;
+        font-family: "Apple Garamond Light", serif;
+    }
+
+    h2 {
+        font-size: var(--font-size-h1);
     }
 
     p a {
@@ -17,125 +26,3 @@
         }
     }
 }
-
-/* .content-article {
-    padding-bottom: var(--spacing-1);
-
-    h2, h3, h4, h5 {
-        font-weight: 500;
-    }
-
-    & time {
-        opacity: .8;
-    }
-
-    & ul {
-        padding-left: 0;
-        margin-bottom: 2rem;
-        list-style-type: none;
-    }
-
-    & li {
-        margin-bottom: .5rem;
-        line-height: 1.6;
-
-        &:before {
-            content: '—';
-            width: auto;
-            display: inline-block;
-            margin-right: 1rem;
-            color: hsla(var(--body-text-color), .2);
-        }
-    }
-
-    & p, & video {
-        margin-bottom: 1.5rem;
-    }
-
-    & img, & video {
-        border-radius: 5px;
-    }
-
-    & p a {
-        text-decoration-line: underline;
-        text-underline-offset: 2.5px;
-        text-decoration-thickness: 1.5px;
-        text-decoration-color: hsla(var(--body-text-color), .2);
-        transition: var(--transition-default);
-
-        &:hover {
-            text-decoration-color: hsla(var(--body-text-color), .6);
-            transition: var(--transition-default);
-        }
-    }
-
-    & pre {
-        padding: var(--spacing-1);
-        border-radius: var(--radius-sm);
-        font-size: .8rem;
-        margin-bottom: var(--spacing-2);
-        font-size: 1rem;
-
-        &::-webkit-scrollbar {
-            scrollbar-width: thin;
-        }
-        
-
-        &::-webkit-scrollbar-track {
-            background: hsla(255,255,255,0);
-        }
-        
-
-        &::-webkit-scrollbar-thumb {
-            background: hsla(255,255,255,.1);
-        }
-        
-
-        &::-webkit-scrollbar-thumb:hover {
-            background: hsla(255,255,255,.5);
-        }
-    }
-
-    & blockquote {
-        margin-left: 0;
-        padding-left: 1rem;
-        font-weight: 400;
-        margin-bottom: 1rem;
-        border-left: 2px solid hsla(var(--body-text-color), .2);
-
-        p {
-            margin-bottom: 0;
-        }
-    }
-
-    .article-header {
-        margin: 0 auto 1rem;
-
-        & h1 {
-            margin: 0;
-        }
-
-        & h2 {
-            font-weight: 500;
-        }
-
-        a {
-            text-decoration: none;
-        }
-    }
-
-    .article-footer {
-        div {
-            font-size: .8rem;
-            display: block;
-            margin: .5rem 0;
-        }
-
-        a {
-            text-decoration: none;
-        }
-    }
-} */
-
-/* About */
-

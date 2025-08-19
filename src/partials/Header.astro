@@ -8,40 +8,58 @@ const currentPath = pathname.slice(1); // remove the first "/"
 // Corrigindo a verificação das páginas de notes
 const isNotesPage = currentPath.startsWith('notes/'); // Removido o '/' do início já que currentPath não o tem
 
-// Definindo classes condicionalmente
-// const headerClasses = isNotesPage ? 'header__fixed' : 'header__fixed blend-text';
-
-// const isActive = (path) => {
-//     if (path === "" && currentPath === "") {
-//         return true; // Ativa "Home" somente quando a URL atual é a raiz
-//     } else if (path !== "" && currentPath.startsWith(path)) {
-//         return true; // Ativa outras rotas se o currentPath começa com path
-//     }
-//     return false;
-// };
+const isActive = (path) => {
+    if (path === "" && currentPath === "") {
+        return true; // Ativa "Home" somente quando a URL atual é a raiz
+    } else if (path !== "" && currentPath.startsWith(path)) {
+        return true; // Ativa outras rotas se o currentPath começa com path
+    }
+    return false;
+};
 ---
 
 <header class="header">
-    <!-- <div class="header__content">
-        <nav>
-            <ul>
-                <li><a class={isActive("/") ? "active" : ""} href="/">Work</a></li>
-                <li><a class={isActive("about") ? "active" : ""} href="/about">About</a></li>
-                <li><a class={isActive("notes") ? "active" : ""} href="/notes">Notes</a></li>
-            </ul>
-        </nav>
-    </div> -->
-    <!-- <a href="/" class="header__logo">
-       Home
-    </a> -->
-
-    <div class="wrap-sm">
-        <a href="/" class="shuffle"> ← back to home</a>
+    <div class="header__inner wrap-wider">
+        <div class="header__inner--left">
+            <a href="/">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M24 0H0L12.0286 11.9716L1.33534e-05 24H8.05714L20.0571 11.9716L13.7429 5.68571H17.8L24 0Z" fill="white" fill-opacity="0.15"/>
+                </svg>
+            </a>
+        </div>
+        
+        <div class="header__inner--right">
+            <nav>
+                <ul>
+                    <li><a class={isActive("/") ? "active" : ""} href="/">Index</a></li>
+                    <li><a class={isActive("about") ? "active" : ""} href="/about">About</a></li>
+                    <li><a class={isActive("works") ? "active" : ""} href="/works">Works</a></li>
+                    <li><a class={isActive("labs") ? "active" : ""} href="/labs">Labs</a></li>
+                    <!-- <li><a class={isActive("notes") ? "active" : ""} href="/notes">Notes</a></li> -->
+                    <li><a class={isActive("readings") ? "active" : ""} href="/readings">Readings</a></li>
+                </ul>
+            </nav>
+        </div>
     </div>
 </header>
 <style>
     .header {
-        padding: var(--spacing-4) 0;
-        margin-bottom: var(--spacing-4);
+        width: 100%;
+        border-bottom: 1px solid rgba(255, 255, 255, .10);
+    }
+
+    .header__inner {
+        padding: var(--spacing-1) 0;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+
+        ul {
+            list-style-type: none;
+            display: flex;
+            flex-direction: row;
+            gap: 3rem;
+        }
     }
 </style>

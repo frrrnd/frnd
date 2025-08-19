@@ -27,10 +27,9 @@ const byYear = Object.keys(groupedData).sort((a,b) => b - a);
     <Header />
     
     <main class="main">
-        <div class="wrap-lg">
-            <PageHeading title="Readings" description="What I've been reading." />
-        </div>
-        <div class="wrap-lg readings__books">
+        <PageHeading title="Readings" description="What I've been reading." />
+        
+        <div class="wrap-wider readings__books">
             {byYear.map(year => (
                 <section key={year} class="books__year">
                     <h5>{year}</h5>

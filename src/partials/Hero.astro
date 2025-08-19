@@ -1,78 +1,75 @@
 ---
-import Slider from '@components/Slider.astro';
-
-const slides = [{
-    src: "/uploads/images/portfolio/livepix/livepix-slide.png",
-    alt: "LivePix",
-    link: "/works/livepix",
-    description: "The best solution for content creators to monetize live streams.",
-    title: "Livepix",
-    type: "Landing Page",
-    year: "2025",
-  },
-  {
-    src: "/uploads/images/portfolio/cloudbox/cloudbox-slide.png",
-    alt: "CloudBox",
-    link: "/works/cloudbox",
-    description: "Internal Cloud Storage for teams.",
-    title: "CloudBox",
-    type: "Asset Manager",
-    year: "2024",
-  },
-  {
-    src: "/uploads/images/portfolio/ben/ben-slide.png",
-    alt: "Ben Soleimani",
-    link: "/works/ben-soleimani",
-    description: "World renowned for unparalleled handcrafted rug offerings and innovative use of texture.",
-    title: "Ben Soleimani",
-    type: "Ecommerce",
-    year: "2024 - 2025",
-  },
-  {
-    src: "/uploads/images/portfolio/logcms/logcms-slide.png",
-    alt: "LogCMS",
-    link: "/works/logcms",
-    description: "Content manager with analytics built-in.",
-    title: "LogCMS",
-    type: "Content Manager",
-    year: "2024",
-  },
-  {
-    src: "/uploads/images/portfolio/criptografia/criptografia-slide.png",
-    alt: "Criptografia",
-    link: "/works/criptografia",
-    description: "Protect and manage your digital assets ",
-    title: "Criptografia",
-    type: "Landing Page",
-    year: "2024",
-  },
-  {
-    src: "/uploads/images/portfolio/bitpouch/bitpouch-slide.png",
-    alt: "BitPouch",
-    link: "/works/bitpouch",
-    description: "Easy to use crypto wallet.",
-    title: "BitPouch",
-    type: "Wallet",
-    year: "2022",
-  },
-  {
-    src: "/uploads/images/portfolio/trackr/trackr-slide.png",
-    alt: "Trackr",
-    link: "/works/trackr",
-    description: "Concept Watch App for tracking sports.",
-    title: "Trackr",
-    type: "Watch App",
-    year: "2024",
-  },
-  {
-    src: "/uploads/images/portfolio/arc/arc-slide.png",
-    alt: "Arc Icons",
-    link: "/works/arc-icons",
-    description: "My version of Arc Icon.",
-    title: "Arc Icons",
-    type: "Icons",
-    year: "2024",
-  },];
+// Hero.astro
+import AnimatedBlob from '@components/AnimatedBlob.astro';
 ---
 
-<Slider images={slides} />
+<div class="hero-container" data-name="hero">
+  <!-- Background animado -->
+  <AnimatedBlob />
+  
+  <!-- Conteúdo do Hero -->
+  <div class="hero-content">
+    <slot />
+  </div>
+</div>
+
+<script>
+  // Force height recalculation on load and resize
+  function adjustHeroHeight() {
+    const heroContainer = document.querySelector('[data-name="hero"]') as HTMLElement;
+    if (heroContainer) {
+      heroContainer.style.height = `${window.innerHeight}px`;
+    }
+  }
+
+  // Apply on different events to ensure proper height
+  window.addEventListener('load', adjustHeroHeight);
+  window.addEventListener('resize', adjustHeroHeight);
+  document.addEventListener('DOMContentLoaded', adjustHeroHeight);
+  
+  // Also apply immediately
+  adjustHeroHeight();
+
+  // Apply after a delay to catch any late renders
+  setTimeout(adjustHeroHeight, 100);
+</script>
+
+<style>
+  .hero-container {
+    position: relative;
+    width: 100%;
+    height: 100vh; /* Altura da viewport */
+    min-height: 100vh; /* Garante altura mínima */
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .hero-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 10;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+
+    h1, h2, h3 {
+      font-family: "Apple Garamond Light";
+    }
+
+    h2 {
+      span {
+        font-family: "Apple Garamond Light Italic";
+      }
+    }
+  }
+
+  .hero-content > :global(*) {
+    pointer-events: auto;
+    color: white;
+  }
+</style>
