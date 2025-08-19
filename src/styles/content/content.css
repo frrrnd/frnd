@@ -12,11 +12,12 @@
         line-height: 1.4;
 
         i {
-            width: 24px;
-            height: 24px;
+            width: 46px;
+            height: 46px;
             display: inline-flex;
             vertical-align: text-top;
             margin-left: 10px;
+            margin-top: 10px;
         }
 
         a, span {
