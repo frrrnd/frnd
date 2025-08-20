@@ -2,11 +2,10 @@ html.dark-theme:root {
     /* Tokens */
     --black: 0, 0%, 6%;
     --white: 0, 0%, 100%;
-    --cream: 160, 100%, 60%;
-    /* --cream: 250, 100%, 75%; */
+    --violet: 247.4, 100%, 71.6%;
      
     /* UI Colors */
      --primary-color: var(--black);
      --secondary-color: var(--white);
-     --accent-color: var(--cream);
+     --tertiary-color: var(--violet);
 }

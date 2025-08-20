@@ -14,6 +14,7 @@
 
     /* Fonts */
     --title-font: "Apple Garamond Light", serif;
+    --title-font-italic: "Apple Garamond Light Italic", serif;
     --text-font: "UncutSans Variable", system-ui, sans-serif;
     --mono-font: "Geist Mono", "SF Mono", "Fira Code", "Fira Mono", "Roboto Mono", "Courier New", monospace;
 

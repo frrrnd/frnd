@@ -1,9 +1,10 @@
 ---
 import { getCollection } from 'astro:content';
-import Layout from '../../layouts/Layout.astro';
-import FormattedDate from '../../partials/formattedDate.astro';
-import { SiteConfig } from '../../utils/SiteConfig';
-import Header from '../../partials/Header.astro';
+import Layout from '@layouts/Layout.astro';
+import FormattedDate from '@partials/formattedDate.astro';
+import { SiteConfig } from '@utils/SiteConfig';
+import Header from '@partials/Header.astro';
+import Footer from '@partials/Footer.astro';
 import Grid from '@components/utils/Grid.astro';
 
 // export const prerender = true;
@@ -32,7 +33,7 @@ if (note) {
     }
 }
 
-const themeClass = note?.data?.colors ? "custom-theme" : "light-theme";
+const themeClass = note?.data?.colors ? "custom-theme" : "dark-theme";
 
 const customStyles = `
   :root.${themeClass} {
@@ -60,13 +61,14 @@ const customStyles = `
                 <FormattedDate date={note.data.publishDate} />
             </header>
         
-            <section class="note__content">
+            <section class="note__content wrap-sm">
               <article>
                 <Content />
               </article>
             </section>
         </article>
     </main>
+    <Footer />
 </Layout>
 <style set:html={customStyles}></style>
 <style>
@@ -80,7 +82,7 @@ const customStyles = `
     p {
       a {
         color: hsla(var(--tertiary-color), 1);
-        text-decoration-color: hsla(var(--tertiary-color), 1);
+        text-decoration-color: hsla(var(--tertiary-color), 1)!important;
       }
     }
 
@@ -91,8 +93,9 @@ const customStyles = `
 
       h1 {
         font-family: var(--title-font);
-        font-size: 3rem;
+        font-size: 4rem;
         margin-bottom: var(--spacing-1);
+        color: hsla(var(--tertiary-color), 1);
       }
     }
   }
@@ -102,16 +105,9 @@ const customStyles = `
 
     h2, h3, h4 {
         font-weight: 400;
-        margin-bottom: var(--spacing-1);
-    }
-
-    h2 {
-      font-size: 1.2rem;
-      font-weight: 500;
-    }
-
-    h3 {
-      font-size: 1rem;
+        margin: var(--spacing-4) 0 var(--spacing-1) 0;
+        font-family: var(--title-font);
+        color: hsla(var(--tertiary-color), 1);
     }
 
     h4 {
@@ -119,12 +115,41 @@ const customStyles = `
     }
 
     ul {
-      margin-bottom: var(--spacing-2);
+      margin: var(--spacing-2) 0;
+      padding-left: var(--spacing-1);
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-1);
+
+      li {
+        font-size: var(--font-size-h5);
+      }
+    }
+
+    blockquote {
+      margin: 0;
+      padding-left: var(--spacing-2);
+  
+      p {
+        font-family: var(--title-font-italic);
+        font-size: var(--font-size-h4)!important;
+        position: relative;
+          
+        &:before {
+          content: open-quote;
+          opacity: .2;
+          font-size: 7rem;
+          position: absolute;
+          left: -2rem;
+          top: -50%;
+        }
+      }
     }
 
     article {
         p {
             margin-bottom: var(--spacing-2);
+            font-size: var(--font-size-h5);
 
             code {
                 background: hsla(0, 0%, 90%, 0.1);

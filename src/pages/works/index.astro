@@ -21,7 +21,7 @@ filteredWorks.sort((a, b) => b.data.order - a.data.order);
 		<section class="works__page wrap-wider">
 			<Grid isContainer>
 			{filteredWorks.map((item) => (
-				<Grid sm="12" md="4">
+				<Grid sm="12" md="6">
 					<article>
 						<a href={`/works/${item.slug}`} title={item.data.title}>
 							<figure>
@@ -56,6 +56,8 @@ filteredWorks.sort((a, b) => b.data.order - a.data.order);
 	}
 
 	.works__page {
+		margin-top: var(--spacing-8);
+
 		figure {
 			margin-bottom: var(--spacing-2);
 		}

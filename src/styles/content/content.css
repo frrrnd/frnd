@@ -154,12 +154,20 @@
     margin: var(--spacing-4) auto;
 
     article {
-        margin-bottom: var(--spacing-2);
+        margin-bottom: var(--spacing-4);
 
-        header {
+        .notes__item--inner {
             display: flex;
             flex-direction: row;
-            justify-content: space-between;
+            align-items: center;
+
+            time {
+                margin-right: var(--spacing-2);
+            }
+
+            h2 {
+                font-family: var(--title-font);
+            }
         }
     }
 }

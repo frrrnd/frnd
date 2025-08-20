@@ -35,7 +35,7 @@ const isActive = (path) => {
                     <li><a class={isActive("about") ? "active" : ""} href="/about">About</a></li>
                     <li><a class={isActive("works") ? "active" : ""} href="/works">Works</a></li>
                     <li><a class={isActive("labs") ? "active" : ""} href="/labs">Labs</a></li>
-                    <!-- <li><a class={isActive("notes") ? "active" : ""} href="/notes">Notes</a></li> -->
+                    <li><a class={isActive("notes") ? "active" : ""} href="/notes">Notes</a></li>
                     <li><a class={isActive("readings") ? "active" : ""} href="/readings">Readings</a></li>
                 </ul>
             </nav>
@@ -60,6 +60,10 @@ const isActive = (path) => {
             display: flex;
             flex-direction: row;
             gap: 3rem;
+
+            .active {
+                opacity: .6;
+            }
         }
     }
 </style>
