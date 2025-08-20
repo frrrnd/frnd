@@ -34,7 +34,7 @@
                 border-radius: var(--radius-sm);
                 padding: 2px 5px;
                 font-weight: 500;
-                font-family: "Geist Mono", "SF Mono", "Fira Code", "Fira Mono", "Roboto Mono", "Courier New", monospace;
+                font-family: var(--mono-font);
             }
 
             a {
@@ -61,7 +61,7 @@
             font-size: var(--font-size-small);
             
             code {
-                font-family: "Geist Mono", "SF Mono", "Fira Code", "Fira Mono", "Roboto Mono", "Courier New", monospace;
+                font-family: var(--mono-font);
             }
         }
     }

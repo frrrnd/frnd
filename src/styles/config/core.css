@@ -13,9 +13,9 @@
      --body-link-color: var(--tertiary-color);
 
     /* Fonts */
-    --title-font: "UncutSans Variable", serif;
+    --title-font: "Apple Garamond Light", serif;
     --text-font: "UncutSans Variable", system-ui, sans-serif;
-    --mono-font: monospace;
+    --mono-font: "Geist Mono", "SF Mono", "Fira Code", "Fira Mono", "Roboto Mono", "Courier New", monospace;
 
    /* 1.414 - Augmented Fourth Scale */
     --font-size-h1: 3rem;
