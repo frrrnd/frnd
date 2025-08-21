@@ -7,5 +7,5 @@ html.dark-theme:root {
     /* UI Colors */
      --primary-color: var(--black);
      --secondary-color: var(--white);
-     --tertiary-color: var(--violet);
+     --tertiary-color: var(--white);
 }
