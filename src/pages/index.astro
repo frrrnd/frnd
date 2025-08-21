@@ -5,12 +5,6 @@ import Layout from '@layouts/Layout.astro';
 import FormattedDate from '@partials/formattedDate.astro';
 import Header from '@partials/Header.astro';
 import Hero from '@partials/Hero.astro';
-
-const works = await getCollection('works');
-const filteredWorks = works.filter(item => !item.data.isDraft);
-filteredWorks.sort((a, b) => b.data.order - a.data.order);
-// const latestWorks = filteredWorks.slice(0,9);
-
 ---
 
 <Layout props={{ title: SiteConfig.title, description: SiteConfig.description, image: SiteConfig.image }}>
@@ -33,34 +27,6 @@ filteredWorks.sort((a, b) => b.data.order - a.data.order);
       </div>
     </section>
   </Hero>
-	
-	<!-- <main class="main">
-    <section class="wrap latest-works">
-        {filteredWorks.map((item) => (
-          <article class="home__work">
-            <a href={`/works/${item.slug}`} title={"View " + item.data.title}>
-             <div class="home__work--details">
-              <div class="details--top">
-                <h3>{item.data.title}</h3>
-                <p>{item.data.role}・{item.data.year}</p>
-              </div>
-              
-              <div class="details--bottom">
-                <div class="details--left">
-                  <p>{item.data.description}</p>
-                </div>
-              </div>
-            </div>
-
-              <figure>
-                  <img src={item.data.cover.src} alt={item.data.title} />
-              </figure>
-            </a>
-          </article>
-        ))}
-    </section>
-	</main> -->
-
 </Layout>
 <style>
   .hero__content {
