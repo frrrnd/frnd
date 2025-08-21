@@ -20,7 +20,11 @@
             margin-top: 10px;
         }
 
-        a, span {
+        a {
+            color: hsla(var(--body-link-color), 1);
+        }
+
+        span {
             color: hsla(var(--body-text-color), 1);
         }
     }
