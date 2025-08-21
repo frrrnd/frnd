@@ -47,6 +47,12 @@ h1, h2, h3, h4, h5, h6 {
     margin: 0;
 }
 
+@media screen and (max-width: 768px) {
+    h1 {
+        font-size: var(--font-size-h2)!important;
+    }
+}
+
 h1 {
     font-size: var(--font-size-h1);
 }
