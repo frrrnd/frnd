@@ -153,8 +153,14 @@
 .block__content--articles {
     margin: var(--spacing-4) auto;
 
+    article:not(:last-child) {
+        border-bottom: 1px solid rgba(255, 255, 255, .08);
+    }
+
     article {
-        margin-bottom: var(--spacing-4);
+        margin-bottom: var(--spacing-2);
+        padding-bottom: var(--spacing-2);
+        
 
         .notes__item--inner {
             display: flex;
