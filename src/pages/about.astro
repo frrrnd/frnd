@@ -4,7 +4,7 @@ import { SiteConfig } from '@utils/SiteConfig';
 import Header from '@partials/Header.astro';
 import Footer from '@partials/Footer.astro';
 import Grid from '@components/utils/Grid.astro';
-import girls from '@api/girls.json';
+import photos from '@api/photos.json';
 ---
 <Layout props={{ title: `About — ${SiteConfig.title}`, description: SiteConfig.description, image: SiteConfig.image }}>
 
@@ -51,9 +51,9 @@ import girls from '@api/girls.json';
 
         <section class="wrap-media">
             <section class="mansory">
-            {girls.map(girl => (
+            {photos.map(photo => (
                 <figure>
-                <img src={girl.src} alt={girl.alt} loading="lazy" />
+                <img src={photo.src} alt={photo.alt} loading="lazy" />
                 </figure>
             ))}
             </section>
