@@ -22,8 +22,9 @@ import photos from '@api/photos.json';
                         <img src="/avatar-frnd.webp" alt="Yo!" class="about-photo">
                     </figure>
 
-                    <h4>I'm driven by curiosity. CSS lover, icon design enthusiast and  ½ of     
+                    <h4> CSS lover, icon designer enthusiast and  ½ of     
                         <a href="https://viewport-ui.design" target="_blank">Viewport UI.</a>
+                        I'm driven by curiosity.
                     </h4>
 
                     <h4>With 13 years of experience, I started my journey in design as a self-taught professional. I learned HTML at the age of 12 and have been in love with interfaces ever since.</h4>
@@ -62,9 +63,13 @@ import photos from '@api/photos.json';
     }
 
     .content-article {
-        h4 {
+        h4:nth-child(1), h4:nth-child(2) {
             font-family: var(--title-font);
             font-size: 3rem;
+        }
+
+        h4 {
+            font-weight: 300;
         }
     }
 
@@ -81,7 +86,7 @@ import photos from '@api/photos.json';
         margin: var(--spacing-2) 0;
         display: inline-flex;
         align-items: center;
-        font-weight: 500;
+        font-weight: 600;
         
         i {
             display: inline-block;
