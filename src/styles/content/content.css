@@ -181,5 +181,12 @@
                 font-family: var(--title-font);
             }
         }
+
+        @media screen and (max-width: 768px) {
+            .notes__item--inner {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
     }
 }
