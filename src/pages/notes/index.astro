@@ -49,20 +49,22 @@ const renderedNotes = await Promise.all(
 	.block__content--articles {
 		margin-top: var(--spacing-8);
 		transition: .4s;
+	}
 
-		&:hover {
-			opacity: 0.6;
-			transition: .4s;
-		}
+	.block__content--articles > article {
+		opacity: 1;
+		transition: .4s;
+	}
+
+	.block__content--articles:hover > article {
+		opacity: 0.6;
+	}
+
+	.block__content--articles > article:hover {
+		opacity: 1;
 	}
 
 	.notes__item {
-
-		a:hover {
-			transition: .4s;
-			color: hsla(var(--body-text-color), 1);
-		}
-
 		h2 {
 			font-weight: 500;
 		}
