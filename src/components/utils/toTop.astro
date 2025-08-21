@@ -18,6 +18,9 @@
         font-size: 2rem;
         transition: .4s;
         cursor: pointer;
+        opacity: 0;
+        visibility: hidden;
+        transform: scale(0.5);
 
         svg path {
             stroke: hsla(var(--secondary-color), 1);
@@ -29,28 +32,41 @@
     }
 </style>
 <script>
-    const toTop = () => {
-        const scrollToTopBtn = document.querySelector("#to-top");
+    // Variáveis globais para controlar o estado
+    let isInitialized = false;
+    let scrollToTopBtn = null;
+    let scrollHandler = null;
+    let clickHandler = null;
+
+    const initializeToTop = () => {
+        // Evita inicialização múltipla
+        if (isInitialized) {
+            return;
+        }
+
+        scrollToTopBtn = document.querySelector("#to-top");
         
         if (!scrollToTopBtn) {
             console.warn("Botão 'to-top' não encontrado no DOM");
             return;
         }
 
-        scrollToTopBtn.style.opacity = "0";
-        scrollToTopBtn.style.transform = "scale(0.5)";
-        scrollToTopBtn.style.visibility = "hidden";
-
-        function scrollToTop() {
+        // Define os handlers como funções nomeadas para facilitar remoção
+        clickHandler = () => {
             window.scrollTo({
                 top: 0,
                 behavior: "smooth"
             });
-        }
+        };
 
-        const ButtonVisibility = () => {
+        scrollHandler = () => {
             const scrollTotal = document.documentElement.scrollHeight - window.innerHeight;
             const scrollPosition = window.scrollY;
+            
+            // Evita divisão por zero
+            if (scrollTotal <= 0) {
+                return;
+            }
             
             const scrollPercentage = (scrollPosition / scrollTotal) * 100;
 
@@ -63,29 +79,57 @@
                 scrollToTopBtn.style.visibility = "hidden";
                 scrollToTopBtn.style.transform = "scale(0.5)";
             }
+        };
+
+        // Adiciona os event listeners
+        scrollToTopBtn.addEventListener("click", clickHandler);
+        window.addEventListener("scroll", scrollHandler);
+
+        // Executa uma vez para definir o estado inicial
+        scrollHandler();
+
+        isInitialized = true;
+    };
+
+    const cleanupToTop = () => {
+        if (scrollToTopBtn && clickHandler) {
+            scrollToTopBtn.removeEventListener("click", clickHandler);
         }
+        if (scrollHandler) {
+            window.removeEventListener("scroll", scrollHandler);
+        }
+        isInitialized = false;
+        scrollToTopBtn = null;
+        clickHandler = null;
+        scrollHandler = null;
+    };
 
-        scrollToTopBtn.removeEventListener("click", scrollToTop);
-        window.removeEventListener("scroll", ButtonVisibility);
-        
-        scrollToTopBtn.addEventListener("click", scrollToTop);
-        window.addEventListener("scroll", ButtonVisibility);
-
-        ButtonVisibility();
-    }
+    const reinitializeToTop = () => {
+        cleanupToTop();
+        // Pequeno delay para garantir que o DOM está pronto
+        setTimeout(initializeToTop, 10);
+    };
 
     const fadeIn = () => {
         document.querySelectorAll('[data-fade]').forEach((element) => {
             const delay = element.getAttribute('data-fade');
             element.style.animationDelay = `${delay}s`;
         });
-    }
+    };
 
-    const setupListeners = (eventNames, callback) => {
-        eventNames.forEach((event) => document.addEventListener(event, callback));
-    }
+    // Inicialização e reinicialização
+    document.addEventListener('DOMContentLoaded', () => {
+        fadeIn();
+        initializeToTop();
+    });
 
-    // Fire
-    setupListeners(['DOMContentLoaded', 'astro:after-swap'], fadeIn);
-    setupListeners(['DOMContentLoaded', 'astro:after-swap'], toTop);
+    // Para navegação SPA do Astro
+    document.addEventListener('astro:after-swap', () => {
+        fadeIn();
+        reinitializeToTop();
+    });
+
+    // Cleanup quando a página é descarregada (opcional, para boa prática)
+    window.addEventListener('beforeunload', cleanupToTop);
 </script>
+
