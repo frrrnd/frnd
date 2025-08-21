@@ -58,6 +58,19 @@ filteredWorks.sort((a, b) => b.data.order - a.data.order);
 	.works__page {
 		margin-top: var(--spacing-8);
 
+		.grid-container > div {
+			opacity: 1;
+			transition: .4s;
+		}
+
+		.grid-container:hover > div {
+			opacity: .6;
+		}
+
+		.grid-container > div:hover {
+			opacity: 1;
+		}
+
 		figure {
 			margin-bottom: var(--spacing-2);
 		}

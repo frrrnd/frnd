@@ -25,11 +25,6 @@ a {
     text-decoration: none;
     transition: .4s;
     color: inherit;
-
-    &:hover {
-        opacity: .6;
-        transition: .4s;
-    }
 }
 
 small {

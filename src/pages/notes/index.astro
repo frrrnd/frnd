@@ -48,8 +48,21 @@ const renderedNotes = await Promise.all(
 <style>
 	.block__content--articles {
 		margin-top: var(--spacing-8);
+		transition: .4s;
+
+		&:hover {
+			opacity: 0.6;
+			transition: .4s;
+		}
 	}
+
 	.notes__item {
+
+		a:hover {
+			transition: .4s;
+			color: hsla(var(--body-text-color), 1);
+		}
+
 		h2 {
 			font-weight: 500;
 		}
