@@ -126,10 +126,6 @@ const customStyles = `
       display: flex;
       flex-direction: column;
       gap: var(--spacing-1);
-
-      li {
-        font-size: var(--font-size-h5);
-      }
     }
 
     blockquote {
@@ -153,10 +149,19 @@ const customStyles = `
     }
 
     article {
-        p {
-            margin-bottom: var(--spacing-2);
-            font-size: var(--font-size-h5);
+      img + em {
+        text-align: center;
+        width: 100%;
+        display: block;
+        font-size: var(--font-size-small);
+      }
 
+      p {
+        margin-bottom: var(--spacing-2);
+      }
+
+        p, li {
+            
             code {
                 background: hsla(0, 0%, 90%, 0.1);
                 border-radius: var(--radius-sm);
@@ -166,10 +171,10 @@ const customStyles = `
             }
 
             a {
-                text-decoration: underline;
+                text-decoration: underline hsla(var(--body-text-color), .3);
                 text-underline-offset: 3px;
-                text-decoration-color: hsla(var(--body-text-color), .5);
                 transition: .4s;
+                color: hsla(var(--body-text-color), 1);
     
                 &:hover {
                     transition: .4s;
@@ -178,7 +183,14 @@ const customStyles = `
         }
 
         img {
-            margin-bottom: var(--spacing-2);
+            /* margin-bottom: var(--spacing-2); */
+        }
+
+        iframe {
+          width: 100%;
+          height: auto;
+          max-width: 100%;
+          aspect-ratio: 16/9;
         }
 
         pre {
