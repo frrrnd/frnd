@@ -29,6 +29,11 @@ const isActive = (path) => {
         </div>
         
         <div class="header__inner--right">
+            <button class="open-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
             <nav>
                 <ul>
                     <li><a class={isActive("/") ? "active" : ""} href="/">Index</a></li>
@@ -78,14 +83,46 @@ const isActive = (path) => {
         }
     }
 
-    @media screen and (max-width: 768px) {
-        .header__inner {
-            padding: 0;
-        }
+    .open-menu {
+        display: none;
+        -webkit-appearance: none;
+        border: none;
+        background: transparent;
+        z-index: 1001;
+        padding: 0;
+        transform: rotate(0deg);
+        transition: .4s ease-in-out;
+        width: 30px;
+        height: 24px;
+        position: relative;
 
-        .header__inner--left {
-            display: none;
+        span {
+            display: block;
+            position: absolute;
+            height: 2px;
+            width: 100%;
+            background: hsla(var(--body-text-color), .6);
+            border-radius: 9px;
+            opacity: 1;
+            left: 0;
+            transform: rotate(0deg);
+            transition: .4s ease-in-out;
+
+            &:nth-child(1) {
+                top: 0px;
+            }
+
+            &:nth-child(2) {
+                top: 10px;
+            }
+
+            &:nth-child(3) {
+                top: 20px;
+            }
         }
+    }
+
+    @media screen and (max-width: 768px) {
 
         .header__inner--right {
             width: max-content;
@@ -93,13 +130,115 @@ const isActive = (path) => {
             padding: var(--spacing-1);
 
             ul {
-                gap: 2.8rem;
-                padding: 0 var(--spacing-2);
+                gap: 2rem;
+                padding: 0 var(--spacing-1);
 
-                li:last-child {
-                    padding-right: var(--spacing-2);
+                li {
+                    font-size: 2rem;
                 }
             }
         }
+
+        .open-menu {
+            display: block;
+        }
+
+        .open-menu.is-active span:nth-child(1) {
+            top: 10px;
+            transform: rotate(135deg);
+        }
+
+        .open-menu.is-active span:nth-child(2) {
+            opacity: 0;
+            left: -60px; /* Move a linha do meio para fora da vista */
+        }
+
+        .open-menu.is-active span:nth-child(3) {
+            top: 10px;
+            transform: rotate(-135deg);
+        }
+
+        nav {
+            position: absolute;
+            transform: translateX(100%);
+            right: -100%;
+            transition: .4s;
+            top: 0;
+            margin-top: 6rem;
+            text-align: right;
+            width: max-content!important;
+            
+            ul {
+                flex-direction: column!important;
+                width: max-content!important;
+            }
+        }
+
+        nav.is-open {
+            transform: translateX(0);
+            right: 0;
+            transition: .4s;
+        }
     }
 </style>
+<script>
+function setupMenu() {
+  const openMenuButton = document.querySelector(".open-menu");
+  const nav = document.querySelector(".header__inner--right nav");
+
+  if (!openMenuButton || !nav) {
+    console.warn("Menu elements not found. Skipping setup.");
+    return;
+  }
+
+  // Remove any existing event listeners to prevent duplicates
+  // This is a common issue with astro:page-load if elements are not fully replaced.
+  // By cloning and replacing, we ensure a fresh element without old listeners.
+  const newOpenMenuButton = openMenuButton.cloneNode(true);
+  openMenuButton.parentNode.replaceChild(newOpenMenuButton, openMenuButton);
+
+  // Now use the new button element
+  const currentOpenMenuButton = newOpenMenuButton;
+
+  // Function to toggle menu and button animation
+  const toggleMenu = (event) => {
+    event.stopPropagation(); // Prevent click from propagating to document.body
+    nav.classList.toggle("is-open");
+    currentOpenMenuButton.classList.toggle("is-active");
+  };
+
+  // Add click listener to the (new) button
+  currentOpenMenuButton.addEventListener("click", toggleMenu);
+
+  // Close menu if clicked outside
+  document.body.addEventListener("click", (event) => {
+    if (nav.classList.contains("is-open") && !nav.contains(event.target) && !currentOpenMenuButton.contains(event.target)) {
+      nav.classList.remove("is-open");
+      currentOpenMenuButton.classList.remove("is-active");
+    }
+  });
+
+  // Close menu when a navigation link is clicked
+  const navLinks = nav.querySelectorAll("a");
+  navLinks.forEach(link => {
+    // Remove existing listeners for links as well, if they were cloned/replaced
+    const newLink = link.cloneNode(true);
+    link.parentNode.replaceChild(newLink, link);
+
+    newLink.addEventListener("click", () => {
+      if (nav.classList.contains("is-open")) {
+        nav.classList.remove("is-open");
+        currentOpenMenuButton.classList.remove("is-active");
+      }
+    });
+  });
+}
+
+// Initialize menu on initial page load
+document.addEventListener("DOMContentLoaded", setupMenu);
+
+// Re-initialize menu on Astro page navigation (View Transitions)
+document.addEventListener("astro:page-load", setupMenu);
+
+
+</script>
