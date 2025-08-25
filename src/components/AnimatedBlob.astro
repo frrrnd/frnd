@@ -166,20 +166,34 @@
     background: rgba(255, 255, 255, 0.01);
   }
 
+  @media (min-width: 768px) {
+    #blob-main {
+      animation: blob-main 25s ease-in-out infinite;
+      transform-origin: 1023.55px 449.962px;
+    }
+
+    #blob-secondary ellipse {
+      animation: blob-secondary 20s ease-in-out infinite;
+      transform-origin: 1087.93px 672.704px;
+    }
+
+    #blob-accent {
+      animation: blob-accent 15s ease-in-out infinite;
+      transform-origin: 1824px 89px;
+    }
+  }
+
   /* Blob animations */
   #blob-main {
-    animation: blob-main 25s ease-in-out infinite;
-    transform-origin: 1023.55px 449.962px;
+    
   }
 
   #blob-secondary ellipse {
-    animation: blob-secondary 20s ease-in-out infinite;
-    transform-origin: 1087.93px 672.704px;
+    
   }
 
   #blob-accent {
-    animation: blob-accent 15s ease-in-out infinite;
-    transform-origin: 1824px 89px;
+    
   }
 
   /* Keyframe animations translate(y, x) */
