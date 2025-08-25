@@ -81,4 +81,12 @@ import AnimatedBlob from '@components/AnimatedBlob.astro';
     pointer-events: auto;
     color: white;
   }
+
+  @media screen and (max-width: 767px) {
+    .hero-content {
+      h2, h3 {
+        font-size: var(--font-size-h4);
+      }
+    }
+  }
 </style>
