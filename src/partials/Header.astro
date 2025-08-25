@@ -136,6 +136,9 @@ const isActive = (path) => {
             ul {
                 gap: 2rem;
                 padding: 0 var(--spacing-1);
+                background: hsla(var(--body-background-color), 1);
+                border-radius: var(--radius-lg);
+                padding: var(--spacing-2);
 
                 li {
                     font-size: 1.4rem;
@@ -171,6 +174,7 @@ const isActive = (path) => {
             margin-top: 6rem;
             text-align: right;
             width: max-content!important;
+            padding-right: var(--spacing-2);
             
             ul {
                 flex-direction: column!important;
@@ -186,63 +190,65 @@ const isActive = (path) => {
     }
 </style>
 <script>
-function setupMenu() {
+// Função para configurar o menu
+const setupMenu = () => {
   const openMenuButton = document.querySelector(".open-menu");
   const nav = document.querySelector(".header__inner--right nav");
 
   if (!openMenuButton || !nav) {
-    console.warn("Menu elements not found. Skipping setup.");
-    return;
+    return; // Sai se os elementos não existirem
   }
 
-  // Remove any existing event listeners to prevent duplicates
-  // This is a common issue with astro:page-load if elements are not fully replaced.
-  // By cloning and replacing, we ensure a fresh element without old listeners.
-  const newOpenMenuButton = openMenuButton.cloneNode(true);
-  openMenuButton.parentNode.replaceChild(newOpenMenuButton, openMenuButton);
+  // Adiciona um marcador para evitar adicionar listeners múltiplos ao mesmo elemento
+  if (openMenuButton.dataset.menuInitialized) {
+    return;
+  }
+  openMenuButton.dataset.menuInitialized = "true";
 
-  // Now use the new button element
-  const currentOpenMenuButton = newOpenMenuButton;
-
-  // Function to toggle menu and button animation
-  const toggleMenu = (event) => {
-    event.stopPropagation(); // Prevent click from propagating to document.body
-    nav.classList.toggle("is-open");
-    currentOpenMenuButton.classList.toggle("is-active");
+  // Função para abrir/fechar o menu
+  const toggleMenu = () => {
+    const isOpen = nav.classList.toggle("is-open");
+    openMenuButton.classList.toggle("is-active", isOpen);
   };
 
-  // Add click listener to the (new) button
-  currentOpenMenuButton.addEventListener("click", toggleMenu);
-
-  // Close menu if clicked outside
-  document.body.addEventListener("click", (event) => {
-    if (nav.classList.contains("is-open") && !nav.contains(event.target) && !currentOpenMenuButton.contains(event.target)) {
-      nav.classList.remove("is-open");
-      currentOpenMenuButton.classList.remove("is-active");
-    }
+  // Adiciona o listener ao botão
+  openMenuButton.addEventListener("click", (event) => {
+    event.stopPropagation(); // Impede que o clique chegue ao body e feche o menu
+    toggleMenu();
   });
 
-  // Close menu when a navigation link is clicked
-  const navLinks = nav.querySelectorAll("a");
-  navLinks.forEach(link => {
-    // Remove existing listeners for links as well, if they were cloned/replaced
-    const newLink = link.cloneNode(true);
-    link.parentNode.replaceChild(newLink, link);
-
-    newLink.addEventListener("click", () => {
+  // Listener para fechar o menu ao clicar em um link
+  nav.querySelectorAll("a").forEach(link => {
+    link.addEventListener("click", () => {
       if (nav.classList.contains("is-open")) {
-        nav.classList.remove("is-open");
-        currentOpenMenuButton.classList.remove("is-active");
+        toggleMenu();
       }
     });
   });
-}
+};
 
-// Initialize menu on initial page load
-document.addEventListener("DOMContentLoaded", setupMenu);
+// Função para fechar o menu ao clicar fora
+const handleOutsideClick = (event) => {
+  const openMenuButton = document.querySelector(".open-menu");
+  const nav = document.querySelector(".header__inner--right nav");
 
-// Re-initialize menu on Astro page navigation (View Transitions)
-document.addEventListener("astro:page-load", setupMenu);
+  if (nav && nav.classList.contains("is-open") && !nav.contains(event.target) && !openMenuButton.contains(event.target)) {
+    nav.classList.remove("is-open");
+    openMenuButton.classList.remove("is-active");
+  }
+};
+
+// Função de inicialização que o Astro irá chamar
+const initialize = () => {
+  setupMenu();
+  // Adiciona o listener de clique fora apenas uma vez ao body
+  document.body.removeEventListener("click", handleOutsideClick);
+  document.body.addEventListener("click", handleOutsideClick);
+};
+
+// Executa a inicialização nas navegações do Astro e na carga inicial
+document.addEventListener("astro:page-load", initialize);
+initialize(); // Executa na primeira carga
 
 
 </script>
