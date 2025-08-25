@@ -130,8 +130,7 @@ const isActive = (path) => {
 
         .header__inner--right {
             width: max-content;
-            overflow-x: scroll;
-            padding: var(--spacing-1);
+            padding: var(--spacing-1) 0;
 
             ul {
                 gap: 2rem;
@@ -157,7 +156,6 @@ const isActive = (path) => {
 
         .open-menu.is-active span:nth-child(2) {
             opacity: 0;
-            left: -60px; /* Move a linha do meio para fora da vista */
         }
 
         .open-menu.is-active span:nth-child(3) {
@@ -166,9 +164,8 @@ const isActive = (path) => {
         }
 
         nav {
-            position: absolute;
+            position: fixed;
             transform: translateX(100%);
-            right: -100%;
             transition: .4s;
             top: 0;
             margin-top: 6rem;
@@ -183,8 +180,7 @@ const isActive = (path) => {
         }
 
         nav.is-open {
-            transform: translateX(0);
-            right: 0;
+            transform: translateX(-70%);
             transition: .4s;
         }
     }
