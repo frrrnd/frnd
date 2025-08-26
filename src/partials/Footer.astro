@@ -10,8 +10,8 @@ import Top from '@components/utils/toTop.astro';
         <p>© 2025</p>
         <ul>
             <li><a href="https://x.com/frrrnd" target="_blank">x.com</a></li>
-            <li><a href="mailto:hi@frnd.design" target="_blank">Email</a></li>
             <li><a href="https://linkedin.com/in/frrrnd" target="_blank">Linkedin</a></li>
+            <li><a href="mailto:hi@frnd.design" target="_blank">Email</a></li>
         </ul>
     </section>
         
@@ -20,7 +20,12 @@ import Top from '@components/utils/toTop.astro';
     .footer {
       width: 100%;  
       padding: var(--spacing-1) var(--spacing-2);
-        border-top: 1px solid rgba(255, 255, 255, .08);
+      /* border-top: 1px solid rgba(255, 255, 255, .08); */
+      font-family: var(--mono-font);
+      text-transform: uppercase;
+      font-size: var(--font-size-xsmall);
+      font-weight: 300;
+      letter-spacing: 1px;
     }
 
     .footer__inner {

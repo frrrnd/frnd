@@ -1,5 +1,7 @@
 .main {
     padding-top: var(--spacing-12);
+    padding-bottom: var(--spacing-4);
+    /* margin-bottom: var(--footer-height); */
 }
 
 .page__heading {
