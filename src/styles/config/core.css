@@ -11,6 +11,7 @@
      --body-background-color: var(--primary-color);
      --body-text-color: var(--secondary-color);
      --body-link-color: var(--tertiary-color);
+     --body-heading-color: var(--heading-color);
 
     /* Fonts */
     --title-font: "Apple Garamond Light", serif;

@@ -89,5 +89,17 @@ p {
 hr {
     display: block;
     margin: var(--spacing-2) 0;
-    border-color: hsla(var(--body-text-color), .05);
+    /*border-color: hsla(var(--body-text-color), .05);*/
+    width: 10%;
+    margin: 0 auto;
+    border: none;
+
+    &:after {
+        content: "•••";
+        letter-spacing: .3rem;
+        color: hsla(var(--body-text-color), 0.2);
+        display: inline-block;
+        width: 100%;
+        text-align: center;
+    }
 }

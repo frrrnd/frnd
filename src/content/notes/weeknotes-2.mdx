@@ -1,0 +1,100 @@
+---
+title: "Weeknotes 2"
+publishDate: "2025-09-05 16:30"
+description: Weeknotes 2nd edition.
+draft: false
+tags: ['weeknotes']
+image: ""
+colors:
+  backgroundColor: "106, 76%, 3%"
+  textColor: "146, 24%, 70%"
+  linkColor: "31, 78%, 54%"
+  headingColor: "0, 69%, 58%"
+---
+import ImageLightbox from '@components/ImageLightbox/ImageLightbox';
+import Grid from '@components/utils/Grid.astro';
+
+<ImageLightbox client:load />
+
+This week's been calm, rainy and cold. New projects are on the way, and I'm excited.
+Also trying to cut down on coffee and cigarettes — it's hard, but it has to be done.
+
+![Nicki](/uploads/images/notes/weeknotes/2025/09/nicki.webp)
+*Nicki doing nothing*
+
+This post has a little color system of its own. I can set 3 colors for each post (if I want) and just swap the CSS variable values.
+
+Frontmatter:
+```yaml
+colors:
+  backgroundColor: "106, 76%, 3%"
+  textColor: "146, 24%, 70%"
+  linkColor: "0, 69%, 58%"
+
+```
+
+CSS:
+```css
+:root {
+    --backgroundColor: ${backgroundColor};
+    --textColor: ${textColor};
+    --linkColor: ${linkColor};
+    --headingColor: ${headingColor};
+  }
+```
+
+I think this adds personality to the post, and I can have fun experimenting with colors. I hope you enjoy it!
+
+---
+
+## Little Wins
+[Viewport UI](https://viewport-ui.design) — a project by me and [Eryc](https://eryc.cc) — was featured in the [sidebar.io](https://sidebar.io/) newsletter. Feels so good when a side project gets some love. We’re also working on a new Astro layout to make it smoother and shinier.
+
+---
+
+## Listening
+Lately, I've been listening to a lot of Nu Metal, including [Mudvayne](https://open.spotify.com/track/15TzkwxGNvM3RGib0YkH4T?si=7ebe9000940b4625), [Static X](https://open.spotify.com/track/6JUuxEQ47lJH3qfPf5nlil?si=f5e1e0d373e1441e), and especially [Deftones - private music album](https://open.spotify.com/album/1gmWnG5TeRj91Tdm2lpEvJ?si=mXbCzX7rQXeIflYbcCNRoA).
+
+Through youtube shorts, I discovered this song by **Pantera**. I'm not a big fan of Pantera, but this track has one of the most beautiful solos I've ever heard. It starts at 3:35.
+
+<iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/track/1L2ZkXbRX00ZiaUDuMMgf7?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+
+---
+
+## Reading
+
+Slowly flipping through [Tales from the Loop](https://en.wikipedia.org/wiki/Tales_from_the_Loop) by [Simon Stålenhag](https://www.simonstalenhag.se/), one of my favorite artists. He mixes retro sci-fi with countryside vibes, which somehow feels nostalgic even if you’ve never lived in the Swedish countryside (or the ‘80s).*Tales from the Loop* is amazing — go check it out.
+
+<Grid isContainer>
+  <Grid sm="12" md="12">
+    ![Tales from the Loop Book](/uploads/images/notes/weeknotes/2025/09/tftl-01.webp)
+  </Grid>
+
+  <Grid sm="12" md="6">
+    ![Tales from the Loop Book](/uploads/images/notes/weeknotes/2025/09/tftl-02.webp)
+  </Grid>
+
+  <Grid sm="12" md="6">
+    ![Tales from the Loop Book](/uploads/images/notes/weeknotes/2025/09/tftl-03.webp)
+  </Grid>
+</Grid>
+
+---
+
+
+## Games
+Still stuck on *Scum* but I want to try the new [No Man's Sky Voyagers update](https://www.nomanssky.com/voyagers-update/). I have about 300 games in my library, but I always end up  playing the same ones.
+
+![Scum](/uploads/images/notes/weeknotes/2025/09/scum.webp)
+*Scum vibes only*
+
+---
+
+### From my Read Later folder
+- [Interface](https://www.doc.cc/syntax/interface);
+- [Font formats explained](https://pangrampangram.com/blogs/journal/font-formats-explained);
+- [Doing (and Direction) Great Design Requires Detail Obsession](https://www.chrbutler.com/doing-and-directing-great-design-requires-detail-obsession);
+- [Why designing terrible solutions makes you a better designer](https://www.chrbutler.com/doing-and-directing-great-design-requires-detail-obsession);
+- [Areal — New are.na typeface](https://www.are.na/editorial/introducing-areal-are-nas-new-typeface).
+
+Thanks for reading, and as always, you can [ping me on x](https://x.com/frrrnd).

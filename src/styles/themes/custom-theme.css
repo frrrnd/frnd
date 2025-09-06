@@ -2,4 +2,5 @@ html.custom-theme:root {
      --primary-color: var(--backgroundColor);
      --secondary-color: var(--textColor);
      --tertiary-color: var(--linkColor);
+     --heading-color: var(--headingColor);
 }

@@ -21,6 +21,7 @@ const colors = note?.data?.colors ?? {};
 const backgroundColor = colors.backgroundColor || "black";
 const textColor = colors.textColor || "yellow";
 const linkColor = colors.linkColor || "red";
+const headingColor = colors.headingColor || "blue";
 
 let Content = null;
 let frontmatter = {};
@@ -40,6 +41,7 @@ const customStyles = `
     --backgroundColor: ${backgroundColor};
     --textColor: ${textColor};
     --linkColor: ${linkColor};
+    --headingColor: ${headingColor};
   }
 `;
 
@@ -76,6 +78,7 @@ const customStyles = `
     --primary-color: var(--backgroundColor);
     --secondary-color: var(--textColor);
     --tertiary-color: var(--linkColor);
+    --heading-color: var(--headingColor);
   }
 
   article {
@@ -95,7 +98,7 @@ const customStyles = `
         font-family: var(--title-font);
         font-size: 5rem;
         margin-bottom: var(--spacing-1);
-        color: hsla(var(--tertiary-color), 1);
+        color: hsla(var(--heading-color), 1);
       }
     }
   }
@@ -109,11 +112,24 @@ const customStyles = `
   .note__content {
     margin-bottom: var(--spacing-4);
 
+    .grid-container {
+      margin-bottom: var(--spacing-2);
+
+      p {
+        margin-bottom: 0;
+        line-height: 0;
+      }
+    }
+
+    p, li {
+      font-size: var(--font-size-h5);
+    }
+
     h2, h3, h4 {
         font-weight: 400;
         margin: var(--spacing-4) 0 var(--spacing-1) 0;
         font-family: var(--title-font);
-        color: hsla(var(--tertiary-color), 1);
+        color: hsla(var(--heading-color), 1);
     }
 
     h4 {
