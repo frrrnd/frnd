@@ -1,5 +1,25 @@
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: hsla(var(--body-background-color), 0.1);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: hsla(var(--body-text-color), 0.1); 
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: hsla(var(--body-text-color), 0.2);
+}
+
 html {
     box-sizing: border-box;
+    scrollbar-gutter: stable;
+    overflow: overlay;
 }
 
 *, *:before, *:after {
