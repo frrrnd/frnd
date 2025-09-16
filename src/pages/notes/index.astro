@@ -9,7 +9,7 @@ import Grid from '@components/utils/Grid.astro';
 import PageHeading from '@partials/PageHeading.astro';
 
 const notes = await getCollection('notes', ({ data }) => {
-    return !data.draft;
+    return data.draft !== true;
 });
 
 notes.sort((a,b) => Date.parse(b.data.publishDate) - Date.parse(a.data.publishDate));
