@@ -8,15 +8,16 @@ import Footer from '@partials/Footer.astro';
 import Grid from '@components/utils/Grid.astro';
 import PageHeading from '@partials/PageHeading.astro';
 
-const notes = await getCollection('notes');
+const notes = await getCollection('notes', ({ data }) => {
+    return !data.draft;
+});
 
 notes.sort((a,b) => Date.parse(b.data.publishDate) - Date.parse(a.data.publishDate));
-
 const renderedNotes = await Promise.all(
-	notes.map(async (note) => {
-		const { Content } = await note.render();
-		return { ...note, Content };
-	})
+    notes.map(async (note) => {
+        const { Content } = await note.render();
+        return { ...note, Content };
+    })
 );
 
 ---

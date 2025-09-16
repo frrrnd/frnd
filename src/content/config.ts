@@ -4,7 +4,7 @@ const notesCollection = defineCollection({
     type: 'content',
     schema: ({ image }) => z.object({
         title: z.string(),
-        isDraft: z.boolean().optional(),
+        draft: z.boolean(),
         description: z.string().optional(),
         tags: z.array(z.string()).optional(),
         publishDate: z.string().or(z.date()).transform((val) => new Date(val)),
