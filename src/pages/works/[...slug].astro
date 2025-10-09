@@ -6,6 +6,7 @@ import Header from "@partials/Header.astro";
 import Footer from "@partials/Footer.astro";
 import PageHeading from '@partials/PageHeading.astro';
 import Grid from '@components/utils/Grid.astro';
+import NavigationInternal from '@partials/NavigationInternal.astro';
 
 //export const prerender = true;
 
@@ -35,7 +36,7 @@ if (item) {
     }
 }
 
-const themeClass = item?.data?.colors ? "custom-theme" : "dark-theme";
+const themeClass = item?.data?.colors ? "custom-theme" : "light-theme";
 
 const customStyles = `
   :root.${themeClass} {
@@ -55,22 +56,33 @@ const customStyles = `
 }}>
     <Header />
 
-    <main class="main">
-        <article class="wrap-sm">
-            <header>
-                <h1>{frontmatter.title}</h1>
-                <p>{frontmatter.role}・{frontmatter.year}</p>
-            </header>
-        </article>
-        
-        <section class="content-article">
-            <article class="note-content">
-                {Content ? <Content /> : <p>Conteúdo não disponível.</p>}
-            </article>
-        </section>
-    </main>
+    <Grid isContainer>
+        <Grid sm="12" md="3">
+            <aside>
+                <NavigationInternal />
+            </aside>
+        </Grid>
 
-    <Footer />
+        <Grid sm="12" md="6">
+            <main class="main">
+                <article class="wrap-sm">
+                    <header>
+                        <h1>{frontmatter.title}</h1>
+                        <p>{frontmatter.role}・{frontmatter.year}</p>
+                    </header>
+                </article>
+                
+                <section class="content-article">
+                    <article class="note-content">
+                        {Content ? <Content /> : <p>Conteúdo não disponível.</p>}
+                    </article>
+                </section>
+            </main>
+        <Footer />
+        </Grid>
+    </Grid>
+
+    
 </Layout>
 <style set:html={customStyles}></style>
 <style>
@@ -94,7 +106,7 @@ const customStyles = `
         width: 100%;
 
         h1 {
-            font-size: var(--font-size-h1);
+            font-size: var(--font-size-h2);
             font-family: var(--title-font);
             color: hsla(var(--tertiary-color), 1);
         }

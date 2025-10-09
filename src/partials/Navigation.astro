@@ -1,0 +1,153 @@
+---
+const pathname = new URL(Astro.request.url).pathname;
+const currentPath = pathname.slice(1);
+const isNotesPage = currentPath.startsWith('notes/');
+const isActive = (path) => {
+    if (path === "" && currentPath === "") {
+        return true;
+    } else if (path !== "" && currentPath.startsWith(path)) {
+        return true;
+    }
+    return false;
+};
+---
+<nav class="navigation">
+    <ul>
+        <li><a href="#intro" class="nav-link">Intro</a></li>
+        <li><a href="#works" class="nav-link">Works</a></li>
+        <li><a href="#craft" class="nav-link">Craft</a></li>
+        <li><a href="#about" class="nav-link">About</a></li>
+        <li><a class={isActive("notes") ? "active" : ""} href="/notes">Notes</a></li>
+        <li><a class={isActive("readings") ? "active" : ""} href="/readings">Readings</a></li>
+    </ul>
+</nav>
+<style>
+    .navigation {
+        padding-top: calc(var(--spacing-8) + 14rem);
+        
+        ul {
+            list-style-type: none;
+            display: flex;
+            flex-direction: column;
+            padding-left: var(--spacing-2);
+            margin: 0;
+            position: fixed;
+            li {
+                font-size: var(--font-size-small);
+                transition: .3s;
+               
+                &:hover {
+                    font-weight: 500;
+                    transition: .3s;
+                }
+                &:not(:nth-last-child(-n+2)):hover {
+                    transform: translateX(var(--spacing-1));
+                }
+                a {
+                    padding: calc(var(--spacing-1) / 2) var(--spacing-1);
+                    display: block;
+                    &:hover {
+                        color: hsla(var(--body-text-color), 1);
+                    }
+                }
+                a.active {
+                    font-weight: 600;
+                    color: hsla(var(--body-text-color), 1);
+                }
+            }
+        }
+    }
+
+    
+
+    @media screen and (max-width: 768px) {
+
+        .navigation {
+            position: fixed;
+            transform: translateX(220%);
+            transition: .4s;
+            top: 0;
+            margin-top: 6rem;
+            text-align: right;
+            width: max-content!important;
+            padding-right: var(--spacing-2);
+            padding-top: 0;
+            
+            ul {
+                flex-direction: column!important;
+                width: max-content!important;
+                 gap: 2rem;
+                padding: 0 var(--spacing-1);
+                background: hsla(var(--body-background-color), 1);
+                border-radius: var(--radius-lg);
+                padding: var(--spacing-2);
+                position: relative;
+
+                li {
+                    font-size: 1.4rem;
+                }
+            }
+        }
+
+        .navigation.is-open {
+            transform: translateX(80%);
+            transition: .4s;
+        }
+    }
+</style>
+<script>
+    function initScrollSpy() {
+        const navLinks = document.querySelectorAll('.navigation a[href^="#"]');
+        const sections = document.querySelectorAll('section[id]');
+        
+        if (sections.length === 0) return;
+        
+        function removeActiveClasses() {
+            navLinks.forEach(link => link.classList.remove('active'));
+        }
+        
+        function addActiveClass(id) {
+            removeActiveClasses();
+            const activeLink = document.querySelector(`.navigation a[href="#${id}"]`);
+            if (activeLink) {
+                activeLink.classList.add('active');
+            }
+        }
+        
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetId = link.getAttribute('href').substring(1);
+                const targetSection = document.getElementById(targetId);
+                
+                if (targetSection) {
+                    targetSection.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    addActiveClass(targetId);
+                }
+            });
+        });
+        
+        function scrollSpy() {
+            const scrollPosition = window.scrollY + window.innerHeight / 2;
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.offsetHeight;
+                const sectionId = section.getAttribute('id');
+                
+                if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+                    addActiveClass(sectionId);
+                }
+            });
+        }
+        
+        window.addEventListener('scroll', scrollSpy);
+        scrollSpy();
+    }
+    
+    document.addEventListener('DOMContentLoaded', initScrollSpy);
+    document.addEventListener('astro:after-swap', initScrollSpy);
+</script>

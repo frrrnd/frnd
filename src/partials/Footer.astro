@@ -7,54 +7,68 @@ import Top from '@components/utils/toTop.astro';
 
 <footer class="footer">
     <section class="footer__inner">
-        <p>© 2025</p>
-        <ul>
-            <li><a href="https://x.com/frrrnd" target="_blank">x.com</a></li>
-            <li><a href="https://layers.to/fer" target="_blank">Layers</a></li>
-            <li><a href="https://linkedin.com/in/frrrnd" target="_blank">Linkedin</a></li>
-            <li><a href="mailto:hi@frnd.design" target="_blank">Email</a></li>
-        </ul>
+      <Grid isContainer>
+        <Grid sm="12" md="12">
+          <h2>Get in touch <br> <a href="mailto:hi@frnd.design">hi@frnd.design</a></h2>
+        </Grid>
+      </Grid>
+        
+      <Grid isContainer>
+        <Grid sm="12" md="6">
+          <ul>
+              <li><a href="https://x.com/frrrnd" target="_blank">x.com</a></li>
+              <li><a href="https://layers.to/fer" target="_blank">Layers</a></li>
+              <li><a href="https://dribbble.com/fernando" target="_blank">Dribbble</a></li>
+              <li><a href="https://linkedin.com/in/frrrnd" target="_blank">Linkedin</a></li>
+              <li><a href="mailto:hi@frnd.design" target="_blank">Email</a></li>
+          </ul>
+        </Grid>
+        
+        <Grid sm="12" md="6">
+          <p>© 2025</p>
+        </Grid>
+      </Grid>
+      
     </section>
         
 </footer>
 <style>
     .footer {
       width: 100%;  
-      padding: var(--spacing-1) var(--spacing-2);
-      /* border-top: 1px solid rgba(255, 255, 255, .08); */
-      text-transform: uppercase;
-      font-size: var(--font-size-xsmall);
-      font-weight: 600;
-      letter-spacing: 0.05rem;
+      padding: var(--spacing-1) 0;
+      color: hsla(var(--body-text-color), .5);
+
+      h2 {
+        font-size: var(--font-size-h1);
+        font-weight: 450;
+
+        a {
+          color: hsla(var(--body-text-color), 1);
+        }
+      }
+
+      .grid-container {
+        margin-bottom: var(--spacing-2);
+      }
     }
 
     .footer__inner {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-
         ul {
             display: flex;
             flex-direction: row;
             gap: var(--spacing-2);
             list-style-type: none;
             padding-left: 0;
+            margin: 0;
         }
 
         a {
             color: hsla(var(--body-text-color), 0.6);
         }
-    }
-
-    @media screen and (max-width: 768px) {
-        .footer__content {
-          flex-direction: column;
-
-            ul {
-                flex-direction: column;
-                font-size: 1.5rem;
-            }
+        
+        p {
+          width: 100%;
+          text-align: right;
         }
     }
 </style>

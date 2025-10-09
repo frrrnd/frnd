@@ -4,46 +4,380 @@ import { SiteConfig } from '@utils/SiteConfig';
 import Layout from '@layouts/Layout.astro';
 import FormattedDate from '@partials/formattedDate.astro';
 import Header from '@partials/Header.astro';
-import Hero from '@partials/Hero.astro';
+import Grid from '@components/utils/Grid.astro';
+import Navigation from '@partials/Navigation.astro';
+import Footer from '@partials/Footer.astro';
 ---
 
 <Layout props={{ title: SiteConfig.title, description: SiteConfig.description, image: SiteConfig.image }}>
-  <Hero>
-    
-    <Header />
-    
-    <section class="hero__content">
-      <div class="hero--headline">
-        <div class="wrap-wider">
-          <h2>Hi, I'm Fernando Soares.</h2>
-          <h2>Interface Designer based in <span>Florianópolis, Brazil.</span></h2>
-        </div>
-      </div>
 
-      <div class="hero--contact">
-        <div class="wrap-wider">
-          <h3>say hi — <a href="mailto:hi@frnd.design">hi@frnd.design</a></h3>
-        </div>
-      </div>
-    </section>
-  </Hero>
+  <Header />
+  <Grid isContainer>
+    <Grid sm="12" md="3">
+      <aside>
+        <Navigation />
+      </aside>
+    </Grid>
+  
+    <Grid sm="12" md="6">
+      <main>
+        <section class="home-section intro" id="intro">
+          <div class="home-section__heading">
+            <h1>Hi, I'm <span>Fernando</span>.</h1>
+
+            <h2>I'm an Interface Designer who crafts <span>modern</span>, <span>thoughtful</span>, and <span>real world</span> experiences.</h2>
+
+            <h3>Interface Designer & Webflow Developer • <a href="https://viewport-ui.design" title="Viewport UI" target="_blank">½ Viewport UI</a> <br> Based in Florianópolis, Brazil
+              
+            </h3>
+          </div>
+        </section>
+
+        <section class="home-section works-section" id="works">
+          <Grid isContainer>
+            <Grid sm="12" md="12" lg="6">
+              <article>
+                <a href="/works/ben-soleimani">
+                  <figure>
+                    <img src="/uploads/images/portfolio/ben/bensoleimani-cover.webp">
+                  </figure>
+
+                   <div class="overlay">
+                      <h4>Ben Soleimani</h4>
+                      <h5>Ecommerce</h5>
+                    </div>
+                </a>
+              </article>
+            </Grid>
+
+            <Grid sm="12" md="12" lg="6">
+              <article>
+                <a href="/works/livepix">
+                  <figure>
+                    <img src="/uploads/images/portfolio/livepix/livepix-cover.webp">
+                    
+                    <div class="overlay">
+                      <h4>Livepix</h4>
+                      <h5>Landing Page</h5>
+                    </div>
+                  </figure>
+                </a>
+              </article>
+            </Grid>
+          </Grid>
+
+          <Grid isContainer>
+            <Grid sm="12" md="12" lg="4">
+               <article>
+                <a href="/works/espresso-desk">
+                  <figure>
+                    <img src="/uploads/images/portfolio/espressodesk/ed-cover.webp">
+
+                    <div class="overlay">
+                      <h4>Espresso Desk</h4>
+                      <h5>Web App</h5>
+                    </div>
+                  </figure>
+                </a>
+              </article>
+            </Grid>
+
+            <Grid sm="12" md="12" lg="8">
+              <article>
+                <a href="/works/cloudbox">
+                <figure>
+                  <img src="/uploads/images/portfolio/cloudbox/cloudbox-cover.webp">
+
+                  <div class="overlay">
+                      <h4>Cloudbox</h4>
+                      <h5>Asset Manager</h5>
+                    </div>
+                </figure>
+                </a>
+              </article>
+            </Grid>
+          </Grid>
+
+          <Grid isContainer>
+            <Grid sm="12" md="12" lg="8">
+              <article>
+                <a href="/works/bitpouch">
+                <figure>
+                  <img src="/uploads/images/portfolio/bitpouch/bitpouch-cover.webp">
+
+                  <div class="overlay">
+                      <h4>Bitpouch</h4>
+                      <h5>iOS App</h5>
+                    </div>
+                </figure>
+                </a>
+              </article>
+            </Grid>
+
+            <Grid sm="12" md="12" lg="4">
+              <article>
+                <a href="/works/trackr">
+                <figure>
+                  <img src="/uploads/images/portfolio/trackr/trackr-cover.webp">
+
+                  <div class="overlay">
+                      <h4>Trackr</h4>
+                      <h5>Watch App</h5>
+                    </div>
+                </figure>
+                </a>
+              </article>
+            </Grid>
+          </Grid>
+        </section>
+
+        <section class="home-section craft-section" id="craft">
+          <div class="home-section__heading">
+            <h2>Exploring the craft of <span>shaping</span>, <span>testing</span>, and <span>refining</span> interfaces.</h2>
+          </div>
+
+          <Grid isContainer>
+            <Grid sm="12" md="12" lg="4">
+              <article>
+                <figure>
+                  <img src="/uploads/images/portfolio/labs/glass.webp">
+                </figure>
+              </article>
+            </Grid>
+
+            <Grid sm="12" md="12" lg="4">
+              <article>
+                <figure>
+                  <img src="/uploads/images/portfolio/labs/dynamic-island.webp">
+                </figure>
+              </article>
+            </Grid>
+
+            <Grid sm="12" md="12" lg="4">
+              <article>
+                <figure>
+                  <img src="/uploads/images/portfolio/labs/album-hover.gif">
+                </figure>
+              </article>
+            </Grid>
+          </Grid>
+
+          <Grid isContainer>
+            <Grid sm="12" md="12" lg="4">
+              <article>
+                <figure>
+                  <img src="/uploads/images/portfolio/labs/spotify-vision.webp">
+                </figure>
+              </article>
+            </Grid>
+
+            <Grid sm="12" md="12" lg="4">
+              <article>
+                <figure>
+                  <img src="/uploads/images/portfolio/labs/quick-payment.gif">
+                </figure>
+              </article>
+            </Grid>
+
+            <Grid sm="12" md="12" lg="4">
+              <article>
+                  <figure>
+                    <img src="/uploads/images/portfolio/labs/metal-buttons.webp">
+                  </figure>
+              </article>
+            </Grid>
+          </Grid>
+
+          <Grid isContainer>
+            <Grid sm="12" md="12" lg="4">
+              <article>
+                  <figure>
+                    <img src="/uploads/images/portfolio/labs/glossy-btn.gif">
+                  </figure>
+              </article>
+            </Grid>
+
+            <Grid sm="12" md="12" lg="4">
+              <article>
+                <figure>
+                  <img src="/uploads/images/portfolio/arc/arc-cover.webp">
+                </figure>
+              </article>
+            </Grid>
+
+            <Grid sm="12" md="12" lg="4">
+              <article>
+                  <figure>
+                    <img src="/uploads/images/portfolio/labs/feed-cover.webp">
+                  </figure>
+              </article>
+            </Grid>
+          </Grid>
+
+        </section>
+
+        <section class="home-section about-section" id="about">
+          <Grid isContainer>
+            <Grid sm="12" md="12" lg="5">
+              <h2>I love thinking through <span>design</span>, sipping <span>coffee</span>, listening to <span>fuzzy music</span>, and <span>longboarding</span>.</h2>
+
+              <p>With 10+ years of experience, I started my journey in design as a self-taught professional. I learned HTML at the age of 12 and have been in love with interfaces ever since.</p>
+
+              <p>Throughout my career, I've collaborated with brands such as Massey-Ferguson, Valtra, Coca-Cola, Accenture, Petrobras and more.</p>
+            </Grid>
+
+            <Grid sm="12" md="1"></Grid>
+
+            <Grid sm="12" md="12" lg="6">
+              <figure>
+                  <img src="/avatar-frnd.webp" alt="Yo!" class="about-photo">
+              </figure>
+            </Grid>
+          </Grid>
+        </section>
+      </main>
+
+      <Footer />
+    </Grid>
+  </Grid>
+
 </Layout>
 <style>
-  .hero__content {
-    padding-bottom: var(--spacing-8);
+
+  .home-section {
+    color: hsla(var(--body-text-color), .5);
+    
+    h1, h2 {
+      font-size: var(--font-size-h1);
+      font-weight: 450;
+      margin-bottom: var(--spacing-2);
+      
+      span {
+        color: hsla(var(--body-text-color), 1);
+      }
+    }
+
+    h3 {
+      font-size: var(--font-size-regular);
+      margin-bottom: var(--spacing-4);
+      line-height: 1.6;
+    }
+
+    p {
+      margin-bottom: var(--spacing-2);
+    }
   }
 
-  .hero--headline {
-    padding: var(--spacing-2) 0;
+  .home-section__heading {
+    h2 {
+      max-width: 380px;
+      width: 100%;
+    }
 
-    h1 {
+    a {
+      transition: .4s;
+
+     &:hover {
+      color: hsla(var(--body-text-color), 1);
+      transition: .4s;
+     } 
+    }
+  }
+
+  .home-section:not(:first-child) {
+    padding: var(--spacing-4) 0;
+  }
+
+  .intro {
+    padding-top: calc(var(--spacing-8) + 14rem);
+  }
+
+  .works-section, .craft-section {
+    article {
+      height: 100%
+    }
+
+    a {
+      position: relative;
+      cursor: crosshair;
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    a:hover {
+        .overlay {
+          opacity: 1;
+          transition: .4s;
+        }
+
+        h4 { transform: translateY(0); transition: .2s;}
+        h5 { transform: translateY(0); transition: .2s;}
+      }
+
+    .overlay {
+      opacity: 0;
+      transition: .4s;
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 1;
+      border-radius: var(--radius-md);
+      color: hsla(var(--body-background-color), 1);
+      padding: var(--spacing-1);
+      backdrop-filter: blur(4px);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      background: rgba(0, 0, 0, 0.3);
+
+
+      h4, h5 {
+        font-size: var(--font-size-small);
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        transition: .2s;
+      }
+
+      h4 {
+        transform: translateY(-20px);
+      }
+
+      h5 {
+        transform: translateY(20px);
+      }
+    }
+
+    figure {
+      width: 100%;
+      height: 270px;
+      overflow: hidden;
+      position: relative;
+      border-radius: var(--radius-md);
+      border: 1px solid rgba(0,0,0,.02);
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-position: top center;
+      object-fit: cover;
+      display: block;
+    }
+  }
+
+  main {
+    .grid-container {
       margin-bottom: var(--spacing-1);
     }
   }
 
-  .hero--contact {
-    border-top: 1px solid rgba(255, 255, 255, .08);
-    border-bottom: 1px solid rgba(255, 255, 255, .08);
-    padding: var(--spacing-2) 0;
+  .craft-section {
+    figure {
+      height: 310px;
+    }
   }
 </style>

@@ -7,6 +7,7 @@ import Header from '@partials/Header.astro';
 import Footer from '@partials/Footer.astro';
 import Grid from '@components/utils/Grid.astro';
 import PageHeading from '@partials/PageHeading.astro';
+import NavigationInternal from '@partials/NavigationInternal.astro';
 
 const notes = await getCollection('notes', ({ data }) => {
     return data.draft !== true;
@@ -24,31 +25,40 @@ const renderedNotes = await Promise.all(
 <Layout props={{ title: `Notes — ${SiteConfig.title}`, description: SiteConfig.description, image: SiteConfig.image }}>
 
 	<Header />
+
+	<Grid isContainer>
+		<Grid sm="12" md="3">
+      		<aside>
+				<NavigationInternal />
+			</aside>
+    	</Grid>
 	
-	<main class="main">
-		<PageHeading title="Notes" description="A collection of thoughts & ideas." />
+	<Grid sm="12" md="6">
+		<main>
+			<PageHeading title="Notes" description="A collection of thoughts & ideas." />
 
-		<section class="block__content--articles wrap-wider">
-		{renderedNotes.map((note) => (
-			<article class="notes__item">
-				<a href={`/notes/${note.slug}`} title={`Read ${note.data.title}`}>
-					<div class="notes__item--inner">
-						<DateN date={note.data.publishDate} />
-						<h2>{note.data.title}</h2>
-						{/* <p>{note.data.description}</p> */}
-					</div>
-				</a>
-			</article>
-		))}
-		</section>
-	</main>
+			<section class="block__content--articles wrap-wider">
+			{renderedNotes.map((note) => (
+				<article class="notes__item">
+					<a href={`/notes/${note.slug}`} title={`Read ${note.data.title}`}>
+						<div class="notes__item--inner">
+							<DateN date={note.data.publishDate} />
+							<h2>{note.data.title}</h2>
+							{/* <p>{note.data.description}</p> */}
+						</div>
+					</a>
+				</article>
+			))}
+			</section>
+		</main>
 
-	<Footer />
+		<Footer />
+	</Grid>
+	</Grid>
 </Layout>
 
 <style>
 	.block__content--articles {
-		margin-top: var(--spacing-8);
 		transition: .4s;
 	}
 

@@ -4,8 +4,8 @@ import Layout from '@layouts/Layout.astro';
 import FormattedDate from '@partials/formattedDate.astro';
 import { SiteConfig } from '@utils/SiteConfig';
 import Header from '@partials/Header.astro';
-import Footer from '@partials/Footer.astro';
 import Grid from '@components/utils/Grid.astro';
+import NavigationInternal from '@partials/NavigationInternal.astro';
 
 // export const prerender = true;
 export async function getStaticPaths() {
@@ -56,21 +56,31 @@ const customStyles = `
 
     <Header />
 
-    <main class="main">
-        <article class="wrap-lg">
-            <header>
-                <FormattedDate date={note.data.publishDate} />
-                <h1>{note.data.title}</h1>
-            </header>
-        
-            <section class="note__content wrap-sm">
-              <article>
-                <Content />
-              </article>
-            </section>
-        </article>
-    </main>
-    <Footer />
+    <Grid isContainer>
+      <Grid sm="12" md="3">
+      	<aside>
+          <NavigationInternal />
+        </aside>
+    	</Grid>
+
+      <Grid sm="12" md="6">
+        <main class="main">
+          <article class="wrap-lg">
+              <header>
+                  <FormattedDate date={note.data.publishDate} />
+                  <h1>{note.data.title}</h1>
+              </header>
+          
+              <section class="note__content wrap-sm">
+                <article>
+                  <Content />
+                </article>
+              </section>
+          </article>
+        </main>
+      </Grid>
+    </Grid>
+    
 </Layout>
 <style set:html={customStyles}></style>
 <style>

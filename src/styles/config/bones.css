@@ -49,6 +49,11 @@ body {
     overflow-x: hidden;
 }
 
+@media screen and (max-width: 768px) {
+    body {
+        padding: var(--spacing-1);
+    }
+}
 
 .wrap {
     max-width: var(--wrap-lg);
@@ -75,7 +80,6 @@ body {
     max-width: var(--wrap-xlg);
     width: 100%;
     margin: 0 auto;
-    padding: 0 var(--spacing-2);
 }
 
 .wrap-media {
@@ -87,4 +91,8 @@ body {
 .shuffle {
     font-kerning: none;
     font-feature-settings: "liga" 0;
+}
+
+.center {
+    margin: 0 auto;
 }

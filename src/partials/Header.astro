@@ -2,23 +2,9 @@
 import Grid from '@components/utils/Grid.astro';
 import CopyClipboard from '@components/CopyClipboard/CopyClipboard.jsx';
 
-const pathname = new URL(Astro.request.url).pathname;
-const currentPath = pathname.slice(1); // remove the first "/"
-
-// Corrigindo a verificação das páginas de notes
-const isNotesPage = currentPath.startsWith('notes/'); // Removido o '/' do início já que currentPath não o tem
-
-const isActive = (path) => {
-    if (path === "" && currentPath === "") {
-        return true; // Ativa "Home" somente quando a URL atual é a raiz
-    } else if (path !== "" && currentPath.startsWith(path)) {
-        return true; // Ativa outras rotas se o currentPath começa com path
-    }
-    return false;
-};
 ---
 
-<header class="header">
+<!-- <header class="header">
     <div class="header__inner">
         <div class="header__inner--left">
             <a href="/" title="Go to Index">
@@ -29,28 +15,19 @@ const isActive = (path) => {
         </div>
         
         <div class="header__inner--right">
-            <button class="open-menu">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-            <nav>
-                <ul>
-                    <li><a class={isActive("/") ? "active" : ""} href="/">Index</a></li>
-                    <li><a class={isActive("about") ? "active" : ""} href="/about">About</a></li>
-                    <li><a class={isActive("works") ? "active" : ""} href="/works">Works</a></li>
-                    <li><a class={isActive("labs") ? "active" : ""} href="/labs">Labs</a></li>
-                    <li><a class={isActive("notes") ? "active" : ""} href="/notes">Notes</a></li>
-                    <li><a class={isActive("readings") ? "active" : ""} href="/readings">Readings</a></li>
-                </ul>
-            </nav>
+           
         </div>
     </div>
-</header>
+</header> -->
+ <button class="open-menu">
+    <span></span>
+    <span></span>
+    <span></span>
+</button>
+
 <style>
     .header {
         width: 100%;
-        border-bottom: 1px solid hsla(var(--body-text-color), .1);
     }
 
     .header__inner {
@@ -59,28 +36,6 @@ const isActive = (path) => {
         flex-direction: row;
         justify-content: space-between;
         align-items: center;
-
-        nav {
-            width: 100%;
-        }
-
-        ul {
-            list-style-type: none;
-            display: flex;
-            flex-direction: row;
-            gap: 3rem;
-            padding-left: 0;
-            width: 100%;
-
-            a:hover {
-                opacity: .6;
-                transition: .4s;
-            }
-
-            .active {
-                color: hsla(var(--body-text-color), 1);
-            }
-        }
     }
 
     .header__inner--left {
@@ -100,9 +55,26 @@ const isActive = (path) => {
         transition: .4s ease-in-out;
         width: 30px;
         height: 24px;
-        position: relative;
+        position: fixed;
+        right: 1rem;
+        top: 2rem;
+    }
 
-        span {
+    @media screen and (max-width: 768px) {
+        .header__inner {
+            padding: var(--spacing-1);
+        }
+
+        .header__inner--right {
+            width: max-content;
+            padding: var(--spacing-1) 0;
+        }
+
+        .open-menu {
+            display: block;
+        }
+
+        .open-menu span {
             display: block;
             position: absolute;
             height: 2px;
@@ -126,34 +98,6 @@ const isActive = (path) => {
                 top: 20px;
             }
         }
-    }
-
-    @media screen and (max-width: 768px) {
-
-        .header__inner {
-            padding: var(--spacing-1);
-        }
-
-        .header__inner--right {
-            width: max-content;
-            padding: var(--spacing-1) 0;
-
-            ul {
-                gap: 2rem;
-                padding: 0 var(--spacing-1);
-                background: hsla(var(--body-background-color), 1);
-                border-radius: var(--radius-lg);
-                padding: var(--spacing-2);
-
-                li {
-                    font-size: 1.4rem;
-                }
-            }
-        }
-
-        .open-menu {
-            display: block;
-        }
 
         .open-menu.is-active span:nth-child(1) {
             top: 10px;
@@ -168,89 +112,66 @@ const isActive = (path) => {
             top: 10px;
             transform: rotate(-135deg);
         }
-
-        nav {
-            position: fixed;
-            transform: translateX(100%);
-            transition: .4s;
-            top: 0;
-            margin-top: 6rem;
-            text-align: right;
-            width: max-content!important;
-            padding-right: var(--spacing-2);
-            
-            ul {
-                flex-direction: column!important;
-                width: max-content!important;
-            }
-        }
-
-        nav.is-open {
-            transform: translateX(-70%);
-            transition: .4s;
-        }
     }
 </style>
 <script>
 // Função para configurar o menu
-const setupMenu = () => {
-  const openMenuButton = document.querySelector(".open-menu");
-  const nav = document.querySelector(".header__inner--right nav");
+    const setupMenu = () => {
+    const openMenuButton = document.querySelector(".open-menu");
+    const nav = document.querySelector(".navigation");
 
-  if (!openMenuButton || !nav) {
-    return; // Sai se os elementos não existirem
-  }
+    if (!openMenuButton || !nav) {
+        return; // Sai se os elementos não existirem
+    }
 
-  // Adiciona um marcador para evitar adicionar listeners múltiplos ao mesmo elemento
-  if (openMenuButton.dataset.menuInitialized) {
-    return;
-  }
-  openMenuButton.dataset.menuInitialized = "true";
+    // Adiciona um marcador para evitar adicionar listeners múltiplos ao mesmo elemento
+    if (openMenuButton.dataset.menuInitialized) {
+        return;
+    }
+    openMenuButton.dataset.menuInitialized = "true";
 
-  // Função para abrir/fechar o menu
-  const toggleMenu = () => {
-    const isOpen = nav.classList.toggle("is-open");
-    openMenuButton.classList.toggle("is-active", isOpen);
-  };
+    // Função para abrir/fechar o menu
+    const toggleMenu = () => {
+        const isOpen = nav.classList.toggle("is-open");
+        openMenuButton.classList.toggle("is-active", isOpen);
+    };
 
-  // Adiciona o listener ao botão
-  openMenuButton.addEventListener("click", (event) => {
-    event.stopPropagation(); // Impede que o clique chegue ao body e feche o menu
-    toggleMenu();
-  });
-
-  // Listener para fechar o menu ao clicar em um link
-  nav.querySelectorAll("a").forEach(link => {
-    link.addEventListener("click", () => {
-      if (nav.classList.contains("is-open")) {
+    // Adiciona o listener ao botão
+    openMenuButton.addEventListener("click", (event) => {
+        event.stopPropagation(); // Impede que o clique chegue ao body e feche o menu
         toggleMenu();
-      }
     });
-  });
-};
 
-// Função para fechar o menu ao clicar fora
-const handleOutsideClick = (event) => {
-  const openMenuButton = document.querySelector(".open-menu");
-  const nav = document.querySelector(".header__inner--right nav");
+    // Listener para fechar o menu ao clicar em um link
+    nav.querySelectorAll("a").forEach(link => {
+        link.addEventListener("click", () => {
+        if (nav.classList.contains("is-open")) {
+            toggleMenu();
+        }
+        });
+    });
+    };
 
-  if (nav && nav.classList.contains("is-open") && !nav.contains(event.target) && !openMenuButton.contains(event.target)) {
-    nav.classList.remove("is-open");
-    openMenuButton.classList.remove("is-active");
-  }
-};
+    // Função para fechar o menu ao clicar fora
+    const handleOutsideClick = (event) => {
+    const openMenuButton = document.querySelector(".open-menu");
+    const nav = document.querySelector(".header__inner--right nav");
 
-// Função de inicialização que o Astro irá chamar
-const initialize = () => {
-  setupMenu();
-  // Adiciona o listener de clique fora apenas uma vez ao body
-  document.body.removeEventListener("click", handleOutsideClick);
-  document.body.addEventListener("click", handleOutsideClick);
-};
+    if (nav && nav.classList.contains("is-open") && !nav.contains(event.target) && !openMenuButton.contains(event.target)) {
+        nav.classList.remove("is-open");
+        openMenuButton.classList.remove("is-active");
+    }
+    };
 
-// Executa a inicialização nas navegações do Astro e na carga inicial
-document.addEventListener("astro:page-load", initialize);
-initialize(); // Executa na primeira carga
+    // Função de inicialização que o Astro irá chamar
+    const initialize = () => {
+    setupMenu();
+    // Adiciona o listener de clique fora apenas uma vez ao body
+    document.body.removeEventListener("click", handleOutsideClick);
+    document.body.addEventListener("click", handleOutsideClick);
+    };
 
-
+    // Executa a inicialização nas navegações do Astro e na carga inicial
+    document.addEventListener("astro:page-load", initialize);
+    initialize(); // Executa na primeira carga
 </script>
