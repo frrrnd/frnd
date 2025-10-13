@@ -1,5 +1,12 @@
 [
     {
+      "title": "The Time Machine",
+      "author": "H.G Wells",
+      "coverUrl": "/uploads/images/books/time-machine.webp",
+      "status": "finished",
+      "yearRead": 2025
+    },
+    {
       "title": "The Devil",
       "author": "Leo Tolstoy",
       "coverUrl": "/uploads/images/books/the-devil.webp",
