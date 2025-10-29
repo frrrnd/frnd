@@ -6,6 +6,7 @@ import Top from '@components/utils/toTop.astro';
 <Top />
 
 <footer class="footer">
+  <div class="blur-container"><!--$--><div style="position:absolute;inset:0;overflow:hidden"><div style="opacity: 1; position: absolute; inset: 0px; z-index: 1; mask-image: linear-gradient(rgba(0, 0, 0, 0) 0%, rgb(0, 0, 0) 12.5%, rgb(0, 0, 0) 25%, rgba(0, 0, 0, 0) 37.5%); border-radius: 0px; pointer-events: none; backdrop-filter: blur(0.078125px); will-change: auto;"></div><div style="opacity: 1; position: absolute; inset: 0px; z-index: 2; mask-image: linear-gradient(rgba(0, 0, 0, 0) 12.5%, rgb(0, 0, 0) 25%, rgb(0, 0, 0) 37.5%, rgba(0, 0, 0, 0) 50%); border-radius: 0px; pointer-events: none; backdrop-filter: blur(0.15625px); will-change: auto;"></div><div style="opacity: 1; position: absolute; inset: 0px; z-index: 3; mask-image: linear-gradient(rgba(0, 0, 0, 0) 25%, rgb(0, 0, 0) 37.5%, rgb(0, 0, 0) 50%, rgba(0, 0, 0, 0) 62.5%); border-radius: 0px; pointer-events: none; backdrop-filter: blur(0.3125px); will-change: auto;"></div><div style="opacity: 1; position: absolute; inset: 0px; z-index: 4; mask-image: linear-gradient(rgba(0, 0, 0, 0) 37.5%, rgb(0, 0, 0) 50%, rgb(0, 0, 0) 62.5%, rgba(0, 0, 0, 0) 75%); border-radius: 0px; pointer-events: none; backdrop-filter: blur(0.625px); will-change: auto;"></div><div style="opacity: 1; position: absolute; inset: 0px; z-index: 5; mask-image: linear-gradient(rgba(0, 0, 0, 0) 50%, rgb(0, 0, 0) 62.5%, rgb(0, 0, 0) 75%, rgba(0, 0, 0, 0) 87.5%); border-radius: 0px; pointer-events: none; backdrop-filter: blur(1.25px); will-change: auto;"></div><div style="opacity: 1; position: absolute; inset: 0px; z-index: 6; mask-image: linear-gradient(rgba(0, 0, 0, 0) 62.5%, rgb(0, 0, 0) 75%, rgb(0, 0, 0) 87.5%, rgba(0, 0, 0, 0) 100%); border-radius: 0px; pointer-events: none; backdrop-filter: blur(2.5px); will-change: auto;"></div><div style="opacity: 1; position: absolute; inset: 0px; z-index: 7; mask-image: linear-gradient(rgba(0, 0, 0, 0) 75%, rgb(0, 0, 0) 87.5%, rgb(0, 0, 0) 100%); border-radius: 0px; pointer-events: none; backdrop-filter: blur(5px); will-change: auto;"></div><div style="opacity: 1; position: absolute; inset: 0px; z-index: 8; mask-image: linear-gradient(rgba(0, 0, 0, 0) 87.5%, rgb(0, 0, 0) 100%); border-radius: 0px; pointer-events: none; backdrop-filter: blur(10px); will-change: auto;"></div></div><!--/$--></div>
     <section class="footer__inner">
       <Grid isContainer>
         <Grid sm="12" md="12">
@@ -18,7 +19,6 @@ import Top from '@components/utils/toTop.astro';
           <ul>
               <li><a href="https://x.com/frrrnd" target="_blank">x.com</a></li>
               <li><a href="https://layers.to/fer" target="_blank">Layers</a></li>
-              <li><a href="https://dribbble.com/fernando" target="_blank">Dribbble</a></li>
               <li><a href="https://linkedin.com/in/frrrnd" target="_blank">Linkedin</a></li>
               <li><a href="mailto:hi@frnd.design" target="_blank">Email</a></li>
           </ul>
@@ -33,9 +33,18 @@ import Top from '@components/utils/toTop.astro';
         
 </footer>
 <style>
+  .blur-container {
+    z-index: 8;
+    flex: none;
+    height: 200px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
     .footer {
       width: 100%;  
-      padding: var(--spacing-1) 0;
+      padding: var(--spacing-1) 0 calc(var(--spacing-8) + 2rem) 0;
       color: hsla(var(--body-text-color), .5);
 
       h2 {
@@ -261,5 +270,68 @@ if (document.readyState === 'loading') {
 // Disponibilizar globalmente
 window.initializeShuffle = initializeShuffle;
 window.cleanupAllShuffleEffects = cleanupAllShuffleEffects;
+
+// Animação
+
+// Configuração do Intersection Observer para animações no scroll
+const observerConfig = {
+  root: null,
+  rootMargin: '0px 0px -100px 0px', // Ativa 100px antes do elemento entrar na viewport
+  threshold: 0.1 // Ativa quando 10% do elemento estiver visível
+};
+
+let observer = null;
+
+// Função para observar elementos
+function observeElements() {
+  // Desconecta observer anterior se existir
+  if (observer) {
+    observer.disconnect();
+  }
+
+  // Seleciona todos os elementos com data-anima
+  const elements = document.querySelectorAll('[data-anima]');
+  
+  if (elements.length === 0) return;
+
+  // Cria o Intersection Observer
+  observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      // Quando o elemento entra na viewport
+      if (entry.isIntersecting) {
+        // Adiciona a classe 'animate'
+        entry.target.classList.add('animate');
+        
+        // Para de observar o elemento (animação acontece apenas uma vez)
+        observer.unobserve(entry.target);
+      }
+    });
+  }, observerConfig);
+
+  // Observa cada elemento
+  elements.forEach(element => {
+    // Só observa se ainda não tem a classe animate
+    if (!element.classList.contains('animate')) {
+      observer.observe(element);
+    }
+  });
+}
+
+// Inicializa quando o DOM carregar
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', observeElements);
+} else {
+  observeElements();
+}
+
+// Suporte para transições do Astro (View Transitions)
+document.addEventListener('astro:page-load', observeElements);
+
+// Limpa o observer quando a página for trocar (opcional, para performance)
+document.addEventListener('astro:before-preparation', () => {
+  if (observer) {
+    observer.disconnect();
+  }
+});
 
 </script>

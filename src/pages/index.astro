@@ -36,7 +36,7 @@ import Footer from '@partials/Footer.astro';
         <section class="home-section works-section" id="works">
           <Grid isContainer>
             <Grid sm="12" md="12" lg="6">
-              <article>
+              <article data-anima>
                 <a href="/works/ben-soleimani">
                   <figure>
                     <img src="/uploads/images/portfolio/ben/bensoleimani-cover.webp">
@@ -51,7 +51,7 @@ import Footer from '@partials/Footer.astro';
             </Grid>
 
             <Grid sm="12" md="12" lg="6">
-              <article>
+              <article data-anima>
                 <a href="/works/livepix">
                   <figure>
                     <img src="/uploads/images/portfolio/livepix/livepix-cover.webp">
@@ -68,7 +68,7 @@ import Footer from '@partials/Footer.astro';
 
           <Grid isContainer>
             <Grid sm="12" md="12" lg="4">
-               <article>
+               <article data-anima>
                 <a href="/works/espresso-desk">
                   <figure>
                     <img src="/uploads/images/portfolio/espressodesk/ed-cover.webp">
@@ -83,7 +83,7 @@ import Footer from '@partials/Footer.astro';
             </Grid>
 
             <Grid sm="12" md="12" lg="8">
-              <article>
+              <article data-anima>
                 <a href="/works/cloudbox">
                 <figure>
                   <img src="/uploads/images/portfolio/cloudbox/cloudbox-cover.webp">
@@ -100,7 +100,7 @@ import Footer from '@partials/Footer.astro';
 
           <Grid isContainer>
             <Grid sm="12" md="12" lg="8">
-              <article>
+              <article data-anima>
                 <a href="/works/bitpouch">
                 <figure>
                   <img src="/uploads/images/portfolio/bitpouch/bitpouch-cover.webp">
@@ -115,7 +115,7 @@ import Footer from '@partials/Footer.astro';
             </Grid>
 
             <Grid sm="12" md="12" lg="4">
-              <article>
+              <article data-anima>
                 <a href="/works/trackr">
                 <figure>
                   <img src="/uploads/images/portfolio/trackr/trackr-cover.webp">
@@ -123,6 +123,38 @@ import Footer from '@partials/Footer.astro';
                   <div class="overlay">
                       <h4>Trackr</h4>
                       <h5>Watch App</h5>
+                    </div>
+                </figure>
+                </a>
+              </article>
+            </Grid>
+          </Grid>
+
+          <Grid isContainer>
+            <Grid sm="12" md="12" lg="6">
+              <article data-anima>
+                <a href="/works/arc-icons">
+                <figure>
+                  <img src="/uploads/images/portfolio/arc/arc-cover.webp">
+
+                  <div class="overlay">
+                      <h4>Arc Icons</h4>
+                      <h5>App Icon</h5>
+                    </div>
+                </figure>
+                </a>
+              </article>
+            </Grid>
+
+            <Grid sm="12" md="12" lg="6">
+              <article data-anima>
+                <a href="/works/spotify-visionos">
+                <figure>
+                  <img src="/uploads/images/portfolio/spotify/spotify-cover.webp">
+
+                  <div class="overlay">
+                      <h4>Spotify</h4>
+                      <h5>VisionOS</h5>
                     </div>
                 </figure>
                 </a>
@@ -138,7 +170,7 @@ import Footer from '@partials/Footer.astro';
 
           <Grid isContainer>
             <Grid sm="12" md="12" lg="4">
-              <article>
+              <article data-anima>
                 <figure>
                   <img src="/uploads/images/portfolio/labs/glass.webp">
                 </figure>
@@ -146,7 +178,7 @@ import Footer from '@partials/Footer.astro';
             </Grid>
 
             <Grid sm="12" md="12" lg="4">
-              <article>
+              <article data-anima>
                 <figure>
                   <img src="/uploads/images/portfolio/labs/dynamic-island.webp">
                 </figure>
@@ -154,7 +186,7 @@ import Footer from '@partials/Footer.astro';
             </Grid>
 
             <Grid sm="12" md="12" lg="4">
-              <article>
+              <article data-anima>
                 <figure>
                   <img src="/uploads/images/portfolio/labs/album-hover.gif">
                 </figure>
@@ -164,15 +196,15 @@ import Footer from '@partials/Footer.astro';
 
           <Grid isContainer>
             <Grid sm="12" md="12" lg="4">
-              <article>
+              <article data-anima>
                 <figure>
-                  <img src="/uploads/images/portfolio/labs/spotify-vision.webp">
+                  <img src="/uploads/images/portfolio/labs/radio-icon.webp">
                 </figure>
               </article>
             </Grid>
 
             <Grid sm="12" md="12" lg="4">
-              <article>
+              <article data-anima>
                 <figure>
                   <img src="/uploads/images/portfolio/labs/quick-payment.gif">
                 </figure>
@@ -180,7 +212,7 @@ import Footer from '@partials/Footer.astro';
             </Grid>
 
             <Grid sm="12" md="12" lg="4">
-              <article>
+              <article data-anima>
                   <figure>
                     <img src="/uploads/images/portfolio/labs/metal-buttons.webp">
                   </figure>
@@ -190,7 +222,7 @@ import Footer from '@partials/Footer.astro';
 
           <Grid isContainer>
             <Grid sm="12" md="12" lg="4">
-              <article>
+              <article data-anima>
                   <figure>
                     <img src="/uploads/images/portfolio/labs/glossy-btn.gif">
                   </figure>
@@ -198,21 +230,29 @@ import Footer from '@partials/Footer.astro';
             </Grid>
 
             <Grid sm="12" md="12" lg="4">
-              <article>
+              <article data-anima>
                 <figure>
-                  <img src="/uploads/images/portfolio/arc/arc-cover.webp">
+                  <img src="/uploads/images/portfolio/labs/terminal-icon.webp">
                 </figure>
               </article>
             </Grid>
 
             <Grid sm="12" md="12" lg="4">
-              <article>
+              <article data-anima>
                   <figure>
                     <img src="/uploads/images/portfolio/labs/feed-cover.webp">
                   </figure>
               </article>
             </Grid>
           </Grid>
+
+          <a href="/craft" class="btn__primary">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M8 0C10.1217 0 12.1566 0.842855 13.6569 2.34315C15.1571 3.84344 16 5.87827 16 8C16 10.1217 15.1571 12.1566 13.6569 13.6569C12.1566 15.1571 10.1217 16 8 16C5.87827 16 3.84344 15.1571 2.34315 13.6569C0.842855 12.1566 0 10.1217 0 8C0 5.87827 0.842855 3.84344 2.34315 2.34315C3.84344 0.842855 5.87827 0 8 0ZM9.062 4.312C9.062 4.04678 8.95664 3.79243 8.76911 3.60489C8.58157 3.41736 8.32722 3.312 8.062 3.312C7.79678 3.312 7.54243 3.41736 7.35489 3.60489C7.16736 3.79243 7.062 4.04678 7.062 4.312V7.062H4.312C4.04678 7.062 3.79243 7.16736 3.60489 7.35489C3.41736 7.54243 3.312 7.79678 3.312 8.062C3.312 8.32722 3.41736 8.58157 3.60489 8.76911C3.79243 8.95664 4.04678 9.062 4.312 9.062H7.062V11.812C7.062 12.0772 7.16736 12.3316 7.35489 12.5191C7.54243 12.7066 7.79678 12.812 8.062 12.812C8.32722 12.812 8.58157 12.7066 8.76911 12.5191C8.95664 12.3316 9.062 12.0772 9.062 11.812V9.062H11.812C12.0772 9.062 12.3316 8.95664 12.5191 8.76911C12.7066 8.58157 12.812 8.32722 12.812 8.062C12.812 7.79678 12.7066 7.54243 12.5191 7.35489C12.3316 7.16736 12.0772 7.062 11.812 7.062H9.062V4.312Z" fill="black"/>
+            </svg>
+
+            See more
+          </a>
 
         </section>
 
@@ -229,7 +269,7 @@ import Footer from '@partials/Footer.astro';
             <Grid sm="12" md="1"></Grid>
 
             <Grid sm="12" md="12" lg="6">
-              <figure>
+              <figure data-anima>
                   <img src="/avatar-frnd.webp" alt="Yo!" class="about-photo">
               </figure>
             </Grid>
@@ -285,7 +325,7 @@ import Footer from '@partials/Footer.astro';
   }
 
   .home-section:not(:first-child) {
-    padding: var(--spacing-4) 0;
+    padding: var(--spacing-8) 0;
   }
 
   .intro {
@@ -294,26 +334,26 @@ import Footer from '@partials/Footer.astro';
 
   .works-section, .craft-section {
     article {
-      height: 100%
-    }
-
-    a {
-      position: relative;
-      cursor: crosshair;
-      width: 100%;
       height: 100%;
-      display: block;
-    }
 
-    a:hover {
-        .overlay {
-          opacity: 1;
-          transition: .4s;
+      a {
+        position: relative;
+        cursor: crosshair;
+        width: 100%;
+        height: 100%;
+        display: block;
+
+         &:hover {
+          .overlay {
+            opacity: 1;
+            transition: .4s;
+          }
+
+          h4 { transform: translateY(0); transition: .2s;}
+          h5 { transform: translateY(0); transition: .2s;}
         }
-
-        h4 { transform: translateY(0); transition: .2s;}
-        h5 { transform: translateY(0); transition: .2s;}
       }
+    }
 
     .overlay {
       opacity: 0;

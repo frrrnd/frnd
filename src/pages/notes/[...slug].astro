@@ -64,14 +64,14 @@ const customStyles = `
     	</Grid>
 
       <Grid sm="12" md="6">
-        <main class="main">
-          <article class="wrap-lg">
+        <main class="note-page">
+          <article>
               <header>
                   <FormattedDate date={note.data.publishDate} />
                   <h1>{note.data.title}</h1>
               </header>
           
-              <section class="note__content wrap-sm">
+              <section class="note__content">
                 <article>
                   <Content />
                 </article>
@@ -101,7 +101,7 @@ const customStyles = `
 
     header {
       margin-bottom: var(--spacing-4);
-      text-align: center;
+      /* text-align: center; */
       width: 100%;
 
       h1 {
@@ -288,5 +288,9 @@ const customStyles = `
             }
         }
     }
+}
+
+.note-page {
+  padding-top: calc(var(--spacing-8) + 14rem);
 }
 </style>

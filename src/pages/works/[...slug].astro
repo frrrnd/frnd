@@ -63,12 +63,12 @@ const customStyles = `
             </aside>
         </Grid>
 
-        <Grid sm="12" md="6">
-            <main class="main">
-                <article class="wrap-sm">
+        <Grid sm="12" md="8">
+            <main class="work-page">
+                <article>
                     <header>
                         <h1>{frontmatter.title}</h1>
-                        <p>{frontmatter.role}・{frontmatter.year}</p>
+                        <p>{frontmatter.role}</p>
                     </header>
                 </article>
                 
@@ -94,6 +94,8 @@ const customStyles = `
 
     article {
         p {
+            margin-bottom: var(--spacing-2);
+
             a {
                 color: hsla(var(--tertiary-color), 1);
                 text-decoration-color: hsla(var(--tertiary-color), 1);
@@ -131,6 +133,29 @@ const customStyles = `
     .note-content {
         margin-top: var(--spacing-4);
 
+        img {
+            margin: var(--spacing-2) 0;
+        }
+
+        figure img {
+            margin: 0;
+        }
+
+        figure {
+            margin: var(--spacing-2) 0;
+        }
+
+        figcaption {
+            width: 100%;
+            text-align: center;
+            margin: var(--spacing-1) 0;
+            font-style: italic;
+        }
+
+        video {
+            border-radius: var(--radius-md);
+        }
+
         h2 {
             font-size: var(--font-size-h5);
             margin-top: var(--spacing-2);
@@ -162,4 +187,7 @@ const customStyles = `
         }
     }
 
+    .work-page {
+        padding-top: calc(var(--spacing-8) + 14rem);
+    }
 </style>

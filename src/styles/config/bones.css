@@ -96,3 +96,35 @@ body {
 .center {
     margin: 0 auto;
 }
+
+.btn__primary {
+    background: hsla(0, 0%, 100%, 1);
+    padding: var(--spacing-1);
+    display: flex;
+    flex-direction: row;
+    border-radius: var(--radius-lg);
+    width: max-content;
+    font-weight: 500;
+    color: hsla(var(--body-text-color), 1);
+    align-items: center;
+    
+    &:hover {
+        box-shadow: inset 0 0 15px hsla(0, 0%, 100%, 1);
+    }
+
+    svg {
+        margin-right: calc(var(--spacing-1) / 2);
+    }
+}
+
+[data-anima] {
+  opacity: 0;
+  transform: scale(0.98) translateY(20px);
+  transition: opacity 0.6s ease-out,
+              transform 0.6s ease-out;
+}
+
+[data-anima].animate {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+}

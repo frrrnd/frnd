@@ -28,3 +28,26 @@
         }
     }
 }
+
+/* Works */
+.work-data {
+    padding-left: 0;
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin: var(--spacing-2) 0 0 0;
+
+    span {
+        font-weight: 600;
+        font-size: var(--font-size-small);
+        text-transform: uppercase;
+        color: hsla(var(--body-text-color), 0.4);
+        display: block;
+        margin-bottom: calc(var(--spacing-1) / 2);
+    }
+
+    li {
+        margin-bottom: var(--spacing-1);
+    }
+}

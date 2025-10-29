@@ -1,0 +1,325 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '@layouts/Layout.astro'
+import { SiteConfig } from "@utils/SiteConfig";
+import Header from '@partials/Header.astro';
+import Footer from '@partials/Footer.astro';
+import Grid from '@components/utils/Grid.astro';
+import PageHeading from '@partials/PageHeading.astro';
+import NavigationInternal from '@partials/NavigationInternal.astro';
+
+const labs = await getCollection('labs');
+const publishedLabs = labs.filter(post => !post.data.isDraft);
+publishedLabs.sort((a, b) => Date.parse(b.data.publishDate) - Date.parse(a.data.publishDate));
+
+const renderedLabs = await Promise.all(
+  publishedLabs.map(async (post) => {
+    const { Content } = await post.render();
+    return { ...post, Content };
+  })
+);
+---
+<Layout props={{ title: `Labs — ${SiteConfig.title}`, description: SiteConfig.description, image: SiteConfig.image }}>
+    <Header />
+    <Grid isContainer>
+      <Grid sm="12" md="3">
+        <aside>
+          <NavigationInternal />
+        </aside>
+      </Grid>
+      <Grid sm="12" md="8">
+        <main>
+          <PageHeading title="Craft" description="Experiments, concepts and other design stuff." />
+          <section class="labsItem__list wrap-wider">
+            <div class="mansory two-column">
+              {renderedLabs.map((post) => (
+                  <button 
+                    class="craft-item" 
+                    data-post-id={post.slug}
+                    type="button"
+                  >
+                      <figure>
+                          <img src={post.data.cover.src} alt={post.data.title} loading="lazy"/>
+                      </figure>
+                  </button>
+              ))}
+            </div>
+          </section>
+
+          {/* Modal Container */}
+          <div id="craft-modal" class="craft-modal" aria-hidden="true">
+            <div class="craft-modal__backdrop"></div>
+            <div class="craft-modal__content">
+              <button class="craft-modal__close" aria-label="Fechar modal" type="button">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <line x1="18" y1="6" x2="6" y2="18"></line>
+                  <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+              </button>
+              <div class="craft-modal__inner" id="modal-content"></div>
+            </div>
+          </div>
+
+          {/* Pre-render content (hidden) */}
+          <div style="display: none;">
+            {renderedLabs.map((post) => (
+              <div id={`content-${post.slug}`} class="post-content">
+                <article>
+                  <header>
+                    <img src={post.data.cover.src} alt={post.data.title} />
+                    <h1>{post.data.title}</h1>
+                    {post.data.type && <p class="post-type">{post.data.type}</p>}
+                  </header>
+                  <div class="post-body">
+                    <post.Content />
+                  </div>
+                </article>
+              </div>
+            ))}
+          </div>
+      </main>
+      <Footer />
+      </Grid>
+    </Grid>
+</Layout>
+
+<style>
+  .craft-item {
+    display: block;
+    width: 100%;
+    padding: 0;
+    border: none;
+    background: none;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+    text-decoration: none;
+    /* border: 4px solid rgba(255, 255, 255, .5);
+    box-shadow: 0 -1px white;
+    border-radius: calc(var(--radius-md) + 4px); */
+    border: 1px solid rgba(0,0,0,.02);
+    margin-bottom: var(--spacing-1);
+  }
+
+  .craft-item figure {
+    margin: 0;
+  }
+
+  .craft-item:hover {
+    opacity: 0.85;
+  }
+
+  .craft-item:focus {
+    outline: 2px solid currentColor;
+    outline-offset: 4px;
+  }
+
+  .craft-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+  }
+
+  .craft-modal[aria-hidden="false"] {
+    display: flex;
+  }
+
+  .craft-modal__backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(4px);
+    animation: fadeIn 0.2s ease;
+  }
+
+  .craft-modal__content {
+    position: relative;
+    background: white;
+    border-radius: 8px;
+    max-width: 900px;
+    width: 100%;
+    max-height: 90vh;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  }
+
+  .craft-modal__content.animate-in {
+    animation: fadeInUp 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .craft-modal__content.animate-out {
+    animation: fadeOutDown 0.3s cubic-bezier(0.7, 0, 0.84, 0);
+  }
+
+  .craft-modal__close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    z-index: 10;
+    background: rgba(0, 0, 0, 0.5);
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    transition: background 0.2s ease;
+  }
+
+  .craft-modal__close:hover {
+    background: rgba(0, 0, 0, 0.7);
+  }
+
+  .craft-modal__inner {
+    overflow-y: auto;
+    max-height: 90vh;
+    padding: 2rem;
+  }
+
+  .post-content article header img {
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+    margin-bottom: 1.5rem;
+  }
+
+  .post-content article header h1 {
+    margin: 0 0 0.5rem;
+    font-size: 2rem;
+  }
+
+  .post-type {
+    color: #666;
+    font-size: 0.9rem;
+    margin: 0 0 1.5rem;
+  }
+
+  .post-body {
+    line-height: 1.6;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(40px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fadeOutDown {
+    from {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    to {
+      opacity: 0;
+      transform: translateY(40px);
+    }
+  }
+
+  html.modal-open,
+  body.modal-open {
+    overflow: hidden !important;
+  }
+
+  @media (max-width: 768px) {
+    .craft-modal__content {
+      max-width: 100%;
+      max-height: 100vh;
+      border-radius: 0;
+    }
+
+    .craft-modal__inner {
+      padding: 1.5rem;
+    }
+  }
+</style>
+
+<script>
+  function initModal() {
+    const modal = document.getElementById('craft-modal');
+    const modalContent = document.getElementById('modal-content');
+    const modalWrapper = modal?.querySelector('.craft-modal__content');
+    const closeBtn = modal?.querySelector('.craft-modal__close');
+    const backdrop = modal?.querySelector('.craft-modal__backdrop');
+    const body = document.body;
+    const html = document.documentElement;
+
+    function openModal(postId) {
+      const content = document.getElementById(`content-${postId}`);
+      if (!content || !modal || !modalContent || !modalWrapper) {
+        return;
+      }
+
+      modalContent.innerHTML = content.innerHTML;
+      modal.setAttribute('aria-hidden', 'false');
+      body.classList.add('modal-open');
+      html.classList.add('modal-open');
+
+      // Animação de entrada
+      modalWrapper.classList.remove('animate-out');
+      modalWrapper.classList.add('animate-in');
+    }
+
+    function closeModal() {
+      if (!modal || !modalWrapper) return;
+      
+      // Animação de saída
+      modalWrapper.classList.remove('animate-in');
+      modalWrapper.classList.add('animate-out');
+      
+      // Aguarda animação terminar antes de esconder
+      setTimeout(() => {
+        modal.setAttribute('aria-hidden', 'true');
+        body.classList.remove('modal-open');
+        html.classList.remove('modal-open');
+        modalWrapper.classList.remove('animate-out');
+      }, 300);
+    }
+
+    // Click nos items - SEM mexer em hash ou URL
+    document.querySelectorAll('.craft-item').forEach(item => {
+      item.addEventListener('click', () => {
+        const postId = item.getAttribute('data-post-id');
+        if (postId) {
+          openModal(postId);
+        }
+      });
+    });
+
+    // Close buttons
+    closeBtn?.addEventListener('click', closeModal);
+    backdrop?.addEventListener('click', closeModal);
+
+    // ESC key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modal?.getAttribute('aria-hidden') === 'false') {
+        closeModal();
+      }
+    });
+  }
+
+  // Init na primeira carga
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initModal);
+  } else {
+    initModal();
+  }
+
+  // Re-init após View Transitions do Astro
+  document.addEventListener('astro:page-load', initModal);
+</script>

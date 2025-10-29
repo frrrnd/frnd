@@ -14,10 +14,7 @@ const isActive = (path) => {
 ---
 <nav class="navigation">
     <ul>
-        <li><a href="/#intro" class="nav-link">Home</a></li>
-        <li><a href="/#works" class={isActive("works") ? "active" : "nav-link"}>Works</a></li>
-        <li><a href="/#craft" class="nav-link">Craft</a></li>
-        <li><a href="/#about" class="nav-link">About</a></li>
+        <li><a href="/" class="nav-link">Home</a></li>
         <li><a class={isActive("notes") ? "active" : ""} href="/notes">Notes</a></li>
         <li><a class={isActive("readings") ? "active" : ""} href="/readings">Readings</a></li>
     </ul>
@@ -41,9 +38,7 @@ const isActive = (path) => {
                     font-weight: 500;
                     transition: .3s;
                 }
-                &:not(:nth-last-child(-n+2)):hover {
-                    transform: translateX(var(--spacing-1));
-                }
+
                 a {
                     padding: calc(var(--spacing-1) / 2) var(--spacing-1);
                     display: block;

@@ -8,39 +8,67 @@ publishDate: "2024-09-17 11:29"
 cover: "/public/uploads/images/portfolio/cloudbox/cloudbox-cover.webp"
 icon: "/public/uploads/images/portfolio/cloudbox/cloudbox-icon.png"
 order: 13
-role: "UX/UI Design"
+role: "UX/UI Design, Design System"
 year: "2024 — 2025"
 ---
 import Grid from '../../components/utils/Grid.astro';
 
-<div class="wrap-sm">
+<Grid isContainer>
+    <Grid sm="12" md="6">
+        CloudBox is a custom internal digital asset manager designed to help teams **organize**, **search**, and **manage** files more efficiently.
 
-CloudBox is an internal digital asset manager designed to help teams organize, search, and manage files more efficiently. Built specifically for company-wide use, it streamlines collaboration and ensures assets are always easy to find and use.
-
-
-## Role 
-
-I’m responsible for the UX/UI and the design system of the platform. I worked closely with stakeholders to define user flows, create wireframes and prototypes, and develop a scalable design system to ensure consistency across the entire product.
-
-
-</div>
-
-<div class="wrap-wider">
-    <Grid isContainer>
-        <Grid sm="12" md="12">
-            <img src="/uploads/images/portfolio/cloudbox/cloudbox-01.webp" alt="Cloudbox" loading="lazy" />
-        </Grid>
-
-        <Grid sm="12" md="12">
-            <img src="/uploads/images/portfolio/cloudbox/cloudbox-02.webp" alt="Cloudbox" loading="lazy" />
-        </Grid>
-
-        <Grid sm="12" md="12">
-            <img src="/uploads/images/portfolio/cloudbox/cloudbox-03.webp" alt="Cloudbox" loading="lazy" />
-        </Grid>
-
-        <Grid sm="12" md="12">
-            <img src="/uploads/images/portfolio/cloudbox/cloudbox-04.webp" alt="Cloudbox" loading="lazy" />
-        </Grid>
+        Built specifically for company-wide use, it streamlines collaboration and ensures assets are always easy to find and use.
     </Grid>
-</div>
+</Grid>
+
+
+<Grid isContainer>
+
+    <Grid sm="12" md="12">
+        <img src="/uploads/images/portfolio/cloudbox/cloudbox-1.webp" alt="Cloudbox" loading="lazy" />
+    </Grid>
+
+    <Grid sm="12" md="6">
+        I’m responsible for the UX/UI and the design system of the platform. I worked closely with stakeholders and devs to define user flows, create wireframes and prototypes, and develop a scalable design system to ensure consistency across the entire product.
+    </Grid>
+
+    <Grid sm="12" md="12">
+        <img src="/uploads/images/portfolio/cloudbox/cloudbox-2.webp" alt="Cloudbox" loading="lazy" />
+    </Grid>
+
+    <Grid sm="12" md="12">
+        <video autoplay muted loop src="/uploads/videos/portfolio/cloudbox/folder-animation.mp4" alt="Cloudbox" loading="lazy" />
+    </Grid>
+
+    <Grid sm="12" md="12">
+        <img src="/uploads/images/portfolio/cloudbox/cloudbox-3.webp" alt="Cloudbox" loading="lazy" />
+    </Grid>
+
+    <Grid sm="12" md="12">
+        <img src="/uploads/images/portfolio/cloudbox/cloudbox-4.webp" alt="Cloudbox" loading="lazy" />
+    </Grid>
+
+    <Grid sm="12" md="12">
+        <figure>
+            <img src="/uploads/images/portfolio/cloudbox/cloudbox-5.webp" alt="Cloudbox" loading="lazy" />
+            <figcaption>Buttons on Design System.</figcaption>
+        </figure>
+    </Grid>
+
+    <Grid sm="12" md="12">
+        <figure>
+            <img src="/uploads/images/portfolio/cloudbox/cloudbox-6.webp" alt="Cloudbox" loading="lazy" />
+            <figcaption>How the variables works between design and dev.</figcaption>
+        </figure>
+    </Grid>
+</Grid>
+
+<Grid isContainer>
+    <Grid sm="12" md="4">
+        <ul class="work-data">
+            <li><span>Role</span> {frontmatter.role}</li>
+            <li><span>Tools</span> Figma</li>
+            <li><span>Year</span> {frontmatter.year}</li>
+        </ul>
+    </Grid>
+</Grid>
