@@ -1,9 +1,72 @@
 [
   {
+      "title": "Após o Anoitecer",
+      "author": "Haruki Murakami",
+      "coverUrl": "/uploads/images/books/apos-o-anoitecer.webp",
+      "status": "finished",
+      "yearRead": 2026
+    },
+  {
+      "title": "A Lagarta",
+      "author": "Suehiro Maruo",
+      "coverUrl": "/uploads/images/books/a-lagarta.webp",
+      "status": "finished",
+      "yearRead": 2026
+    },
+  {
+      "title": "Sr Nave Espacial",
+      "author": "Philip K. Dick",
+      "coverUrl": "/uploads/images/books/sr-nave-espacial.webp",
+      "status": "finished",
+      "yearRead": 2026
+    },
+  {
+      "title": "Recursion",
+      "author": "Blake Crouch",
+      "coverUrl": "/uploads/images/books/recursion.webp",
+      "status": "finished",
+      "yearRead": 2026
+    },
+  {
+      "title": "O Assassinato do Comendador - Vol 2",
+      "author": "Haruki Murakami",
+      "coverUrl": "/uploads/images/books/comendador-2.webp",
+      "status": "finished",
+      "yearRead": 2026
+    },
+  {
+      "title": "O Assassinato do Comendador - Vol 1",
+      "author": "Haruki Murakami",
+      "coverUrl": "/uploads/images/books/comendador-1.webp",
+      "status": "finished",
+      "yearRead": 2026
+    },
+  {
+      "title": "A Morte de Ivan Ilitch",
+      "author": "Liev Tolstoy",
+      "coverUrl": "/uploads/images/books/ivan-ilitch.webp",
+      "status": "finished",
+      "yearRead": 2026
+    },
+  {
+      "title": "O Homem Bicentenário",
+      "author": "Isaac Asimov",
+      "coverUrl": "/uploads/images/books/h-bicentenario.webp",
+      "status": "finished",
+      "yearRead": 2026
+    },
+  {
+      "title": "No Coincidence - Cyberpunk 2077",
+      "author": "Rafal Kosik",
+      "coverUrl": "/uploads/images/books/no-coincidence.webp",
+      "status": "finished",
+      "yearRead": 2026
+    },
+  {
       "title": "Solaris",
       "author": "Stanislaw Lem",
       "coverUrl": "/uploads/images/books/solaris.webp",
-      "status": "reading",
+      "status": "finished",
       "yearRead": 2025
     },
   {

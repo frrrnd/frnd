@@ -2,44 +2,32 @@
 import Layout from '@layouts/Layout.astro';
 import { SiteConfig } from '@utils/SiteConfig';
 import Header from '@partials/Header.astro';
+import PageHeading from '@partials/PageHeading.astro';
 import Footer from '@partials/Footer.astro';
-import Grid from '@components/utils/Grid.astro';
 import photos from '@api/photos.json';
 ---
-<Layout props={{ title: `About — ${SiteConfig.title}`, description: SiteConfig.description, image: SiteConfig.image }}>
+<Layout props={{ title: `about — ${SiteConfig.title}`, description: SiteConfig.description, image: SiteConfig.image }}>
 
     <Header />
 
-    <main class="main">
+    <main>
+        <PageHeading title="/about" description="about me." />
         <section class="wrap">
             <section class="block__content">
-                <article class="content-article">
-                    <h4>I'm a interface designer based in <span>Florianópolis — Brazil</span> working with interfaces, icons and Webflow development.</h4>
+                    <article class="content-article">
+                        <h4>i'm a designer who crafts modern, thoughtful and real world experiences.</h4>
+                        <h4>i'm working with web design, icon design and development with webflow, framer & astro.</h4>
 
-                    <h4>I love thinking through design, sipping coffee, listening to fuzzy music, and longboarding.</h4>
+                        <h4>i love thinking through design, sipping coffee, listening to fuzzy music, and longboarding.</h4>
 
-                    <figure>
-                        <img src="/avatar-frnd.webp" alt="Yo!" class="about-photo">
-                    </figure>
+                        <!-- <figure>
+                            <img src="/avatar-frnd.webp" alt="Yo!" class="about-photo">
+                        </figure> -->
 
-                    <h4> CSS lover, icon designer enthusiast and  ½ of     
-                        <a href="https://viewport-ui.design" target="_blank">Viewport UI.</a>
-                        I'm driven by curiosity.
-                    </h4>
-
-                    <h4>With 13 years of experience, I started my journey in design as a self-taught professional. I learned HTML at the age of 12 and have been in love with interfaces ever since.</h4>
-                
-                    <h4>Throughout my career, I've collaborated with brands such as Massey-Ferguson, Valtra, Coca-Cola, Accenture, Petrobras and more.</h4>
-
-                    <a class="download-btn" download href="/uploads/cv-fernando-soares.pdf">
-                        <i>
-                            <svg width="18" height="18" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M6.5 26.5H24.5M7.5 13.5L15.5 20.5M15.5 20.5L23.5 13.5M15.5 20.5V3.5" stroke="black" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-                            </svg>
-                        </i>
-                        Download my CV
-                    </a>
-                </article>
+                        <h4>with 13 years of experience, i started my journey in design as a self-taught professional. i learned html at the age of 12 and have been in love with interfaces ever since.</h4>
+                    
+                        <h4>throughout my career, i've collaborated with brands such as massey-ferguson, valtra, coca-cola, accenture, petrobras and more.</h4>
+                    </article>
             </section>
         </section>
 
@@ -63,13 +51,13 @@ import photos from '@api/photos.json';
     }
 
     .content-article {
-        h4:nth-child(1), h4:nth-child(2) {
+        /* h4:nth-child(1), h4:nth-child(2) {
             font-family: var(--title-font);
             font-size: 3rem;
-        }
+        } */
 
         h4 {
-            font-weight: 300;
+            font-weight: 400;
         }
     }
 

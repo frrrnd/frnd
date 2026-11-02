@@ -68,6 +68,16 @@
                 font-family: var(--mono-font);
             }
         }
+
+        ul {
+            padding-left: var(--spacing-1);
+            margin-bottom: var(--spacing-4);
+        }
+
+        li {
+            margin-bottom: var(--spacing-1);
+            text-transform: lowercase;
+        }
     }
 }
 

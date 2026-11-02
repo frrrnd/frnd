@@ -1,0 +1,138 @@
+---
+import Layout from '@layouts/Layout.astro';
+import { SiteConfig } from '@utils/SiteConfig';
+import Header from '@partials/Header.astro';
+import PageHeading from '@partials/PageHeading.astro';
+import Footer from '@partials/Footer.astro';
+import Grid from '@components/utils/Grid.astro';
+import photos from '@api/photos.json';
+---
+<Layout props={{ title: `uses — ${SiteConfig.title}`, description: SiteConfig.description, image: SiteConfig.image }}>
+
+    <Header />
+
+    <main>
+        <PageHeading title="/uses" description="what I'm currently using." />
+
+        <section class="wrap">
+            <section class="block__content">
+                <article class="content-article">
+                    <h5>gear</h5>
+                <ul>
+                    <li>Macbook Pro M4 Pro 16 Inch, 24 GB Galaxy Black</li>
+                    <li>Monitor Dell Ultrasharp 32" U3225QE 4K 120hz</li>
+                    <li>Mouse Logitech Pro X Superlight 2 Magenta</li>
+                    <li>Apple Magic Trackpad</li>
+                    <li>Keyboard Corne Splited 4 x 6 with Silent Switches</li>
+                    <li>Mic NZXT Capsule</li>
+                    <li>Earbuds KZ Carol Pro Bluetooth</li>
+                    <li>HyperX Cloud Earbuds 2</li>
+                    <li>Corsair Virtuoso Wireless</li>
+                    <li>Edifier R1080BT White</li>
+                    <li>Webcam Logitech C922 Stream</li>
+                    <li>iPad Air + Apple Pencil 2</li>
+                    <li>Mousepad Padsmith Crucible Purple</li>
+                    <li>Kindle Paperwhite 10th Gen</li>
+                    <li>Desk Zensetup Halec C</li>
+                    <li>Chair Elements Aiven</li>
+                    <li>Moleskine Pocket Lime Green</li>
+                    <li>Staedtler Pigment Liner 0.05</li>
+                </ul>
+
+                <h5>gaming/render pc</h5>
+                <ul>
+                    <li>AMD Ryzen 9 9950X3D 16-Core, 32-Threads, 4.3GHz (5.7GHz Turbo), Cache 144MB, AM5</li>
+                    <li>MOBO Asus TUF Gaming X870-Plus Wifi, DDR5, Socket AMD AM5, Chipset AMD X870</li>
+                    <li>GPU Asus TUF RTX 5080 16GB OC</li>
+                    <li>Case NZXT H9 Flow Black</li>
+                    <li>RAM Corsair Vengeance, 32GB (2x16GB), DDR5, 6000MHz</li>
+                    <li>SSD Corsair MP700 Pro, 2TB, M.2 2280, PCIe NVMe</li>
+                    <li>Supply Corsair RM850x Shift, 850W, ATX 3.1, PCIe 5.1, Full-Modular</li>
+                    <li>Water Cooler Corsair Icue Link Titan 360 RX LCD, RGB, 360mm</li>
+                </ul>
+
+                <h5>home server</h5>
+                <ul>
+                    <li>Ubuntu Server</li>
+                    <li>Intel i5 9600K Hexa-Core 3.7GHz</li>
+                    <li>MOBO ASRock Z390 Pro4 DDR4</li>
+                    <li>RAM Corsair Vengeance LPX 8GB (2x8) DDR4 2400MHz</li>
+                    <li>GPU Gigabyte GTX 1660 Ti 6GB GDDR6</li>
+                    <li>SSD Adata XPG SX6000 Pro 512GB</li>
+                    <li>HDD Western Digital 2TB</li>
+                    <li>Case NZXT S340 White Edition</li>
+                    <li>Supply Cooler Master MWE 600W Bronze 80 Plus</li>
+                </ul>
+
+                <h5>software</h5>
+                <ul>
+                    <li>Obsidian + Apex Theme</li>
+                    <li>Zen Browser + Zen Internet Addon (Personal)</li>
+                    <li>Telegram (Personal)</li>
+                    <li>Chrome (Work)</li>
+                    <li>Slack (Work)</li>
+                    <li>Figma</li>
+                    <li>Claude</li>
+                    <li>Spotify</li>
+                    <li>Raycast</li>
+                    <li>VS Code</li>
+                    <li>Warp</li>
+                    <li>Loop</li>
+                    <li>Jollycat</li>
+                    <li>Signal Shifter</li>
+                    <li>Blender</li>
+                    <li>Procreate</li>
+                    <li>Apple Passwords</li>
+                </ul>
+                </article>
+            </section>
+        </section>
+    </main>
+
+    <Footer/>
+</Layout>
+
+<style>
+    .mansory {
+        padding-top: 10vh;
+    }
+
+    .content-article {
+        h4:nth-child(1), h4:nth-child(2) {
+            font-family: var(--title-font);
+            font-size: 3rem;
+        }
+
+        h4 {
+            font-weight: 300;
+        }
+    }
+
+    .about-photo {
+        margin: var(--spacing-4) 0;
+    }
+
+    .download-btn {
+        padding: var(--spacing-1);
+        background-color: hsla(var(--body-text-color), 1);
+        border-radius: var(--radius-md);
+        color: hsla(var(--body-background-color), 1);
+        cursor: pointer;
+        margin: var(--spacing-2) 0;
+        display: inline-flex;
+        align-items: center;
+        font-weight: 600;
+        
+        i {
+            display: inline-block;
+            margin-right: calc(var(--spacing-1) / 2);
+            height: 18px;
+
+            svg {
+                path {
+                    stroke: hsla(var(--body-background-color), 1);
+                }
+            }
+        }
+    }
+</style>

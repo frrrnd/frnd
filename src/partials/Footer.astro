@@ -1,51 +1,26 @@
 ---
-import Grid from '../components/utils/Grid.astro';
-import Top from '@components/utils/toTop.astro';
+
 ---
 
-<Top />
-
 <footer class="footer">
-  <div class="blur-container"><!--$--><div style="position:absolute;inset:0;overflow:hidden"><div style="opacity: 1; position: absolute; inset: 0px; z-index: 1; mask-image: linear-gradient(rgba(0, 0, 0, 0) 0%, rgb(0, 0, 0) 12.5%, rgb(0, 0, 0) 25%, rgba(0, 0, 0, 0) 37.5%); border-radius: 0px; pointer-events: none; backdrop-filter: blur(0.078125px); will-change: auto;"></div><div style="opacity: 1; position: absolute; inset: 0px; z-index: 2; mask-image: linear-gradient(rgba(0, 0, 0, 0) 12.5%, rgb(0, 0, 0) 25%, rgb(0, 0, 0) 37.5%, rgba(0, 0, 0, 0) 50%); border-radius: 0px; pointer-events: none; backdrop-filter: blur(0.15625px); will-change: auto;"></div><div style="opacity: 1; position: absolute; inset: 0px; z-index: 3; mask-image: linear-gradient(rgba(0, 0, 0, 0) 25%, rgb(0, 0, 0) 37.5%, rgb(0, 0, 0) 50%, rgba(0, 0, 0, 0) 62.5%); border-radius: 0px; pointer-events: none; backdrop-filter: blur(0.3125px); will-change: auto;"></div><div style="opacity: 1; position: absolute; inset: 0px; z-index: 4; mask-image: linear-gradient(rgba(0, 0, 0, 0) 37.5%, rgb(0, 0, 0) 50%, rgb(0, 0, 0) 62.5%, rgba(0, 0, 0, 0) 75%); border-radius: 0px; pointer-events: none; backdrop-filter: blur(0.625px); will-change: auto;"></div><div style="opacity: 1; position: absolute; inset: 0px; z-index: 5; mask-image: linear-gradient(rgba(0, 0, 0, 0) 50%, rgb(0, 0, 0) 62.5%, rgb(0, 0, 0) 75%, rgba(0, 0, 0, 0) 87.5%); border-radius: 0px; pointer-events: none; backdrop-filter: blur(1.25px); will-change: auto;"></div><div style="opacity: 1; position: absolute; inset: 0px; z-index: 6; mask-image: linear-gradient(rgba(0, 0, 0, 0) 62.5%, rgb(0, 0, 0) 75%, rgb(0, 0, 0) 87.5%, rgba(0, 0, 0, 0) 100%); border-radius: 0px; pointer-events: none; backdrop-filter: blur(2.5px); will-change: auto;"></div><div style="opacity: 1; position: absolute; inset: 0px; z-index: 7; mask-image: linear-gradient(rgba(0, 0, 0, 0) 75%, rgb(0, 0, 0) 87.5%, rgb(0, 0, 0) 100%); border-radius: 0px; pointer-events: none; backdrop-filter: blur(5px); will-change: auto;"></div><div style="opacity: 1; position: absolute; inset: 0px; z-index: 8; mask-image: linear-gradient(rgba(0, 0, 0, 0) 87.5%, rgb(0, 0, 0) 100%); border-radius: 0px; pointer-events: none; backdrop-filter: blur(10px); will-change: auto;"></div></div><!--/$--></div>
     <section class="footer__inner">
-      <Grid isContainer>
-        <Grid sm="12" md="12">
-          <h2>Get in touch <br> <a href="mailto:hi@frnd.design">hi@frnd.design</a></h2>
-        </Grid>
-      </Grid>
-        
-      <Grid isContainer>
-        <Grid sm="12" md="6">
-          <ul>
-              <li><a href="https://x.com/frrrnd" target="_blank">x.com</a></li>
-              <li><a href="https://layers.to/fer" target="_blank">Layers</a></li>
-              <li><a href="https://linkedin.com/in/frrrnd" target="_blank">Linkedin</a></li>
-              <li><a href="mailto:hi@frnd.design" target="_blank">Email</a></li>
-          </ul>
-        </Grid>
-        
-        <Grid sm="12" md="6">
-          <p>© 2025</p>
-        </Grid>
-      </Grid>
-      
+      <div class="wrap">    
+        <ul>
+            <li><a href="/">home</a></li>
+            <li><a href="/about">about</a></li>
+            <li><a href="/readings">readings</a></li>
+            <li><a href="/uses">uses</a></li>
+            <li><a href="mailto:hi@frnd.design">email</a></li>
+        </ul>
+      </div>
     </section>
         
 </footer>
 <style>
-  .blur-container {
-    z-index: 8;
-    flex: none;
-    height: 200px;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-  }
     .footer {
       width: 100%;  
       padding: var(--spacing-1) 0 calc(var(--spacing-8) + 2rem) 0;
-      color: hsla(var(--body-text-color), .5);
+      color: hsla(var(--body-text-color), .7);
 
       h2 {
         font-size: var(--font-size-h1);
@@ -72,12 +47,21 @@ import Top from '@components/utils/toTop.astro';
         }
 
         a {
-            color: hsla(var(--body-text-color), 0.6);
+            color: hsla(var(--body-text-color), .7);
         }
         
         p {
           width: 100%;
           text-align: right;
+        }
+    }
+
+    @media screen and (max-width: 460px) {
+        .footer__inner {
+            ul {
+                flex-direction: column;
+                gap: var(--spacing-1);
+            }
         }
     }
 </style>

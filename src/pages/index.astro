@@ -12,285 +12,30 @@ import Footer from '@partials/Footer.astro';
 <Layout props={{ title: SiteConfig.title, description: SiteConfig.description, image: SiteConfig.image }}>
 
   <Header />
-  <Grid isContainer>
-    <Grid sm="12" md="3">
-      <aside>
-        <Navigation />
-      </aside>
-    </Grid>
-  
-    <Grid sm="12" md="6">
       <main>
-        <section class="home-section intro" id="intro">
-          <div class="home-section__heading">
-            <h1>Hi, I'm <span>Fernando</span>.</h1>
+        <div class="wrap">
+          <section class="home-section intro" id="intro">
+            <div class="home-section__heading">
+              <h1>hi, i'm <span>fernando</span>.</h1>
 
-            <h2>I'm an Interface Designer who crafts <span>modern</span>, <span>thoughtful</span>, and <span>real world</span> experiences.</h2>
-
-            <h3>Interface Designer & Webflow Developer • <a href="https://viewport-ui.design" title="Viewport UI" target="_blank">½ Viewport UI</a> <br> Based in Florianópolis, Brazil
-              
-            </h3>
-          </div>
-        </section>
-
-        <section class="home-section works-section" id="works">
-          <Grid isContainer>
-            <Grid sm="12" md="12" lg="6">
-              <article data-anima>
-                <a href="/works/ben-soleimani">
-                  <figure>
-                    <img src="/uploads/images/portfolio/ben/bensoleimani-cover.webp">
-                  </figure>
-
-                   <div class="overlay">
-                      <h4>Ben Soleimani</h4>
-                      <h5>Ecommerce</h5>
-                    </div>
-                </a>
-              </article>
-            </Grid>
-
-            <Grid sm="12" md="12" lg="6">
-              <article data-anima>
-                <a href="/works/livepix">
-                  <figure>
-                    <img src="/uploads/images/portfolio/livepix/livepix-cover.webp">
-                    
-                    <div class="overlay">
-                      <h4>Livepix</h4>
-                      <h5>Landing Page</h5>
-                    </div>
-                  </figure>
-                </a>
-              </article>
-            </Grid>
-          </Grid>
-
-          <Grid isContainer>
-            <Grid sm="12" md="12" lg="4">
-               <article data-anima>
-                <a href="/works/espresso-desk">
-                  <figure>
-                    <img src="/uploads/images/portfolio/espressodesk/ed-cover.webp">
-
-                    <div class="overlay">
-                      <h4>Espresso Desk</h4>
-                      <h5>Web App</h5>
-                    </div>
-                  </figure>
-                </a>
-              </article>
-            </Grid>
-
-            <Grid sm="12" md="12" lg="8">
-              <article data-anima>
-                <a href="/works/cloudbox">
-                <figure>
-                  <img src="/uploads/images/portfolio/cloudbox/cloudbox-cover.webp">
-
-                  <div class="overlay">
-                      <h4>Cloudbox</h4>
-                      <h5>Asset Manager</h5>
-                    </div>
-                </figure>
-                </a>
-              </article>
-            </Grid>
-          </Grid>
-
-          <Grid isContainer>
-            <Grid sm="12" md="12" lg="8">
-              <article data-anima>
-                <a href="/works/bitpouch">
-                <figure>
-                  <img src="/uploads/images/portfolio/bitpouch/bitpouch-cover.webp">
-
-                  <div class="overlay">
-                      <h4>Bitpouch</h4>
-                      <h5>iOS App</h5>
-                    </div>
-                </figure>
-                </a>
-              </article>
-            </Grid>
-
-            <Grid sm="12" md="12" lg="4">
-              <article data-anima>
-                <a href="/works/trackr">
-                <figure>
-                  <img src="/uploads/images/portfolio/trackr/trackr-cover.webp">
-
-                  <div class="overlay">
-                      <h4>Trackr</h4>
-                      <h5>Watch App</h5>
-                    </div>
-                </figure>
-                </a>
-              </article>
-            </Grid>
-          </Grid>
-
-          <Grid isContainer>
-            <Grid sm="12" md="12" lg="6">
-              <article data-anima>
-                <a href="/works/arc-icons">
-                <figure>
-                  <img src="/uploads/images/portfolio/arc/arc-cover.webp">
-
-                  <div class="overlay">
-                      <h4>Arc Icons</h4>
-                      <h5>App Icon</h5>
-                    </div>
-                </figure>
-                </a>
-              </article>
-            </Grid>
-
-            <Grid sm="12" md="12" lg="6">
-              <article data-anima>
-                <a href="/works/spotify-visionos">
-                <figure>
-                  <img src="/uploads/images/portfolio/spotify/spotify-cover.webp">
-
-                  <div class="overlay">
-                      <h4>Spotify</h4>
-                      <h5>VisionOS</h5>
-                    </div>
-                </figure>
-                </a>
-              </article>
-            </Grid>
-          </Grid>
-        </section>
-
-        <section class="home-section craft-section" id="craft">
-          <div class="home-section__heading">
-            <h2>Exploring the craft of <span>shaping</span>, <span>testing</span>, and <span>refining</span> interfaces.</h2>
-          </div>
-
-          <Grid isContainer>
-            <Grid sm="12" md="12" lg="4">
-              <article data-anima>
-                <figure>
-                  <img src="/uploads/images/portfolio/labs/glass.webp">
-                </figure>
-              </article>
-            </Grid>
-
-            <Grid sm="12" md="12" lg="4">
-              <article data-anima>
-                <figure>
-                  <img src="/uploads/images/portfolio/labs/dynamic-island.webp">
-                </figure>
-              </article>
-            </Grid>
-
-            <Grid sm="12" md="12" lg="4">
-              <article data-anima>
-                <figure>
-                  <img src="/uploads/images/portfolio/labs/album-hover.gif">
-                </figure>
-              </article>
-            </Grid>
-          </Grid>
-
-          <Grid isContainer>
-            <Grid sm="12" md="12" lg="4">
-              <article data-anima>
-                <figure>
-                  <img src="/uploads/images/portfolio/labs/radio-icon.webp">
-                </figure>
-              </article>
-            </Grid>
-
-            <Grid sm="12" md="12" lg="4">
-              <article data-anima>
-                <figure>
-                  <img src="/uploads/images/portfolio/labs/quick-payment.gif">
-                </figure>
-              </article>
-            </Grid>
-
-            <Grid sm="12" md="12" lg="4">
-              <article data-anima>
-                  <figure>
-                    <img src="/uploads/images/portfolio/labs/metal-buttons.webp">
-                  </figure>
-              </article>
-            </Grid>
-          </Grid>
-
-          <Grid isContainer>
-            <Grid sm="12" md="12" lg="4">
-              <article data-anima>
-                  <figure>
-                    <img src="/uploads/images/portfolio/labs/glossy-btn.gif">
-                  </figure>
-              </article>
-            </Grid>
-
-            <Grid sm="12" md="12" lg="4">
-              <article data-anima>
-                <figure>
-                  <img src="/uploads/images/portfolio/labs/terminal-icon.webp">
-                </figure>
-              </article>
-            </Grid>
-
-            <Grid sm="12" md="12" lg="4">
-              <article data-anima>
-                  <figure>
-                    <img src="/uploads/images/portfolio/labs/feed-cover.webp">
-                  </figure>
-              </article>
-            </Grid>
-          </Grid>
-
-          <a href="/craft" class="btn__primary">
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M8 0C10.1217 0 12.1566 0.842855 13.6569 2.34315C15.1571 3.84344 16 5.87827 16 8C16 10.1217 15.1571 12.1566 13.6569 13.6569C12.1566 15.1571 10.1217 16 8 16C5.87827 16 3.84344 15.1571 2.34315 13.6569C0.842855 12.1566 0 10.1217 0 8C0 5.87827 0.842855 3.84344 2.34315 2.34315C3.84344 0.842855 5.87827 0 8 0ZM9.062 4.312C9.062 4.04678 8.95664 3.79243 8.76911 3.60489C8.58157 3.41736 8.32722 3.312 8.062 3.312C7.79678 3.312 7.54243 3.41736 7.35489 3.60489C7.16736 3.79243 7.062 4.04678 7.062 4.312V7.062H4.312C4.04678 7.062 3.79243 7.16736 3.60489 7.35489C3.41736 7.54243 3.312 7.79678 3.312 8.062C3.312 8.32722 3.41736 8.58157 3.60489 8.76911C3.79243 8.95664 4.04678 9.062 4.312 9.062H7.062V11.812C7.062 12.0772 7.16736 12.3316 7.35489 12.5191C7.54243 12.7066 7.79678 12.812 8.062 12.812C8.32722 12.812 8.58157 12.7066 8.76911 12.5191C8.95664 12.3316 9.062 12.0772 9.062 11.812V9.062H11.812C12.0772 9.062 12.3316 8.95664 12.5191 8.76911C12.7066 8.58157 12.812 8.32722 12.812 8.062C12.812 7.79678 12.7066 7.54243 12.5191 7.35489C12.3316 7.16736 12.0772 7.062 11.812 7.062H9.062V4.312Z" fill="black"/>
-            </svg>
-
-            See more
-          </a>
-
-        </section>
-
-        <section class="home-section about-section" id="about">
-          <Grid isContainer>
-            <Grid sm="12" md="12" lg="5">
-              <h2>I love thinking through <span>design</span>, sipping <span>coffee</span>, listening to <span>fuzzy music</span>, and <span>longboarding</span>.</h2>
-
-              <p>With 10+ years of experience, I started my journey in design as a self-taught professional. I learned HTML at the age of 12 and have been in love with interfaces ever since.</p>
-
-              <p>Throughout my career, I've collaborated with brands such as Massey-Ferguson, Valtra, Coca-Cola, Accenture, Petrobras and more.</p>
-            </Grid>
-
-            <Grid sm="12" md="1"></Grid>
-
-            <Grid sm="12" md="12" lg="6">
-              <figure data-anima>
-                  <img src="/avatar-frnd.webp" alt="Yo!" class="about-photo">
-              </figure>
-            </Grid>
-          </Grid>
-        </section>
+              <h2>web designer & webflow developer • <a href="https://viewport-ui.design" title="Viewport UI" target="_blank">½ viewport ui</a> <br> based in florianópolis, brazil</h2>
+            </div>
+          </section>
+        </div>
       </main>
 
       <Footer />
-    </Grid>
-  </Grid>
-
 </Layout>
 <style>
 
   .home-section {
-    color: hsla(var(--body-text-color), .5);
+    color: hsla(var(--body-text-color), .7);
     
     h1, h2 {
-      font-size: var(--font-size-h1);
+      font-size: var(--font-size-regular);
       font-weight: 450;
       margin-bottom: var(--spacing-2);
+      line-height: 1.6;
       
       span {
         color: hsla(var(--body-text-color), 1);
@@ -309,11 +54,6 @@ import Footer from '@partials/Footer.astro';
   }
 
   .home-section__heading {
-    h2 {
-      max-width: 380px;
-      width: 100%;
-    }
-
     a {
       transition: .4s;
 

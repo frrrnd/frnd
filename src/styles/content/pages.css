@@ -7,12 +7,7 @@
 .page__heading {
 
     h1, h2 {
-        font-weight: 500;
-        font-family: var(--title-font);
-    }
-
-    h2 {
-        font-size: var(--font-size-h1);
+        color: hsla(var(--body-text-color), 1);
     }
 
     p a {
