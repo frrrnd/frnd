@@ -1,5 +1,12 @@
 [
   {
+      "title": "Norwegian Wood",
+      "author": "Haruki Murakami",
+      "coverUrl": "/uploads/images/books/norwegian-wood.webp",
+      "status": "reading",
+      "yearRead": 2026
+    },
+  {
       "title": "Após o Anoitecer",
       "author": "Haruki Murakami",
       "coverUrl": "/uploads/images/books/apos-o-anoitecer.webp",
