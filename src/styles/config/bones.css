@@ -1,6 +1,6 @@
 ::selection {
-    background-color: hsla(var(--body-text-color));
-    color: hsla(var(--body-background-color));
+    background-color: hsla(var(--accent-color));
+    color: hsla(var(--body-text-color));
 }
 
 ::view-transition-old(root),
@@ -87,6 +87,12 @@ body {
     max-width: var(--wrap-media);
     width: 100%;
     margin: 0 auto;
+}
+
+@media (max-width: 480px) {
+    .wrap, .wrap-sm, .wrap-lg {
+        padding: 0;
+    }
 }
 
 .shuffle {

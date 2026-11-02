@@ -2,7 +2,7 @@ html.light-theme:root {
     /* Tokens */
     --black: 0, 0%, 20%;
     --white: 216, 20%, 95%;
-    --orange: 18, 100%, 53%;
+    --orange: 78, 100%, 53%;
      
     /* Semantic */
      --primary-color: var(--white);

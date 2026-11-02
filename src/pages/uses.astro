@@ -4,15 +4,13 @@ import { SiteConfig } from '@utils/SiteConfig';
 import Header from '@partials/Header.astro';
 import PageHeading from '@partials/PageHeading.astro';
 import Footer from '@partials/Footer.astro';
-import Grid from '@components/utils/Grid.astro';
-import photos from '@api/photos.json';
 ---
 <Layout props={{ title: `uses — ${SiteConfig.title}`, description: SiteConfig.description, image: SiteConfig.image }}>
 
     <Header />
 
     <main>
-        <PageHeading title="/uses" description="what I'm currently using." />
+        <PageHeading title="uses" description="what i'm currently using." />
 
         <section class="wrap">
             <section class="block__content">

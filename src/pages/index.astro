@@ -72,6 +72,12 @@ import Footer from '@partials/Footer.astro';
     padding-top: calc(var(--spacing-8) + 14rem);
   }
 
+  @media (max-width: 480px) {
+    .intro {
+      padding-top: var(--spacing-8);
+    }
+  }
+
   .works-section, .craft-section {
     article {
       height: 100%;
