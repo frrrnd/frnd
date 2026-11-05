@@ -169,6 +169,8 @@ const byYear = Object.keys(groupedData).sort((a,b) => b - a);
             &:before {
                 transform: rotate(45deg) translate(-30px, -30%);
                 background: rgba(255, 255, 255, .1);
+                /* filter: blur(4px);
+                -webkit-filter: blur(4px); */
                 transition: .4s;
             }
         }
@@ -185,7 +187,6 @@ const byYear = Object.keys(groupedData).sort((a,b) => b - a);
         pointer-events: none;
         background: rgba(255, 255, 255, 0);
         transform: rotate(45deg) translate(0, 0%);
-        filter: blur(4px);
         transition: .4s;
     }
 
