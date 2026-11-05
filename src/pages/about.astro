@@ -34,7 +34,7 @@ import photos from '@api/photos.json';
             <section class="mansory">
             {photos.map(photo => (
                 <figure>
-                <img src={photo.src} alt={photo.alt} loading="lazy" />
+                <img src={photo.src} alt={photo.alt} loading="lazy" class="scroll-fade" />
                 </figure>
             ))}
             </section>

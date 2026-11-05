@@ -50,7 +50,7 @@ const byYear = Object.keys(groupedData).sort((a,b) => b - a);
                         <ul class="books__list">
                         {groupedData[year].map(item => (
                             <li class="book" key={item.id}>
-                                <figure>
+                                <figure >
                                     {item.cover && (
                                         <Image
                                             src={item.cover}
@@ -58,6 +58,7 @@ const byYear = Object.keys(groupedData).sort((a,b) => b - a);
                                             widths={[300, 600, 900]}
                                             sizes="(min-width: 1040px) 300px, (min-width: 780px) 33vw, 50vw"
                                             loading="lazy"
+                                            class="scroll-fade"
                                         />
                                     )}
                                 </figure>
@@ -157,7 +158,7 @@ const byYear = Object.keys(groupedData).sort((a,b) => b - a);
         margin-bottom: 0;
         transform-origin: left center;
         transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.3s ease;
-        overflow: hidden;
+        overflow: clip;
         display: block;
         position: relative;
         border-radius: 5px;
