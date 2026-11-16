@@ -1,9 +1,16 @@
 [
   {
+      "title": "O Gato Preto",
+      "author": "Edgar Allan Poe",
+      "coverUrl": "/uploads/images/books/gato-preto.png",
+      "status": "reading",
+      "yearRead": 2026
+    },
+  {
       "title": "Anamorfose",
       "author": "Shintaro Kago",
       "coverUrl": "/uploads/images/books/anamorfose.png",
-      "status": "reading",
+      "status": "finished",
       "yearRead": 2026
     },
   {
