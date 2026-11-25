@@ -1,5 +1,12 @@
 [
   {
+      "title": "O Anti Cristo",
+      "author": "Nietzsche",
+      "coverUrl": "/uploads/images/books/anti-cristo.png",
+      "status": "reading",
+      "yearRead": 2026
+    },
+  {
       "title": "O Gato Preto",
       "author": "Edgar Allan Poe",
       "coverUrl": "/uploads/images/books/gato-preto.png",
